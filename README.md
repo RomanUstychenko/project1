@@ -1,2 +1,2 @@
-![Home page](./assets/test.png)
+![Home page]()
 
