@@ -1,4 +1,4 @@
-import Twit from 'pages/twit';
+
 
 export const App = () => {
   return (
@@ -9,7 +9,7 @@ export const App = () => {
         color: '#010101',
       }}
     >
-      <Twit />
+      "start"
     </div>
   );
 };
