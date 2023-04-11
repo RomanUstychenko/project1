@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkproject1=self.webpackChunkproject1||[]).push([[815],{815:function(e,n,r){r.r(n),r.d(n,{default:function(){return c}});r(791);var t=r(184);function u(){return(0,t.jsx)("div",{children:"RegisterForm"})}function c(){return(0,t.jsx)(u,{})}}}]);
-//# sourceMappingURL=815.3ea91b61.chunk.js.map
