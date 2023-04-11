@@ -1,16 +1,18 @@
-import { NavLink } from "react-router-dom"
-import items from "./items"
+import NavbarMenu from "components/Navbar/NavbarMenu/NavbarMenu"
+import NavbarAuth from "components/Navbar/NavbarAuth/NavbarAuth"
+import NavbarUser from "./NavbarUser/NavbarUser"
+import scss from "./Navbar.module.scss"
+import UseAuth from "components/hooks/useAuth"
 
-export default function NavbarMenu() {
-    return (
-      <ul >
-          {items.map(({id, to, text}) => {
-              return (
-                  <li  key={id}>
-                      <NavLink to={to} end>{text}</NavLink>
-                  </li>
-              )})
-          }
-      </ul>
-    )
-  }
+export default function Navbar() {
+  const isUserLogin = UseAuth()
+  return (
+    <nav className={scss.navbarMenu}>
+        <div className={scss.navbarList}>
+          {isUserLogin &&  <NavbarMenu />}
+           {isUserLogin ? <NavbarUser /> : <NavbarAuth />}
+        </div>
+    
+    </nav>
+  )
+}
