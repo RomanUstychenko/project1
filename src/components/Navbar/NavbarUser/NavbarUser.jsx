@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { logout, current } from "redux/auth/auth-operation"
+import { logout } from "redux/auth/auth-operation"
 import scss from "./NavbarUser.module.scss"
 import { getUser } from "redux/auth/auth-selector";
 import { Button } from "components/Button/Button";
@@ -12,8 +12,6 @@ const dispatch = useDispatch();
 const onLogout =() => {
     dispatch(logout())
 }
-// const user2 = () => {
-//   dispatch(current())}
 
 console.log(user)
 
