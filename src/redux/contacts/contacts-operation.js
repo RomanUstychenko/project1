@@ -3,11 +3,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchContacts = createAsyncThunk(
     "contacts/fetch",
-    async(name, number, thunkApi) => {
+    async(name, phone, thunkApi) => {
         try {
             const data = await api.getContacts(                {
                     name,
-                    number,
+                    phone,
                   }
                   );
             return data;
@@ -18,13 +18,13 @@ export const fetchContacts = createAsyncThunk(
 
     export const addContacts = createAsyncThunk(
         "contacts/add",
-        async({ name, number }, {rejectWithValue}) => {
-            console.log(name, number)
+        async({ name, phone }, {rejectWithValue}) => {
+            console.log(name, phone)
             try {
                 const result = await api.addContacts(
                     {
                     name,
-                    number,
+                    phone,
                   }
                   );
                 console.log(result)
