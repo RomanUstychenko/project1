@@ -41,7 +41,7 @@ const contactsSlice = createSlice({
         },
         [deleteContact.fulfilled]: (store, {payload}) => {
             store.loading = false;
-            store.items = store.items.filter(item => item.id !== payload);
+            store.items = store.items.filter(item => item._id !== payload);
         },
         [deleteContact.rejected]: (store, {payload}) => {
             store.loading = false;

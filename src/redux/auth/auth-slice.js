@@ -25,7 +25,7 @@ extraReducers: {
         store.loading = false;
         store.newUser = payload.user;
         store.token = payload.token;
-        store.isLogin = true;
+        // store.isLogin = true;
     },
     [register.rejected]: (store, {payload}) => {
         console.log(payload)
@@ -39,7 +39,8 @@ extraReducers: {
         store.error = null;
     },
     [login.fulfilled]: (store, {payload}) => {
-        console.log(payload)
+        console.log(payload.user)
+        console.log("store", store)
         store.loading = false;
         store.newUser = payload.user;
         store.token = payload.token;

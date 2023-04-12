@@ -12,10 +12,10 @@ const dispatch = useDispatch();
 const onLogout =() => {
     dispatch(logout())
 }
-const user2 = () => {
-  dispatch(current())}
+// const user2 = () => {
+//   dispatch(current())}
 
-console.log(user2)
+console.log(user)
 
 const chekName = Boolean(user)
   return (
