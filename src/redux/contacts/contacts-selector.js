@@ -4,3 +4,5 @@ export const getFilteredContacts = ({filter, contacts}) => {
     if (!filter) 
     {return contacts.items};
 };
+export const selectContactInfo = state => console.log(state.contacts.items)
+

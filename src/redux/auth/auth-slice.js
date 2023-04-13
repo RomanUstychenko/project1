@@ -39,7 +39,7 @@ extraReducers: {
         store.error = null;
     },
     [login.fulfilled]: (store, {payload}) => {
-        console.log(payload.user)
+        console.log(payload)
         console.log("store", store)
         store.loading = false;
         store.newUser = payload.user;

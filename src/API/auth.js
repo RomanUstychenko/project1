@@ -22,6 +22,7 @@ export const register = async (registerData) => {
 export const login = async (loginData) => {
     const { data } = await instance.post("/users/login", loginData);
     console.log("token", data)
+    console.log(loginData)
     instance.defaults.headers.common.authorization = `Bearer ${data.token}`;
     return data;
 }
