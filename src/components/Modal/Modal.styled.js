@@ -1,14 +1,16 @@
-import styled, {keyframes} from 'styled-components';
+import styled
+//  {keyframes} 
+ from 'styled-components';
 // import { device } from 'Device';
 
-const rotateAnim = keyframes`
-0% {
-transform: scale(0.5);
-}
-100% {
-  transform: scale(1);
-}
-`
+// const rotateAnim = keyframes`
+// 0% {
+// transform: scale(0.5);
+// }
+// 100% {
+//   transform: scale(1);
+// }
+// `
 export const ModalBackdrop = styled.div`
   position: fixed;
   z-index: 1000;
