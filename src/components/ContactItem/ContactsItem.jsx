@@ -13,10 +13,11 @@ export default function ContactsItem({filteredContact}) {
     // const contacts = useSelector(getContacts);
     const {
       name, 
+      description,
       phone,
     _id,
   } = filteredContact;
-console.log(filteredContact)
+// console.log(filteredContact)
 
 const dispatch = useDispatch();
 
@@ -30,6 +31,7 @@ function closeModal () {
     <>
     <li className={scss.contactList} key={_id}> 
             <b>Name:</b>  {name} <br />
+            <b>Description:</b>  {description} <br />
             <b className={scss.tel}>Tel:</b> {phone} 
             <span className={scss.delContacts} 
             onClick={() => setModalActive(true)}>Delete</span>
@@ -44,7 +46,8 @@ function closeModal () {
 
       <div
       onClick={e => e.stopPropagation()}
-      active={modalActive}>
+      // active={modalActive}
+      >
         Do you really wont to delete?
           <button
           onClick={() => 
