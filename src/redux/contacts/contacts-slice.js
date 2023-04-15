@@ -7,46 +7,46 @@ const initialState = {
     error: null,
 }
 
+const pendingHandler = (store, {payload}) => {
+    store.isLoading = true;
+  };
+
 const contactsSlice = createSlice({
     name: "contacts",
     initialState,
-    extraReducers: {
-        [fetchContacts.pending]: (store) => {
-            store.loading = true;
-        },
-        [fetchContacts.fulfilled]: (store, {payload}) => {
+    extraReducers:  builder => {
+        builder
+        .addCase(fetchContacts.pending, pendingHandler)
+        .addCase(fetchContacts.fulfilled, (store, {payload}) => {
             store.loading = false;
             store.items = payload;
-        },
-        [fetchContacts.rejected]: (store, {payload}) => {
+        }) 
+        .addCase(fetchContacts.rejected, (store, {payload}) => {
             store.loading = false;
             store.error = payload;
-        },
-        [addContacts.pending]: (store) => {
-            store.loading = true;
-        },
-        [addContacts.fulfilled]: (store, {payload}) => {
+        })
+        .addCase(addContacts.pending, pendingHandler)
+        .addCase(addContacts.fulfilled, (store, {payload}) => {
             store.loading = false;
             store.error = null;
             console.log(payload)
             store.items.push(payload)
-        },
-        [addContacts.rejected]: (store, {payload}) => {
+        })
+        .addCase(addContacts.rejected, (store, {payload}) => {
             store.loading = false;
             console.log(payload)
             store.error = payload;
-        },
-        [deleteContact.pending]: (store) => {
-            store.loading = true;
-        },
-        [deleteContact.fulfilled]: (store, {payload}) => {
+        })
+        .addCase(deleteContact.pending, pendingHandler)
+        .addCase(deleteContact.fulfilled, (store, {payload}) => {
             store.loading = false;
             store.items = store.items.filter(item => item._id !== payload);
-        },
-        [deleteContact.rejected]: (store, {payload}) => {
+        })
+        .addCase(deleteContact.rejected, (store, {payload}) => {
             store.loading = false;
             store.error = payload;
-        },
+        })
+       
     }
 });
 
