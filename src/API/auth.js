@@ -48,6 +48,7 @@ export const getCurrentUser = async (token) => {
 export const userUpdate = async (userData) => {
       try {
         const { data } = await instance.patch('/users', userData);
+        console.log(data)
         return data;
       } catch (error) {
         throw error;;

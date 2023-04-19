@@ -73,8 +73,12 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
     })
     .addCase(userUpdate.pending, pendingHandler)
     .addCase(userUpdate.fulfilled, (store, { payload }) => {
+      console.log(payload)
         store.newUser = {
-          name: payload.user.name
+          name: payload.user.name,
+          email: payload.user.email,
+          verify: payload.user.verify,
+          avatarURL: payload.user.avatarURL
         };
       })
       .addCase(userUpdate.rejected, (store, { meta, payload }) => {
