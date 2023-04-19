@@ -3,7 +3,7 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import { getUser } from "redux/auth/auth-selector";
 import { userUpdate } from "redux/auth/auth-operation";
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 export default function Users() {
