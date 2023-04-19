@@ -68,3 +68,19 @@ export const current = createAsyncThunk(
            return rejectWithValue(error)
         }}
 )
+
+export const userUpdate = createAsyncThunk(
+    'auth/userUpdate',
+    async (userData, { rejectWithValue }) => {
+      try {
+        const result = await api.userUpdate(userData);
+        return result;
+      } catch ({response}) {
+        const error = {
+            status: response.status,
+            message: response.data.message
+        }
+       return rejectWithValue(error)
+      }
+    }
+  );

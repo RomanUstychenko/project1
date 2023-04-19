@@ -5,8 +5,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getFilteredContacts } from 'redux/contacts/contacts-selector';
 import { addContacts } from "redux/contacts/contacts-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Formik } from 'formik';
 
-export default function ContactForm ({onClick}) {
+export default function ContactForm ({onClick, setModalActive}) {
   const contacts = useSelector(getFilteredContacts);
   
   const dispatch = useDispatch();
@@ -14,6 +15,13 @@ export default function ContactForm ({onClick}) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [description, setDescription] = useState('');
+
+  // const [datat, setDatat] = useState({
+  //   name: '',
+  //   description: '',
+  //   phone: '',
+
+  // });
 
   const nameID = nanoid();
   const telID = nanoid();
@@ -23,13 +31,13 @@ export default function ContactForm ({onClick}) {
         const { name } = e.currentTarget;
         switch (name) {
           case 'name':
-            setName(e.currentTarget.value);
+            setName ( e.currentTarget.value);
             break;
             case 'description':
-            setDescription(e.currentTarget.value);
+              setDescription (e.currentTarget.value);
             break;
           case 'phone':
-            setPhone(e.currentTarget.value);
+            setPhone (e.currentTarget.value);
             break;
           default:
             break;
@@ -37,28 +45,58 @@ export default function ContactForm ({onClick}) {
       };
 
   const handleSubmit = (e) => {
+
+    // const { name, description, phone } = values;
+
+    // const data = new FormData();
+
+    // data.append('name', name);
+    // data.append('description', description);
+    // data.append('phone', phone);
+
         e.preventDefault()
         const duplicateContacts = contacts.find(contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
-      console.log(duplicateContacts)
-        console.log(contacts)
+      
+       
           if (duplicateContacts) {
             Notify.failure(`${name} is already in contact`)
             // alert (`${name} is already in contact`)
             return
           }
+          if (description === "") {
+            dispatch(addContacts(
+              {name, phone}
+              ));
+            setName('');
+            // setDescription('');
+            setPhone('');
+            setModalActive(false);
+          }
           else {
-            dispatch(addContacts({ name, description, phone }));
+            dispatch(addContacts(
+             {name, description, phone}
+              ));
             setName('');
             setDescription('');
             setPhone('');
+            setModalActive(false);
           }
       }; 
+      // const initialValues = {
+      //   name: '',
+      //   description: '',
+      //   phone: '',
+      // };
 
       return ( 
         <form 
-        onClick={onClick}
+        onClick={e => e.stopPropagation()}
         className={scss.form}
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+        // initialValues={initialValues}
+        // validateOnChange
+        >
+          <>
         <div className={scss.formInput}>
           <label htmlFor={nameID}>Name</label>
           <input 
@@ -98,8 +136,10 @@ export default function ContactForm ({onClick}) {
           required/>
         </div>
         <button 
+        // onClick={values => handleSubmit(values)}
         className={scss.formBtn}
         type="submit">Add</button>
+        </>
         </form>
         )
 };

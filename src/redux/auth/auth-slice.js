@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, login, logout, current } from "./auth-operation";
+import { register, login, logout, current, userUpdate } from "./auth-operation";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { toast } from 'react-toastify';
 
 
 const initialState = {
-    newUser: { name: null, email: null, verify: false },
+    newUser: { name: null, email: null, verify: false, avatarURL: null  },
     token: "",
     isLogin: false,
     loading: false,
@@ -43,7 +44,8 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
         store.isLogin = true;
     })
     .addCase(login.rejected, (store, {payload}) => {
-        // store.loading = false;
+        
+        store.loading = false;
         store.error = payload;
         Notify.failure(`wrong password or email`)
     })
@@ -68,7 +70,27 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
     .addCase(current.rejected, (store, {payload}) => {
         store.isLoadingUser = false;
         store.error = payload;
-    });
+    })
+    .addCase(userUpdate.pending, pendingHandler)
+    .addCase(userUpdate.fulfilled, (store, { payload }) => {
+        store.newUser = {
+          name: payload.user.name
+        };
+      })
+      .addCase(userUpdate.rejected, (store, { meta, payload }) => {
+        store.isLoadingUser = false;
+        store.error = payload;
+        toast.error(chooseValid(Object.keys(meta.arg)[0]));
+        function chooseValid(key) {
+          switch (key) {
+            case 'name':
+              return 'Name must be in English, contain 2-20 symbols';
+            default:
+              return 'Wrong!';
+          }
+        }
+      })
+
    
 }}
 );

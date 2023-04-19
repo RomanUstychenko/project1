@@ -37,7 +37,9 @@ export default function Contacts() {
         active={modalActive}
         setActive={setModalActive}>
         <ContactForm 
-        onClick={e => e.stopPropagation()}/>
+        onClick={e => e.stopPropagation()}
+        setModalActive={setModalActive}
+        />
         </Modal>
       )}
       </div>

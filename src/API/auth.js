@@ -44,4 +44,13 @@ export const getCurrentUser = async (token) => {
         throw error;
     }
 }
+
+export const userUpdate = async (userData) => {
+      try {
+        const { data } = await instance.patch('/users', userData);
+        return data;
+      } catch (error) {
+        throw error;;
+      }
+    }
   export default instance;

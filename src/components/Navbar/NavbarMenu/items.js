@@ -5,6 +5,10 @@ const items = [
     to: "/contacts",
     text: "Contacts"
 },
+{id: nanoid(),
+    to: "/users",
+    text: "Users"
+},
 ]
 
 

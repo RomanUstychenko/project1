@@ -18,7 +18,9 @@ console.log(user)
 const chekName = Boolean(user)
   return (
     <div className={scss.navbarUser}>
-      {chekName ? <p className={scss.navbarUserName}>Welcome, <b>{user.name}</b></p> : <p>Welcome, <b>User</b></p> }
+      {chekName ? <p className={scss.navbarUserName}>
+        <img src={user.avatarURL} alt="avatar" />
+        Welcome, <b>{user.name}</b></p> : <p>Welcome, <b>User</b></p> }
         <Button 
         style={{
           position: 'absolute',
