@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import scss from "./ContactForm.module.scss"
+import scss from "./ItemForm.module.scss"
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilteredContacts } from 'redux/contacts/contacts-selector';
-import { addContacts } from "redux/contacts/contacts-operation"; 
+import { getFilteredItems } from 'redux/items/items-selector';
+import { addItems } from "redux/items/items-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Formik } from 'formik';
 
-export default function ContactForm ({onClick, setModalActive}) {
-  const contacts = useSelector(getFilteredContacts);
+export default function ItemForm ({onClick, setModalActive}) {
+  const items = useSelector(getFilteredItems);
+  console.log(items)
   
   const dispatch = useDispatch();
 
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [itemName, setItemName] = useState('');
+  const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
 
   // const [datat, setDatat] = useState({
@@ -23,21 +24,21 @@ export default function ContactForm ({onClick, setModalActive}) {
 
   // });
 
-  const nameID = nanoid();
-  const telID = nanoid();
+  const itemNameID = nanoid();
+  const priceID = nanoid();
   const descriptionID = nanoid();
 
   const handleChange = (e) => {
         const { name } = e.currentTarget;
         switch (name) {
-          case 'name':
-            setName ( e.currentTarget.value);
+          case 'itemName':
+            setItemName ( e.currentTarget.value);
             break;
             case 'description':
               setDescription (e.currentTarget.value);
             break;
-          case 'phone':
-            setPhone (e.currentTarget.value);
+          case 'price':
+            setPrice (e.currentTarget.value);
             break;
           default:
             break;
@@ -55,31 +56,31 @@ export default function ContactForm ({onClick, setModalActive}) {
     // data.append('phone', phone);
 
         e.preventDefault()
-        const duplicateContacts = contacts.find(contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase());
+        const duplicateItems = items.find(item => item.itemName.toLocaleLowerCase() === itemName.toLocaleLowerCase());
       
        
-          if (duplicateContacts) {
-            Notify.failure(`${name} is already in contact`)
+          if (duplicateItems) {
+            Notify.failure(`${itemName} is already in item`)
             // alert (`${name} is already in contact`)
             return
           }
           if (description === "") {
-            dispatch(addContacts(
-              {name, phone}
+            dispatch(addItems(
+              {itemName, price}
               ));
-            setName('');
+              setItemName('');
             // setDescription('');
-            setPhone('');
+            setPrice('');
             setModalActive(false);
           }
           else {
-            dispatch(addContacts(
-             {name, description, phone}
+            dispatch(addItems(
+             {itemName, description, price}
               ));
-            setName('');
-            setDescription('');
-            setPhone('');
-            setModalActive(false);
+              setItemName('');
+              setDescription('');
+              setPrice('');
+              setModalActive(false);
           }
       }; 
       // const initialValues = {
@@ -98,16 +99,16 @@ export default function ContactForm ({onClick, setModalActive}) {
         >
           <>
         <div className={scss.formInput}>
-          <label htmlFor={nameID}>Name</label>
+          <label htmlFor={itemNameID}>Name</label>
           <input 
           className={scss.formInputName}
-          id={nameID} 
+          id={itemNameID} 
           type="text" 
-          name="name" 
+          name="itemName" 
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          value={name} 
+          value={itemName} 
           onChange={handleChange} />
         </div>
         <div className={scss.formInput}>
@@ -123,15 +124,15 @@ export default function ContactForm ({onClick, setModalActive}) {
           onChange={handleChange} />
         </div>
         <div className={scss.formInput}>
-          <label htmlFor={telID}>Phone</label>
+          <label htmlFor={priceID}>Price</label>
           <input 
           className={scss.formInputTel}
-          id={telID} 
+          id={priceID} 
           type="number" 
-          name="phone" 
+          name="price" 
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          value={phone} 
+          value={price} 
           onChange={handleChange} 
           required/>
         </div>

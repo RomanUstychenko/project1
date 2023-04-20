@@ -21,7 +21,7 @@ return (
               <label
               className={scss.contactFilterLabel}
               htmlFor={findID}
-              >Find contacts by name
+              >Find items by name
               </label>
               <input 
               className={scss.contactFilterInput}

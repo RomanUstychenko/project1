@@ -3,18 +3,18 @@ import { useSelector,
   // useDispatch
  } from 'react-redux';
 // import { useState } from 'react';
-import { getContacts } from 'redux/contacts/contacts-selector';
+import { getItems } from 'redux/items/items-selector';
 import  { getFilter }from 'redux/filter/filter-selector';
 // import { deleteContact } from "redux/contacts/contacts-operation"; 
-import ContactsItem from "components/ContactItem/ContactsItem";
+import ItemInList from "components/ItemInList/ItemInList";
 
 
 
- export const ContactList = () => {
+ export const ItemList = () => {
 
 
     
-    const contacts = useSelector(getContacts);
+    const items = useSelector(getItems);
 
 
     const filter = useSelector(getFilter);
@@ -22,17 +22,17 @@ import ContactsItem from "components/ContactItem/ContactsItem";
 
 
 
-    const getFilteredContact = () => {
+    const getFilteredItem = () => {
         if (!filter) {
-          return contacts;
+          return items;
         }
             const normalizedFilter = filter.toLocaleLowerCase();
-            const filteredContact = contacts.filter(({name}) => {
-            const nornalizedName = name.toLocaleLowerCase();
+            const filteredItem = items.filter(({itemName}) => {
+            const nornalizedName = itemName.toLocaleLowerCase();
             const result = nornalizedName.includes(normalizedFilter);
             return result;
           })
-          return filteredContact;
+          return filteredItem;
         };
 
 
@@ -41,10 +41,10 @@ import ContactsItem from "components/ContactItem/ContactsItem";
     return (
       <>
             <ul>
-            {getFilteredContact().map(filteredContact => (
-              <ContactsItem
-              key={filteredContact._id}
-              filteredContact={filteredContact}/>
+            {getFilteredItem().map(filteredItem => (
+              <ItemInList
+              key={filteredItem._id}
+              filteredItem={filteredItem}/>
             // <li className={scss.contactList} key={_id}> 
             // <b>Name:</b>  {name} <br />
             // <b className={scss.tel}>Tel:</b> {phone} 

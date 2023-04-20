@@ -8,7 +8,7 @@ import PrivateRoute from "components/PrivateRoute/privateRoute";
 import PublicRoute from "components/PublicRoute/publicRoute";
 import { getLoadingUserStatus } from "redux/auth/auth-selector";
 
-const Contacts = lazy(() => import("Pages/Contacts/Contacts"));
+const MenuItems = lazy(() => import("Pages/MenuItems/MenuItems"));
 const Users = lazy(() => import("Pages/Users/Users"));
 const NotFound = lazy(() => import("Pages/PageNotFound/NotFound"));
 const Navbar = lazy(() => import("components/Navbar/Navbar"));
@@ -43,8 +43,8 @@ useEffect(() => {
           <Route path="/register" element={<Registration />}/>
         </Route>
         <Route element={<PrivateRoute />}>
-          <Route path="/" element={<Contacts />}/>
-          <Route path="/contacts" element={<Contacts />}/>
+          <Route path="/" element={<MenuItems />}/>
+          <Route path="/items/ :categoryName" element={<MenuItems />}/>
           <Route path="/users" element={<Users />}/>
         </Route>
      <Route path="*" element={<NotFound />}/>

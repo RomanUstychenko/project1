@@ -5,7 +5,7 @@ export default function PublicRoute() {
     const isUserLogin = UseAuth();
 
     if (isUserLogin) {
-        return <Navigate to="/contacts" />
+        return <Navigate to="/items" />
     }
   return <Outlet />
 }

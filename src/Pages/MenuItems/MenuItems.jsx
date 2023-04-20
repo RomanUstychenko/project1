@@ -1,18 +1,19 @@
 // import { useEffect } from "react";
-import  ContactForm  from "../../components/ContactForm/ContactForm"
-import {ContactList} from "../../components/ContactList/ContactList"
-import { fetchContacts } from "redux/contacts/contacts-operation"
+import  ItemForm  from "../../components/ItemForm/ItemForm"
+import {ItemList} from "../../components/ItemList/ItemList"
+import { fetchItems } from "redux/items/items-operation"
 import Filter from "../../components/filter/Filter"
-import scss from "./Contacts.module.scss"
+import scss from "./MenuItems.module.scss"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getState } from 'redux/contacts/contacts-selector';
-import { getContacts } from 'redux/contacts/contacts-selector';
+import { getState } from 'redux/items/items-selector';
+import { getItems } from 'redux/items/items-selector';
 import { Modal } from "components/Modal/Modal";
+import ItemsSections from "components/ItemList/ItemSections/ItemsSections"
 // import UseAuth from "components/hooks/useAuth"
 // import { Navigate } from "react-router-dom"
 
-export default function Contacts() {
+export default function MenuItems() {
 
   const [modalActive, setModalActive] = useState(false);
 
@@ -22,21 +23,21 @@ export default function Contacts() {
   }
 
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const items = useSelector(getItems);
  const {loading, error} = useSelector(getState);
       useEffect(() => {
-          dispatch(fetchContacts());
+          dispatch(fetchItems());
           }, [dispatch]);
   return (
     <div  className={scss.phoneBook}>
       <div className={scss.contactForm}>
-      <h2 className={scss.titlePhoneBook}>New Item</h2>
+      <ItemsSections></ItemsSections>
       { modalActive && (
         <Modal
         onClick={() => closeModal ()}
         active={modalActive}
         setActive={setModalActive}>
-        <ContactForm 
+        <ItemForm 
         onClick={e => e.stopPropagation()}
         setModalActive={setModalActive}
         />
@@ -44,9 +45,9 @@ export default function Contacts() {
       )}
       </div>
       <div className={scss.contacts}>
-      <h2>Contacts</h2>
+      <h2>Menu</h2>
         <Filter />
-          {!loading && contacts.length > 0 && <ContactList />}
+          {!loading && items.length > 0 && <ItemList />}
           {loading && <p className={scss.contactsLoading}>...loading</p>}
           {error && <p>oops, something went wrong</p>}
       </div>

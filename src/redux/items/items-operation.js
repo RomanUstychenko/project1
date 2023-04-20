@@ -1,14 +1,15 @@
-import * as api from "API/contacts";
+import * as api from "API/items";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchContacts = createAsyncThunk(
-    "contacts/fetch",
-    async(name, description, phone, thunkApi) => {
+export const fetchItems = createAsyncThunk(
+    "items/fetch",
+    async(itemName, description, price, itemImg, thunkApi) => {
         try {
-            const data = await api.getContacts(                {
-                    name,
+            const data = await api.getItems(                {
+                    itemName,
                     description,
-                    phone,
+                    price,
+                    itemImg,
                   }
                   );
             return data;
@@ -17,12 +18,12 @@ export const fetchContacts = createAsyncThunk(
         }}
     );
 
-    export const addContacts = createAsyncThunk(
-        "contacts/add",
+    export const addItems = createAsyncThunk(
+        "items/add",
         async(datas, {rejectWithValue}) => {
             console.log(datas)
             try {
-                const result = await api.addContacts(
+                const result = await api.addItems(
                     
                     datas
                   
@@ -36,11 +37,11 @@ export const fetchContacts = createAsyncThunk(
             }},
     );
 
-    export const deleteContact = createAsyncThunk(
-        "contacts/remove",
+    export const deleteItem = createAsyncThunk(
+        "items/remove",
         async(_id, {rejectWithValue}) => {
             try {
-                await api.deleteContact(_id);
+                await api.deleteItem(_id);
                 return _id;
             } catch(error) {
                 return rejectWithValue(error);

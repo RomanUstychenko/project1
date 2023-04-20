@@ -9,7 +9,7 @@ import storage from "redux-persist/lib/storage";
 //   } from 'react-redux-firebase'
 //   import { constants as rfConstants } from 'redux-firestore'
 
-import { contactsReducer } from "./contacts/contacts-slice";
+import { itemsReducer } from "./items/items-slice";
 import { filterReducer } from "./filter/filter-slice";
 import { authReducer } from "./auth/auth-slice";
 
@@ -24,7 +24,7 @@ const persistedReducer = persistReducer(persistConfig, authReducer)
 export const store = configureStore({
     reducer: {
         auth: persistedReducer,
-        contacts: contactsReducer,
+        items: itemsReducer,
         filter: filterReducer
     },
     middleware: (getDefaultMiddleware) => 

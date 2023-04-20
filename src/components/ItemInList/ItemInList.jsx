@@ -4,19 +4,20 @@ import {
     useDispatch } from 'react-redux';
 // import { getContacts } from 'redux/contacts/contacts-selector';
 import { Modal } from "components/Modal/Modal";
-import scss from "./ContactList.module.scss"
+import scss from "./ItemInList.module.scss"
 import { useState } from 'react';
-import { deleteContact } from "redux/contacts/contacts-operation"; 
+import { deleteItem } from "redux/items/items-operation"; 
 
-export default function ContactsItem({filteredContact}) {
+export default function ItemInList({filteredItem}) {
 
     // const contacts = useSelector(getContacts);
     const {
-      name, 
+      itemName, 
       description,
-      phone,
+      price,
     _id,
-  } = filteredContact;
+    itemImg,
+  } = filteredItem;
 // console.log(filteredContact)
 
 const dispatch = useDispatch();
@@ -30,9 +31,10 @@ function closeModal () {
   return (
     <>
     <li className={scss.contactList} key={_id}> 
-            <b>Name:</b>  {name} <br />
+            <b>Name:</b>  {itemName} <br />
             <b>Description:</b>  {description} <br />
-            <b className={scss.tel}>Tel:</b> {phone} 
+            <b >Price:</b> {price} <br />
+            <b >img:</b> {itemImg}
             <span className={scss.delContacts} 
             onClick={() => setModalActive(true)}>Delete</span>
             
@@ -52,7 +54,7 @@ function closeModal () {
           <button
           onClick={() => 
             
-            { dispatch(deleteContact(_id))}} 
+            { dispatch(deleteItem(_id))}} 
           >
             yes
           </button>
