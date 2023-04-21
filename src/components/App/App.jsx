@@ -44,6 +44,7 @@ useEffect(() => {
         </Route>
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<MenuItems />}/>
+          <Route path="/items/" element={<MenuItems />}/>
           <Route path="/items/ :categoryName" element={<MenuItems />}/>
           <Route path="/users" element={<Users />}/>
         </Route>

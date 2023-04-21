@@ -10,11 +10,18 @@ import { getState } from 'redux/items/items-selector';
 import { getItems } from 'redux/items/items-selector';
 import { Modal } from "components/Modal/Modal";
 import ItemsSections from "components/ItemList/ItemSections/ItemsSections"
+import { useLocation,
+  //  useSearchParams
+   } from 'react-router-dom'
 // import UseAuth from "components/hooks/useAuth"
 // import { Navigate } from "react-router-dom"
 
 export default function MenuItems() {
 
+
+  const location = useLocation();
+  const category = location.pathname.split('/')[1];
+  console.log("category", category)
   const [modalActive, setModalActive] = useState(false);
 
   function closeModal () {

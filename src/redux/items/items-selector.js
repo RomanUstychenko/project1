@@ -1,4 +1,5 @@
 export const getItems = ({items}) => items.items;
+export const getItemsByCategory = ({items}) => console.log(items);
 export const getState = ({items}) => ({loading: items.loading, error: items.error});
 export const getFilteredItems = ({filter, items}) => {   
     if (!filter) 

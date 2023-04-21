@@ -17,7 +17,25 @@ export const fetchItems = createAsyncThunk(
             return thunkApi.rejectWithValue(error);
         }}
     );
+   export const geItemsByCategory = createAsyncThunk(
+        'items/getByCategory',
+        async ( category, {rejectWithValue}) => {
+            try {
+                
+                const { data } = await api.getItemsByCategory(category)
+                return data;
+            } 
+             catch (error) {
+                return rejectWithValue(error);
+            }
+        },
+    );
 
+
+
+
+
+    
     export const addItems = createAsyncThunk(
         "items/add",
         async(datas, {rejectWithValue}) => {

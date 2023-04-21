@@ -7,9 +7,12 @@ import { Modal } from "components/Modal/Modal";
 import scss from "./ItemInList.module.scss"
 import { useState } from 'react';
 import { deleteItem } from "redux/items/items-operation"; 
+import { useLocation,
+  //  useSearchParams
+   } from 'react-router-dom';
 
 export default function ItemInList({filteredItem}) {
-
+  const location = useLocation();
     // const contacts = useSelector(getContacts);
     const {
       itemName, 
@@ -19,6 +22,9 @@ export default function ItemInList({filteredItem}) {
     itemImg,
   } = filteredItem;
 // console.log(filteredContact)
+
+const category = location.pathname.split('/')[1];
+console.log("category", category)
 
 const dispatch = useDispatch();
 

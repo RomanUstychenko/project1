@@ -6,6 +6,12 @@ export const getItems = async () => {
     return data;
 }
 
+
+export const getItemsByCategory =  async (category) => {
+    const { data } = await instance.get(`/items/${category}`);
+            return data;     
+};
+
 export const addItems = async (data) => {
     const {data: result} = await instance.post('/items', data);
     console.log(data)

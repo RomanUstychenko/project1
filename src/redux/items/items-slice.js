@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchItems, addItems, deleteItem } from "./items-operation";
+import { fetchItems, geItemsByCategory, addItems, deleteItem } from "./items-operation";
 
 const initialState = {
     items: [],
+    itemsByCategory: [],
     loading: false,
     error: null,
 }
@@ -25,6 +26,24 @@ const itemsSlice = createSlice({
             store.loading = false;
             store.error = payload;
         })
+
+
+        .addCase(geItemsByCategory.pending, pendingHandler)
+        .addCase(geItemsByCategory.fulfilled, (store, {payload}) => {
+            console.log(payload)
+            store.loading = false;
+            store.itemsByCategory = payload
+        }) 
+        .addCase(geItemsByCategory.rejected, (store, {payload}) => {
+            store.itemsByCategory = [];
+            store.loading = false;
+            store.error = payload;
+        })
+
+
+
+
+
         .addCase(addItems.pending, pendingHandler)
         .addCase(addItems.fulfilled, (store, {payload}) => {
             store.loading = false;
