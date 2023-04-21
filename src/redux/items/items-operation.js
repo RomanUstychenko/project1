@@ -20,9 +20,11 @@ export const fetchItems = createAsyncThunk(
    export const geItemsByCategory = createAsyncThunk(
         'items/getByCategory',
         async ( category, {rejectWithValue}) => {
+            console.log(category)
             try {
                 
                 const { data } = await api.getItemsByCategory(category)
+                console.log(data)
                 return data;
             } 
              catch (error) {
@@ -41,11 +43,7 @@ export const fetchItems = createAsyncThunk(
         async(datas, {rejectWithValue}) => {
             console.log(datas)
             try {
-                const result = await api.addItems(
-                    
-                    datas
-                  
-                  );
+                const result = await api.addItems(datas);
                 console.log(result)
                 return result;
                 

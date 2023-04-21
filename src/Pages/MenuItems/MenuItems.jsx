@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { getState } from 'redux/items/items-selector';
 import { getItems } from 'redux/items/items-selector';
 import { Modal } from "components/Modal/Modal";
-import ItemsSections from "components/ItemList/ItemSections/ItemsSections"
+import ItemsSections from "components/ItemSections/ItemsSections"
 import { useLocation,
   //  useSearchParams
    } from 'react-router-dom'
@@ -23,6 +23,9 @@ export default function MenuItems() {
   const category = location.pathname.split('/')[1];
   console.log("category", category)
   const [modalActive, setModalActive] = useState(false);
+
+
+
 
   function closeModal () {
     setModalActive(false)
@@ -54,7 +57,8 @@ export default function MenuItems() {
       <div className={scss.contacts}>
       <h2>Menu</h2>
         <Filter />
-          {!loading && items.length > 0 && <ItemList />}
+          {!loading && items.length > 0 && <ItemList
+          items={items} />}
           {loading && <p className={scss.contactsLoading}>...loading</p>}
           {error && <p>oops, something went wrong</p>}
       </div>

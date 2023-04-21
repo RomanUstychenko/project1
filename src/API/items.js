@@ -7,7 +7,8 @@ export const getItems = async () => {
 }
 
 
-export const getItemsByCategory =  async (category) => {
+export const getItemsByCategory =  async ({category}) => {
+    console.log(category)
     const { data } = await instance.get(`/items/${category}`);
             return data;     
 };

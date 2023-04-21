@@ -1,33 +1,46 @@
 import React from 'react'
 import { 
-    // useSelector, 
+    useSelector, 
     useDispatch } from 'react-redux';
-// import { getContacts } from 'redux/contacts/contacts-selector';
+import { getItemsByCategory,
+  //  getItems
+   } from 'redux/items/items-selector';
 import { Modal } from "components/Modal/Modal";
-import scss from "./ItemInList.module.scss"
+// import scss from "./ItemInList.module.scss"
 import { useState } from 'react';
-import { deleteItem } from "redux/items/items-operation"; 
+import { deleteItem,  geItemsByCategory} from "redux/items/items-operation"; 
 import { useLocation,
   //  useSearchParams
    } from 'react-router-dom';
 
 export default function ItemInList({filteredItem}) {
   const location = useLocation();
-    // const contacts = useSelector(getContacts);
+  
+  
+
+  
+    const itemsCategory = useSelector(getItemsByCategory);
+    console.log(itemsCategory)
+
+    
     const {
-      itemName, 
-      description,
-      price,
+      // itemName, 
+      // description,
+      // price,
+      section,
     _id,
-    itemImg,
+    // itemImg,
   } = filteredItem;
 // console.log(filteredContact)
 
-const category = location.pathname.split('/')[1];
-console.log("category", category)
+const category = location.pathname.split('/')[2];
+// console.log("category", category)
+// console.log("section", section)
 
 const dispatch = useDispatch();
 
+// console.log(dispatch(geItemsByCategory))
+if (category === section) {dispatch(geItemsByCategory({category: category}))}
 const [modalActive, setModalActive] = useState(false);
 
 function closeModal () {
@@ -36,7 +49,11 @@ function closeModal () {
   }
   return (
     <>
-    <li className={scss.contactList} key={_id}> 
+
+    <div>
+      {section}
+    </div>
+    {/* <li className={scss.contactList} key={_id}> 
             <b>Name:</b>  {itemName} <br />
             <b>Description:</b>  {description} <br />
             <b >Price:</b> {price} <br />
@@ -44,7 +61,7 @@ function closeModal () {
             <span className={scss.delContacts} 
             onClick={() => setModalActive(true)}>Delete</span>
             
-            </li>
+            </li> */}
             
    { modalActive && (
           <Modal
