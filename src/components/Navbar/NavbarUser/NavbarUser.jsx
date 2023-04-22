@@ -13,7 +13,7 @@ const onLogout =() => {
     dispatch(logout())
 }
 
-console.log(user)
+// console.log(user)
 
 const chekName = Boolean(user)
   return (

@@ -3,13 +3,14 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchItems = createAsyncThunk(
     "items/fetch",
-    async(itemName, description, price, itemImg, thunkApi) => {
+    async(itemName, description, price, itemImg, section, thunkApi) => {
         try {
             const data = await api.getItems(                {
                     itemName,
                     description,
                     price,
                     itemImg,
+                    section,
                   }
                   );
             return data;
@@ -23,7 +24,7 @@ export const fetchItems = createAsyncThunk(
             console.log(category)
             try {
                 
-                const { data } = await api.getItemsByCategory(category)
+                const  data  = await api.getItemsByCategory(category)
                 console.log(data)
                 return data;
             } 

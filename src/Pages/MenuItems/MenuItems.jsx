@@ -1,13 +1,13 @@
 // import { useEffect } from "react";
 import  ItemForm  from "../../components/ItemForm/ItemForm"
 import {ItemList} from "../../components/ItemList/ItemList"
-import { fetchItems } from "redux/items/items-operation"
+import { fetchItems, geItemsByCategory } from "redux/items/items-operation"
 import Filter from "../../components/filter/Filter"
 import scss from "./MenuItems.module.scss"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getState } from 'redux/items/items-selector';
-import { getItems } from 'redux/items/items-selector';
+import { getItems, getItemsByCategory } from 'redux/items/items-selector';
 import { Modal } from "components/Modal/Modal";
 import ItemsSections from "components/ItemSections/ItemsSections"
 import { useLocation,
@@ -20,7 +20,7 @@ export default function MenuItems() {
 
 
   const location = useLocation();
-  const category = location.pathname.split('/')[1];
+  const category = location.pathname.split('/')[2];
   console.log("category", category)
   const [modalActive, setModalActive] = useState(false);
 
@@ -34,10 +34,36 @@ export default function MenuItems() {
 
   const dispatch = useDispatch();
   const items = useSelector(getItems);
+  const itemsCategory = useSelector(getItemsByCategory);
+  console.log(itemsCategory)
  const {loading, error} = useSelector(getState);
+
+
+
+
       useEffect(() => {
           dispatch(fetchItems());
-          }, [dispatch]);
+          // if (category === undefined) {
+          //   console.log("undef")
+          // }
+          // else 
+          
+          // {
+          //   console.log("else")
+          //   dispatch(geItemsByCategory({category: category}))
+          // }
+          // const itemsByCateg = () => {
+            if (category === undefined) {
+              console.log("undef")
+            }
+            else {
+              console.log("else")
+              dispatch(geItemsByCategory({category: category}))
+            }
+          // }
+          }, 
+           [dispatch, category]
+          );
   return (
     <div  className={scss.phoneBook}>
       <div className={scss.contactForm}>
@@ -57,8 +83,11 @@ export default function MenuItems() {
       <div className={scss.contacts}>
       <h2>Menu</h2>
         <Filter />
-          {!loading && items.length > 0 && <ItemList
-          items={items} />}
+          {!loading && items.length > 0 && 
+          <ItemList
+          items={items} 
+          itemsCategory={itemsCategory}
+          />}
           {loading && <p className={scss.contactsLoading}>...loading</p>}
           {error && <p>oops, something went wrong</p>}
       </div>
