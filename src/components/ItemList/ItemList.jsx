@@ -25,7 +25,7 @@ import ItemInList from "components/ItemInList/ItemInList";
 // const dispatch = useDispatch();
 console.log(itemsCategory)
     const items = useSelector(getItems);
-    console.log(items)
+    // console.log(items)
     // const itemsCategory = useSelector(getItemsByCategory);
 
     const filter = useSelector(getFilter);

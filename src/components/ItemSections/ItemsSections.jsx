@@ -1,5 +1,6 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
+// import { getSections } from 'redux/sections/sections-selector';
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { nanoid } from 'nanoid';
 import {
@@ -11,21 +12,7 @@ import {
   CommonLinks,
 } from './ItemsSections.styled';
 
-const buttons = [
-  {
-    btn: 'first',
-    link: 'first',
-  },
-  {
-    btn: 'second',
-    link: 'second',
-  },
-  {
-    btn: 'third',
-    link: 'third',
-  },
 
-];
 
 // const authButtons = [
 //   {
@@ -38,7 +25,22 @@ const buttons = [
 //   },
 // ];
 
-function ItemsSections() {
+function ItemsSections({section}) {
+  // const sections = useSelector(getSections);
+  // console.log(section)
+
+  const { 
+    category,
+  } = section;
+  // console.log(category)
+
+  const buttons = [
+    {
+      btn: category,
+      link: category,
+    }
+  
+  ];
   // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
@@ -52,6 +54,7 @@ function ItemsSections() {
               </Button>
             </Item>
           ))}
+          
         </CommonLinks>
         {/* <AuthLinks>
           {isLoggedIn &&

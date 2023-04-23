@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getState } from 'redux/items/items-selector';
 import { getItems, getItemsByCategory } from 'redux/items/items-selector';
+import { getSections } from "redux/sections/sections-selector"
 import { Modal } from "components/Modal/Modal";
 import ItemsSections from "components/ItemSections/ItemsSections"
 import { useLocation,
@@ -15,13 +16,13 @@ import { useLocation,
    } from 'react-router-dom'
 // import UseAuth from "components/hooks/useAuth"
 // import { Navigate } from "react-router-dom"
-
+import { fetchSections } from "redux/sections/sections-operation"
 export default function MenuItems() {
 
 
   const location = useLocation();
   const category = location.pathname.split('/')[2];
-  console.log("category", category)
+  // console.log("category", category)
   const [modalActive, setModalActive] = useState(false);
 
 
@@ -35,14 +36,16 @@ export default function MenuItems() {
   const dispatch = useDispatch();
   const items = useSelector(getItems);
   const itemsCategory = useSelector(getItemsByCategory);
-  console.log(itemsCategory)
+  const sections = useSelector(getSections);
+  console.log(sections)
  const {loading, error} = useSelector(getState);
 
 
-
+// console.log(dispatch(fetchSections()))
 
       useEffect(() => {
           dispatch(fetchItems());
+          dispatch(fetchSections());
           // if (category === undefined) {
           //   console.log("undef")
           // }
@@ -54,10 +57,10 @@ export default function MenuItems() {
           // }
           // const itemsByCateg = () => {
             if (category === undefined) {
-              console.log("undef")
+              // console.log("undef")
             }
             else {
-              console.log("else")
+              // console.log("else")
               dispatch(geItemsByCategory({category: category}))
             }
           // }
@@ -67,7 +70,14 @@ export default function MenuItems() {
   return (
     <div  className={scss.phoneBook}>
       <div className={scss.contactForm}>
-      <ItemsSections></ItemsSections>
+        <ul>
+          {sections.map(section =>
+           <ItemsSections
+           section={section}
+           ></ItemsSections>)
+        }
+        </ul>
+     
       { modalActive && (
         <Modal
         onClick={() => closeModal ()}
