@@ -3,9 +3,9 @@ import { useSelector,
   // useDispatch
  } from 'react-redux';
 // import { useState } from 'react';
-import { getItems,
-  //  getItemsByCategory
-   } from 'redux/items/items-selector';
+// import { getItems,
+//   //  getItemsByCategory
+//    } from 'redux/items/items-selector';
 import  { getFilter }from 'redux/filter/filter-selector';
 // import { deleteItem,  geItemsByCategory} from "redux/items/items-operation";
 import ItemInList from "components/ItemInList/ItemInList";
@@ -24,7 +24,7 @@ import ItemInList from "components/ItemInList/ItemInList";
 
 // const dispatch = useDispatch();
 console.log(itemsCategory)
-    const items = useSelector(getItems);
+    // const items = useSelector(getItems);
     // console.log(items)
     // const itemsCategory = useSelector(getItemsByCategory);
 
