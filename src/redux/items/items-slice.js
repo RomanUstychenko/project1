@@ -32,6 +32,7 @@ const itemsSlice = createSlice({
         .addCase(geItemsByCategory.fulfilled, (store, {payload}) => {
             console.log(payload)
             store.loading = false;
+            store.error = null;
             store.itemsByCategory = payload
         }) 
         .addCase(geItemsByCategory.rejected, (store, {payload}) => {

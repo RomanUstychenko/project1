@@ -29,7 +29,7 @@ export const fetchItems = createAsyncThunk(
                 return data;
             } 
              catch (error) {
-                return rejectWithValue(error);
+                return  rejectWithValue(error);
             }
         },
     );

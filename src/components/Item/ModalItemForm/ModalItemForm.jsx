@@ -1,22 +1,25 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import scss from "./ItemForm.module.scss"
-import { useSelector, useDispatch } from 'react-redux';
-import { getFilteredItems } from 'redux/items/items-selector';
+import scss from "./ModalItemForm.module.scss"
+import {
+  // useSelector, 
+  useDispatch } from 'react-redux';
+// import { getFilteredItems } from 'redux/items/items-selector';
 import { addItems } from "redux/items/items-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Formik } from 'formik';
 
-export default function ItemForm ({onClick, setModalActive}) {
-  const items = useSelector(getFilteredItems);
-  console.log(items)
+export default function ModalItemForm ({onClick, setModalActive, category, itemsCategory}) {
+  // const items = useSelector(getFilteredItems);
+  // console.log("category", category)
   
   const dispatch = useDispatch();
 
   const [itemName, setItemName] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
-
+  const [section, setSection] = useState(category)
+// console.log(section)
   // const [datat, setDatat] = useState({
   //   name: '',
   //   description: '',
@@ -56,7 +59,7 @@ export default function ItemForm ({onClick, setModalActive}) {
     // data.append('phone', phone);
 
         e.preventDefault()
-        const duplicateItems = items.find(item => item.itemName.toLocaleLowerCase() === itemName.toLocaleLowerCase());
+        const duplicateItems = itemsCategory.find(itemCategory => itemCategory.itemName.toLocaleLowerCase() === itemName.toLocaleLowerCase());
       
        
           if (duplicateItems) {
@@ -65,21 +68,25 @@ export default function ItemForm ({onClick, setModalActive}) {
             return
           }
           if (description === "") {
+            setSection (category)
             dispatch(addItems(
-              {itemName, price}
+              {itemName, price, section}
               ));
               setItemName('');
             // setDescription('');
             setPrice('');
+            setSection('');
             setModalActive(false);
           }
           else {
+            setSection (category)
             dispatch(addItems(
-             {itemName, description, price}
+             {itemName, description, price, section}
               ));
               setItemName('');
               setDescription('');
               setPrice('');
+              setSection('');
               setModalActive(false);
           }
       }; 

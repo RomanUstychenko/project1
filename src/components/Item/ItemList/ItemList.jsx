@@ -8,7 +8,7 @@ import { useSelector,
 //    } from 'redux/items/items-selector';
 import  { getFilter }from 'redux/filter/filter-selector';
 // import { deleteItem,  geItemsByCategory} from "redux/items/items-operation";
-import ItemInList from "components/ItemInList/ItemInList";
+import ItemInList from "components/Item/ItemInList/ItemInList";
 
 // import { useLocation,
 //   //  useSearchParams

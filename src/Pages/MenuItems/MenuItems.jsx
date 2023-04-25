@@ -1,7 +1,10 @@
 // import { useEffect } from "react";
-import  ItemForm  from "../../components/ItemForm/ItemForm"
-import {ItemList} from "../../components/ItemList/ItemList"
-import { fetchItems, geItemsByCategory } from "redux/items/items-operation"
+import  ModalItemForm  from "../../components/Item/ModalItemForm/ModalItemForm"
+import ModalSectionForm from "components/Section/ModalSectionForm/ModalSectionForm"
+import {ItemList} from "../../components/Item/ItemList/ItemList"
+import { 
+  // fetchItems,
+   geItemsByCategory } from "redux/items/items-operation"
 import Filter from "../../components/filter/Filter"
 import scss from "./MenuItems.module.scss"
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +13,7 @@ import { getState } from 'redux/items/items-selector';
 import { getItems, getItemsByCategory } from 'redux/items/items-selector';
 import { getSections } from "redux/sections/sections-selector"
 import { Modal } from "components/Modal/Modal";
-import ItemsSections from "components/ItemSections/ItemsSections"
+import ItemsSections from "components/Section/ItemSections/ItemsSections"
 import { useLocation,
   //  useSearchParams
    } from 'react-router-dom'
@@ -24,12 +27,13 @@ export default function MenuItems() {
   const category = location.pathname.split('/')[2];
   // console.log("category", category)
   const [modalActive, setModalActive] = useState(false);
-
+  const [modalSectionActive, setModalSectionActive] = useState(false);
 
 
 
   function closeModal () {
     setModalActive(false)
+    setModalSectionActive(false)
     document.body.style.overflow = '';
   }
 
@@ -37,35 +41,33 @@ export default function MenuItems() {
   const items = useSelector(getItems);
   const itemsCategory = useSelector(getItemsByCategory);
   const sections = useSelector(getSections);
-  console.log(sections)
+  // console.log(sections)
  const {loading, error} = useSelector(getState);
 
-
-// console.log(dispatch(fetchSections()))
+// function itemsCategoryCheck  ()  {
+// if (itemsCategory.length > 0) {
+// return itemsCategory
+// }
+ 
+// }
+// console.log(itemsCategory)
+// console.log(itemsCategoryCheck())
 
       useEffect(() => {
-          dispatch(fetchItems());
+          // dispatch(fetchItems());
           dispatch(fetchSections());
-          // if (category === undefined) {
-          //   console.log("undef")
-          // }
-          // else 
+        
           
-          // {
-          //   console.log("else")
-          //   dispatch(geItemsByCategory({category: category}))
-          // }
-          // const itemsByCateg = () => {
-            if (category === undefined) {
-              // console.log("undef")
-            }
-            else {
-              // console.log("else")
+            // if (category === undefined) {
+              
+            // }
+            // else {
+             
               dispatch(geItemsByCategory({category: category}))
-            }
-          // }
+            // }
+          
           }, 
-           [dispatch, category]
+           [dispatch, category, items]
           );
   return (
     <div  className={scss.phoneBook}>
@@ -77,15 +79,32 @@ export default function MenuItems() {
            ></ItemsSections>)
         }
         </ul>
-     
+        <button
+      type="button"
+      onClick={() => setModalSectionActive(true)}>
+        Add Section
+      </button>
+      { modalSectionActive && (
+        <Modal
+        onClick={() => closeModal ()}
+        active={modalSectionActive}
+        setActive={setModalSectionActive}>
+        <ModalSectionForm 
+        onClick={e => e.stopPropagation()}
+        setModalSectionActive={setModalSectionActive}
+        />
+        </Modal>
+      )}
       { modalActive && (
         <Modal
         onClick={() => closeModal ()}
         active={modalActive}
         setActive={setModalActive}>
-        <ItemForm 
+        <ModalItemForm 
         onClick={e => e.stopPropagation()}
         setModalActive={setModalActive}
+        category={category}
+        itemsCategory={itemsCategory}
         />
         </Modal>
       )}
@@ -99,7 +118,7 @@ export default function MenuItems() {
           itemsCategory={itemsCategory}
           />}
           {loading && <p className={scss.contactsLoading}>...loading</p>}
-          {error && <p>oops, something went wrong</p>}
+          {error && <p>No items yet</p>}
       </div>
       <button
       type="button"
