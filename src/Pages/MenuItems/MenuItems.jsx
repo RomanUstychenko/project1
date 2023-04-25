@@ -58,13 +58,13 @@ export default function MenuItems() {
           dispatch(fetchSections());
         
           
-            // if (category === undefined) {
+            if (category === undefined) {
               
-            // }
-            // else {
+            }
+            else {
              
               dispatch(geItemsByCategory({category: category}))
-            // }
+            }
           
           }, 
            [dispatch, category, items]
