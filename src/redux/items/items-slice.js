@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchItems, geItemsByCategory, addItems, deleteItem } from "./items-operation";
+import { fetchItems, geItemsByCategory, addItems, deleteItem, itemUpdate } from "./items-operation";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { toast } from 'react-toastify';
 
 const initialState = {
     items: [],
@@ -43,9 +45,6 @@ const itemsSlice = createSlice({
         })
 
 
-
-
-
         .addCase(addItems.pending, pendingHandler)
         .addCase(addItems.fulfilled, (store, {payload}) => {
             store.loading = false;
@@ -67,7 +66,33 @@ const itemsSlice = createSlice({
             store.loading = false;
             store.error = payload;
         })
-       
+
+
+        .addCase(itemUpdate.pending, pendingHandler)
+        .addCase(itemUpdate.fulfilled, (store,  {payload} ) => {
+          console.log(payload)
+            // store.items = {
+            //   itemName: payload.itemName,
+            // };
+            store.items = {
+                 payload,
+              };
+          })
+        .addCase(itemUpdate.rejected, (store, { meta, payload }) => {
+            store.isLoadingUser = false;
+            store.error = payload;
+            console.log(meta)
+            console.log(payload)
+            // toast.error(chooseValid(Object.keys(meta.arg)[0]));
+            // function chooseValid(key) {
+            //   switch (key) {
+            //     case 'name':
+            //       return 'Name must be in English, contain 2-20 symbols';
+            //     default:
+            //       return 'Wrong!';
+            //   }
+            // }
+          })
     }
 });
 

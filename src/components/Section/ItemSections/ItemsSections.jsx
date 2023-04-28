@@ -12,7 +12,7 @@ import {
   CommonLinks,
 } from './ItemsSections.styled';
 
-
+const btnId = nanoid();
 
 // const authButtons = [
 //   {
@@ -46,16 +46,16 @@ function ItemsSections({section}) {
   return (
     <Wrapper>
       <FilterList>
-        <CommonLinks>
+        {/* <CommonLinks> */}
           {buttons.map(b => (
-            <Item key={nanoid()}>
+            <Item key={btnId}>
               <Button to={'/items/' + b.link} name={b.link}>
                 {b.btn}
               </Button>
             </Item>
           ))}
           
-        </CommonLinks>
+        {/* </CommonLinks> */}
         {/* <AuthLinks>
           {isLoggedIn &&
             authButtons.map(b => (

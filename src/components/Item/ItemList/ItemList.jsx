@@ -1,6 +1,6 @@
 // import scss from "./ContactList.module.scss"
 import { useSelector, 
-  // useDispatch
+  useDispatch
  } from 'react-redux';
 // import { useState } from 'react';
 // import { getItems,
@@ -10,19 +10,27 @@ import  { getFilter }from 'redux/filter/filter-selector';
 // import { deleteItem,  geItemsByCategory} from "redux/items/items-operation";
 import ItemInList from "components/Item/ItemInList/ItemInList";
 
-// import { useLocation,
-//   //  useSearchParams
-//    } from 'react-router-dom';
+import { useLocation,
+  //  useSearchParams
+   } from 'react-router-dom';
+   
+import { useEffect } from "react";
+import { fetchSections } from "redux/sections/sections-operation"
+import { 
+  // fetchItems,
+   geItemsByCategory } from "redux/items/items-operation"
+
+
    
 
- export const ItemList = ({itemsCategory}) => {
+ export const ItemList = ({itemsCategory, items}) => {
 
-  // const location = useLocation();
+  const location = useLocation();
 
-  // const category = location.pathname.split('/')[2];
+  const category = location.pathname.split('/')[2];
 // console.log("category", category)
 
-// const dispatch = useDispatch();
+const dispatch = useDispatch();
 console.log(itemsCategory)
     // const items = useSelector(getItems);
     // console.log(items)
@@ -49,12 +57,34 @@ console.log(itemsCategory)
 // console.log(items)
 // if (category === items.section) {dispatch(geItemsByCategory({category: category}))}
 
+
+
+useEffect(() => {
+  // dispatch(fetchItems());
+  dispatch(fetchSections());
+
+  
+    if (category === undefined) {
+      console.log("undef")
+    }
+    else {
+     
+      dispatch(geItemsByCategory({category: category}))
+    }
+  
+  }, 
+   [ dispatch, category, items, ])
+
+
+
+
     return (
       <>
             <ul>
             {getFilteredItem().map(filteredItem => 
               <ItemInList
               key={filteredItem._id}
+              itemsCategory={itemsCategory}
               filteredItem={filteredItem}/>
      )} 
          </ul>

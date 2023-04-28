@@ -21,7 +21,7 @@ export const fetchItems = createAsyncThunk(
    export const geItemsByCategory = createAsyncThunk(
         'items/getByCategory',
         async ( category, {rejectWithValue}) => {
-            console.log(category)
+            // console.log(category)
             try {
                 
                 const  data  = await api.getItemsByCategory(category)
@@ -33,10 +33,6 @@ export const fetchItems = createAsyncThunk(
             }
         },
     );
-
-
-
-
 
     
     export const addItems = createAsyncThunk(
@@ -64,3 +60,22 @@ export const fetchItems = createAsyncThunk(
                 return rejectWithValue(error);
             }}
     );
+    export const itemUpdate = createAsyncThunk(
+        'items/itemUpdate',
+        async ( datas, { rejectWithValue }) => {
+          try {
+            // const itemName = datas.map(data => data.itemName)
+            const result = await api.itemUpdate(datas._id, datas.itemName);
+            // console.log(datas._id)
+            console.log(result)
+            console.log(datas)
+            return result;
+          } catch ({response}) {
+            const error = {
+                status: response.status,
+                message: response.data.message
+            }
+           return rejectWithValue(error)
+          }
+        }
+      );

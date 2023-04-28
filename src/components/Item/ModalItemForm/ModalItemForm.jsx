@@ -5,9 +5,11 @@ import {
   // useSelector, 
   useDispatch } from 'react-redux';
 // import { getFilteredItems } from 'redux/items/items-selector';
+
 import { addItems } from "redux/items/items-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Formik } from 'formik';
+
 
 export default function ModalItemForm ({onClick, setModalActive, category, itemsCategory}) {
   // const items = useSelector(getFilteredItems);
@@ -95,7 +97,7 @@ export default function ModalItemForm ({onClick, setModalActive, category, items
       //   description: '',
       //   phone: '',
       // };
-
+     
       return ( 
         <form 
         onClick={e => e.stopPropagation()}

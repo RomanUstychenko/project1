@@ -3,7 +3,7 @@ import  ModalItemForm  from "../../components/Item/ModalItemForm/ModalItemForm"
 import ModalSectionForm from "components/Section/ModalSectionForm/ModalSectionForm"
 import {ItemList} from "../../components/Item/ItemList/ItemList"
 import { 
-  // fetchItems,
+  fetchItems,
    geItemsByCategory } from "redux/items/items-operation"
 import Filter from "../../components/filter/Filter"
 import scss from "./MenuItems.module.scss"
@@ -52,22 +52,25 @@ export default function MenuItems() {
 // }
 // console.log(itemsCategory)
 // console.log(itemsCategoryCheck())
-
+// dispatch(fetchItems());
       useEffect(() => {
-          // dispatch(fetchItems());
+          dispatch(fetchItems());
           dispatch(fetchSections());
         
           
-            if (category === undefined) {
+            // if (category === undefined) {
               
-            }
-            else {
+            // }
+            // else {
              
-              dispatch(geItemsByCategory({category: category}))
-            }
+            //   dispatch(geItemsByCategory({category: category}))
+            // }
           
           }, 
-           [dispatch, category, items]
+           [ dispatch
+            // category, 
+            // , items
+          ]
           );
   return (
     <div  className={scss.phoneBook}>

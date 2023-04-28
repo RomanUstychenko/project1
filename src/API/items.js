@@ -23,3 +23,14 @@ export const deleteItem = async (_id) => {
     const {data} = await instance.delete(`/items/${_id}`);
     return data;
 }
+export const itemUpdate = async (_id, itemName) => {
+    // try {
+      const { data} = await instance.put(`/items/${_id}`, {"itemName": itemName});
+      console.log("_id", _id)
+      console.log("data", data)
+      console.log("itemData", itemName)
+      return data;
+    // } catch (error) {
+    //   throw error;;
+    // }
+  }

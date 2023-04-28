@@ -11,15 +11,21 @@ import { useState } from 'react';
 import { deleteItem, 
   //  geItemsByCategory
   } from "redux/items/items-operation"; 
-// import { useLocation,
-//   //  useSearchParams
-//    } from 'react-router-dom';
+import { useLocation,
+  //  useSearchParams
+   } from 'react-router-dom';
 import { nanoid } from 'nanoid';
-  //  import { useEffect } from "react";
+import { fetchSections } from "redux/sections/sections-operation"
+   import { useEffect } from "react";
+  import ModalItemDetail from '../ModalItemDetail/ModalItemDetail';
+  import { itemUpdate, geItemsByCategory } from "redux/items/items-operation"; 
+  import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-export default function ItemInList({filteredItem}) {
+
+
+export default function ItemInList({filteredItem, itemsCategory}) {
   // const location = useLocation();
-  
+  // const category = location.pathname.split('/')[2];
   
 
   const filteredItemId = nanoid();
@@ -37,43 +43,19 @@ export default function ItemInList({filteredItem}) {
   } = filteredItem;
 // console.log(filteredContact)
 
-// const category = location.pathname.split('/')[2];
+
 // console.log("category", category)
 // console.log("section", section)
 
 const dispatch = useDispatch();
 
-// console.log(dispatch(geItemsByCategory))
-// useEffect(() => {
-//   // dispatch(fetchItems());
-//   // if (category === undefined) {
-//   //   console.log("undef")
-//   // }
-//   // else 
-  
-//   // {
-//   //   console.log("else")
-//   //   dispatch(geItemsByCategory({category: category}))
-//   // }
-//   // const itemsByCateg = () => {
-//   //   if (category === undefined) {
-//   //     console.log("undef")
-//   //   }
-//   //   else {
-//   //     console.log("else")
-//   if (category === "first") {dispatch(geItemsByCategory({category: category}))}
-//   //   }
-//   // }
-//   }, 
-//    [dispatch], category
-//   );
-// if (category === "first") {dispatch(geItemsByCategory({category: category}))}
-// console.log(itemsCategory.filter(({section}) => section))
-// dispatch(geItemsByCategory({category: category}))
-const [modalActive, setModalActive] = useState(false);
+
+const [modalDeleteActive, setModalDeleteActive] = useState(false);
+const [modalDetailActive, setModalDetailActive] = useState(false);
 
 function closeModal () {
-    setModalActive(false)
+    setModalDeleteActive(false)
+    setModalDetailActive(false)
     document.body.style.overflow = '';
   }
   function DelItem () {
@@ -83,32 +65,111 @@ function closeModal () {
   // const chekItems = Boolean(filteredItem)
   // console.log(filteredItem)
   //   console.log(chekItems)
+
+  const location = useLocation();
+  const category = location.pathname.split('/')[2];
+  const [itemsName, setItemsName] = useState('');
+  const handleChange = (e) => {
+    const { name } = e.currentTarget;
+    switch (name) {
+      case 'itemsName':
+        setItemsName ( e.currentTarget.value);
+        break;
+      default:
+        break;
+    }
+  };
+
+const handleSubmit = (e) => {
+
+    e.preventDefault()
+    const duplicateItems = itemsCategory.find(itemCategory => itemCategory.itemName.toLocaleLowerCase() === itemsName.toLocaleLowerCase());
   
+   
+      if (duplicateItems) {
+        Notify.failure(`${itemName} is already in item`)
+        // alert (`${name} is already in contact`)
+        return
+      }
+      // if (description === "") {
+      //   setSection (category)
+      //   dispatch(addItems(
+      //     {itemsName, price, section}
+      //     ));
+      //     setItemsName('');
+      //   // setDescription('');
+      //   setPrice('');
+      //   setSection('');
+      //   setModalActive(false);
+      // }
+      // else {
+        // setSection (category)
+
+        // console.log(_id)
+        // console.log(itemsName)
+        // console.log(dispatch(itemUpdate({_id, 
+        //   itemName: itemsName}
+        //  )))
+        dispatch(itemUpdate({_id, itemName: itemsName} ));
+            dispatch(geItemsByCategory({category: category}))
+          setItemsName('');
+          // setDescription('');
+          // setPrice('');
+          // setSection('');
+          setModalDetailActive(false);
+      // }
+  }; 
+
+
+
+  // useEffect(() => {
+  //   // dispatch(fetchItems());
+  //   dispatch(fetchSections());
+  
+    
+  //     if (category === undefined) {
+  //       console.log("undef")
+  //     }
+  //     else {
+       
+  //       dispatch(geItemsByCategory({category: category}))
+  //     }
+    
+  //   }, 
+  //    [ dispatch, itemName, ])
+
+
+
+
+
+
+
   return (
     <>
     
         {filteredItem && 
-        
+        <> 
+        <button
+        onClick={() => setModalDetailActive(true)}
+        >
         <li className={scss.contactList} key={filteredItemId}> 
         <b>Name:</b>  {itemName} <br />
-        <b>Description:</b>  {description} <br />
+        {/* <b>Description:</b>  {description} <br /> */}
         <b >Price:</b> {price} <br />
-        <b >img:</b> {itemImg}
-        <b>Section:</b> {section}
-        <span className={scss.delContacts} 
-        onClick={() => setModalActive(true)}>Delete</span>
-        
+        {/* <b >img:</b> {itemImg} */}
+        {/* <b>Section:</b> {section} */}
         </li>
-        
-
-        
+        </button>
+        <span className={scss.delContacts} 
+        onClick={() => setModalDeleteActive(true)}>Delete</span>
+        </>
         }
             
-   { modalActive && (
+   { modalDeleteActive && (
           <Modal
           onClick={() => closeModal ()}
-          active={modalActive}
-          setActive={setModalActive}>
+          active={modalDeleteActive}
+          setActive={setModalDeleteActive}>
 
       <div
       onClick={e => e.stopPropagation()}
@@ -124,6 +185,29 @@ function closeModal () {
           </button>
         
       </div>
+          </Modal>
+         )}
+            { modalDetailActive && (
+          <Modal
+          onClick={() => closeModal ()}
+          active={modalDetailActive}
+          setActive={setModalDetailActive}
+          
+          >
+
+          <ModalItemDetail 
+          itemName={itemName}
+          price={price}
+          description={description}
+          _id={_id}
+          itemsCategory={itemsCategory}
+          
+          setModalDetailActive={setModalDetailActive}
+          onSubmit={handleSubmit}
+          onChange={handleChange}
+
+          // onClick={e => e.stopPropagation()}
+          />
           </Modal>
          )}
     </>
