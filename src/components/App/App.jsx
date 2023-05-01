@@ -14,6 +14,7 @@ const NotFound = lazy(() => import("Pages/PageNotFound/NotFound"));
 const Navbar = lazy(() => import("components/Navbar/Navbar"));
 const Login = lazy(() => import("Pages/Login/Login"));
 const Registration = lazy(() => import("Pages/Registration/Registration"));
+const LivePage = lazy(() => import("Pages/LivePage/LivePage"))
 
 
 export default function App() {
@@ -38,15 +39,18 @@ useEffect(() => {
       <Suspense fallback={<Loader/>}>
         <Navbar />
       <Routes>
+      <Route path="/live" element={<LivePage />}/>
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Registration />}/>
+          {/* <Route path="/live" element={<LivePage />}/> */}
         </Route>
         <Route element={<PrivateRoute />}>
-          {/* <Route path="/" element={<MenuItems />}/> */}
+          <Route path="/" element={<MenuItems />}/>
           <Route path="/items/" element={<MenuItems />}/>
           <Route path="/items/:category" element={<MenuItems />}/>
           <Route path="/users" element={<Users />}/>
+          {/* <Route path="/live" element={<LivePage />}/> */}
         </Route>
      <Route path="*" element={<NotFound />}/>
      </Routes>

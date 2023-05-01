@@ -1,0 +1,30 @@
+.form {
+  font-size: 25px;
+  border: 1px solid rgb(7, 94, 138);
+  padding: 10px;
+}
+
+.formInput {
+  display: flex;
+  flex-direction: column;
+}
+
+.formInputName,
+.formInputTel {
+  width: 300px;
+}
+
+.formBtn {
+  color: antiquewhite;
+  min-width: 50px;
+  min-height: 25px;
+  border-radius: 10px;
+  border: 1px solid rgb(7, 94, 138);
+  background-color: rgb(38, 146, 179);
+}
+.formBtn:hover {
+  background-color: rgb(45, 102, 119);
+}
+.formBtn:focus {
+  background-color: rgb(19, 58, 70);
+}/*# sourceMappingURL=ModalChangeSectionName.module.css.map */

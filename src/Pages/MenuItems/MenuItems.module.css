@@ -1,0 +1,23 @@
+.phoneBook {
+  color: rgb(38, 146, 179);
+  display: flex;
+  margin-top: 25px;
+  margin-left: 120px;
+}
+
+.titlePhoneBook {
+  text-align: center;
+}
+
+.contactForm {
+  border: 4px;
+}
+
+.contacts {
+  margin-left: 100px;
+  min-width: 500px;
+}
+
+.contactsLoading {
+  color: green;
+}/*# sourceMappingURL=MenuItems.module.css.map */

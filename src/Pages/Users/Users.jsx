@@ -9,8 +9,8 @@ import { userUpdate, allUsers } from "redux/auth/auth-operation";
 export default function Users() {
 
     const user = useSelector(getUser)
-    const users = useSelector(getAllUser)
-    console.log(users)
+    // const users = useSelector(getAllUser)
+    console.log(user)
     const chekName = Boolean(user)
 
     const dispatch = useDispatch();
@@ -83,10 +83,10 @@ const click = (e) => {
         // onClick={values => handleSubmit(values)}
         // className={scss.formBtn}
         type="submit">Change</button>
-         <button 
+         {/* <button 
         onClick={() => click()}
         
-        >Users</button>
+        >Userssss</button> */}
         </>
         </form>
 

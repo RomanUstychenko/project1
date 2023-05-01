@@ -9,6 +9,10 @@ const items = [
     to: "/login",
     text: "Login"
 },
+{id: nanoid(),
+    to: "/live",
+    text: "Live"
+},
 
 ]
 
