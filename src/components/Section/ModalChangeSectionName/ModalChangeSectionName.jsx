@@ -1,25 +1,28 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import scss from "./ModalItemDetail.module.scss"
+import scss from "./ModalChangeSectionName.module.scss"
 import {
-  // useSelector, 
+  useSelector, 
   useDispatch } from 'react-redux';
-// import { getFilteredItems } from 'redux/items/items-selector';
-import { itemUpdate, geItemsByCategory } from "redux/items/items-operation"; 
+import { getSections } from 'redux/sections/sections-selector';
+import { updateSection } from "redux/sections/sections-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Formik } from 'formik';
 import { useLocation,
   //  useSearchParams
    } from 'react-router-dom';
+   import { useEffect } from "react";
+   import {  geItemsByCategory } from "redux/items/items-operation";
+   import { fetchSections } from "redux/sections/sections-operation"
 
-export default function ModalItemDetail ({
+export default function ModalChangeSectionName ({
    itemsCategory, 
-  itemName,
+   category,
    price, 
    description, 
    _id,
     closeModal}) {
-  // const items = useSelector(getFilteredItems);
+  const sections = useSelector(getSections);
   // console.log("category", category)
   
  
@@ -58,33 +61,25 @@ export default function ModalItemDetail ({
 
 
    const location = useLocation();
-  const category = location.pathname.split('/')[2];
+//   const category = location.pathname.split('/')[2];
   const dispatch = useDispatch();
 
-  const [newItemName, setNewItemName] = useState(itemName);
-  const [newPrice, setNewPrice] = useState(price);
-  const [newDescription, setNewDescription] = useState(description);
+  const [newSectionName, setNewSectionName] = useState(category);
+
   // const [section, setSection] = useState(category)
 // console.log(section)
 
 
-  const itemNameID = nanoid();
-  const itemPriceID = nanoid();
-  const itemDescriptionID = nanoid();
+  const sectionNameID = nanoid();
  
-console.log(itemName, price)
+ 
+// console.log(itemName, price)
 
   const handleChange = (e) => {
         const { name } = e.currentTarget;
         switch (name) {
-          case 'newItemName':
-            setNewItemName ( e.currentTarget.value);
-            break;
-            case 'newPrice':
-              setNewPrice ( e.currentTarget.value);
-            break;
-            case 'newDescription':
-              setNewDescription ( e.currentTarget.value);
+          case 'newSectionName':
+            setNewSectionName ( e.currentTarget.value);
             break;
           default:
             break;
@@ -94,11 +89,11 @@ console.log(itemName, price)
   const handleSubmit = (e) => {
 
         e.preventDefault()
-        const duplicateItems = itemsCategory.find(itemCategory => itemCategory.itemName.toLocaleLowerCase() === newItemName.toLocaleLowerCase());
+        const duplicateItems = sections.find(section => section.category.toLocaleLowerCase() === newSectionName.toLocaleLowerCase());
       
        
           if (duplicateItems) {
-            Notify.failure(`${itemName} is already in item`)
+            Notify.failure(`${newSectionName} is already in item`)
             // alert (`${name} is already in contact`)
             return
           }
@@ -122,22 +117,14 @@ console.log(itemName, price)
             //   itemName: itemsName}
             //  )))
             // setSection (category)
-            if (newPrice === "") 
-            {setNewPrice(price)}
 
-            dispatch(itemUpdate(
+            dispatch(updateSection(
               {_id, 
-                itemName: newItemName,
-              description: newDescription,
-              price: newPrice,
-              // section,
-              
+                category: newSectionName,              
               } ));
                 // dispatch(geItemsByCategory({category: category}))
-                setNewItemName('');
-              setNewDescription('');
-              setNewPrice('');
-              // setSection('');
+                setNewSectionName('');
+            
               closeModal ();
               // setModalDetailActive(false);
           // }
@@ -148,6 +135,30 @@ console.log(itemName, price)
       //   phone: '',
       // };
 
+
+      useEffect(() => {
+        // dispatch(fetchItems());
+        console.log("use in modal")
+        dispatch(fetchSections());
+      
+        
+          // if (category === undefined) {
+          //   console.log("undef")
+          // }
+          // else {
+           
+          //   dispatch(geItemsByCategory({category: category}))
+          // }
+        
+        }, 
+         [ dispatch,
+            newSectionName,
+           category,
+           ])
+
+
+
+
       return ( 
         <form 
         onClick={e => e.stopPropagation()}
@@ -156,51 +167,24 @@ console.log(itemName, price)
         >
           <>
         <div className={scss.formInput}>
-          <label htmlFor={itemNameID}>Name</label>
+          <label htmlFor={sectionNameID}>Name</label>
           <input 
           className={scss.formInputName}
-          id={itemNameID} 
+          id={sectionNameID} 
           type="text" 
-          name="newItemName" 
+          name="newSectionName" 
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may "
           required
           // value={itemsName} 
-          defaultValue={itemName}
+          defaultValue={category}
           onChange={handleChange} />
         </div>
-        <div className={scss.formInput}>
-          <label htmlFor={itemPriceID}>Price</label>
-          <input 
-          className={scss.formInputName}
-          id={itemPriceID} 
-          type="text" 
-          name="newPrice" 
-          pattern="[0-9]{1,10}"
-          title="Name may "
-          required
-          // value={itemsName} 
-          defaultValue={price}
-          onChange={handleChange} />
-        </div>
-        <div className={scss.formInput}>
-          <label htmlFor={itemDescriptionID}>Description</label>
-          <input 
-          className={scss.formInputName}
-          id={itemDescriptionID} 
-          type="text" 
-          name="newDescription" 
-          pattern="[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may "
-          required
-          // value={itemsName} 
-          defaultValue={description}
-          onChange={handleChange} />
-        </div>
+        
         <button 
         // onClick={values => handleSubmit(values)}
         className={scss.formBtn}
-        type="submit">Change Name</button>
+        type="submit">Change Section</button>
         </>
         </form>
         )

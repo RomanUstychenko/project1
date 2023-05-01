@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchSections, addSection, deleteSection } from "./sections-operation";
+import { fetchSections, addSection, deleteSection, updateSection } from "./sections-operation";
 
 
 const initialState = {
+    // upd: [],
     sections: [],
     loading: false,
     error: null,
@@ -46,6 +47,36 @@ const pendingHandler = (store, {payload}) => {
             store.loading = false;
             store.error = payload;
         })
+        .addCase(updateSection.pending, pendingHandler)
+        .addCase(updateSection.fulfilled, (store,  {payload} ) => {
+          console.log(payload)
+          console.log(store)
+          const upd = payload
+          console.log("upd", upd)
+          console.log("pay sec", payload.category)
+            store.sections = {
+                  ...payload
+                }
+                // .find((section) => section._id === payload)
+            //  =  {
+            //   ...payload
+            // }
+          })
+        .addCase(updateSection.rejected, (store, { meta, payload }) => {
+            store.loading = false;
+            store.error = payload;
+            console.log(meta)
+            console.log(payload)
+            // toast.error(chooseValid(Object.keys(meta.arg)[0]));
+            // function chooseValid(key) {
+            //   switch (key) {
+            //     case 'name':
+            //       return 'Name must be in English, contain 2-20 symbols';
+            //     default:
+            //       return 'Wrong!';
+            //   }
+            // }
+          })
     }
 });
 

@@ -50,11 +50,13 @@ const itemsSlice = createSlice({
             store.loading = false;
             store.error = null;
             console.log(payload)
+            console.log(store)
             store.items.push(payload)
         })
         .addCase(addItems.rejected, (store, {payload}) => {
             store.loading = false;
             console.log(payload)
+            console.log(store)
             store.error = payload;
         })
         .addCase(deleteItem.pending, pendingHandler)
@@ -71,6 +73,7 @@ const itemsSlice = createSlice({
         .addCase(itemUpdate.pending, pendingHandler)
         .addCase(itemUpdate.fulfilled, (store,  {payload} ) => {
           console.log(payload)
+          console.log(store)
             // store.items = {
             //   itemName: payload.itemName,
             // };
@@ -79,7 +82,7 @@ const itemsSlice = createSlice({
               };
           })
         .addCase(itemUpdate.rejected, (store, { meta, payload }) => {
-            store.isLoadingUser = false;
+            store.loading = false;
             store.error = payload;
             console.log(meta)
             console.log(payload)

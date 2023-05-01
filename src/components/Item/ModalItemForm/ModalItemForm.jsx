@@ -14,7 +14,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 export default function ModalItemForm ({onClick, setModalActive, category, itemsCategory}) {
   // const items = useSelector(getFilteredItems);
   // console.log("category", category)
-  
+  console.log(itemsCategory)
   const dispatch = useDispatch();
 
   const [itemName, setItemName] = useState('');
@@ -61,6 +61,7 @@ export default function ModalItemForm ({onClick, setModalActive, category, items
     // data.append('phone', phone);
 
         e.preventDefault()
+        
         const duplicateItems = itemsCategory.find(itemCategory => itemCategory.itemName.toLocaleLowerCase() === itemName.toLocaleLowerCase());
       
        

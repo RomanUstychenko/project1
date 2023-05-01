@@ -1,15 +1,16 @@
 import {  useSelector, useDispatch } from "react-redux"
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { getUser } from "redux/auth/auth-selector";
-import { userUpdate } from "redux/auth/auth-operation";
+import { getUser, getAllUser } from "redux/auth/auth-selector";
+import { userUpdate, allUsers } from "redux/auth/auth-operation";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 export default function Users() {
 
     const user = useSelector(getUser)
-    console.log(user)
+    const users = useSelector(getAllUser)
+    console.log(users)
     const chekName = Boolean(user)
 
     const dispatch = useDispatch();
@@ -44,7 +45,10 @@ const handleChange = (e) => {
               )
               )}
             // }
-
+const click = (e) => {
+  // e.preventDefault();
+  dispatch(allUsers( ) )
+}
   return (
     <>
     <div>{chekName ? <p>
@@ -79,6 +83,10 @@ const handleChange = (e) => {
         // onClick={values => handleSubmit(values)}
         // className={scss.formBtn}
         type="submit">Change</button>
+         <button 
+        onClick={() => click()}
+        
+        >Users</button>
         </>
         </form>
 

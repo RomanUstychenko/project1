@@ -18,6 +18,7 @@ import { nanoid } from 'nanoid';
 import { fetchSections } from "redux/sections/sections-operation"
    import { useEffect } from "react";
   import ModalItemDetail from '../ModalItemDetail/ModalItemDetail';
+  import ModalItemDelete from '../ModalItemDelete/ModalItemDelete';
   import { itemUpdate, geItemsByCategory } from "redux/items/items-operation"; 
   import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -58,67 +59,14 @@ function closeModal () {
     setModalDetailActive(false)
     document.body.style.overflow = '';
   }
-  function DelItem () {
-    dispatch(deleteItem(_id));
-    closeModal ();
-  }
+
   // const chekItems = Boolean(filteredItem)
   // console.log(filteredItem)
   //   console.log(chekItems)
 
   const location = useLocation();
   const category = location.pathname.split('/')[2];
-  const [itemsName, setItemsName] = useState('');
-  const handleChange = (e) => {
-    const { name } = e.currentTarget;
-    switch (name) {
-      case 'itemsName':
-        setItemsName ( e.currentTarget.value);
-        break;
-      default:
-        break;
-    }
-  };
 
-const handleSubmit = (e) => {
-
-    e.preventDefault()
-    const duplicateItems = itemsCategory.find(itemCategory => itemCategory.itemName.toLocaleLowerCase() === itemsName.toLocaleLowerCase());
-  
-   
-      if (duplicateItems) {
-        Notify.failure(`${itemName} is already in item`)
-        // alert (`${name} is already in contact`)
-        return
-      }
-      // if (description === "") {
-      //   setSection (category)
-      //   dispatch(addItems(
-      //     {itemsName, price, section}
-      //     ));
-      //     setItemsName('');
-      //   // setDescription('');
-      //   setPrice('');
-      //   setSection('');
-      //   setModalActive(false);
-      // }
-      // else {
-        // setSection (category)
-
-        // console.log(_id)
-        // console.log(itemsName)
-        // console.log(dispatch(itemUpdate({_id, 
-        //   itemName: itemsName}
-        //  )))
-        dispatch(itemUpdate({_id, itemName: itemsName} ));
-            dispatch(geItemsByCategory({category: category}))
-          setItemsName('');
-          // setDescription('');
-          // setPrice('');
-          // setSection('');
-          setModalDetailActive(false);
-      // }
-  }; 
 
 
 
@@ -154,10 +102,9 @@ const handleSubmit = (e) => {
         >
         <li className={scss.contactList} key={filteredItemId}> 
         <b>Name:</b>  {itemName} <br />
-        {/* <b>Description:</b>  {description} <br /> */}
+        
         <b >Price:</b> {price} <br />
         {/* <b >img:</b> {itemImg} */}
-        {/* <b>Section:</b> {section} */}
         </li>
         </button>
         <span className={scss.delContacts} 
@@ -170,21 +117,11 @@ const handleSubmit = (e) => {
           onClick={() => closeModal ()}
           active={modalDeleteActive}
           setActive={setModalDeleteActive}>
-
-      <div
-      onClick={e => e.stopPropagation()}
-      // active={modalActive}
-      >
-        Do you really wont to delete?
-          <button
-          onClick={() => 
-            
-            {DelItem ()}} 
-          >
-            yes
-          </button>
-        
-      </div>
+          <ModalItemDelete
+          closeModal={closeModal}
+          _id={_id}
+          />
+     
           </Modal>
          )}
             { modalDetailActive && (
@@ -196,15 +133,14 @@ const handleSubmit = (e) => {
           >
 
           <ModalItemDetail 
+          // onClick={e => e.stopPropagation()}
           itemName={itemName}
           price={price}
           description={description}
           _id={_id}
           itemsCategory={itemsCategory}
-          
+          closeModal={closeModal}
           setModalDetailActive={setModalDetailActive}
-          onSubmit={handleSubmit}
-          onChange={handleChange}
 
           // onClick={e => e.stopPropagation()}
           />

@@ -43,7 +43,7 @@ useEffect(() => {
           <Route path="/register" element={<Registration />}/>
         </Route>
         <Route element={<PrivateRoute />}>
-          <Route path="/" element={<MenuItems />}/>
+          {/* <Route path="/" element={<MenuItems />}/> */}
           <Route path="/items/" element={<MenuItems />}/>
           <Route path="/items/:category" element={<MenuItems />}/>
           <Route path="/users" element={<Users />}/>

@@ -15,3 +15,16 @@ export const deleteSection = async (_id) => {
     const {data} = await instance.delete(`/sections/${_id}`);
     return data;
 }
+
+export const updateSection = async (_id, section) => {
+    // try {
+        console.log("section", section)
+      const { data} = await instance.put(`/sections/${_id}`, ...section);
+      console.log("_id", _id)
+    //   console.log("items", items)
+    //   console.log("itemData", itemName)
+      return data;
+    // } catch (error) {
+    //   throw error;;
+    // }
+  }

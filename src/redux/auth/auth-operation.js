@@ -69,6 +69,22 @@ export const current = createAsyncThunk(
         }}
 )
 
+export const allUsers = createAsyncThunk(
+    "auth/allUsers",
+    async(_, {rejectWithValue, getState}) => {
+        try {
+            // const { auth } = getState();
+            // console.log(auth)
+            const result = await api.getAllUsers();
+            return result;
+        } catch ({response}) {
+            const error = {
+                status: response.status,
+                message: response.data.message
+            }
+           return rejectWithValue(error)
+        }}
+)
 export const userUpdate = createAsyncThunk(
     'auth/userUpdate',
     async (userData, { rejectWithValue }) => {

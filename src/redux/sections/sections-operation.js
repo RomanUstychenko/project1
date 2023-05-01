@@ -37,3 +37,24 @@ export const fetchSections = createAsyncThunk(
                 return rejectWithValue(error);
             }}
     );
+    export const updateSection = createAsyncThunk(
+        'sections/update',
+        async ( datas, { rejectWithValue }) => {
+          try {
+            
+            const newArr = [datas].map(({_id, ...rest}) => (rest))
+            console.log(newArr)
+            const result = await api.updateSection(datas._id, newArr);
+            
+            console.log(result)
+            
+            return result;
+          } catch ({response}) {
+            const error = {
+                status: response.status,
+                message: response.data.message
+            }
+           return rejectWithValue(error)
+          }
+        }
+      );

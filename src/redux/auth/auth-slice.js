@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, login, logout, current, userUpdate } from "./auth-operation";
+import { register, login, logout, current, allUsers, userUpdate } from "./auth-operation";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { toast } from 'react-toastify';
 
 
 const initialState = {
+    users: {},
     newUser: { name: null, email: null, verify: false, avatarURL: null  },
     token: "",
     isLogin: false,
@@ -71,6 +72,17 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
         store.isLoadingUser = false;
         store.error = payload;
     })
+    .addCase(allUsers.pending, pendingHandler)
+    .addCase(allUsers.fulfilled, (store, {payload}) => {
+        store.isLoadingUser = false;
+        store.users = payload;
+        store.isLogin = true;
+    })
+    .addCase(allUsers.rejected, (store, {payload}) => {
+        store.isLoadingUser = false;
+        store.error = payload;
+    })
+
     .addCase(userUpdate.pending, pendingHandler)
     .addCase(userUpdate.fulfilled, (store, { payload }) => {
       console.log(payload)

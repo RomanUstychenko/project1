@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 
 `;
 
-export const FilterList = styled.ul`
+export const FilterList = styled.li`
   list-style: none;
   display: flex;
   justify-content: flex-start;

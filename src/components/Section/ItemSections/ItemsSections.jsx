@@ -1,5 +1,7 @@
-import React from 'react';
-// import { useSelector } from 'react-redux';
+import {useState} from 'react';
+import { 
+  useSelector,
+  useDispatch} from 'react-redux';
 // import { getSections } from 'redux/sections/sections-selector';
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { nanoid } from 'nanoid';
@@ -11,8 +13,14 @@ import {
   // AuthLinks,
   CommonLinks,
 } from './ItemsSections.styled';
+import { Modal } from 'components/Modal/Modal';
+import ModalChangeSectionName from '../ModalChangeSectionName/ModalChangeSectionName';
+import { useEffect } from "react";
+import {  geItemsByCategory } from "redux/items/items-operation";
+import { fetchSections } from "redux/sections/sections-operation"
 
 const btnId = nanoid();
+const sectionId = nanoid();
 
 // const authButtons = [
 //   {
@@ -28,8 +36,16 @@ const btnId = nanoid();
 function ItemsSections({section}) {
   // const sections = useSelector(getSections);
   // console.log(section)
-
+  const [modalActive, setModalActive] = useState(false);
+  const dispatch = useDispatch();
+  function closeModal () {
+    setModalActive(false)
+    
+    document.body.style.overflow = '';
+    dispatch(fetchSections());
+  }
   const { 
+    _id,
     category,
   } = section;
   // console.log(category)
@@ -44,17 +60,35 @@ function ItemsSections({section}) {
   // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <Wrapper>
-      <FilterList>
+    // <Wrapper>
+      <FilterList key={sectionId}>
         {/* <CommonLinks> */}
           {buttons.map(b => (
-            <Item key={btnId}>
+            // <Item key={btnId}>
               <Button to={'/items/' + b.link} name={b.link}>
                 {b.btn}
               </Button>
-            </Item>
+              
+            // </Item>
           ))}
-          
+          <button
+          key={btnId}
+          onClick={() => setModalActive(true)}>
+                change
+              </button>
+              { modalActive && (
+          <Modal
+          onClick={() => closeModal ()}
+          active={modalActive}
+          setActive={setModalActive}>
+          <ModalChangeSectionName
+          closeModal={closeModal}
+          _id={_id}
+          category={category}
+          />
+     
+          </Modal>
+         )}
         {/* </CommonLinks> */}
         {/* <AuthLinks>
           {isLoggedIn &&
@@ -67,7 +101,7 @@ function ItemsSections({section}) {
             ))}
         </AuthLinks> */}
       </FilterList>
-    </Wrapper>
+    // </Wrapper>
   );
 }
 

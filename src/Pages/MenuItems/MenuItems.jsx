@@ -41,6 +41,7 @@ export default function MenuItems() {
   const items = useSelector(getItems);
   const itemsCategory = useSelector(getItemsByCategory);
   const sections = useSelector(getSections);
+  console.log("sections", sections)
   // console.log(sections)
  const {loading, error} = useSelector(getState);
 

@@ -64,11 +64,13 @@ export const fetchItems = createAsyncThunk(
         'items/itemUpdate',
         async ( datas, { rejectWithValue }) => {
           try {
-            // const itemName = datas.map(data => data.itemName)
-            const result = await api.itemUpdate(datas._id, datas.itemName);
-            // console.log(datas._id)
+            
+            const newArr = [datas].map(({_id, ...rest}) => (rest))
+            console.log(newArr)
+            const result = await api.itemUpdate(datas._id, newArr);
+            
             console.log(result)
-            console.log(datas)
+            
             return result;
           } catch ({response}) {
             const error = {
