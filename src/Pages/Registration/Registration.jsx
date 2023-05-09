@@ -1,25 +1,30 @@
 import { useState } from 'react';
 import { nanoid } from "nanoid";
 import { useDispatch, 
-  // useSelector
+  useSelector
  } from "react-redux";
 import { register } from 'redux/auth/auth-operation';
 import scss from "./Registration.module.scss"
 import { Button } from 'components/Button/Button';
-
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { isRegister } from 'redux/auth/auth-selector';
+import { Navigate } from 'react-router-dom';
+import { Modal } from 'components/Modal/Modal';
+import ModalRegisterVerify from 'components/ModalRegisterVerify/ModalRegisterVerify';
 
 export default function Registration() {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [modalActive, setModalActive] = useState('');
 
   const nameId = nanoid();
     const emailId = nanoid();
     const passwordId = nanoid();
 
   const dispatch = useDispatch();
-  // const isUserLogin = useSelector(isLogin);
+  const isUserRegister = useSelector(isRegister);
 
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
@@ -47,9 +52,23 @@ const handleSubmit = (e) => {
     dispatch(register({ name: name, email: email, password: password }));    
 };
 
-// if (isUserLogin) {
-//   return <Navigate to="/contacts" />
-// ;}
+const openModal = () => {
+  if (isUserRegister) {
+  
+    //  return console.log("userRegister")
+    
+      setModalActive(true)
+    ;}
+    else {
+      console.log("enter name")
+    }
+}
+if (isUserRegister) {
+  return <Navigate to="/register/verify" />
+//  return console.log("userRegister")
+
+  // setModalActive(true)
+;}
 
   return (
     <div className={scss.registrationPage}>
@@ -88,8 +107,26 @@ const handleSubmit = (e) => {
         <Button 
         text="Registration"
         type="button"
+        onClick={() => openModal ()}
         />
        </form>
+       <button
+       onClick={() => openModal ()}
+       >
+        open
+       </button>
+       { modalActive && (
+        <Modal
+        // onClick={() => closeModal ()}
+        active={modalActive}
+        setActive={setModalActive}>
+          <p>Register</p>
+        {/* <ModalRegisterVerify 
+        onClick={e => e.stopPropagation()}
+        setModalActive={setModalActive}
+        /> */}
+        </Modal>
+      )}
        
        </div>
   )

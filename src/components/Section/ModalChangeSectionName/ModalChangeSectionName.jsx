@@ -136,25 +136,25 @@ export default function ModalChangeSectionName ({
       // };
 
 
-      useEffect(() => {
-        // dispatch(fetchItems());
-        console.log("use in modal")
-        dispatch(fetchSections());
+      // useEffect(() => {
+      //   // dispatch(fetchItems());
+      //   console.log("use in modal")
+      //   dispatch(fetchSections());
       
         
-          // if (category === undefined) {
-          //   console.log("undef")
-          // }
-          // else {
+      //     // if (category === undefined) {
+      //     //   console.log("undef")
+      //     // }
+      //     // else {
            
-          //   dispatch(geItemsByCategory({category: category}))
-          // }
+      //     //   dispatch(geItemsByCategory({category: category}))
+      //     // }
         
-        }, 
-         [ dispatch,
-            newSectionName,
-           category,
-           ])
+      //   }, 
+      //    [ dispatch,
+      //       newSectionName,
+      //      category,
+      //      ])
 
 
 

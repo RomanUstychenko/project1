@@ -1,8 +1,8 @@
 import {  useSelector, useDispatch } from "react-redux"
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { getUser, getAllUser } from "redux/auth/auth-selector";
-import { userUpdate, allUsers } from "redux/auth/auth-operation";
+import { getUser } from "redux/auth/auth-selector";
+import { userUpdate } from "redux/auth/auth-operation";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
@@ -45,10 +45,10 @@ const handleChange = (e) => {
               )
               )}
             // }
-const click = (e) => {
-  // e.preventDefault();
-  dispatch(allUsers( ) )
-}
+// const click = (e) => {
+//   // e.preventDefault();
+//   dispatch(allUsers( ) )
+// }
   return (
     <>
     <div>{chekName ? <p>

@@ -3,16 +3,12 @@ import {persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, R
 import storage from "redux-persist/lib/storage";
 
 
-// import {
-//     getFirebase,
-//     actionTypes as rrfActionTypes,
-//   } from 'react-redux-firebase'
-//   import { constants as rfConstants } from 'redux-firestore'
-
+import { usersReducer } from "./user/user-slice";
 import { itemsReducer } from "./items/items-slice";
 import { filterReducer } from "./filter/filter-slice";
 import { authReducer } from "./auth/auth-slice";
 import { sectionsReducer } from "./sections/sections-slice";
+
 
 const persistConfig = {
     key: 'auth',
@@ -24,10 +20,12 @@ const persistedReducer = persistReducer(persistConfig, authReducer)
 
 export const store = configureStore({
     reducer: {
+        users: usersReducer,
         auth: persistedReducer,
         items: itemsReducer,
         filter: filterReducer,
         sections: sectionsReducer,
+        
     },
     middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware({
@@ -36,23 +34,7 @@ export const store = configureStore({
             [REGISTER, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, ],
             
         },
-        // serializableCheck: {
-        //     ignoredActions: [
-        //       // just ignore every redux-firebase and react-redux-firebase action type
-        //       ...Object.keys(rfConstants.actionTypes).map(
-        //         (type) => `${rfConstants.actionsPrefix}/${type}`
-        //       ),
-        //       ...Object.keys(rrfActionTypes).map(
-        //         (type) => `@@reactReduxFirebase/${type}`
-        //       ),
-        //     ],
-        //     ignoredPaths: ['firebase', 'firestore'],
-        //   },
-        //   thunk: {
-        //     extraArgument: {
-        //       getFirebase,
-        //     },
-        //   },
+    
     }),
 });
 

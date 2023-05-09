@@ -18,6 +18,26 @@ export const fetchItems = createAsyncThunk(
             return thunkApi.rejectWithValue(error);
         }}
     );
+    export const fetchItemsLive = createAsyncThunk(
+        "items/live/fetch",
+        async(datas, thunkApi) => {
+            console.log(datas)
+            try {
+                const data = await api.getItemsLive(               
+                    datas,
+                    {
+                        // itemName,
+                        // description,
+                        // price,
+                        // itemImg,
+                        // section,
+                      }
+                      );
+                return data;
+            } catch (error) {
+                return thunkApi.rejectWithValue(error);
+            }}
+        );
    export const geItemsByCategory = createAsyncThunk(
         'items/getByCategory',
         async ( category, {rejectWithValue}) => {
@@ -26,6 +46,7 @@ export const fetchItems = createAsyncThunk(
                 
                 const  data  = await api.getItemsByCategory(category)
                 console.log(data)
+                console.log(category)
                 return data;
             } 
              catch (error) {

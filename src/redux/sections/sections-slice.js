@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchSections, addSection, deleteSection, updateSection } from "./sections-operation";
+import { fetchSections, fetchSectionsLive, addSection, deleteSection, updateSection } from "./sections-operation";
 
 
 const initialState = {
     // upd: [],
     sections: [],
+    sectionsLive: [],
     loading: false,
     error: null,
 }
@@ -19,6 +20,7 @@ const pendingHandler = (store, {payload}) => {
         builder
         .addCase(fetchSections.pending, pendingHandler)
         .addCase(fetchSections.fulfilled, (store, {payload}) => {
+            console.log("payload", payload)
             store.loading = false;
             store.sections = payload;
         }) 
@@ -26,6 +28,16 @@ const pendingHandler = (store, {payload}) => {
             store.loading = false;
             store.error = payload;
         })
+        // .addCase(fetchSectionsLive.pending, pendingHandler)
+        // .addCase(fetchSectionsLive.fulfilled, (store, {payload}) => {
+        //     store.loading = false;
+        //     console.log("payload", payload)
+        //     store.sectionsLive = payload;
+        // }) 
+        // .addCase(fetchSectionsLive.rejected, (store, {payload}) => {
+        //     store.loading = false;
+        //     store.error = payload;
+        // })
         .addCase(addSection.pending, pendingHandler)
         .addCase(addSection.fulfilled, (store, {payload}) => {
             store.loading = false;
@@ -49,18 +61,11 @@ const pendingHandler = (store, {payload}) => {
         })
         .addCase(updateSection.pending, pendingHandler)
         .addCase(updateSection.fulfilled, (store,  {payload} ) => {
-          console.log(payload)
-          console.log(store)
-          const upd = payload
-          console.log("upd", upd)
-          console.log("pay sec", payload.category)
-            store.sections = {
-                  ...payload
-                }
-                // .find((section) => section._id === payload)
-            //  =  {
-            //   ...payload
-            // }
+          
+            store.sections = (store.sections.filter(
+                section => 
+                section._id !== payload._id))
+                store.sections.unshift(payload);
           })
         .addCase(updateSection.rejected, (store, { meta, payload }) => {
             store.loading = false;

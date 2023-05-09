@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { 
-  useSelector,
+  // useSelector,
   useDispatch} from 'react-redux';
 // import { getSections } from 'redux/sections/sections-selector';
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
@@ -8,19 +8,19 @@ import { nanoid } from 'nanoid';
 import {
   Button,
   FilterList,
-  Item,
-  Wrapper,
+  // Item,
+  // Wrapper,
   // AuthLinks,
-  CommonLinks,
+  // CommonLinks,
 } from './ItemsSections.styled';
 import { Modal } from 'components/Modal/Modal';
 import ModalChangeSectionName from '../ModalChangeSectionName/ModalChangeSectionName';
-import { useEffect } from "react";
-import {  geItemsByCategory } from "redux/items/items-operation";
+// import { useEffect } from "react";
+// import {  geItemsByCategory } from "redux/items/items-operation";
 import { fetchSections } from "redux/sections/sections-operation"
 
-const btnId = nanoid();
-const sectionId = nanoid();
+// const btnId = nanoid();
+// const sectionId = nanoid();
 
 // const authButtons = [
 //   {
@@ -61,18 +61,20 @@ function ItemsSections({section}) {
 
   return (
     // <Wrapper>
-      <FilterList key={sectionId}>
+      <FilterList key={nanoid()}>
         {/* <CommonLinks> */}
           {buttons.map(b => (
             // <Item key={btnId}>
-              <Button to={'/items/' + b.link} name={b.link}>
+              <Button 
+              key={nanoid()}
+              to={'/items/' + b.link} name={b.link}>
                 {b.btn}
               </Button>
               
-            // </Item>
+            //  </Item>
           ))}
           <button
-          key={btnId}
+          key={nanoid()}
           onClick={() => setModalActive(true)}>
                 change
               </button>

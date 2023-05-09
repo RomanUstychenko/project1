@@ -1,5 +1,7 @@
 import { nanoid } from "nanoid";
 
+
+
 const items = [
     {id: nanoid(),
     to: "/items",
@@ -9,10 +11,10 @@ const items = [
     to: "/users",
     text: "Users"
 },
-{id: nanoid(),
-    to: "/live",
-    text: "live"
-},
+// {id: nanoid(),
+//     to: "/live",
+//     text: "live"
+// },
 ]
 
 

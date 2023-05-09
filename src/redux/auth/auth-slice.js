@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, login, logout, current, allUsers, userUpdate } from "./auth-operation";
+import { register, login, logout, current, userUpdate } from "./auth-operation";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { toast } from 'react-toastify';
 
 
 const initialState = {
     users: {},
-    newUser: { name: null, email: null, verify: false, avatarURL: null  },
+    newUser: {_id: null, name: null, email: null, verify: false, avatarURL: null  },
     token: "",
+    isRegister: false,
     isLogin: false,
     loading: false,
     isLoadingUser: false,
@@ -28,7 +29,7 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
         store.loading = false;
         store.newUser = payload.user;
         store.token = payload.token;
-        // store.isLogin = true;
+        store.isRegister = true;
     })
     .addCase(register.rejected, (store, {payload}) => {
         store.loading = false;
@@ -72,16 +73,16 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
         store.isLoadingUser = false;
         store.error = payload;
     })
-    .addCase(allUsers.pending, pendingHandler)
-    .addCase(allUsers.fulfilled, (store, {payload}) => {
-        store.isLoadingUser = false;
-        store.users = payload;
-        store.isLogin = true;
-    })
-    .addCase(allUsers.rejected, (store, {payload}) => {
-        store.isLoadingUser = false;
-        store.error = payload;
-    })
+    // .addCase(allUsers.pending, pendingHandler)
+    // .addCase(allUsers.fulfilled, (store, {payload}) => {
+    //     store.isLoadingUser = false;
+    //     store.users = payload;
+    //     store.isLogin = true;
+    // })
+    // .addCase(allUsers.rejected, (store, {payload}) => {
+    //     store.isLoadingUser = false;
+    //     store.error = payload;
+    // })
 
     .addCase(userUpdate.pending, pendingHandler)
     .addCase(userUpdate.fulfilled, (store, { payload }) => {

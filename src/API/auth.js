@@ -5,6 +5,7 @@ const instance = axios.create({
 });
 
 const setToken = (token) => {
+    console.log(token)
     if (token) {
     return instance.defaults.headers.common.authorization = `Bearer ${token}`;
 }
@@ -44,18 +45,7 @@ export const getCurrentUser = async (token) => {
         throw error;
     }
 }
-export const getAllUsers = async () => {
-    try {
-        // setToken(token);
-        
-        const { data } = await instance.get("/users/")
-        console.log("data", data)
-        return data
-     } catch (error) {
-        // setToken()
-        throw error;
-    }
-}
+
 
 export const userUpdate = async (userData) => {
       try {

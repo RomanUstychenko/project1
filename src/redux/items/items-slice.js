@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchItems, geItemsByCategory, addItems, deleteItem, itemUpdate } from "./items-operation";
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { toast } from 'react-toastify';
+import { fetchItems, fetchItemsLive, geItemsByCategory, addItems, deleteItem, itemUpdate } from "./items-operation";
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { toast } from 'react-toastify';
 
 const initialState = {
     items: [],
+    itemsLive: [],
     itemsByCategory: [],
     loading: false,
     error: null,
 }
+
 
 const pendingHandler = (store, {payload}) => {
     store.isLoading = true;
@@ -28,11 +30,21 @@ const itemsSlice = createSlice({
             store.loading = false;
             store.error = payload;
         })
+        .addCase(fetchItemsLive.pending, pendingHandler)
+        .addCase(fetchItemsLive.fulfilled, (store, {payload}) => {
+            store.loading = false;
+            store.itemsLive = payload;
+        }) 
+        .addCase(fetchItemsLive.rejected, (store, {payload}) => {
+            store.loading = false;
+            store.error = payload;
+        })
 
 
         .addCase(geItemsByCategory.pending, pendingHandler)
         .addCase(geItemsByCategory.fulfilled, (store, {payload}) => {
             console.log(payload)
+            console.log(initialState)
             store.loading = false;
             store.error = null;
             store.itemsByCategory = payload
@@ -73,14 +85,29 @@ const itemsSlice = createSlice({
         .addCase(itemUpdate.pending, pendingHandler)
         .addCase(itemUpdate.fulfilled, (store,  {payload} ) => {
           console.log(payload)
-          console.log(store)
+          console.log(initialState)
+//           [payload].push(store.itemsByCategory.filter(
+//             item => 
+//             item._id !== payload._id))
+// console.log(payload)
+          store.itemsByCategory = (store.itemsByCategory.filter(
+            item => 
+            item._id !== payload._id))
+            store.itemsByCategory.unshift(payload);
             // store.items = {
-            //   itemName: payload.itemName,
-            // };
-            store.items = {
-                 payload,
-              };
+            //      payload,
+            //   };
+
+            // store.itemsByCategory = store.itemsByCategory.forEach(function (element) {
+            //     console.log(element)
+            //     if (element.id == payload._id) {
+            //       console.log("element")
+            //     }    
+            //   });
           })
+
+          
+
         .addCase(itemUpdate.rejected, (store, { meta, payload }) => {
             store.loading = false;
             store.error = payload;

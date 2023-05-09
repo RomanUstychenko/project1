@@ -3,18 +3,35 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchSections = createAsyncThunk(
     "sections/fetch",
-    async( category, thunkApi) => {
+    async(owner, thunkApi) => {
         try {
-            const data = await api.getSections(                {
-                    category,
-                  }
-                  );
+            console.log("owner", owner)
+                const data = await api.getSections({
+                    owner,
+                  });
             return data;
+
         } catch (error) {
             return thunkApi.rejectWithValue(error);
         }}
     );
 
+    // export const fetchSectionsLive = createAsyncThunk(
+    //     "sections/fetch",
+    //     async(owner, category, thunkApi) => {
+    //         console.log("owner", owner)
+    //         console.log("category", category)
+    //         try {
+    //             const data = await api.getSectionsLive({
+    //                     owner,
+    //                     category,
+    //                   }
+    //                   );
+    //             return data;
+    //         } catch (error) {
+    //             return thunkApi.rejectWithValue(error);
+    //         }}
+    //     );
     export const addSection = createAsyncThunk(
         "sections/add",
         async(datas, {rejectWithValue}) => {

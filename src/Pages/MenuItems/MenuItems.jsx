@@ -4,7 +4,8 @@ import ModalSectionForm from "components/Section/ModalSectionForm/ModalSectionFo
 import {ItemList} from "../../components/Item/ItemList/ItemList"
 import { 
   fetchItems,
-   geItemsByCategory } from "redux/items/items-operation"
+  //  geItemsByCategory
+   } from "redux/items/items-operation"
 import Filter from "../../components/filter/Filter"
 import scss from "./MenuItems.module.scss"
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +21,7 @@ import { useLocation,
 // import UseAuth from "components/hooks/useAuth"
 // import { Navigate } from "react-router-dom"
 import { fetchSections } from "redux/sections/sections-operation"
+// import {  allUsers } from "redux/user/user-operation";
 export default function MenuItems() {
 
 
@@ -55,8 +57,10 @@ export default function MenuItems() {
 // console.log(itemsCategoryCheck())
 // dispatch(fetchItems());
       useEffect(() => {
+        // dispatch(allUsers())
           dispatch(fetchItems());
           dispatch(fetchSections());
+          
         
           
             // if (category === undefined) {

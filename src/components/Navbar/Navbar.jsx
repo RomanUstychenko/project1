@@ -1,6 +1,7 @@
 import NavbarMenu from "components/Navbar/NavbarMenu/NavbarMenu"
 import NavbarAuth from "components/Navbar/NavbarAuth/NavbarAuth"
 import NavbarUser from "./NavbarUser/NavbarUser"
+import NavbarLive from "./NavbarLive/NavbarLive"
 import scss from "./Navbar.module.scss"
 import UseAuth from "components/hooks/useAuth"
 
@@ -11,6 +12,7 @@ export default function Navbar() {
         <div className={scss.navbarList}>
           {isUserLogin &&  <NavbarMenu />}
            {isUserLogin ? <NavbarUser /> : <NavbarAuth />}
+           <NavbarLive />
         </div>
     
     </nav>

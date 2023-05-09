@@ -1,42 +1,55 @@
-import {  getAllUser } from "redux/auth/auth-selector";
+// import {  getAllUser } from "redux/user/user-selector";
 import {  useDispatch,useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { userUpdate, allUsers } from "redux/auth/auth-operation";
+import React, { useEffect } from "react";
+import {  allUsers } from "redux/user/user-operation";
+// import LiveListUser from "components/Live/LiveListUser/LIveListUser";
+import { nanoid } from 'nanoid';
+import { getSections } from "redux/sections/sections-selector"
+import { fetchSections } from "redux/sections/sections-operation"
+import LiveItemsSections from "components/Live/LiveItemsSections/LiveItemsSections";
+import { useLocation } from 'react-router-dom'
+   import {  fetchItemsLive } from "redux/items/items-operation"
+     import { getItemsLive } from 'redux/items/items-selector';
+
 
 export default function LivePage() {
 
+  const location = useLocation();
+  const category = location.pathname.split('/')[2];
+  
     const dispatch = useDispatch();
+    // const users = useSelector(getAllUser)
+    const sections = useSelector(getSections);
+    const items = useSelector(getItemsLive);
 
     useEffect(() => {
-        dispatch(allUsers( ) )
-      }, [dispatch])
-    const users = useSelector(getAllUser)
+        dispatch(allUsers())
+        dispatch(fetchItemsLive(category));
+        dispatch(fetchSections(category));
+        
+      }, [dispatch], category, sections,)
 
-    const user = () => {
-        users.map((us) => us.name)
-        return;
-    }
-    console.log(users)
-console.log(users.map((us) => us.name))
-    const buttons = [
-        {
-          btn: users.name,
-          link: users.map((us) => us.name),
-        }
-      
-      ];
-
+  
   return (
     <>
-    <div>LivePage</div>
-    {buttons.map(b => (
-        // <Item key={btnId}>
-          <button to={'/live/' + b.link} name={b.link}>
-            {b.btn}
-          </button>
-          
-        // </Item>
-      ))}
+    
+    <ul key={nanoid()}>
+          {/* {users.map(user =>
+           <LiveListUser
+           user={user}
+          //  sections={sections}
+           ></LiveListUser>
+            ) }  */}
+    </ul>
+    <ul key={nanoid()}>
+       {sections.map(section =>
+        <LiveItemsSections
+        section={section}
+        item={items.filter(i => 
+          i.section === section.category)}
+        >  </LiveItemsSections>)
+}
+    </ul>
       </>
   )
 }

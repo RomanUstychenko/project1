@@ -5,6 +5,11 @@ export const getItems = async () => {
     const {data} = await instance.get('/items');
     return data;
 }
+export const getItemsLive = async (datas) => {
+  console.log(datas)
+  const {data} = await instance.get(`/items/live/${datas}`);
+  return data;
+}
 
 
 export const getItemsByCategory =  async ({category}) => {

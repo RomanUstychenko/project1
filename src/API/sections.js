@@ -1,9 +1,18 @@
 import instance from "./auth";
 
 
-export const getSections = async () => {
-    const {data} = await instance.get('/sections');
+export const getSections = async ({owner}) => {
+  
+  if (owner===undefined) {
+    const {data} = await instance.get(`/sections`);
+  return data
+}
+  else {
+    
+    const {data} = await instance.get(`/sections/${owner}`);
     return data;
+  }
+    
 }
 
 export const addSection = async (data) => {
