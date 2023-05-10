@@ -10,13 +10,14 @@ import LiveItemsSections from "components/Live/LiveItemsSections/LiveItemsSectio
 import { useLocation } from 'react-router-dom'
    import {  fetchItemsLive } from "redux/items/items-operation"
      import { getItemsLive } from 'redux/items/items-selector';
+    //  import { useCallback } from "react";
 
 
 export default function LivePage() {
 
 
   const location = useLocation();
-  const category = location.pathname.split('/')[2];
+  const category = (location.pathname.split('/')[2])
   
     const dispatch = useDispatch();
     // const users = useSelector(getAllUser)
@@ -24,12 +25,18 @@ export default function LivePage() {
     const items = useSelector(getItemsLive);
 
     useEffect(() => {
+      
         dispatch(allUsers())
-        dispatch(fetchItemsLive(category));
-        dispatch(fetchSections(category));
+        if (category) {
+          dispatch(fetchItemsLive(category));
+          dispatch(fetchSections(category));
+        }
+        
         
       }, 
-      [dispatch], category, sections)
+
+      [dispatch, category])
+
 
   
   return (
