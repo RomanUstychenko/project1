@@ -8,18 +8,18 @@ import { getSections } from 'redux/sections/sections-selector';
 import { updateSection } from "redux/sections/sections-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Formik } from 'formik';
-import { useLocation,
-  //  useSearchParams
-   } from 'react-router-dom';
-   import { useEffect } from "react";
-   import {  geItemsByCategory } from "redux/items/items-operation";
-   import { fetchSections } from "redux/sections/sections-operation"
+// import { useLocation,
+//   //  useSearchParams
+//    } from 'react-router-dom';
+  //  import { useEffect } from "react";
+  //  import {  geItemsByCategory } from "redux/items/items-operation";
+  //  import { fetchSections } from "redux/sections/sections-operation"
 
 export default function ModalChangeSectionName ({
-   itemsCategory, 
+  //  itemsCategory, 
    category,
-   price, 
-   description, 
+  //  price, 
+  //  description, 
    _id,
     closeModal}) {
   const sections = useSelector(getSections);
@@ -60,7 +60,8 @@ export default function ModalChangeSectionName ({
 
 
 
-   const location = useLocation();
+  //  const location = useLocation();
+
 //   const category = location.pathname.split('/')[2];
   const dispatch = useDispatch();
 

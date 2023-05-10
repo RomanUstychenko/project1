@@ -14,6 +14,7 @@ import { useLocation } from 'react-router-dom'
 
 export default function LivePage() {
 
+
   const location = useLocation();
   const category = location.pathname.split('/')[2];
   
@@ -27,7 +28,8 @@ export default function LivePage() {
         dispatch(fetchItemsLive(category));
         dispatch(fetchSections(category));
         
-      }, [dispatch], category, sections,)
+      }, 
+      [dispatch], category, sections)
 
   
   return (

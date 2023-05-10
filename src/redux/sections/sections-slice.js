@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchSections, fetchSectionsLive, addSection, deleteSection, updateSection } from "./sections-operation";
+import { fetchSections, addSection, deleteSection, updateSection } from "./sections-operation";
 
 
 const initialState = {
@@ -28,16 +28,6 @@ const pendingHandler = (store, {payload}) => {
             store.loading = false;
             store.error = payload;
         })
-        // .addCase(fetchSectionsLive.pending, pendingHandler)
-        // .addCase(fetchSectionsLive.fulfilled, (store, {payload}) => {
-        //     store.loading = false;
-        //     console.log("payload", payload)
-        //     store.sectionsLive = payload;
-        // }) 
-        // .addCase(fetchSectionsLive.rejected, (store, {payload}) => {
-        //     store.loading = false;
-        //     store.error = payload;
-        // })
         .addCase(addSection.pending, pendingHandler)
         .addCase(addSection.fulfilled, (store, {payload}) => {
             store.loading = false;
@@ -61,11 +51,16 @@ const pendingHandler = (store, {payload}) => {
         })
         .addCase(updateSection.pending, pendingHandler)
         .addCase(updateSection.fulfilled, (store,  {payload} ) => {
-          
-            store.sections = (store.sections.filter(
-                section => 
-                section._id !== payload._id))
-                store.sections.unshift(payload);
+            store.loading = false;
+            // store.sections = (store.sections.filter(
+            //     section => 
+            //     section._id !== payload._id))
+            //     store.sections.unshift(payload);
+            store.sections.forEach((item, index) => {
+                if (item._id === payload._id) {
+                    store.sections[index] = payload} 
+                })
+
           })
         .addCase(updateSection.rejected, (store, { meta, payload }) => {
             store.loading = false;

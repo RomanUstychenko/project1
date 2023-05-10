@@ -73,7 +73,7 @@ useEffect(() => {
     }
   
   }, 
-   [ dispatch, category, items, ])
+   [ dispatch, category, items])
 
 
 

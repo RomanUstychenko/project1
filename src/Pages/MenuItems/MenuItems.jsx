@@ -62,7 +62,6 @@ export default function MenuItems() {
           dispatch(fetchSections());
           
         
-          
             // if (category === undefined) {
               
             // }

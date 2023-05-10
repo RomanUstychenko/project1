@@ -11,7 +11,9 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Formik } from 'formik';
 
 
-export default function ModalItemForm ({onClick, setModalActive, category, itemsCategory}) {
+export default function ModalItemForm ({
+  // onClick,
+   setModalActive, category, itemsCategory}) {
   // const items = useSelector(getFilteredItems);
   // console.log("category", category)
   console.log(itemsCategory)
@@ -67,7 +69,6 @@ export default function ModalItemForm ({onClick, setModalActive, category, items
        
           if (duplicateItems) {
             Notify.failure(`${itemName} is already in item`)
-            // alert (`${name} is already in contact`)
             return
           }
           if (description === "") {

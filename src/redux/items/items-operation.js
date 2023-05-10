@@ -90,7 +90,7 @@ export const fetchItems = createAsyncThunk(
             console.log(newArr)
             const result = await api.itemUpdate(datas._id, newArr);
             
-            console.log(result)
+            // console.log(result)
             
             return result;
           } catch ({response}) {

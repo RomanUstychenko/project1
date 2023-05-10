@@ -1,13 +1,13 @@
 
 
 
-export default function ModalRegisterVerify ({onClick, setModalActive}) {
+export default function ModalRegisterVerify () {
  
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
     
-              setModalActive(false);
-          }
+  //             setModalActive(false);
+  //         }
        
     
       return ( 

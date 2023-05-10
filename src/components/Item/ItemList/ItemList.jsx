@@ -65,7 +65,6 @@ useEffect(() => {
 
   
     if (category === undefined) {
-      console.log("undef")
     }
     else {
      
@@ -73,7 +72,7 @@ useEffect(() => {
     }
   
   }, 
-   [ dispatch, category, items, ])
+   [ dispatch, category, items])
 
 
 

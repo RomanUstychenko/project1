@@ -5,15 +5,17 @@ import {
   // useSelector, 
   useDispatch } from 'react-redux';
 // import { getFilteredItems } from 'redux/items/items-selector';
-import { itemUpdate, geItemsByCategory } from "redux/items/items-operation"; 
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { Formik } from 'formik';
-import { useLocation,
-  //  useSearchParams
-   } from 'react-router-dom';
+import { itemUpdate, 
+  // geItemsByCategory
+ } from "redux/items/items-operation"; 
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// // import { Formik } from 'formik';
+// import { useLocation,
+//   //  useSearchParams
+//    } from 'react-router-dom';
 
 export default function ModalItemDetail ({
-   itemsCategory, 
+  //  itemsCategory, 
   itemName,
    price, 
    description, 
@@ -57,8 +59,8 @@ export default function ModalItemDetail ({
 
 
 
-   const location = useLocation();
-  const category = location.pathname.split('/')[2];
+  //  const location = useLocation();
+  // const category = location.pathname.split('/')[2];
   const dispatch = useDispatch();
 
   const [newItemName, setNewItemName] = useState(itemName);
@@ -94,14 +96,14 @@ console.log(itemName, price)
   const handleSubmit = (e) => {
 
         e.preventDefault()
-        const duplicateItems = itemsCategory.find(itemCategory => itemCategory.itemName.toLocaleLowerCase() === newItemName.toLocaleLowerCase());
+        // const duplicateItems = itemsCategory.find(itemCategory => itemCategory.itemName.toLocaleLowerCase() === newItemName.toLocaleLowerCase());
       
        
-          if (duplicateItems) {
-            Notify.failure(`${itemName} is already in item`)
-            // alert (`${name} is already in contact`)
-            return
-          }
+          // if (duplicateItems) {
+          //   Notify.failure(`${itemName} is already in items`)
+          //   // alert (`${name} is already in contact`)
+          //   return
+          // }
           // if (description === "") {
           //   setSection (category)
           //   dispatch(addItems(

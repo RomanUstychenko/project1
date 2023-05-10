@@ -1,26 +1,26 @@
 import React from 'react'
-import { 
-    // useSelector, 
-    useDispatch } from 'react-redux';
+// import { 
+//     // useSelector, 
+//     useDispatch } from 'react-redux';
 // import { getItemsByCategory,
 //   //  getItems
 //    } from 'redux/items/items-selector';
 import { Modal } from "components/Modal/Modal";
 import scss from "./ItemInList.module.scss"
 import { useState } from 'react';
-import { deleteItem, 
-  //  geItemsByCategory
-  } from "redux/items/items-operation"; 
-import { useLocation,
-  //  useSearchParams
-   } from 'react-router-dom';
+// import { deleteItem, 
+//   //  geItemsByCategory
+//   } from "redux/items/items-operation"; 
+// import { useLocation,
+//   //  useSearchParams
+//    } from 'react-router-dom';
 import { nanoid } from 'nanoid';
-import { fetchSections } from "redux/sections/sections-operation"
-   import { useEffect } from "react";
+// import { fetchSections } from "redux/sections/sections-operation"
+  //  import { useEffect } from "react";
   import ModalItemDetail from '../ModalItemDetail/ModalItemDetail';
   import ModalItemDelete from '../ModalItemDelete/ModalItemDelete';
-  import { itemUpdate, geItemsByCategory } from "redux/items/items-operation"; 
-  import { Notify } from 'notiflix/build/notiflix-notify-aio';
+  // import { itemUpdate, geItemsByCategory } from "redux/items/items-operation"; 
+  // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 
@@ -38,9 +38,9 @@ export default function ItemInList({filteredItem, itemsCategory}) {
       itemName, 
       description,
       price,
-      section,
+      // section,
     _id,
-    itemImg,
+    // itemImg,
   } = filteredItem;
 // console.log(filteredContact)
 
@@ -48,7 +48,7 @@ export default function ItemInList({filteredItem, itemsCategory}) {
 // console.log("category", category)
 // console.log("section", section)
 
-const dispatch = useDispatch();
+// const dispatch = useDispatch();
 
 
 const [modalDeleteActive, setModalDeleteActive] = useState(false);
@@ -64,8 +64,8 @@ function closeModal () {
   // console.log(filteredItem)
   //   console.log(chekItems)
 
-  const location = useLocation();
-  const category = location.pathname.split('/')[2];
+  // const location = useLocation();
+  // const category = location.pathname.split('/')[2];
 
 
 

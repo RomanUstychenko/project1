@@ -84,44 +84,17 @@ const itemsSlice = createSlice({
 
         .addCase(itemUpdate.pending, pendingHandler)
         .addCase(itemUpdate.fulfilled, (store,  {payload} ) => {
-          console.log(payload)
-          console.log(initialState)
-//           [payload].push(store.itemsByCategory.filter(
-//             item => 
-//             item._id !== payload._id))
-// console.log(payload)
-          store.itemsByCategory = (store.itemsByCategory.filter(
-            item => 
-            item._id !== payload._id))
-            store.itemsByCategory.unshift(payload);
-            // store.items = {
-            //      payload,
-            //   };
-
-            // store.itemsByCategory = store.itemsByCategory.forEach(function (element) {
-            //     console.log(element)
-            //     if (element.id == payload._id) {
-            //       console.log("element")
-            //     }    
-            //   });
-          })
-
-          
-
+            store.loading = false;
+            store.itemsByCategory.forEach((item, index) => {
+                if (item._id === payload._id) {
+                    store.itemsByCategory[index] = payload} 
+                })
+                    })
         .addCase(itemUpdate.rejected, (store, { meta, payload }) => {
             store.loading = false;
             store.error = payload;
             console.log(meta)
             console.log(payload)
-            // toast.error(chooseValid(Object.keys(meta.arg)[0]));
-            // function chooseValid(key) {
-            //   switch (key) {
-            //     case 'name':
-            //       return 'Name must be in English, contain 2-20 symbols';
-            //     default:
-            //       return 'Wrong!';
-            //   }
-            // }
           })
     }
 });

@@ -6,11 +6,11 @@ import { useDispatch,
 import { register } from 'redux/auth/auth-operation';
 import scss from "./Registration.module.scss"
 import { Button } from 'components/Button/Button';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { isRegister } from 'redux/auth/auth-selector';
 import { Navigate } from 'react-router-dom';
 import { Modal } from 'components/Modal/Modal';
-import ModalRegisterVerify from 'components/ModalRegisterVerify/ModalRegisterVerify';
+// import ModalRegisterVerify from 'components/ModalRegisterVerify/ModalRegisterVerify';
 
 export default function Registration() {
 
@@ -56,7 +56,6 @@ const openModal = () => {
   if (isUserRegister) {
   
     //  return console.log("userRegister")
-    
       setModalActive(true)
     ;}
     else {
