@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject1=self.webpackChunkproject1||[]).push([[12],{4012:function(e,t,n){n.r(t),n.d(t,{default:function(){return i}});var r=n(184);function i(e){e.onClick,e.setModalActive;return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)("div",{children:"thank You fo register, go to you email to verify"}),(0,r.jsx)("button",{type:"submit",children:"OK"})]})}}}]);
+//# sourceMappingURL=12.5af09a3d.chunk.js.map
