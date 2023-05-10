@@ -47,15 +47,7 @@ export default function MenuItems() {
   // console.log(sections)
  const {loading, error} = useSelector(getState);
 
-// function itemsCategoryCheck  ()  {
-// if (itemsCategory.length > 0) {
-// return itemsCategory
-// }
- 
-// }
-// console.log(itemsCategory)
-// console.log(itemsCategoryCheck())
-// dispatch(fetchItems());
+
       useEffect(() => {
         // dispatch(allUsers())
           dispatch(fetchItems());

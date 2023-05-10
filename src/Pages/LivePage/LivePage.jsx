@@ -20,7 +20,6 @@ export default function LivePage() {
   const category = (location.pathname.split('/')[2])
   
     const dispatch = useDispatch();
-    // const users = useSelector(getAllUser)
     const sections = useSelector(getSections);
     const items = useSelector(getItemsLive);
 
