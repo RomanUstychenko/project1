@@ -1,8 +1,8 @@
 // import items from "./items"
 import { nanoid } from "nanoid";
-import { NavLink } from "react-router-dom"
 import { getUser } from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
+import { Link, List } from "./LiveTitle.styled";
 
 
 
@@ -22,16 +22,16 @@ export default function LiveTitle() {
 
   
   return (
-    <ul >
+    <List >
       {chekName ? items.map(({id, to, text}) => {
             return (
-                <li  key={id}>
-                    <NavLink  to={to} end>{text}</NavLink>
-                </li>
+                
+                    <Link  to={to} end>{text}</Link>
+                
             )})
          : <></> }
 
         
-    </ul>
+    </List>
   )
 }
