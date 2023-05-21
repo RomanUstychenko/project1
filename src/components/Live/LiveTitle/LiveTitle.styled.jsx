@@ -13,7 +13,7 @@ export const Link = styled(NavLink)`
 
 color: #7e2323;
 text-decoration: none;
-font-size: 20px;
-font-family: 'Goudy Stout';
+font-size: 35px;
+font-family: 'Luckiest Guy', cursive;
 
 `

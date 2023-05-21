@@ -44,12 +44,13 @@ export const ItemsGroup = styled.div`
   width: 100%;
 `
 export const ItemTitle = styled.span`
-  font-size: 16px;
+  font-size: 12px;
 `
 export const ItemDescription = styled.span`
 display: flex;
-  font-size: 10px;
+  font-size: 8px;
 `
 export const Item = styled.span`
+font-size: 10px;
   display: flex;
 `
