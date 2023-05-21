@@ -1,7 +1,7 @@
 import React from 'react'
-import { 
-    // useSelector, 
-    useDispatch } from 'react-redux';
+// import { 
+//     // useSelector, 
+//     useDispatch } from 'react-redux';
 // import { getItemsByCategory,
 //   //  getItems
 //    } from 'redux/items/items-selector';
@@ -11,9 +11,9 @@ import {
 // import { deleteItem, 
 //   //  geItemsByCategory
 //   } from "redux/items/items-operation"; 
-import { useLocation,
-  //  useSearchParams
-   } from 'react-router-dom';
+// import { useLocation,
+//   //  useSearchParams
+//    } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 // import { fetchSections } from "redux/sections/sections-operation"
   //  import { useEffect } from "react";
@@ -28,12 +28,14 @@ import { nanoid } from 'nanoid';
 
 
 
-export default  function LiveListUser({sections, user}) {
-  const location = useLocation();
+export default  function LiveListUser({
+  // sections,
+   user}) {
+  // const location = useLocation();
   // const category = location.pathname.split('/')[2];
   // const users = useSelector(getAllUser)
 // console.log("category", category)
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   
 
   // const filteredItemId = nanoid();

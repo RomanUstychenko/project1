@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid';
 import noimg from 'img/noimg.jpg'
-import {List, ListLive, Title, ImgLive, ItemList, ItemsText, Item} from './LiveItemsSections.styled'
+import {List, 
+  // ListLive,
+   Title, ImgLive, ItemList, ItemsText, Item} from './LiveItemsSections.styled'
 
 // const btnId = nanoid();
 // const sectionId = nanoid();
