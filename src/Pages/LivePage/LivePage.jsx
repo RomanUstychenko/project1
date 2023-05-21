@@ -10,7 +10,7 @@ import LiveItemsSections from "components/Live/LiveItemsSections/LiveItemsSectio
 import { useLocation } from 'react-router-dom'
 import {  fetchItemsLive } from "redux/items/items-operation"
 import { getItemsLive } from 'redux/items/items-selector';
-import { List } from "./LivePage.styled";
+import { List, Menu } from "./LivePage.styled";
 
 
 export default function LivePage() {
@@ -50,6 +50,7 @@ console.log(items)
             ) } 
     </ul> */}
     <List key={nanoid()}>
+      <Menu>Menu</Menu>
        {sections.map(section =>
         <LiveItemsSections
         key={nanoid()}

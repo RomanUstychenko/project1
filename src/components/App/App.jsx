@@ -8,6 +8,7 @@ import PrivateRoute from "components/PrivateRoute/privateRoute";
 import PublicRoute from "components/PublicRoute/publicRoute";
 import { getLoadingUserStatus } from "redux/auth/auth-selector";
 import {  allUsers } from "redux/user/user-operation";
+import { Wrapper } from "./App.styled";
 
 const MenuItems = lazy(() => import("Pages/MenuItems/MenuItems"));
 const MenuItemsDetails = lazy(() => import("components/MenuItemsDetails/MenuItemsDetails"));
@@ -31,10 +32,10 @@ useEffect(() => {
 }, [dispatch])
 
   return (
-    <div
+    <Wrapper
       style={{
-        height: '100vh',
-        fontSize: 40,
+        // height: '100vh',
+        // fontSize: 40,
         color: '#010101'
       }}
     >
@@ -64,6 +65,6 @@ useEffect(() => {
      </Suspense>
       )      }
       
-    </div>
+    </Wrapper>
   )
 };
