@@ -1,11 +1,4 @@
-.navbarMenuList {
-    display: flex;
-    
-    margin-right: auto;
-    margin-left: auto;
-    align-items: center;
-    justify-content: center;
-}
+
 .link {
     text-decoration: none;
     font-size: 40px;
@@ -22,7 +15,4 @@
     :focus {
         color: #333d72;
     }
-}
-.navbarMenuListItem:not(:last-child) {
-    margin-right: 20px;
 }

@@ -1,5 +1,6 @@
 export const getItems = ({items}) => items.items;
 export const getItemsLive = ({items}) => items.itemsLive;
+export const isLive = ({items}) => items.isLive;
 export const getItemsByCategory = ({items}) => ( items.itemsByCategory);
 export const getItemUpdate = ({items}) => (items.itemsByCategory);
 export const getState = ({items}) => ({loading: items.loading, error: items.error});

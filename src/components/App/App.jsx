@@ -10,6 +10,7 @@ import { getLoadingUserStatus } from "redux/auth/auth-selector";
 import {  allUsers } from "redux/user/user-operation";
 
 const MenuItems = lazy(() => import("Pages/MenuItems/MenuItems"));
+const MenuItemsDetails = lazy(() => import("components/MenuItemsDetails/MenuItemsDetails"));
 const Users = lazy(() => import("Pages/Users/Users"));
 const NotFound = lazy(() => import("Pages/PageNotFound/NotFound"));
 const Navbar = lazy(() => import("components/Navbar/Navbar"));
@@ -51,8 +52,9 @@ useEffect(() => {
         </Route>
         <Route element={<PrivateRoute />}>
           <Route path="/" element={<MenuItems />}/>
-          <Route path="/items/" element={<MenuItems />}/>
-          <Route path="/items/:category" element={<MenuItems />}/>
+          <Route path="/items/" element={<MenuItems />}>
+            <Route path="/items/:category" element={<MenuItemsDetails />}/>
+          </Route>
           <Route path="/users" element={<Users />}/>
         </Route>
         {/* <Route path="/live/" element={<LivePage />}/> */}

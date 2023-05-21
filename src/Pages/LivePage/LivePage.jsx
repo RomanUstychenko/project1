@@ -8,9 +8,9 @@ import { getSections } from "redux/sections/sections-selector"
 import { fetchSections } from "redux/sections/sections-operation"
 import LiveItemsSections from "components/Live/LiveItemsSections/LiveItemsSections";
 import { useLocation } from 'react-router-dom'
-   import {  fetchItemsLive } from "redux/items/items-operation"
-     import { getItemsLive } from 'redux/items/items-selector';
-    //  import { useCallback } from "react";
+import {  fetchItemsLive } from "redux/items/items-operation"
+import { getItemsLive } from 'redux/items/items-selector';
+import { List } from "./LivePage.styled";
 
 
 export default function LivePage() {
@@ -22,7 +22,7 @@ export default function LivePage() {
     const dispatch = useDispatch();
     const sections = useSelector(getSections);
     const items = useSelector(getItemsLive);
-
+console.log(items)
     useEffect(() => {
       
         dispatch(allUsers())
@@ -41,23 +41,24 @@ export default function LivePage() {
   return (
     <>
     
-    <ul key={nanoid()}>
-          {/* {users.map(user =>
+    {/* <ul key={nanoid()}>
+          {users.map(user =>
            <LiveListUser
            user={user}
           //  sections={sections}
            ></LiveListUser>
-            ) }  */}
-    </ul>
-    <ul key={nanoid()}>
+            ) } 
+    </ul> */}
+    <List key={nanoid()}>
        {sections.map(section =>
         <LiveItemsSections
+        key={nanoid()}
         section={section}
         item={items.filter(i => 
-          i.section === section.category)}
-        >  </LiveItemsSections>)
+          i.section === section._id)}
+        />  )
 }
-    </ul>
+    </List>
       </>
   )
 }

@@ -1,27 +1,33 @@
 // import { useEffect } from "react";
 import  ModalItemForm  from "../../components/Item/ModalItemForm/ModalItemForm"
 import ModalSectionForm from "components/Section/ModalSectionForm/ModalSectionForm"
-import {ItemList} from "../../components/Item/ItemList/ItemList"
+// import {ItemList} from "../../components/Item/ItemList/ItemList"
 import { 
   fetchItems,
   //  geItemsByCategory
    } from "redux/items/items-operation"
-import Filter from "../../components/filter/Filter"
+// import Filter from "../../components/filter/Filter"
 import scss from "./MenuItems.module.scss"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getState } from 'redux/items/items-selector';
-import { getItems, getItemsByCategory } from 'redux/items/items-selector';
+// import { getState } from 'redux/items/items-selector';
+import { 
+  // getItems,
+   getItemsByCategory } from 'redux/items/items-selector';
 import { getSections } from "redux/sections/sections-selector"
 import { Modal } from "components/Modal/Modal";
 import ItemsSections from "components/Section/ItemSections/ItemsSections"
 import { useLocation,
+  // useParams
   //  useSearchParams
    } from 'react-router-dom'
 // import UseAuth from "components/hooks/useAuth"
 // import { Navigate } from "react-router-dom"
 import { fetchSections } from "redux/sections/sections-operation"
 // import {  allUsers } from "redux/user/user-operation";
+import MenuItemsDetails from "components/MenuItemsDetails/MenuItemsDetails"
+import NavbarLive from "components/Navbar/NavbarLive/NavbarLive"
+
 export default function MenuItems() {
 
 
@@ -40,12 +46,12 @@ export default function MenuItems() {
   }
 
   const dispatch = useDispatch();
-  const items = useSelector(getItems);
+  // const items = useSelector(getItems);
   const itemsCategory = useSelector(getItemsByCategory);
   const sections = useSelector(getSections);
-  console.log("sections", sections)
+  // console.log("sections", sections)
   // console.log(sections)
- const {loading, error} = useSelector(getState);
+//  const {loading, error} = useSelector(getState);
 
 
       useEffect(() => {
@@ -68,7 +74,12 @@ export default function MenuItems() {
             // , items
           ]
           );
+
+    // const { category } = useParams();
+    // console.log(category)
   return (
+    <>
+    <NavbarLive/>
     <div  className={scss.phoneBook}>
       <div className={scss.contactForm}>
         <ul>
@@ -108,7 +119,8 @@ export default function MenuItems() {
         </Modal>
       )}
       </div>
-      <div className={scss.contacts}>
+      <MenuItemsDetails />
+      {/* <div className={scss.contacts}>
       <h2>Menu</h2>
         <Filter />
           {!loading && items.length > 0 && 
@@ -123,7 +135,8 @@ export default function MenuItems() {
       type="button"
       onClick={() => setModalActive(true)}>
         Add Item
-      </button>
+      </button> */}
     </div>
+    </>
     )
 };

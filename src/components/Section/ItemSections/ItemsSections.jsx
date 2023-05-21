@@ -53,7 +53,7 @@ function ItemsSections({section}) {
   const buttons = [
     {
       btn: category,
-      link: category,
+      link: _id,
     }
   
   ];

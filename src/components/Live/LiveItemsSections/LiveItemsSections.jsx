@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
-
+import noimg from 'img/noimg.jpg'
+import {List, ListLive, Title, ImgLive, ItemList, ItemsText, Item} from './LiveItemsSections.styled'
 
 // const btnId = nanoid();
 // const sectionId = nanoid();
@@ -22,24 +23,35 @@ function LiveItemsSections ({section, item}) {
   
   return (
    
-      <ul key={nanoid()}>
+      // <ListLive key={nanoid()}>     // </ListLive>
+
+      <>
                   {buttons.map(b => (
-              <li  >
-                <h2>{b.btn}</h2> 
+              <List
+              key={nanoid()}>
+                <Title
+                key={nanoid()}>{b.btn}</Title> 
                 {b.list.map(list => (
-                <li>
-                  {<p>"Name" - {list.itemName}</p>} 
-                  {<p>"Description" - {list.description}</p>}
-                  {<p>"Price" - {list.price}</p>} 
-                  </li>
+                <ItemList 
+                key={nanoid()}
+                
+                > <ItemsText>
+                  <Item>  <p>{list.itemName}</p></Item>
+                  <Item>  <p>{list.description}</p></Item>
+                  <Item><p>Price</p>  <p>{list.price} </p></Item>
+                  </ItemsText>
+                  <ImgLive src={list.itemImg || noimg} alt="img" loading='lazy' />
+                  
+                  
+                  </ItemList>
                 ))}
-              </li>
+              </List>
               
               )
               
               )}
-            
-      </ul>
+       </>     
+  
   );
 }
 

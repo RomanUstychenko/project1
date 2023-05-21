@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 
 
-export default function NavbarLive() {
+export default function LiveTitle() {
   const user = useSelector(getUser);
   console.log(user)
   const chekName = Boolean(user)
@@ -14,7 +14,7 @@ export default function NavbarLive() {
    
     {id: nanoid(),
       to: `/live/${user._id}`,
-      text: "live",
+      text: `${user.name}`,
   },
    
     ] : "";
@@ -26,13 +26,7 @@ export default function NavbarLive() {
       {chekName ? items.map(({id, to, text}) => {
             return (
                 <li  key={id}>
-                    <NavLink  
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    to={to}
-                    end>
-                      {text}
-                     </NavLink>
+                    <NavLink  to={to} end>{text}</NavLink>
                 </li>
             )})
          : <></> }

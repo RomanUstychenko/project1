@@ -7,6 +7,7 @@ const initialState = {
     items: [],
     itemsLive: [],
     itemsByCategory: [],
+    isLive: false,
     loading: false,
     error: null,
 }
@@ -24,6 +25,7 @@ const itemsSlice = createSlice({
         .addCase(fetchItems.pending, pendingHandler)
         .addCase(fetchItems.fulfilled, (store, {payload}) => {
             store.loading = false;
+            store.isLive = false;
             store.items = payload;
         }) 
         .addCase(fetchItems.rejected, (store, {payload}) => {
@@ -33,6 +35,7 @@ const itemsSlice = createSlice({
         .addCase(fetchItemsLive.pending, pendingHandler)
         .addCase(fetchItemsLive.fulfilled, (store, {payload}) => {
             store.loading = false;
+            store.isLive = true;
             store.itemsLive = payload;
         }) 
         .addCase(fetchItemsLive.rejected, (store, {payload}) => {

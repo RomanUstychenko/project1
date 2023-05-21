@@ -10,6 +10,7 @@ const initialState = {
     token: "",
     isRegister: false,
     isLogin: false,
+    isLive: false,
     loading: false,
     isLoadingUser: false,
     error: null,
@@ -107,7 +108,17 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
           }
         }
       })
-
+      // .addCase(isLive.pending, pendingHandler)
+      // .addCase(isLive.fulfilled, (store, {payload}) => {
+      //     store.loading = false;
+      //     store.isLive = true;
+      //     store.isLogin = false;
+      // })
+      // .addCase(isLive.rejected, (store, {payload}) => {
+      //     store.loading = false;
+      //     store.error = payload;
+  
+      // })
    
 }}
 );

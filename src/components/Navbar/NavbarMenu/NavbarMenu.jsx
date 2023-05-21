@@ -1,21 +1,25 @@
 import items from "./items"
-import { NavLink } from "react-router-dom"
-import scss from "./NavbarMenu.module.scss"
+// import { NavLink } from "react-router-dom"
+// import scss from "./NavbarMenu.module.scss"
+import { NavbarMenuList, NavbarMenuListItem, Link } from "./NavbarMenu.styled"
 
-const getClassName = ({isActive}) => {
-    return isActive ? `${scss.link} ${scss.active}` : `${scss.link}`;
-}
+// const getClassName = ({isActive}) => {
+//     return isActive ? `${scss.link} ${scss.active}` : `${scss.link}`;
+// }
 
 export default function NavbarMenu() {
   return (
-    <ul className={scss.navbarMenuList}>
+    <NavbarMenuList >
         {items.map(({id, to, text}) => {
             return (
-                <li className={scss.navbarMenuListItem} key={id}>
-                    <NavLink className={getClassName} to={to} end>{text}</NavLink>
-                </li>
+                <NavbarMenuListItem  key={id}>
+                    <Link 
+                     to={to} 
+                     end>{text}
+                     </Link>
+                </NavbarMenuListItem>
             )})
         }
-    </ul>
+    </NavbarMenuList>
   )
 }

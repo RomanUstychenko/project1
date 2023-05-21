@@ -1,54 +1,44 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 
 
-export const Wrapper = styled.div`
-  position: relative;
-
-`;
-
-export const FilterList = styled.li`
-  list-style: none;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-
-`;
-
-export const Item = styled.li`
-  display: flex;
-`;
-
-export const Button = styled(NavLink)`
-
-  line-height: 1.35;
-  letter-spacing: 0.04em;
+export const List = styled.div`
+text-align: center;
+/* align-items: center;
+  justify-content: center;
+  margin-left:auto;
+  margin-right: auto;
   
-  padding: 8px 28px;
-  transition: color 250ms linear, background-color 250ms linear;
-  &:hover,
-  &:focus {
-   
-    cursor: pointer;
-  }
-  &.active {
-   
-  }
+  /* display: flex; */
+  /* margin: 0 auto; */
+`
 
-`;
-export const CommonLinks = styled.div`
+export const Title = styled.h2`
+  /* align-items: center; */
+   /* justify-content: center; */
+   /* text-align: center; */
+   margin-top: auto;
+   margin-bottom: auto;
+`
+
+export const ImgLive = styled.img`
+  width: 100px;
+  height: 100px;
+
+`
+export const ItemList = styled.li`
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap-reverse;
-  gap: 12px;
- 
+  justify-content: center;
+  margin-left:auto;
+  margin-right: auto;
+  text-align: center;
+  width: 500px;
+  border-radius: 10px;
+  border: 1px solid rgb(7, 94, 138);
 `;
-export const AuthLinks = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 12px;
-`;
+export const ItemsText = styled.div`
+  /* display:flex; */
+`
+export const Item = styled.span`
+  /* display: flex; */
+`
