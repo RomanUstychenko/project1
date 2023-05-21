@@ -8,28 +8,33 @@ import {ItemList} from "../../components/Item/ItemList/ItemList"
 //    } from "redux/items/items-operation"
 import Filter from "../../components/filter/Filter"
 import scss from "./MenuItems.module.scss"
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { 
+  // useDispatch, 
+  useSelector } from "react-redux";
+// import {
+//   //  useEffect,
+//     useState } from "react";
 import { getState } from 'redux/items/items-selector';
 import { getItems, getItemsByCategory } from 'redux/items/items-selector';
 import { getSections } from "redux/sections/sections-selector"
 // import { Modal } from "components/Modal/Modal";
 // import ItemsSections from "components/Section/ItemSections/ItemsSections"
-import { useLocation,
-  useParams
-  //  useSearchParams
-   } from 'react-router-dom'
+// import {
+//   //  useLocation,
+//   useParams
+//   //  useSearchParams
+//    } from 'react-router-dom'
 // import UseAuth from "components/hooks/useAuth"
 // import { Navigate } from "react-router-dom"
 // import { fetchSections } from "redux/sections/sections-operation"
 // import {  allUsers } from "redux/user/user-operation";
-export default function MenuItemsDetails() {
+export default function MenuItemsDetails({setModalActive}) {
 
 
-  const location = useLocation();
+  // const location = useLocation();
 //   const categorys = location.pathname.split('/')[2];
   // console.log("category", category)
-  const [modalActive, setModalActive] = useState(false);
+  // const [modalActive, setModalActive] = useState(false);
 //   const [modalSectionActive, setModalSectionActive] = useState(false);
 
 
@@ -61,8 +66,8 @@ export default function MenuItemsDetails() {
     //       ]
     //       );
 
-    const { category } = useParams();
-    console.log(category)
+    // const { category } = useParams();
+    // console.log(category)
   return (
     // <div  className={scss.phoneBook}>
       <>

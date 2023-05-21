@@ -119,7 +119,9 @@ export default function MenuItems() {
         </Modal>
       )}
       </div>
-      <MenuItemsDetails />
+      <MenuItemsDetails 
+      setModalActive={setModalActive}
+      />
       {/* <div className={scss.contacts}>
       <h2>Menu</h2>
         <Filter />
