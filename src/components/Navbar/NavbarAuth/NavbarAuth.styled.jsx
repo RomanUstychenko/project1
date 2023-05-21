@@ -1,13 +1,16 @@
-.navbarAuthList {
+import styled from 'styled-components';
+import { NavLink } from "react-router-dom"
+
+export const NavbarAuthList = styled.ul`
     display: flex;
     margin-right: auto;
     margin-left: auto;
     align-items: center;
     justify-content: center;
-}
-.link {
+`
+export const Link = styled(NavLink)`
     text-decoration: none;
-    font-size: 40px;
+    font-size: 20px;
     font-weight: 700;
     color: rgb(10, 3, 3);
     &.active {
@@ -21,7 +24,10 @@
     :focus {
         color: #333d72;
     }
-}
-.navbarAuthListItem:not(:last-child) {
+
+`
+export const NavbarAuthListItem = styled.li`
+    &:not(:last-child) {
     margin-right: 20px;
 }
+`
