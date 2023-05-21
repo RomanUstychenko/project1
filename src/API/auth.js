@@ -7,7 +7,7 @@ const instance = axios.create({
 });
 
 const setToken = (token) => {
-    console.log(token)
+    // console.log(token)
     if (token) {
     return instance.defaults.headers.common.authorization = `Bearer ${token}`;
 }
@@ -16,8 +16,8 @@ instance.defaults.headers.common.authorization = "";
 
 export const register = async (registerData) => {
     const { data } = await instance.post("/users/register", registerData);
-    console.log("name, email", data)
-    console.log(registerData)
+    // console.log("name, email", data)
+    // console.log(registerData)
     instance.defaults.headers.common.authorization = `Bearer ${data.token}`;
     return data;
 }
@@ -55,7 +55,7 @@ export const userUpdate = async (userData) => {
         console.log(data)
         return data;
       } catch (error) {
-        throw error;;
+        throw error;
       }
     }
   export default instance;

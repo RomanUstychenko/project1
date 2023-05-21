@@ -22,13 +22,14 @@ export default function LivePage() {
     const dispatch = useDispatch();
     const sections = useSelector(getSections);
     const items = useSelector(getItemsLive);
-console.log(items)
+// console.log(items)
     useEffect(() => {
       
         dispatch(allUsers())
         if (category) {
           dispatch(fetchItemsLive(category));
           dispatch(fetchSections(category));
+          
         }
         
         

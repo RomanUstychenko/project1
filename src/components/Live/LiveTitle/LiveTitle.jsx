@@ -1,13 +1,17 @@
 // import items from "./items"
 import { nanoid } from "nanoid";
-import { getUser } from "redux/auth/auth-selector";
+import {  getAllUser } from "redux/user/user-selector";
 import { useSelector } from "react-redux";
 import { Link, List } from "./LiveTitle.styled";
+import { useLocation } from 'react-router-dom'
 
 
 
 export default function LiveTitle() {
-  const user = useSelector(getUser);
+  const users = useSelector(getAllUser);
+  const location = useLocation();
+  const category = (location.pathname.split('/')[2])
+  const user = users.find(user => user._id === category)
   console.log(user)
   const chekName = Boolean(user)
   const items = chekName ? [
@@ -24,6 +28,8 @@ export default function LiveTitle() {
   return (
     <List >
       {chekName ? items.map(({id, to, text}) => {
+       console.log({to})
+       console.log({text})
             return (
                 
                     <Link  to={to} end>{text}</Link>
