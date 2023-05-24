@@ -7,7 +7,7 @@ import {
   //  geItemsByCategory
    } from "redux/items/items-operation"
 // import Filter from "../../components/filter/Filter"
-import scss from "./MenuItems.module.scss"
+import { Sections, SectionForm } from "./MenuItems.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 // import { getState } from 'redux/items/items-selector';
@@ -80,8 +80,8 @@ export default function MenuItems() {
   return (
     <>
     <NavbarLive/>
-    <div  className={scss.phoneBook}>
-      <div className={scss.contactForm}>
+    <Sections  >
+      <SectionForm >
         <ul>
           {sections.map(section =>
            <ItemsSections
@@ -118,7 +118,7 @@ export default function MenuItems() {
         />
         </Modal>
       )}
-      </div>
+      </SectionForm>
       <MenuItemsDetails 
       setModalActive={setModalActive}
       />
@@ -138,7 +138,7 @@ export default function MenuItems() {
       onClick={() => setModalActive(true)}>
         Add Item
       </button> */}
-    </div>
+    </Sections>
     </>
     )
 };

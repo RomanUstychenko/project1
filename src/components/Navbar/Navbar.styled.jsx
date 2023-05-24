@@ -11,5 +11,5 @@ export const NavbarTitles = styled.nav`
     
 
 export const NavbarList = styled.div`
-    display: flex;
+    /* display: flex; */
 `

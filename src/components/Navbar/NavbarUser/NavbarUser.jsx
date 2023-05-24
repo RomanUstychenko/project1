@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "redux/auth/auth-operation"
-import scss from "./NavbarUser.module.scss"
+import { NavbarUserList, NavbarUserName, Welcome, UserName, Setting, NavbarUserSet,
+  // NavbarMenuList, NavbarMenuListItem, 
+  Link } from "./NavbarUser.styled";
+// import { NavbarMenuList, NavbarMenuListItem, Link } from "./NavbarMenu.styled"
 import { getUser } from "redux/auth/auth-selector";
 import { Button } from "components/Button/Button";
 
@@ -17,13 +20,29 @@ const onLogout =() => {
 
 const chekName = Boolean(user)
   return (
-    <div className={scss.navbarUser}>
-      {chekName ? <p className={scss.navbarUserName}>
-        <img src={user.avatarURL} alt="avatar" />
-        Welcome, <b>{user.name}</b></p> : <p>Welcome, <b>User</b></p> }
-        <Button 
+    <>
+    {/* <NavbarMenuList > */}
+    {/* <NavbarMenuListItem > */}
+              
+  {/* </NavbarMenuListItem> */}
+      
+  
+{/* </NavbarMenuList> */}
+    <NavbarUserList>
+      {chekName ? <NavbarUserName >
+        {/* <img src={user.avatarURL} alt="avatar" /> */}
+       <Welcome>Welcome,</Welcome> <UserName>{user.name}</UserName>
+       </NavbarUserName> : 
+       <Welcome>Welcome, <UserName>User</UserName>
+       </Welcome> }
+       <NavbarUserSet>
+       <Link 
+               to={"/users"} 
+               end><Setting/>
+               </Link>
+               <Button 
         style={{
-          position: 'absolute',
+          position: 'relative',
           right: '0px',
           height: '25px',
           padding: '0px 0px',
@@ -36,6 +55,9 @@ const chekName = Boolean(user)
       type="button"
       onClick={onLogout}
       />
-    </div>
+       </NavbarUserSet>
+        
+    </NavbarUserList>
+    </>
   )
 }

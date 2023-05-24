@@ -1,7 +1,7 @@
+import { Title, Btn } from "./ModalRegisterVerify.styled"
 
 
-
-export default function ModalRegisterVerify ({onClick, setModalActive}) {
+export default function ModalRegisterVerify ({onClick}) {
  
 
   // const handleSubmit = (e) => {
@@ -12,14 +12,13 @@ export default function ModalRegisterVerify ({onClick, setModalActive}) {
     
       return ( 
         <> 
-        <div>
-          thank You fo register, go to you email to verify
-        </div>
-              <button 
-        // onClick={() => handleSubmit()}
-        // onSubmit={handleSubmit}
-        // className={scss.formBtn}
-        type="submit">OK</button>
+        <Title>
+          Thank You fo register, go to you email to verify
+        </Title>
+        <Btn 
+        type="submit">
+          Resend verify code
+        </Btn>
         </>
      
         )

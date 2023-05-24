@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 `;
 
 export const FilterList = styled.li`
+
   list-style: none;
   display: flex;
   justify-content: flex-start;
@@ -22,7 +23,7 @@ export const Item = styled.li`
 `;
 
 export const Button = styled(NavLink)`
-
+color: white;
   line-height: 1.35;
   letter-spacing: 0.04em;
   
