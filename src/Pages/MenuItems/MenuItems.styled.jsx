@@ -12,3 +12,4 @@ export const Sections = styled.div`
 export const SectionForm = styled.div`
     border: 4px;
 `
+

@@ -9,7 +9,7 @@ export const RegistrationPage = styled.div`
     align-items: center;
 `
 export const RegistrationFormLabelList = styled.div`
-    width: 100px;
+    width: 90px;
     font-weight: 600;
 `
     
@@ -23,6 +23,6 @@ export const RegistrationFormLabel = styled.label`
 `
 export const RegistrationFormInput = styled.input`
     padding-left: 10px;
-    width: 250px;
+    width: 200px;
     height: 25px;
 `

@@ -8,3 +8,8 @@ font-family: 'Rye', cursive;;
 export const Menu = styled.h2`
     font-size: 35px;
 `
+
+// body {
+//      background-color: rgb(31, 35, 36);
+
+//   }

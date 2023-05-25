@@ -3,6 +3,8 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import { getUser } from "redux/auth/auth-selector";
 import { userUpdate } from "redux/auth/auth-operation";
+// import { Navigate } from "react-router-dom"
+import { GoBack } from "./Users.styled";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
@@ -49,8 +51,13 @@ const handleChange = (e) => {
 //   // e.preventDefault();
 //   dispatch(allUsers( ) )
 // }
+
   return (
     <>
+    <GoBack
+    to={"/items"} 
+    end
+    >Close</GoBack>
     <div>{chekName ? <p>
     <img src={user.avatarURL} alt="avatar" />
     Welcome, <b>{user.name}</b></p> : <p>Welcome, <b>User</b></p> }</div>
