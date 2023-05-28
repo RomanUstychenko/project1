@@ -33,7 +33,9 @@ function LiveItemsSections ({section, item}) {
               key={nanoid()}>
                <b> <Title
                 key={nanoid()}>{b.btn}</Title> </b>
+                <ul>
                 {b.list.map(list => (
+                  
                 <ItemList 
                 key={nanoid()}
                 
@@ -48,7 +50,9 @@ function LiveItemsSections ({section, item}) {
                   loading='lazy' 
                   />
                   </ItemList>
+                  
                 ))}
+                </ul>
               </List>
               
               )

@@ -1,4 +1,4 @@
-import scss from "./Filter.module.scss"
+import { ItemsFilter, ItemFilterLabel, ItemFilterInput } from './Filter.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import  { getFilter }from 'redux/filter/filter-selector';
 import { nanoid } from "nanoid";
@@ -17,14 +17,13 @@ const Filter = () => {
       };
 
 return (
-    <div className={scss.contactFilter}>
-              <label
-              className={scss.contactFilterLabel}
+    <ItemsFilter>
+              <ItemFilterLabel
+              
               htmlFor={findID}
               >Find items by name
-              </label>
-              <input 
-              className={scss.contactFilterInput}
+              </ItemFilterLabel>
+              <ItemFilterInput 
               type="text" 
               name="filter" 
               value={filters}
@@ -32,7 +31,7 @@ return (
               title="Search"
               required
               />
-          </div>
+          </ItemsFilter>
 )};
 
   export default Filter;

@@ -32,6 +32,9 @@ export const ItemList = styled.li`
   margin-left:auto;
   margin-right: auto;
   text-align: center;
+      &:not(:first-child) {
+      margin-top: 10px;
+  }
 
   /* padding-left: 10px;
   padding-right: 5px; */

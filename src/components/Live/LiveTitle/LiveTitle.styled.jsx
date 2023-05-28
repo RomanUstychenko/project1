@@ -7,13 +7,14 @@ margin-top: 20px;
     text-align: center;
 margin-left: auto;
 margin-right: auto;
+background-color: ${props => props.theme.colors.backgrondLive};
 
 `
 export const Link = styled(NavLink)`
 
-color: #7e2323;
+color: ${props => props.theme.colors.titleLive};
 text-decoration: none;
 font-size: 35px;
-font-family: 'Luckiest Guy', cursive;
+font-family: ${props => props.theme.fonts.titleLive};
 
 `

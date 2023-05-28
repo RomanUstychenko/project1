@@ -6,7 +6,7 @@ export const Sections = styled.div`
     /* color: rgb(38, 146, 179); */
     display: flex;
     margin-top: 25px;
-    margin-left: 15px;
+    /* margin-left: 15px; */
 `
     
 export const SectionForm = styled.div`

@@ -6,7 +6,7 @@ import React from 'react'
 //   //  getItems
 //    } from 'redux/items/items-selector';
 import { Modal } from "components/Modal/Modal";
-import scss from "./ItemInList.module.scss"
+import {ItemsList, Item, DelItem, DelIcon } from './ItemInList.styled';
 import { useState } from 'react';
 // import { deleteItem, 
 //   //  geItemsByCategory
@@ -96,20 +96,24 @@ function closeModal () {
     <>
     
         {filteredItem && 
-        <> 
-        <button
+        <ItemsList key={nanoid()}> 
+        <Item
         onClick={() => setModalDetailActive(true)}
+        key={filteredItemId}
         >
-        <li className={scss.contactList} key={filteredItemId}> 
+        {/* <ItemList 
+         key={filteredItemId}>  */}
         <b>Name:</b>  {itemName} <br />
         
         <b >Price:</b> {price} <br />
         {/* <b >img:</b> {itemImg} */}
-        </li>
-        </button>
-        <span className={scss.delContacts} 
-        onClick={() => setModalDeleteActive(true)}>Delete</span>
-        </>
+        {/* </ItemList> */}
+        </Item>
+        <DelItem 
+        onClick={() => setModalDeleteActive(true)}>
+          <DelIcon/>
+        </DelItem>
+        </ItemsList>
         }
             
    { modalDeleteActive && (

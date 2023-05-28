@@ -7,7 +7,7 @@ import {ItemList} from "../../components/Item/ItemList/ItemList"
 //   //  geItemsByCategory
 //    } from "redux/items/items-operation"
 import Filter from "../../components/filter/Filter"
-import scss from "./MenuItems.module.scss"
+import { ItemsList, ItemsLoading, BtnWrapper, BtnAdd } from "./MenuItemsDetails.styled";
 import { 
   // useDispatch, 
   useSelector } from "react-redux";
@@ -71,22 +71,26 @@ export default function MenuItemsDetails({setModalActive}) {
   return (
     // <div  className={scss.phoneBook}>
       <>
-      <div className={scss.contacts}>
+      <ItemsList>
       <h2>Menu</h2>
         <Filter />
+        <BtnWrapper>
+        <BtnAdd
+      type="button"
+      onClick={() => setModalActive(true)}>
+        Add Item
+      </BtnAdd>
+        </BtnWrapper>
+        
           {!loading && items.length > 0 && 
           <ItemList
           items={items} 
           itemsCategory={itemsCategory}
           />}
-          {loading && <p className={scss.contactsLoading}>...loading</p>}
+          {loading && <ItemsLoading >...loading</ItemsLoading>}
           {error && <p>No items yet</p>}
-      </div>
-      <button
-      type="button"
-      onClick={() => setModalActive(true)}>
-        Add Item
-      </button>
+      </ItemsList>
+      
       </>
     // </div>
     )
