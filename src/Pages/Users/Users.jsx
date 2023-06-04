@@ -6,7 +6,7 @@ import { userUpdate } from "redux/auth/auth-operation";
 // import { Navigate } from "react-router-dom"
 import { GoBack } from "./Users.styled";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
+// import { Formik } from 'formik';
 
 export default function Users() {
 
@@ -17,6 +17,8 @@ export default function Users() {
 
     const dispatch = useDispatch();
 const [name, setName] = useState('');
+// const [onAddFile, setOnAddFile] = useState(null);
+// const [preview, setPreview] = useState('');
 
 const userNameID = nanoid();
 console.log(name)
@@ -52,6 +54,27 @@ const handleChange = (e) => {
 //   dispatch(allUsers( ) )
 // }
 
+// const handleChangeAvatar = e => {
+//   setOnAddFile(e.currentTarget.files[0]);
+//   const reader = new FileReader();
+//   reader.onload = function (e) {
+//     setPreview(e.target.result);
+//   };
+//   reader.readAsDataURL(e.currentTarget.files[0]);
+// }
+const UploadFile = async fileSelect => {
+  const imageURL = new FormData();
+  imageURL.append('imageURL', fileSelect);
+  dispatch(userUpdate(imageURL));
+  // setchangePhoto(true);
+};
+
+const handleChangeUpload = e => {
+  const fileSelect = e.target.files[0];
+  console.log(fileSelect)
+  UploadFile(fileSelect);
+};
+
   return (
     <>
     <GoBack
@@ -59,20 +82,15 @@ const handleChange = (e) => {
     end
     >Close</GoBack>
     <div>{chekName ? <p>
-    <img src={user.avatarURL} alt="avatar" />
+    <img src={user.logoURL} alt="avatar" />
     Welcome, <b>{user.name}</b></p> : <p>Welcome, <b>User</b></p> }</div>
 
 
-<form 
+        <form 
         onClick={e => e.stopPropagation()}
-        // className={scss.form}
         onSubmit={handleSubmit}
-        
         >
-          <>
-        <div 
-        // className={scss.formInput}
-        >
+        <div>
           <label htmlFor={userNameID}>UserName</label>
           <input 
           // className={scss.formInputName}
@@ -87,16 +105,31 @@ const handleChange = (e) => {
         </div>
         
         <button 
-        // onClick={values => handleSubmit(values)}
-        // className={scss.formBtn}
         type="submit">Change</button>
-         {/* <button 
-        onClick={() => click()}
-        
-        >Userssss</button> */}
-        </>
         </form>
-
+        
+        <form 
+        encType="multipart/form-data" 
+        method="post"
+        onClick={e => e.stopPropagation()}
+        // onSubmit={handleChangeUpload}
+        >
+          <input 
+          
+          id={userNameID} 
+          type="file" 
+          name="logo" 
+          accept="image/png, image/jpeg, image/jpg, image/bmp"
+          onChange={handleChangeUpload}
+          // required
+          // defaultValue={user.avatarURL} 
+          // onChange={handleChangeAvatar} 
+          />
+      
+        
+        <button 
+        type="submit">Change Logo</button>
+        </form>
     </>
   )
 }

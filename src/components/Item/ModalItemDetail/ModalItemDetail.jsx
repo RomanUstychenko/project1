@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import scss from "./ModalItemDetail.module.scss"
+import { Form, FormInputList, FormInput, FormBtn } from "./ModalItemDetail.styled";
 import {
   // useSelector, 
   useDispatch } from 'react-redux';
@@ -151,16 +151,11 @@ console.log(itemName, price)
       // };
 
       return ( 
-        <form 
-        onClick={e => e.stopPropagation()}
-        className={scss.form}
-        onSubmit={handleSubmit}
-        >
-          <>
-        <div className={scss.formInput}>
+        <div>
+          <form>
+          <FormInputList >
           <label htmlFor={itemNameID}>Name</label>
-          <input 
-          className={scss.formInputName}
+          <FormInput 
           id={itemNameID} 
           type="text" 
           name="newItemName" 
@@ -170,11 +165,29 @@ console.log(itemName, price)
           // value={itemsName} 
           defaultValue={itemName}
           onChange={handleChange} />
-        </div>
-        <div className={scss.formInput}>
+        </FormInputList>
+          </form>
+          <Form 
+        onClick={e => e.stopPropagation()}
+        onSubmit={handleSubmit}
+        >
+          
+        <FormInputList >
+          <label htmlFor={itemNameID}>Name</label>
+          <FormInput 
+          id={itemNameID} 
+          type="text" 
+          name="newItemName" 
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may "
+          required
+          // value={itemsName} 
+          defaultValue={itemName}
+          onChange={handleChange} />
+        </FormInputList>
+        <FormInputList >
           <label htmlFor={itemPriceID}>Price</label>
-          <input 
-          className={scss.formInputName}
+          <FormInput 
           id={itemPriceID} 
           type="text" 
           name="newPrice" 
@@ -184,11 +197,10 @@ console.log(itemName, price)
           // value={itemsName} 
           defaultValue={price}
           onChange={handleChange} />
-        </div>
-        <div className={scss.formInput}>
+        </FormInputList>
+        <FormInputList >
           <label htmlFor={itemDescriptionID}>Description</label>
-          <input 
-          className={scss.formInputName}
+          <FormInput 
           id={itemDescriptionID} 
           type="text" 
           name="newDescription" 
@@ -198,12 +210,13 @@ console.log(itemName, price)
           // value={itemsName} 
           defaultValue={description}
           onChange={handleChange} />
-        </div>
-        <button 
+        </FormInputList>
+        <FormBtn 
         // onClick={values => handleSubmit(values)}
-        className={scss.formBtn}
-        type="submit">Change Name</button>
-        </>
-        </form>
+        type="submit">Change Name</FormBtn>
+        
+        </Form>
+        </div>
+        
         )
 };

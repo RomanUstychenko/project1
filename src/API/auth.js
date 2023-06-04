@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "https://rest-api-back.onrender.com/api" || "http://localhost:3000/api",
+    baseURL: 
+    // "https://rest-api-back.onrender.com/api" || 
+    "http://localhost:3000/api",
     // baseURL: "http://localhost:3000/api",
     
 });
@@ -40,7 +42,7 @@ export const getCurrentUser = async (token) => {
         setToken(token);
         
         const { data } = await instance.get("/users/current")
-        // console.log("email, name, verify", data)
+        console.log("email, name, verify", data)
         return data
      } catch (error) {
         setToken()

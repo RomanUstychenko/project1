@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { register, login, logout, current, userUpdate } from "./auth-operation";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 
 const initialState = {
     users: {},
-    newUser: {_id: null, name: null, email: null, verify: false, avatarURL: null  },
+    newUser: {_id: null, name: null, email: null, verify: false, logoURL: null  },
     token: "",
     isRegister: false,
     isLogin: false,
@@ -92,21 +92,22 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
           name: payload.user.name,
           email: payload.user.email,
           verify: payload.user.verify,
-          avatarURL: payload.user.avatarURL
+          logoURL: payload.user.logoURL,
+          _id: payload.user._id
         };
       })
       .addCase(userUpdate.rejected, (store, { meta, payload }) => {
         store.isLoadingUser = false;
         store.error = payload;
-        toast.error(chooseValid(Object.keys(meta.arg)[0]));
-        function chooseValid(key) {
-          switch (key) {
-            case 'name':
-              return 'Name must be in English, contain 2-20 symbols';
-            default:
-              return 'Wrong!';
-          }
-        }
+        // toast.error(chooseValid(Object.keys(meta.arg)[0]));
+        // function chooseValid(key) {
+        //   switch (key) {
+        //     case 'name':
+        //       return 'Name must be in English, contain 2-20 symbols';
+        //     default:
+        //       return 'Wrong!';
+        //   }
+        // }
       })
       // .addCase(isLive.pending, pendingHandler)
       // .addCase(isLive.fulfilled, (store, {payload}) => {
