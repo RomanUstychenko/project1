@@ -6,7 +6,7 @@ export const NavbarTitles = styled.nav`
     padding-bottom: 5px;
     border: 1px solid ;
     border-radius: 25px;
-    background-color: rgb(152, 218, 235);
+    background-color: #749574;
 `
     
 

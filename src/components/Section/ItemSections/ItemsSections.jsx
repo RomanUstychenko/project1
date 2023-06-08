@@ -8,7 +8,8 @@ import { nanoid } from 'nanoid';
 import {
   Button,
   FilterList,
-  StyledChange
+  StyledChange,
+  BtnChange
   // Item,
   // Wrapper,
   // AuthLinks,
@@ -74,11 +75,11 @@ function ItemsSections({section}) {
               
             //  </Item>
           ))}
-          <button
+          <BtnChange
           key={nanoid()}
           onClick={() => setModalActive(true)}>
                 <StyledChange/>
-              </button>
+              </BtnChange>
               { modalActive && (
           <Modal
           onClick={() => closeModal ()}

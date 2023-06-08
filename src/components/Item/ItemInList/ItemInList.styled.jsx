@@ -5,7 +5,7 @@ export const ItemsList = styled.li`
     display: flex;
 `
 export const Item = styled.button`
-    width: 200px;
+    width: 120px;
 `
 export const ItemList = styled.div`
     /* flex-direction: column;

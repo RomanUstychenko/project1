@@ -7,7 +7,7 @@ import {
   //  geItemsByCategory
    } from "redux/items/items-operation"
 // import Filter from "../../components/filter/Filter"
-import { Sections, SectionForm } from "./MenuItems.styled";
+import { Sections, SectionForm, BtnAddSection } from "./MenuItems.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 // import { getState } from 'redux/items/items-selector';
@@ -89,11 +89,11 @@ export default function MenuItems() {
            ></ItemsSections>)
         }
         </ul>
-        <button
+        <BtnAddSection
       type="button"
       onClick={() => setModalSectionActive(true)}>
         Add Section
-      </button>
+      </BtnAddSection>
       { modalSectionActive && (
         <Modal
         onClick={() => closeModal ()}

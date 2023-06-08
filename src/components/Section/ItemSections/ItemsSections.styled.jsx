@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import {MdOutlineDriveFileRenameOutline} from 'react-icons/md';
+// import {MdOutlineDriveFileRenameOutline} from 'react-icons/md';
+import {CiEdit} from 'react-icons/ci';
+
 
 
 export const Wrapper = styled.div`
@@ -11,7 +13,10 @@ export const Wrapper = styled.div`
 export const FilterList = styled.li`
 
   list-style: none;
-  /* display: flex; */
+  display: flex;
+  &:not(:last-child) {
+    margin-bottom: 5px;
+}
   /* justify-content: flex-start; */
   /* align-items: center; */
   /* flex-wrap: wrap; */
@@ -24,19 +29,23 @@ export const Item = styled.li`
 `;
 
 export const Button = styled(NavLink)`
-color: white;
+/* list-style: none; */
+width: 100%;
+color: #181515;
+font-weight: 900;
   line-height: 1.35;
   letter-spacing: 0.04em;
   
-  /* padding: 8px 28px; */
+  border-radius: 5px;
   transition: color 250ms linear, background-color 250ms linear;
   &:hover,
   &:focus {
-   
+   background-color: #334233;
     cursor: pointer;
   }
   &.active {
-   
+   color: #573131;
+   background-color: #749574;
   }
 
 `;
@@ -54,8 +63,12 @@ export const AuthLinks = styled.div`
   align-items: center;
   gap: 12px;
 `;
-const Change = ({ className }) => <MdOutlineDriveFileRenameOutline className={className} />;
-
-export const StyledChange = styled(Change)`
+// const Change = ({ className }) => <MdOutlineDriveFileRenameOutline className={className} />;
+export const BtnChange = styled.button`
+  border: none;
+  background-color: transparent;
+`
+export const StyledChange = styled(CiEdit)`
+  color: red;
   
 `
