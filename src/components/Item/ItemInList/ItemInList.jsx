@@ -38,11 +38,10 @@ export default function ItemInList({filteredItem, itemsCategory}) {
       itemName, 
       description,
       price,
-      // section,
+      itemImg,
     _id,
-    // itemImg,
   } = filteredItem;
-// console.log(filteredContact)
+console.log(itemImg)
 
 
 // console.log("category", category)
@@ -141,6 +140,7 @@ function closeModal () {
           itemName={itemName}
           price={price}
           description={description}
+          itemImg={itemImg}
           _id={_id}
           itemsCategory={itemsCategory}
           closeModal={closeModal}

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
     baseURL: 
-    "https://rest-api-back.onrender.com/api" || 
+    // "https://rest-api-back.onrender.com/api" || 
     "http://localhost:3000/api",
     // baseURL: "http://localhost:3000/api",
     
@@ -52,6 +52,7 @@ export const getCurrentUser = async (token) => {
 
 
 export const userUpdate = async (userData) => {
+    console.log(userData)
       try {
         const { data } = await instance.patch('/users', userData);
         console.log(data)

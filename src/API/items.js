@@ -31,9 +31,21 @@ export const deleteItem = async (_id) => {
 export const itemUpdate = async (_id, items) => {
     // try {
         console.log("items", items)
-      const { data} = await instance.put(`/items/${_id}`, ...items);
+      const { data} = await instance.patch(`/items/${_id}`, ...items);
       console.log("_id", _id)
       console.log("items", items)
+    //   console.log("itemData", itemName)
+      return data;
+    // } catch (error) {
+    //   throw error;;
+    // }
+  }
+  export const imgUpdate = async (_id, items) => {
+    // try {
+        console.log("FormData", items)
+      const { data } = await instance.patch(`/items/${_id}`, items);
+      console.log("data", data)
+      // console.log("items", items)
     //   console.log("itemData", itemName)
       return data;
     // } catch (error) {

@@ -88,6 +88,7 @@ export const current = createAsyncThunk(
 export const userUpdate = createAsyncThunk(
     'auth/userUpdate',
     async (userData, { rejectWithValue }) => {
+        console.log(userData)
       try {
         const result = await api.userUpdate(userData);
         return result;

@@ -84,12 +84,35 @@ export const fetchItems = createAsyncThunk(
     export const itemUpdate = createAsyncThunk(
         'items/itemUpdate',
         async ( datas, { rejectWithValue }) => {
+            console.log(datas)
           try {
             
             const newArr = [datas].map(({_id, ...rest}) => (rest))
             console.log(newArr)
             const result = await api.itemUpdate(datas._id, newArr);
             
+            // console.log(result)
+            
+            return result;
+          } catch ({response}) {
+            const error = {
+                status: response.status,
+                message: response.data.message
+            }
+           return rejectWithValue(error)
+          }
+        }
+      );
+      export const imgUpdate = createAsyncThunk(
+        'items/imgUpdate',
+        async ( datas, { rejectWithValue }) => {
+            console.log(datas)
+          try {
+            
+            const newArr = [datas].map(({_id, ...rest}) => (rest))
+            console.log(newArr)
+            // const result = await api.imgUpdate(datas._id, newArr);
+            const result = await api.imgUpdate(datas._id, datas.imageURL);
             // console.log(result)
             
             return result;

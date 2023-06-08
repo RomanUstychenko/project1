@@ -126,9 +126,9 @@ const handleChangeUpload = e => {
           // onChange={handleChangeAvatar} 
           />
       
-        
+{/*         
         <button 
-        type="submit">Change Logo</button>
+        type="submit">Change Logo</button> */}
         </form>
     </>
   )

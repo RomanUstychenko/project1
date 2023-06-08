@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchItems, fetchItemsLive, geItemsByCategory, addItems, deleteItem, itemUpdate } from "./items-operation";
+import { fetchItems, fetchItemsLive, geItemsByCategory, addItems, deleteItem, itemUpdate, imgUpdate } from "./items-operation";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { toast } from 'react-toastify';
 
@@ -94,6 +94,22 @@ const itemsSlice = createSlice({
                 })
                     })
         .addCase(itemUpdate.rejected, (store, { meta, payload }) => {
+            store.loading = false;
+            store.error = payload;
+            console.log(meta)
+            console.log(payload)
+          })
+
+
+          .addCase(imgUpdate.pending, pendingHandler)
+        .addCase(imgUpdate.fulfilled, (store,  {payload} ) => {
+            store.loading = false;
+            store.itemsByCategory.forEach((item, index) => {
+                if (item._id === payload._id) {
+                    store.itemsByCategory[index] = payload} 
+                })
+                    })
+        .addCase(imgUpdate.rejected, (store, { meta, payload }) => {
             store.loading = false;
             store.error = payload;
             console.log(meta)

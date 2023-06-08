@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+export const FormWrapper = styled.div`
+    border: 1px solid rgb(7, 94, 138);
+`
 export const Form = styled.form`
     font-size: 25px;
     border: 1px solid rgb(7, 94, 138);
@@ -28,4 +31,9 @@ export const FormBtn = styled.button`
         &:focus {
             background-color: rgb(19, 58, 70);
 }
+`
+export const Img = styled.img`
+width: 100px;
+height: 100px;
+    
 `
