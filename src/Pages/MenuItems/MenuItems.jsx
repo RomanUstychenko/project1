@@ -7,7 +7,9 @@ import {
   //  geItemsByCategory
    } from "redux/items/items-operation"
 // import Filter from "../../components/filter/Filter"
-import { Sections, SectionForm, BtnAddSection } from "./MenuItems.styled";
+import { Sections, SectionForm,
+  //  BtnAddSection 
+  } from "./MenuItems.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 // import { getState } from 'redux/items/items-selector';
@@ -27,6 +29,7 @@ import { fetchSections } from "redux/sections/sections-operation"
 // import {  allUsers } from "redux/user/user-operation";
 import MenuItemsDetails from "components/MenuItemsDetails/MenuItemsDetails"
 import NavbarLive from "components/Navbar/NavbarLive/NavbarLive"
+import { Button } from "components/Button/Button";
 
 export default function MenuItems() {
 
@@ -89,11 +92,26 @@ export default function MenuItems() {
            ></ItemsSections>)
         }
         </ul>
-        <BtnAddSection
+        <Button 
+        style={{
+          position: 'relative',
+          right: '0px',
+          height: '25px',
+          padding: '0px 0px',
+          minWidth: '100px',
+          fontSize: 15,
+          color: '#010101'
+        }}
+    
+      text="Add Section"
       type="button"
+      onClick={() => setModalSectionActive(true)}
+      />
+        {/* <Button
+      typAdd Sectione="button"
       onClick={() => setModalSectionActive(true)}>
-        Add Section
-      </BtnAddSection>
+        
+      </Button> */}
       { modalSectionActive && (
         <Modal
         onClick={() => closeModal ()}

@@ -7,7 +7,9 @@ import {ItemList} from "../../components/Item/ItemList/ItemList"
 //   //  geItemsByCategory
 //    } from "redux/items/items-operation"
 import Filter from "../../components/filter/Filter"
-import { ItemsList, ItemsLoading, BtnWrapper, BtnAdd } from "./MenuItemsDetails.styled";
+import { ItemsList, ItemsLoading, BtnWrapper,
+  //  BtnAdd
+   } from "./MenuItemsDetails.styled";
 import { 
   // useDispatch, 
   useSelector } from "react-redux";
@@ -28,6 +30,8 @@ import { getSections } from "redux/sections/sections-selector"
 // import { Navigate } from "react-router-dom"
 // import { fetchSections } from "redux/sections/sections-operation"
 // import {  allUsers } from "redux/user/user-operation";
+import { Button } from "components/Button/Button";
+
 export default function MenuItemsDetails({setModalActive}) {
 
 
@@ -75,11 +79,26 @@ export default function MenuItemsDetails({setModalActive}) {
       <h2>Menu</h2>
         <Filter />
         <BtnWrapper>
-        <BtnAdd
+        <Button 
+        style={{
+          position: 'relative',
+          right: '0px',
+          height: '25px',
+          padding: '0px 0px',
+          minWidth: '80px',
+          fontSize: 15,
+          color: '#010101',
+        }}
+    
+      text="Add Item"
+      type="button"
+      onClick={() => setModalActive(true)}
+      />
+        {/* <BtnAdd
       type="button"
       onClick={() => setModalActive(true)}>
         Add Item
-      </BtnAdd>
+      </BtnAdd> */}
         </BtnWrapper>
         
           {!loading && items.length > 0 && 

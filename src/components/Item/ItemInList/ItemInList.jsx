@@ -6,7 +6,7 @@ import React from 'react'
 //   //  getItems
 //    } from 'redux/items/items-selector';
 import { Modal } from "components/Modal/Modal";
-import {ItemsList, Item, DelItem, DelIcon } from './ItemInList.styled';
+import {ItemsList, Item, DelItem, DelIcon, Price } from './ItemInList.styled';
 import { useState } from 'react';
 // import { deleteItem, 
 //   //  geItemsByCategory
@@ -102,9 +102,10 @@ function closeModal () {
         >
         {/* <ItemList 
          key={filteredItemId}>  */}
-        <b>Name:</b>  {itemName} <br />
+        {/* <b>Name:</b>  */}
+         <p>{itemName}</p>
         
-        <b >Price:</b> {price} <br />
+        <Price><b >Price:</b> <p>{price}</p></Price>
         {/* <b >img:</b> {itemImg} */}
         {/* </ItemList> */}
         </Item>

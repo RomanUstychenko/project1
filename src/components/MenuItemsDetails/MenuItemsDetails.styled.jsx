@@ -12,6 +12,7 @@ export const ItemsLoading  = styled.p`
 export const BtnWrapper = styled.div`
     display: flex;
     flex-direction: row-reverse;
+    margin: 10px 0px;
 `
 export const BtnAdd = styled.button`
 padding: 3px 10px;

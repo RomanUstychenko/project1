@@ -14,9 +14,9 @@ export const FilterList = styled.li`
 
   list-style: none;
   display: flex;
-  &:not(:last-child) {
+  /* &:not(:last-child) { */
     margin-bottom: 5px;
-}
+/* } */
   /* justify-content: flex-start; */
   /* align-items: center; */
   /* flex-wrap: wrap; */
