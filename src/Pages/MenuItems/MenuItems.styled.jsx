@@ -11,8 +11,15 @@ export const Sections = styled.div`
     padding-right: 5px;
 `
  export const BtnAddSection = styled.button`
+ padding: 3px 10px;
+ border: none;
     border-radius: 5px;
     background-color: ${props => props.theme.colors.btn};
+        &:hover,
+       &:focus {
+        background-color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  }
  `   
 export const SectionForm = styled.div`
     border: 4px;

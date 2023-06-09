@@ -4,6 +4,7 @@ export const theme = {
     backgrondLive: 'rgb(31, 35, 36);',
     titleLive: '#7e2323',
     btn: '#bd7a19',
+    btnActive: '#aa8d64',
     //   accent: '#F59256',
     //   hoverAccent: '#FF6101',
     //   background: '#FDF7F2',

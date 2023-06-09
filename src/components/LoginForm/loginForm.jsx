@@ -22,20 +22,20 @@ import { LoginFormLabelList, LoginFormLabel, LoginFormList, LoginFormInput } fro
         <div>
         <form onSubmit={handleSubmit}>
        <LoginFormList>
-            {<LoginFormLabelList>
+            <LoginFormLabelList>
               <LoginFormLabel
             htmlFor={emailId}> Login </LoginFormLabel>
-            </LoginFormLabelList> }
+            </LoginFormLabelList> 
             <LoginFormInput 
             id={emailId} placeholder="Enter name" name="email" type="text" required onChange={handleChange} value={email}
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
              />
         </LoginFormList>
         <LoginFormList>
-            {<LoginFormLabelList >
+            <LoginFormLabelList >
               <LoginFormLabel
             htmlFor={passwordId}>Password </LoginFormLabel>
-            </LoginFormLabelList>}
+            </LoginFormLabelList>
             <LoginFormInput 
             id={passwordId} placeholder="Enter password" name="password" type="password" required onChange={handleChange} value={password}
              />

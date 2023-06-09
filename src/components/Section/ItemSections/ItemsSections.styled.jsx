@@ -30,6 +30,7 @@ export const Item = styled.li`
 
 export const Button = styled(NavLink)`
 /* list-style: none; */
+border: none;
 width: 100%;
 color: #181515;
 font-weight: 900;
@@ -38,11 +39,12 @@ font-weight: 900;
   
   border-radius: 5px;
   transition: color 250ms linear, background-color 250ms linear;
-  &:hover,
-  &:focus {
-   background-color: #334233;
-    cursor: pointer;
+      &:hover,
+       &:focus {
+        background-color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
   }
+
   &.active {
    color: #573131;
    background-color: #749574;

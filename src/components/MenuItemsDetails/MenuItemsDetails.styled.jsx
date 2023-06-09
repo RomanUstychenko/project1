@@ -14,6 +14,14 @@ export const BtnWrapper = styled.div`
     flex-direction: row-reverse;
 `
 export const BtnAdd = styled.button`
-background-color: ${props => props.theme.colors.btn};
+padding: 3px 10px;
+ border: none;
+    border-radius: 5px;
+    background-color: ${props => props.theme.colors.btn};
+        &:hover,
+       &:focus {
+        background-color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  }
 
 `

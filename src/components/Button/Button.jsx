@@ -1,17 +1,16 @@
-import scss from "./Button.module.scss"
+import { Btn } from './Button.styled';
 import PropTypes from 'prop-types';
 
 export const Button = ({style, text, 
   onClick
 }) => {
   return (
-    <button 
+    <Btn 
     style={style}
-    className={scss.Button}
     onClick={onClick}
     >
       {text}
-    </button>
+    </Btn>
   );
 };
 
