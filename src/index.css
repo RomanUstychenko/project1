@@ -88,3 +88,6 @@ td {
   vertical-align: baseline;
   text-decoration: none;
 }
+form {
+  box-sizing: border-box;
+}

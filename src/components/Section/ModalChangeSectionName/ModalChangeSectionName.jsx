@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import scss from "./ModalChangeSectionName.module.scss"
+import { Form, FormInputList, FormInput, FormInputLabel } from "components/common/Input.styled";
 import {
   useSelector, 
   useDispatch } from 'react-redux';
@@ -14,6 +14,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
   //  import { useEffect } from "react";
   //  import {  geItemsByCategory } from "redux/items/items-operation";
   //  import { fetchSections } from "redux/sections/sections-operation"
+  import { Button } from "components/Button/Button";
 
 export default function ModalChangeSectionName ({
   //  itemsCategory, 
@@ -161,16 +162,14 @@ export default function ModalChangeSectionName ({
 
 
       return ( 
-        <form 
+        <Form 
         onClick={e => e.stopPropagation()}
-        className={scss.form}
         onSubmit={handleSubmit}
         >
           <>
-        <div className={scss.formInput}>
-          <label htmlFor={sectionNameID}>Name</label>
-          <input 
-          className={scss.formInputName}
+        <FormInputList>
+          <FormInputLabel htmlFor={sectionNameID}>Name</FormInputLabel>
+          <FormInput 
           id={sectionNameID} 
           type="text" 
           name="newSectionName" 
@@ -180,13 +179,29 @@ export default function ModalChangeSectionName ({
           // value={itemsName} 
           defaultValue={category}
           onChange={handleChange} />
-        </div>
+        </FormInputList>
         
-        <button 
+
+        <Button 
+        style={{
+          position: 'relative',
+          right: '0px',
+          height: '25px',
+          padding: '0px 0px',
+          minWidth: '80px',
+          fontSize: 15,
+          color: '#010101',
+        }}
+    
+      text="Rename"
+      type="submit"
+      // onClick={() => setModalActive(true)}
+      />
+        {/* <button 
         // onClick={values => handleSubmit(values)}
         className={scss.formBtn}
-        type="submit">Change Section</button>
+        type="submit">Change Section</button> */}
         </>
-        </form>
+        </Form>
         )
 };

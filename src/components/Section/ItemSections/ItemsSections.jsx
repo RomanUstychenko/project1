@@ -15,7 +15,7 @@ import {
   // AuthLinks,
   // CommonLinks,
 } from './ItemsSections.styled';
-import { Modal } from 'components/Modal/Modal';
+import { Modal } from 'components/common/Modal/Modal';
 import ModalChangeSectionName from '../ModalChangeSectionName/ModalChangeSectionName';
 // import { useEffect } from "react";
 // import {  geItemsByCategory } from "redux/items/items-operation";

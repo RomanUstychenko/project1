@@ -1,6 +1,6 @@
 // import { useEffect } from "react";
-import  ModalItemForm  from "../../components/Item/ModalItemForm/ModalItemForm"
-import ModalSectionForm from "components/Section/ModalSectionForm/ModalSectionForm"
+import  ModalItemAddForm  from "../../components/Item/ModalItemAddForm/ModalItemAddForm"
+import ModalAddSectionForm from "components/Section/ModalAddSectionForm/ModalAddSectionForm"
 // import {ItemList} from "../../components/Item/ItemList/ItemList"
 import { 
   fetchItems,
@@ -17,7 +17,7 @@ import {
   // getItems,
    getItemsByCategory } from 'redux/items/items-selector';
 import { getSections } from "redux/sections/sections-selector"
-import { Modal } from "components/Modal/Modal";
+import { Modal } from "components/common/Modal/Modal";
 import ItemsSections from "components/Section/ItemSections/ItemsSections"
 import { useLocation,
   // useParams
@@ -117,7 +117,7 @@ export default function MenuItems() {
         onClick={() => closeModal ()}
         active={modalSectionActive}
         setActive={setModalSectionActive}>
-        <ModalSectionForm 
+        <ModalAddSectionForm 
         onClick={e => e.stopPropagation()}
         setModalSectionActive={setModalSectionActive}
         />
@@ -128,7 +128,7 @@ export default function MenuItems() {
         onClick={() => closeModal ()}
         active={modalActive}
         setActive={setModalActive}>
-        <ModalItemForm 
+        <ModalItemAddForm 
         onClick={e => e.stopPropagation()}
         setModalActive={setModalActive}
         category={category}

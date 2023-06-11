@@ -8,5 +8,10 @@ export const ItemFilterLabel = styled.label`
     font-size: 15px;
 `
 export const ItemFilterInput = styled.input`
-    max-width: 120px;
+    max-width: 150px;
+    padding-left: 10px;
+    /* width: 300px; */
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid #749574;
 `

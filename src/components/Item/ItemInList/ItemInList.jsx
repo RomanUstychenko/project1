@@ -5,7 +5,7 @@ import React from 'react'
 // import { getItemsByCategory,
 //   //  getItems
 //    } from 'redux/items/items-selector';
-import { Modal } from "components/Modal/Modal";
+import { Modal } from "components/common/Modal/Modal";
 import {ItemsList, Item, DelItem, DelIcon, Price } from './ItemInList.styled';
 import { useState } from 'react';
 // import { deleteItem, 

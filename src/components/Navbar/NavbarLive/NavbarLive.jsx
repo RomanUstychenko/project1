@@ -15,7 +15,7 @@ export default function NavbarLive() {
    
     {id: nanoid(),
       to: `/live/${user._id}`,
-      text: "Go to live page",
+      text: "Go to QR Menu",
   },
    
     ] : "";

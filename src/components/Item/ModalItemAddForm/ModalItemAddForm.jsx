@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import scss from "./ModalItemForm.module.scss"
+import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/Input.styled";
 import {
   // useSelector, 
   useDispatch } from 'react-redux';
@@ -8,10 +8,10 @@ import {
 
 import { addItems } from "redux/items/items-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { Formik } from 'formik';
+import { Button } from "components/Button/Button";
 
 
-export default function ModalItemForm ({
+export default function ModalItemAddForm ({
   // onClick,
    setModalActive, category, itemsCategory}) {
   // const items = useSelector(getFilteredItems);
@@ -94,25 +94,17 @@ export default function ModalItemForm ({
               setModalActive(false);
           }
       }; 
-      // const initialValues = {
-      //   name: '',
-      //   description: '',
-      //   phone: '',
-      // };
+  
      
       return ( 
-        <form 
+        <Form 
         onClick={e => e.stopPropagation()}
-        className={scss.form}
         onSubmit={handleSubmit}
-        // initialValues={initialValues}
-        // validateOnChange
         >
           <>
-        <div className={scss.formInput}>
-          <label htmlFor={itemNameID}>Name</label>
-          <input 
-          className={scss.formInputName}
+        <FormInputList>
+          <FormInputLabel htmlFor={itemNameID}>Name</FormInputLabel>
+          <FormInput 
           id={itemNameID} 
           type="text" 
           name="itemName" 
@@ -121,11 +113,10 @@ export default function ModalItemForm ({
           required
           value={itemName} 
           onChange={handleChange} />
-        </div>
-        <div className={scss.formInput}>
-          <label htmlFor={descriptionID}>Description</label>
-          <input 
-          className={scss.formInputName}
+        </FormInputList>
+        <FormInputList>
+          <FormInputLabel htmlFor={descriptionID}>Description</FormInputLabel>
+          <FormInput 
           id={descriptionID} 
           type="text" 
           name="description" 
@@ -133,11 +124,10 @@ export default function ModalItemForm ({
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           value={description} 
           onChange={handleChange} />
-        </div>
-        <div className={scss.formInput}>
-          <label htmlFor={priceID}>Price</label>
-          <input 
-          className={scss.formInputTel}
+        </FormInputList>
+        <FormInputList>
+          <FormInputLabel htmlFor={priceID}>Price</FormInputLabel>
+          <FormInput 
           id={priceID} 
           type="number" 
           name="price" 
@@ -146,12 +136,28 @@ export default function ModalItemForm ({
           value={price} 
           onChange={handleChange} 
           required/>
-        </div>
-        <button 
+        </FormInputList>
+
+        <Button 
+        style={{
+          position: 'relative',
+          right: '0px',
+          height: '25px',
+          padding: '0px 0px',
+          minWidth: '100px',
+          fontSize: 15,
+          color: '#010101'
+        }}
+    
+      text="Add Item"
+      type="submit"
+      // onClick={() => setModalSectionActive(true)}
+      />
+        {/* <button 
         // onClick={values => handleSubmit(values)}
         className={scss.formBtn}
-        type="submit">Add</button>
+        type="submit">Add</button> */}
         </>
-        </form>
+        </Form>
         )
 };

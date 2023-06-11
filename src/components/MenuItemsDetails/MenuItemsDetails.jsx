@@ -21,11 +21,11 @@ import { getItems, getItemsByCategory } from 'redux/items/items-selector';
 import { getSections } from "redux/sections/sections-selector"
 // import { Modal } from "components/Modal/Modal";
 // import ItemsSections from "components/Section/ItemSections/ItemsSections"
-// import {
-//   //  useLocation,
-//   useParams
-//   //  useSearchParams
-//    } from 'react-router-dom'
+import {
+   useLocation,
+  // useParams
+  //  useSearchParams
+   } from 'react-router-dom'
 // import UseAuth from "components/hooks/useAuth"
 // import { Navigate } from "react-router-dom"
 // import { fetchSections } from "redux/sections/sections-operation"
@@ -35,9 +35,9 @@ import { Button } from "components/Button/Button";
 export default function MenuItemsDetails({setModalActive}) {
 
 
-  // const location = useLocation();
-//   const categorys = location.pathname.split('/')[2];
-  // console.log("category", category)
+  const location = useLocation();
+  const category = location.pathname.split('/')[2];
+  console.log("category", category)
   // const [modalActive, setModalActive] = useState(false);
 //   const [modalSectionActive, setModalSectionActive] = useState(false);
 
@@ -76,9 +76,11 @@ export default function MenuItemsDetails({setModalActive}) {
     // <div  className={scss.phoneBook}>
       <>
       <ItemsList>
-      <h2>Menu</h2>
+      { category &&
+       <>
         <Filter />
-        <BtnWrapper>
+        
+         <BtnWrapper>
         <Button 
         style={{
           position: 'relative',
@@ -94,12 +96,10 @@ export default function MenuItemsDetails({setModalActive}) {
       type="button"
       onClick={() => setModalActive(true)}
       />
-        {/* <BtnAdd
-      type="button"
-      onClick={() => setModalActive(true)}>
-        Add Item
-      </BtnAdd> */}
+        
         </BtnWrapper>
+        </>
+        }
         
           {!loading && items.length > 0 && 
           <ItemList

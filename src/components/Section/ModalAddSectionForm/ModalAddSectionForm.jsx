@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import scss from "./ModalSectionForm.module.scss"
+import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/Input.styled";
 import { useSelector, useDispatch } from 'react-redux';
 import { getSections } from 'redux/sections/sections-selector';
 import { addSection } from "redux/sections/sections-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { Formik } from 'formik';
+import { Button } from "components/Button/Button";
 
-export default function ModalSectionForm ({onClick, setModalSectionActive}) {
+export default function ModalAddSectionForm ({onClick, setModalSectionActive}) {
   // console.log(setModalSectionActive)
   const sections = useSelector(getSections);
   // console.log(sections)
@@ -54,7 +54,6 @@ export default function ModalSectionForm ({onClick, setModalSectionActive}) {
        
           if (duplicateSections) {
             Notify.failure(`${category} is already in item`)
-            // alert (`${name} is already in contact`)
             return
           }
               dispatch(addSection({category}));
@@ -62,25 +61,17 @@ export default function ModalSectionForm ({onClick, setModalSectionActive}) {
               setModalSectionActive(false);
           
       }; 
-      // const initialValues = {
-      //   name: '',
-      //   description: '',
-      //   phone: '',
-      // };
+
 
       return ( 
-        <form 
+        <Form 
         onClick={e => e.stopPropagation()}
-        className={scss.form}
         onSubmit={handleSubmit}
-        // initialValues={initialValues}
-        // validateOnChange
         >
           <>
-        <div className={scss.formInput}>
-          <label htmlFor={sectionNameID}>Name</label>
-          <input 
-          className={scss.formInputName}
+        <FormInputList>
+          <FormInputLabel htmlFor={sectionNameID}>Name</FormInputLabel>
+          <FormInput 
           id={sectionNameID} 
           type="text" 
           name="category" 
@@ -89,13 +80,28 @@ export default function ModalSectionForm ({onClick, setModalSectionActive}) {
           required
           value={category} 
           onChange={handleChange} />
-        </div>
+        </FormInputList>
        
-        <button 
+        <Button 
+        style={{
+          position: 'relative',
+          right: '0px',
+          height: '25px',
+          padding: '0px 0px',
+          minWidth: '80px',
+          fontSize: 15,
+          color: '#010101',
+        }}
+    
+      text="Add"
+      type="submit"
+      // onClick={() => setModalActive(true)}
+      />
+        {/* <button 
         // onClick={values => handleSubmit(values)}
         className={scss.formBtn}
-        type="submit">Add</button>
+        type="submit">Add</button> */}
         </>
-        </form>
+        </Form>
         )
 };

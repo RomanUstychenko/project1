@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { FormWrapper, Form, FormInputList, FormInput, FormBtn, Img } from "./ModalItemDetail.styled";
+import { FormWrapper, FormInputHidden, FormInputLabelImg, FormImgWrapper, Img, Saved, Deleted } from "./ModalItemDetail.styled";
+import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/Input.styled";
 import {
   // useSelector, 
   useDispatch } from 'react-redux';
@@ -14,6 +15,7 @@ import { itemUpdate, imgUpdate
 //   //  useSearchParams
 //    } from 'react-router-dom';
 import noimg from 'img/noimg.jpg'
+import { Button } from "components/Button/Button";
 
 export default function ModalItemDetail ({
   //  itemsCategory, 
@@ -39,6 +41,9 @@ export default function ModalItemDetail ({
   const [newPrice, setNewPrice] = useState(price);
   const [newDescription, setNewDescription] = useState(description);
   const [newItemImg, setNewItemImg] = useState(itemImg);
+
+  const [saved, setSaved] = useState(false);
+  const [deleted, setDeleted] = useState(false);
   // const [section, setSection] = useState(category)
 // console.log(section)
 
@@ -80,10 +85,11 @@ console.log(itemName, price)
       
       const handleChangeUpload = e => {
         const fileSelect = e.target.files[0];
-        console.log(fileSelect)
+        // console.log(fileSelect)
         UploadFile(fileSelect);
+        setSaved(true)
       };
-      console.log(newItemImg)
+      // console.log(newItemImg)
   const handleSubmit = (e) => {
 
         e.preventDefault()
@@ -142,9 +148,14 @@ console.log(itemName, price)
       //   description: '',
       //   phone: '',
       // };
+const deleteImage = () => {
+  setSaved(false);
+  setDeleted(true);
 
+}
       return ( 
         <FormWrapper>
+          <FormImgWrapper>
           <form
           encType="multipart/form-data" 
           method="post"
@@ -152,31 +163,36 @@ console.log(itemName, price)
           // onSubmit={handleSubmit}
           >
           <FormInputList >
-          <label htmlFor={itemImgID}>Image</label>
-          <FormInput 
+          <FormInputLabelImg htmlFor={itemImgID}>Open image</FormInputLabelImg>
+          <FormInputHidden 
           id={itemImgID} 
           type="file" 
           name="image" 
           accept="image/png, image/jpeg, image/jpg, image/bmp"
           onChange={handleChangeUpload} />
-          {/* <button
-          type="submit"
+          {saved && <Saved>saved!</Saved>}
+          {deleted && <Deleted>deleted!</Deleted>}
+          <button
+          type="button"
+          onClick={() => deleteImage()}
           >
-            change
-          </button> */}
+            Delete image
+          </button>
         </FormInputList>
           </form>
             <Img
             src={itemImg || noimg} 
             alt="img" 
             loading='lazy'/>
+          </FormImgWrapper>
+          
           <Form 
         onClick={e => e.stopPropagation()}
         onSubmit={handleSubmit}
         >
           
         <FormInputList >
-          <label htmlFor={itemNameID}>Name</label>
+          <FormInputLabel htmlFor={itemNameID}>Name</FormInputLabel>
           <FormInput 
           id={itemNameID} 
           type="text" 
@@ -189,7 +205,7 @@ console.log(itemName, price)
           onChange={handleChange} />
         </FormInputList>
         <FormInputList >
-          <label htmlFor={itemPriceID}>Price</label>
+          <FormInputLabel htmlFor={itemPriceID}>Price</FormInputLabel>
           <FormInput 
           id={itemPriceID} 
           type="text" 
@@ -202,7 +218,7 @@ console.log(itemName, price)
           onChange={handleChange} />
         </FormInputList>
         <FormInputList >
-          <label htmlFor={itemDescriptionID}>Description</label>
+          <FormInputLabel htmlFor={itemDescriptionID}>Description</FormInputLabel>
           <FormInput 
           id={itemDescriptionID} 
           type="text" 
@@ -214,9 +230,26 @@ console.log(itemName, price)
           defaultValue={description}
           onChange={handleChange} />
         </FormInputList>
-        <FormBtn 
+
+        <Button 
+        style={{
+          position: 'relative',
+          right: '0px',
+          height: '25px',
+          padding: '0px 0px',
+          minWidth: '100px',
+          fontSize: 15,
+          color: '#010101'
+        }}
+    
+      text="Change Name"
+      type="submit"
+      // onClick={() => setModalSectionActive(true)}
+      />
+
+        {/* <FormBtn 
         // onClick={values => handleSubmit(values)}
-        type="submit">Change Name</FormBtn>
+        type="submit">Change Name</FormBtn> */}
         
         </Form>
         </FormWrapper>
