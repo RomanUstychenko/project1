@@ -10,7 +10,6 @@ import {
   FilterList,
   StyledChange,
   BtnChange,
-  DelSection
   // Item,
   // Wrapper,
   // AuthLinks,
