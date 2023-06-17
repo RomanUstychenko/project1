@@ -7,6 +7,9 @@ import {
 import { getSections } from 'redux/sections/sections-selector';
 import { updateSection } from "redux/sections/sections-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { BtnDel, DelSection } from "./ModalChangeSectionName.styled";
+import { Modal } from "components/common/Modal/Modal";
+import ModalSectionDelete from "../ModalSectionDelete/ModalSectionDelete";
 // import { Formik } from 'formik';
 // import { useLocation,
 //   //  useSearchParams
@@ -48,25 +51,13 @@ export default function ModalChangeSectionName ({
 // console.log(newArr)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   //  const location = useLocation();
 
 //   const category = location.pathname.split('/')[2];
   const dispatch = useDispatch();
 
   const [newSectionName, setNewSectionName] = useState(category);
+  const [modalDeleteActive, setModalDeleteActive] = useState(false);
 
   // const [section, setSection] = useState(category)
 // console.log(section)
@@ -197,6 +188,26 @@ export default function ModalChangeSectionName ({
       type="submit"
       // onClick={() => setModalActive(true)}
       />
+      <BtnDel
+      type='button'
+          key={nanoid()}
+          onClick={() => setModalDeleteActive(true)}
+          >
+                <DelSection/>
+              </BtnDel>
+              { modalDeleteActive && (
+          <Modal
+          onClick={() => closeModal ()}
+          active={modalDeleteActive}
+          setActive={setModalDeleteActive}>
+          <ModalSectionDelete
+          closeModal={closeModal}
+          _id={_id}
+          category={category}
+          />
+     
+          </Modal>
+         )}
         {/* <button 
         // onClick={values => handleSubmit(values)}
         className={scss.formBtn}

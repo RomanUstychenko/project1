@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 // import {MdOutlineDriveFileRenameOutline} from 'react-icons/md';
 import {CiEdit} from 'react-icons/ci';
+import {MdDeleteForever} from 'react-icons/md';
 
 
 
@@ -71,6 +72,10 @@ export const BtnChange = styled.button`
   background-color: transparent;
 `
 export const StyledChange = styled(CiEdit)`
+  color: red;
+  
+`
+export const DelSection = styled(MdDeleteForever)`
   color: red;
   
 `

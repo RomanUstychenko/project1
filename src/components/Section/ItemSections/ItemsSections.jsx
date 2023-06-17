@@ -9,7 +9,8 @@ import {
   Button,
   FilterList,
   StyledChange,
-  BtnChange
+  BtnChange,
+  DelSection
   // Item,
   // Wrapper,
   // AuthLinks,
@@ -65,6 +66,7 @@ function ItemsSections({section}) {
     // <Wrapper>
       <FilterList key={nanoid()}>
         {/* <CommonLinks> */}
+        
           {buttons.map(b => (
             // <Item key={btnId}>
               <Button 

@@ -28,6 +28,11 @@ export const deleteItem = async (_id) => {
     const {data} = await instance.delete(`/items/${_id}`);
     return data;
 }
+export const delItemsByCategory =  async (category) => {
+  console.log(category)
+  const { data } = await instance.delete(`/items/${category}/remove`);
+          return data;     
+};
 export const itemUpdate = async (_id, items) => {
     // try {
         console.log("items", items)

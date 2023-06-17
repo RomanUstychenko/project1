@@ -1,7 +1,7 @@
 import React from 'react'
-// import { 
-//     // useSelector, 
-//     useDispatch } from 'react-redux';
+import { 
+    // useSelector, 
+    useDispatch } from 'react-redux';
 // import { getItemsByCategory,
 //   //  getItems
 //    } from 'redux/items/items-selector';
@@ -19,12 +19,12 @@ import { nanoid } from 'nanoid';
   //  import { useEffect } from "react";
   import ModalItemDetail from '../ModalItemDetail/ModalItemDetail';
   import ModalItemDelete from '../ModalItemDelete/ModalItemDelete';
-  // import { itemUpdate, geItemsByCategory } from "redux/items/items-operation"; 
+  import { fetchItems } from "redux/items/items-operation"; 
   // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 
 
-export default function ItemInList({filteredItem, itemsCategory}) {
+export default function ItemInList({filteredItem}) {
   // const location = useLocation();
   // const category = location.pathname.split('/')[2];
   
@@ -40,20 +40,22 @@ export default function ItemInList({filteredItem, itemsCategory}) {
       price,
       itemImg,
     _id,
+section,
   } = filteredItem;
-console.log(itemImg)
+console.log(filteredItem)
 
 
 // console.log("category", category)
 // console.log("section", section)
 
-// const dispatch = useDispatch();
+const dispatch = useDispatch();
 
 
 const [modalDeleteActive, setModalDeleteActive] = useState(false);
 const [modalDetailActive, setModalDetailActive] = useState(false);
 
 function closeModal () {
+  dispatch(fetchItems());
     setModalDeleteActive(false)
     setModalDetailActive(false)
     document.body.style.overflow = '';
@@ -143,7 +145,7 @@ function closeModal () {
           description={description}
           itemImg={itemImg}
           _id={_id}
-          itemsCategory={itemsCategory}
+          section={section}
           closeModal={closeModal}
           setModalDetailActive={setModalDetailActive}
 

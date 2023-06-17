@@ -42,7 +42,7 @@ import { LoginFormLabelList, LoginFormLabel, LoginFormList, LoginFormInput } fro
         </LoginFormList>
         <Button 
         text="Login"
-        type="button"
+        type="submit"
         />
        </form>
        </div>

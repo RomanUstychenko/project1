@@ -81,6 +81,22 @@ export const fetchItems = createAsyncThunk(
                 return rejectWithValue(error);
             }}
     );
+    export const delItemsByCategory = createAsyncThunk(
+        'items/delByCategory',
+        async ( _id, {rejectWithValue}) => {
+            console.log(_id)
+            try {
+                
+                const  data  = await api.delItemsByCategory(_id)
+                console.log(data)
+                console.log(_id)
+                return data;
+            } 
+             catch (error) {
+                return  rejectWithValue(error);
+            }
+        },
+    );
     export const itemUpdate = createAsyncThunk(
         'items/itemUpdate',
         async ( datas, { rejectWithValue }) => {
@@ -125,3 +141,4 @@ export const fetchItems = createAsyncThunk(
           }
         }
       );
+      

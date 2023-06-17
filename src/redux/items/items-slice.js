@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchItems, fetchItemsLive, geItemsByCategory, addItems, deleteItem, itemUpdate, imgUpdate } from "./items-operation";
+import { fetchItems, fetchItemsLive, geItemsByCategory, addItems, delItemsByCategory,  deleteItem, itemUpdate, imgUpdate } from "./items-operation";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { toast } from 'react-toastify';
 
@@ -7,6 +7,7 @@ const initialState = {
     items: [],
     itemsLive: [],
     itemsByCategory: [],
+    imgSaved: false,
     isLive: false,
     loading: false,
     error: null,
@@ -25,6 +26,7 @@ const itemsSlice = createSlice({
         .addCase(fetchItems.pending, pendingHandler)
         .addCase(fetchItems.fulfilled, (store, {payload}) => {
             store.loading = false;
+            store.imgSaved = false;
             store.isLive = false;
             store.items = payload;
         }) 
@@ -83,11 +85,26 @@ const itemsSlice = createSlice({
             store.loading = false;
             store.error = payload;
         })
-
+        .addCase(delItemsByCategory.pending, pendingHandler)
+        .addCase(delItemsByCategory.fulfilled, (store, {payload}) => {
+            console.log(payload)
+            console.log(initialState)
+            store.loading = false;
+            store.error = null;
+            store.items = store.items.filter(item => item.section !== payload);
+            // store.itemsByCategory = payload
+        }) 
+        .addCase(delItemsByCategory.rejected, (store, {payload}) => {
+            console.log(payload)
+            store.itemsByCategory = [];
+            store.loading = false;
+            store.error = payload;
+        })
 
         .addCase(itemUpdate.pending, pendingHandler)
         .addCase(itemUpdate.fulfilled, (store,  {payload} ) => {
             store.loading = false;
+            store.imgSaved = false;
             store.itemsByCategory.forEach((item, index) => {
                 if (item._id === payload._id) {
                     store.itemsByCategory[index] = payload} 
@@ -108,6 +125,9 @@ const itemsSlice = createSlice({
                 if (item._id === payload._id) {
                     store.itemsByCategory[index] = payload} 
                 })
+            store.imgSaved = true;
+            // setTimeout(store.imgSaved = false, 5000);
+            // console.log(store.imgSavedCheck)
                     })
         .addCase(imgUpdate.rejected, (store, { meta, payload }) => {
             store.loading = false;

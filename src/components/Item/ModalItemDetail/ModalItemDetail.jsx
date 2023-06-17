@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { FormWrapper, FormInputHidden, FormInputLabelImg, FormImgWrapper, Img, Saved, Deleted } from "./ModalItemDetail.styled";
+import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, FormInputListImg, ListSectionChange, FormInputSection, FormInputListSection, BtnChageSection, LabelSection, BtnArrow } from "./ModalItemDetail.styled";
 import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/Input.styled";
 import {
-  // useSelector, 
+  useSelector, 
   useDispatch } from 'react-redux';
-// import { getFilteredItems } from 'redux/items/items-selector';
+import { imgSaved } from 'redux/items/items-selector';
 import { itemUpdate, imgUpdate
   // geItemsByCategory
  } from "redux/items/items-operation"; 
@@ -16,6 +16,8 @@ import { itemUpdate, imgUpdate
 //    } from 'react-router-dom';
 import noimg from 'img/noimg.jpg'
 import { Button } from "components/Button/Button";
+import { getSections } from "redux/sections/sections-selector"
+
 
 export default function ModalItemDetail ({
   //  itemsCategory, 
@@ -24,9 +26,14 @@ export default function ModalItemDetail ({
    description, 
    _id,
    itemImg,
+   section,
     closeModal}) {
-  // const items = useSelector(getFilteredItems);
-  // console.log("category", category)
+
+
+
+  const imgSavedCheck = useSelector(imgSaved);
+  const sections = useSelector(getSections);
+  console.log("imgSavedCheck", imgSavedCheck)
   
  
 
@@ -41,16 +48,20 @@ export default function ModalItemDetail ({
   const [newPrice, setNewPrice] = useState(price);
   const [newDescription, setNewDescription] = useState(description);
   const [newItemImg, setNewItemImg] = useState(itemImg);
+  const [newSection, setNewSection] = useState(section);
+  const [newSectionName, setNewSectionName] = useState(false);
 
   const [saved, setSaved] = useState(false);
   const [deleted, setDeleted] = useState(false);
   // const [section, setSection] = useState(category)
 // console.log(section)
-
-const itemImgID = nanoid();
+console.log(saved)
+console.log(newSectionName)
+  const itemImgID = nanoid();
   const itemNameID = nanoid();
   const itemPriceID = nanoid();
   const itemDescriptionID = nanoid();
+  const itemSectionID = nanoid();
  
 console.log(itemName, price)
 
@@ -69,6 +80,12 @@ console.log(itemName, price)
             case 'newItemImg':
               setNewItemImg ( e.currentTarget.value);
             break;
+            case 'newSection':
+              setNewSection ( e.currentTarget.value);
+              setNewSectionName(false);
+              // setNewSectionName ( e.currentTarget.value);
+              console.log(newSection);
+            break;
           default:
             break;
         }
@@ -80,15 +97,19 @@ console.log(itemName, price)
         dispatch(imgUpdate(
           {_id,
            imageURL}));
-        // setchangePhoto(true);
       };
       
       const handleChangeUpload = e => {
         const fileSelect = e.target.files[0];
         // console.log(fileSelect)
         UploadFile(fileSelect);
-        setSaved(true)
+        // setSaved(imgSavedCheck);
+        // console.log(saved);
+        
       };
+      // if (imgSavedCheck) {
+      //   setSaved(true)
+      // }
       // console.log(newItemImg)
   const handleSubmit = (e) => {
 
@@ -130,7 +151,7 @@ console.log(itemName, price)
               description: newDescription,
               price: newPrice,
               itemImg: newItemImg,
-              // section,
+              section: newSection,
               
               } ));
                 // dispatch(geItemsByCategory({category: category}))
@@ -138,21 +159,30 @@ console.log(itemName, price)
               setNewDescription('');
               setNewPrice('');
               setNewItemImg('');
-              // setSection('');
+              setNewSection('');
               closeModal ();
               // setModalDetailActive(false);
           // }
       }; 
-      // const initialValues = {
-      //   name: '',
-      //   description: '',
-      //   phone: '',
-      // };
+
 const deleteImage = () => {
-  setSaved(false);
+  dispatch(itemUpdate(
+    {_id,
+      itemImg: '',}));
+  setSaved(false)
   setDeleted(true);
 
 }
+
+
+const filt =  
+  sections.filter(section => section._id === newSection)
+const OpenSectionList = () => {
+  setNewSectionName(true)
+}
+
+console.log(filt.map(fi => fi.category))
+console.log(newPrice)
       return ( 
         <FormWrapper>
           <FormImgWrapper>
@@ -162,35 +192,51 @@ const deleteImage = () => {
           onClick={e => e.stopPropagation()}
           // onSubmit={handleSubmit}
           >
-          <FormInputList >
-          <FormInputLabelImg htmlFor={itemImgID}>Open image</FormInputLabelImg>
+          <FormInputListImg >
+          {!itemImg && <FormInputLabelImg htmlFor={itemImgID}>Add image</FormInputLabelImg>}
+         {itemImg && <FormInputLabelImg htmlFor={itemImgID}>Change image</FormInputLabelImg>} 
           <FormInputHidden 
           id={itemImgID} 
           type="file" 
           name="image" 
           accept="image/png, image/jpeg, image/jpg, image/bmp"
           onChange={handleChangeUpload} />
-          {saved && <Saved>saved!</Saved>}
-          {deleted && <Deleted>deleted!</Deleted>}
-          <button
-          type="button"
-          onClick={() => deleteImage()}
-          >
-            Delete image
-          </button>
-        </FormInputList>
+          
+          {itemImg &&
+          <ButtonDel 
+        style={{
+          position: 'relative',
+          right: '0px',
+          height: '25px',
+          padding: '0px 0px',
+          width: '100px',
+          paddingLeft: '5px',
+          fontSize: 15,
+          color: '#010101',
+          backgroundColor: 'red',
+        }}
+      text="Delete image"
+      type="button"
+      onClick={ 
+        () => deleteImage()}
+      />
+          }
+        </FormInputListImg>
           </form>
             <Img
             src={itemImg || noimg} 
             alt="img" 
             loading='lazy'/>
           </FormImgWrapper>
-          
+          <div>
+          {imgSavedCheck && <Saved>change saved!</Saved>}
+          {deleted && <Deleted>image deleted!</Deleted>}
+          </div>
+
           <Form 
         onClick={e => e.stopPropagation()}
         onSubmit={handleSubmit}
         >
-          
         <FormInputList >
           <FormInputLabel htmlFor={itemNameID}>Name</FormInputLabel>
           <FormInput 
@@ -230,6 +276,83 @@ const deleteImage = () => {
           defaultValue={description}
           onChange={handleChange} />
         </FormInputList>
+        
+
+        <FormInputListSection >
+          {/* <FormInputLabel htmlFor={itemDescriptionID}>Section</FormInputLabel> */}
+         <p>Section</p>
+          <FormInputSection 
+          id={itemDescriptionID} 
+          type="text" 
+          name="newSection" 
+          pattern="[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may "
+          required
+          // value={itemsName} 
+          value={filt.map(fi => fi.category)}
+        
+          
+          onChange={handleChange} />
+          <BtnChageSection
+         type="button"
+         onClick={() => OpenSectionList()}><BtnArrow/></BtnChageSection>
+
+         {/* {newSectionName &&  <ListSectionChange
+id={itemSectionID}
+name="newSection"
+value={section._id}
+onChange={handleChange}>
+  <option 
+  // disabled="disabled"
+  value="">Select…</option>
+        {sections.map(section => 
+       
+        <option
+        //  htmlFor={itemSectionID}
+        id={itemSectionID}
+        name="newSection"
+        value={section._id}
+        onChange={handleChange}
+         > {section.category} </option>)}
+        
+{/* <input
+id={itemSectionID}
+type="radio"
+name="newSection"
+value={section._id}
+onChange={handleChange}
+
+/> */}
+
+        {/* </ListSectionChange>} */} 
+
+               {newSectionName &&  <ListSectionChange
+id={itemSectionID}
+name="newSection"
+value={section._id}
+onChange={handleChange}>
+  
+        {sections.map(section => 
+       
+       
+        <LabelSection
+        // onChange={setNewSectionName(false)}
+        >
+ <FormInputHidden
+id={itemSectionID}
+type="radio"
+name="newSection"
+value={section._id}
+onChange={handleChange}
+
+/> {section.category}</LabelSection>  )}
+
+        </ListSectionChange>} 
+        </FormInputListSection>
+
+
+        
+
 
         <Button 
         style={{
