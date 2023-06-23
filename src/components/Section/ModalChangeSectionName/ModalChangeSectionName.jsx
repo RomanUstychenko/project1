@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { Form, FormInputList, FormInput, FormInputLabel } from "components/common/Input.styled";
+import { Form, FormInputList, FormInput, FormInputLabel, LabelName } from "components/common/Input.styled";
 import {
   useSelector, 
   useDispatch } from 'react-redux';
 import { getSections } from 'redux/sections/sections-selector';
 import { updateSection } from "redux/sections/sections-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { BtnDel, DelSection } from "./ModalChangeSectionName.styled";
+import { BtnList } from "./ModalChangeSectionName.styled";
 import { Modal } from "components/common/Modal/Modal";
 import ModalSectionDelete from "../ModalSectionDelete/ModalSectionDelete";
 // import { Formik } from 'formik';
@@ -159,7 +159,7 @@ export default function ModalChangeSectionName ({
         >
           <>
         <FormInputList>
-          <FormInputLabel htmlFor={sectionNameID}>Name</FormInputLabel>
+          <FormInputLabel htmlFor={sectionNameID}><LabelName>Change Name</LabelName></FormInputLabel>
           <FormInput 
           id={sectionNameID} 
           type="text" 
@@ -172,7 +172,7 @@ export default function ModalChangeSectionName ({
           onChange={handleChange} />
         </FormInputList>
         
-
+<BtnList>
         <Button 
         style={{
           position: 'relative',
@@ -182,19 +182,32 @@ export default function ModalChangeSectionName ({
           minWidth: '80px',
           fontSize: 15,
           color: '#010101',
+          marginRight: 'auto',
+          marginLeft: 'auto',
+          
         }}
     
       text="Rename"
       type="submit"
-      // onClick={() => setModalActive(true)}
       />
-      <BtnDel
-      type='button'
-          key={nanoid()}
-          onClick={() => setModalDeleteActive(true)}
-          >
-                <DelSection/>
-              </BtnDel>
+      <Button 
+        style={{
+          position: 'relative',
+          right: '0px',
+          height: '25px',
+          padding: '0px 0px',
+          minWidth: '110px',
+          fontSize: 15,
+          color: '#632121',
+          marginRight: 'auto',
+          marginLeft: '25px',
+        }}
+    
+      text="Delete Section"
+      type="button"
+      onClick={() => setModalDeleteActive(true)}
+      />
+   </BtnList>
               { modalDeleteActive && (
           <Modal
           onClick={() => closeModal ()}

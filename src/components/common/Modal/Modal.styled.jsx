@@ -2,15 +2,12 @@ import styled
 //  {keyframes} 
  from 'styled-components';
 // import { device } from 'Device';
+import {IoMdCloseCircleOutline} from 'react-icons/io';
 
-// const rotateAnim = keyframes`
-// 0% {
-// transform: scale(0.5);
-// }
-// 100% {
-//   transform: scale(1);
-// }
-// `
+
+export const Wrapp = styled.div`
+position: relative;
+`
 export const ModalBackdrop = styled.div`
   position: fixed;
   z-index: 1000;
@@ -34,7 +31,25 @@ transition: 1s;
     pointer-events: all;
   };
 `
+export const CloseBtn = styled.button`
+position: absolute;
+top: 5px;
+right: 5px;
+background-color: transparent;
+border: none;
+padding: 0;
 
+`
+export const CloseIcon = styled(IoMdCloseCircleOutline)`
+color: #2e2828;
+width:20px;
+height: 20px;
+&:hover,
+       &:focus {
+        color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  }
+`
 // export const ModalContentDellLogout = styled.div`
 // position: absolute;
 //   padding: 20px;
