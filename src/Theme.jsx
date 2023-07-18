@@ -1,15 +1,17 @@
 export const theme = {
     colors: {
+    // mainBackgraund: ``,
     mainTextLive: '#a19797',
     backgrondLive: 'rgb(31, 35, 36);',
     titleLive: '#7e2323',
     btn: '#bd7a19',
     btnActive: '#aa8d64',
+    mainTextBtn: `#010101;`,
     //   accent: '#F59256',
     //   hoverAccent: '#FF6101',
     //   background: '#FDF7F2',
     //   inputBackground: 'rgba(245, 146, 86, 0.5)',
-    //   mainText: '#111111',
+      mainText: '#ada1a1',
     //   searchText: '#535353',
     //   newsText: '#111321',
     //   navText: '#181C27',

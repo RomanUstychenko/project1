@@ -181,8 +181,8 @@ const OpenSectionList = () => {
   setNewSectionName(true)
 }
 
-console.log(filt.map(fi => fi.category))
-console.log(newPrice)
+// console.log(filt.map(fi => fi.category))
+// console.log(newPrice)
       return ( 
         <FormWrapper>
           <FormImgWrapper>
@@ -279,7 +279,6 @@ console.log(newPrice)
         
 
         <FormInputListSection >
-          {/* <FormInputLabel htmlFor={itemDescriptionID}>Section</FormInputLabel> */}
          <p>Section</p>
           <FormInputSection 
           id={itemDescriptionID} 
@@ -287,8 +286,7 @@ console.log(newPrice)
           name="newSection" 
           pattern="[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may "
-          required
-          // value={itemsName} 
+          required 
           value={filt.map(fi => fi.category)}
         
           
@@ -296,48 +294,14 @@ console.log(newPrice)
           <BtnChageSection
          type="button"
          onClick={() => OpenSectionList()}><BtnArrow/></BtnChageSection>
-
-         {/* {newSectionName &&  <ListSectionChange
-id={itemSectionID}
-name="newSection"
-value={section._id}
-onChange={handleChange}>
-  <option 
-  // disabled="disabled"
-  value="">Select…</option>
-        {sections.map(section => 
-       
-        <option
-        //  htmlFor={itemSectionID}
-        id={itemSectionID}
-        name="newSection"
-        value={section._id}
-        onChange={handleChange}
-         > {section.category} </option>)}
-        
-{/* <input
-id={itemSectionID}
-type="radio"
-name="newSection"
-value={section._id}
-onChange={handleChange}
-
-/> */}
-
-        {/* </ListSectionChange>} */} 
-
-               {newSectionName &&  <ListSectionChange
+{newSectionName &&  <ListSectionChange
 id={itemSectionID}
 name="newSection"
 value={section._id}
 onChange={handleChange}>
   
         {sections.map(section => 
-       
-       
-        <LabelSection
-        // onChange={setNewSectionName(false)}
-        >
+        <LabelSection>
  <FormInputHidden
 id={itemSectionID}
 type="radio"
@@ -349,10 +313,6 @@ onChange={handleChange}
 
         </ListSectionChange>} 
         </FormInputListSection>
-
-
-        
-
 
         <Button 
         style={{
@@ -367,13 +327,7 @@ onChange={handleChange}
     
       text="Change Name"
       type="submit"
-      // onClick={() => setModalSectionActive(true)}
       />
-
-        {/* <FormBtn 
-        // onClick={values => handleSubmit(values)}
-        type="submit">Change Name</FormBtn> */}
-        
         </Form>
         </FormWrapper>
         

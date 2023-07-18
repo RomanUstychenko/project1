@@ -7,12 +7,15 @@ export const NavbarAuthList = styled.ul`
     margin-left: auto;
     align-items: center;
     justify-content: center;
+
+
 `
 export const Link = styled(NavLink)`
     text-decoration: none;
-    font-size: 20px;
+    font-size: inherit;
     font-weight: 700;
-    color: rgb(10, 3, 3);
+   color: inherit;
+  
     &.active {
         padding-left: 5px;
         padding-right: 5px;
@@ -27,6 +30,12 @@ export const Link = styled(NavLink)`
 
 `
 export const NavbarAuthListItem = styled.li`
+     &:first-child {
+    color: #c4b210;
+    font-size: 15px;
+}
+color: rgb(10, 3, 3);
+font-size: 20px;
     &:not(:last-child) {
     margin-right: 20px;
 }

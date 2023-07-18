@@ -19,7 +19,7 @@ const Login = lazy(() => import("Pages/Login/Login"));
 const Registration = lazy(() => import("Pages/Registration/Registration"));
 const LivePage = lazy(() => import("Pages/LivePage/LivePage"))
 const ModalRegisterVerify = lazy(() => import("Pages/ModalRegisterVerify/ModalRegisterVerify"))
-
+const About = lazy(() => import("Pages/About/About"))
 
 export default function App() {
 
@@ -46,6 +46,7 @@ useEffect(() => {
       <Routes>
       
         <Route element={<PublicRoute />}>
+          <Route path="/about" element={<About />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Registration />}/>
           <Route path="/register/verify" element={<ModalRegisterVerify />}/>

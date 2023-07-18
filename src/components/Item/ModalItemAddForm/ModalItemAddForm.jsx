@@ -142,11 +142,7 @@ export default function ModalItemAddForm ({
         style={{
           position: 'relative',
           right: '0px',
-          height: '25px',
-          padding: '0px 0px',
-          minWidth: '100px',
-          fontSize: 15,
-          color: '#010101'
+          
         }}
     
       text="Add Item"

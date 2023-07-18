@@ -1,4 +1,4 @@
-import { Btn } from './Button.styled';
+import { Btn, TextBtn } from './Button.styled';
 import PropTypes from 'prop-types';
 
 export const Button = ({style, text, type,
@@ -10,7 +10,7 @@ export const Button = ({style, text, type,
     onClick={onClick}
     type={type}
     >
-      {text}
+      <TextBtn>{text}</TextBtn>
     </Btn>
   );
 };

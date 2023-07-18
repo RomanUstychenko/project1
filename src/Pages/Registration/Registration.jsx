@@ -10,7 +10,8 @@ import {
   RegistrationFormLabel, 
   RegistrationFormLabelList,
   RegistrationForm,
-  RegistrationFormInput } from './Registration.styled';
+  RegistrationFormInput,
+  RegistrationFormWrapper } from './Registration.styled';
 import { Button } from 'components/Button/Button';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { isRegister } from 'redux/auth/auth-selector';
@@ -80,6 +81,7 @@ if (isUserRegister) {
        <Title>Registration Form</Title> 
        <form
        onSubmit={handleSubmit}>
+        <RegistrationFormWrapper>
        <RegistrationForm >
             {<RegistrationFormLabelList > <RegistrationFormLabel 
             htmlFor={nameId}
@@ -108,6 +110,7 @@ if (isUserRegister) {
             id={passwordId} placeholder="Enter password" name="password" type="password" required onChange={handleChange} value={password}
              />
         </RegistrationForm>
+        </RegistrationFormWrapper>
         <Button 
         text="Registration"
         type="button"

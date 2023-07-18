@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import useForm from 'components/hooks/useForm';
 import PropTypes from "prop-types";
 import { Button } from "components/Button/Button";
-import { LoginFormLabelList, LoginFormLabel, LoginFormList, LoginFormInput } from "./LoginForm.styled";
+import { LoginFormWrapper, LoginFormLabelList, LoginFormLabel, LoginFormList, LoginFormInput } from "./LoginForm.styled";
 
     const initialState = {
         email: "",
@@ -21,6 +21,7 @@ import { LoginFormLabelList, LoginFormLabel, LoginFormList, LoginFormInput } fro
       return (
         <div>
         <form onSubmit={handleSubmit}>
+<LoginFormWrapper>
        <LoginFormList>
             <LoginFormLabelList>
               <LoginFormLabel
@@ -40,6 +41,7 @@ import { LoginFormLabelList, LoginFormLabel, LoginFormList, LoginFormInput } fro
             id={passwordId} placeholder="Enter password" name="password" type="password" required onChange={handleChange} value={password}
              />
         </LoginFormList>
+        </LoginFormWrapper>
         <Button 
         text="Login"
         type="submit"
