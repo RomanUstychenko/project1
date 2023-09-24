@@ -112,6 +112,9 @@ if (isUserRegister) {
         </RegistrationForm>
         </RegistrationFormWrapper>
         <Button 
+         style={{
+          height: '35px',
+        }}
         text="Registration"
         type="button"
         />

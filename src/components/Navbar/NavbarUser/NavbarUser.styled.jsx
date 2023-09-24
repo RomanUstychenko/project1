@@ -3,30 +3,40 @@ import { NavLink } from "react-router-dom"
 import {AiOutlineSetting} from 'react-icons/ai';
 
 export const NavbarUserList = styled.div`
+    display: flex;
+    /* text-align: center; */
+    align-items: center;
+  justify-content: space-between;
     position: relative;
-    margin-right: 20px;
+    margin-right: 5px;
     font-size: 15px;
     font-weight: 600;
+
 `
 
 
 export const NavbarUserName = styled.div`
 display: flex;
+width: 100%;
 /* margin-left: auto;
 margin-right: auto; */
-/* align-items: center; */
+align-items: center;
 justify-content: center;
 /* text-align: center; */
     /* font-size: 15px;
     font-weight: 600; */
 `
 export const NavbarUserSet = styled.div`
-    text-align: right;
+display: flex;
+align-items: end;
+    /* text-align: right; */
 `
 export const Welcome = styled.p`
     
 `
 export const UserName = styled.p`
+/* text-align: center;
+align-items: center; */
     font-size: 20px;
 `
 

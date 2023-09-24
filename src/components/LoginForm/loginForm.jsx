@@ -43,6 +43,9 @@ import { LoginFormWrapper, LoginFormLabelList, LoginFormLabel, LoginFormList, Lo
         </LoginFormList>
         </LoginFormWrapper>
         <Button 
+        style={{
+          height: '35px',
+        }}
         text="Login"
         type="submit"
         />

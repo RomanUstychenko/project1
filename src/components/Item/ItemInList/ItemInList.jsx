@@ -42,7 +42,7 @@ export default function ItemInList({filteredItem}) {
     _id,
 section,
   } = filteredItem;
-console.log(filteredItem)
+// console.log(filteredItem)
 
 
 // console.log("category", category)
@@ -86,8 +86,6 @@ function closeModal () {
     
   //   }, 
   //    [ dispatch, itemName, ])
-
-
 
 
 

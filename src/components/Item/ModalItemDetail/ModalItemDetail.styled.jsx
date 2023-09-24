@@ -3,11 +3,13 @@ import { Button } from "components/Button/Button";
 import {BiDownArrow} from 'react-icons/bi';
 
 export const FormWrapper = styled.div`
+z-index: 1;
+background-color: #919191;
     border: 1px solid rgb(7, 94, 138);
 `
 export const FormImgWrapper = styled.div`
-    display: flex;
-    justify-content: space-between;
+    display: block;
+    /* justify-content: space-between; */
 `
 export const FormInputHidden = styled.input`
     opacity: 0;
@@ -20,6 +22,9 @@ export const FormInputHidden = styled.input`
 `
 export const ButtonDel = styled(Button)`
     
+`
+export const ButtonWrapper = styled.div`
+    display: flex;
 `
 export const FormInputSection = styled.input`
 margin-left: 6px;
@@ -77,6 +82,7 @@ height: 150px;
     
 `
 export const ListSectionChange = styled.ul`
+z-index: 1000;
 position: absolute;
 top: 0 px;
     right: 0px;
@@ -100,10 +106,13 @@ export const LabelSection = styled.label`
 `
 
 export const BtnChageSection = styled.button`
+/* z-index: 1000; */
+display: flex;
     position: absolute;
     top: 0;
     right: 0;
     height: 29px;
+    align-items: center;
 `
 export const BtnArrow = styled(BiDownArrow)`
     /* color: red; */

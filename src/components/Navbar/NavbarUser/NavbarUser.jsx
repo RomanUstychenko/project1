@@ -29,10 +29,13 @@ const chekName = Boolean(user)
   
 {/* </NavbarMenuList> */}
     <NavbarUserList>
-      {chekName ? <NavbarUserName >
-        {/* <img src={user.avatarURL} alt="avatar" /> */}
-       <Welcome>Welcome,</Welcome> <UserName>{user.name}</UserName>
-       </NavbarUserName> : 
+      {chekName ?
+       <NavbarUserName >
+         {/* <img src={user.avatarURL} alt="avatar" /> */}
+        {/* <Welcome>Welcome,</Welcome>  */}
+       <UserName>{user.name}</UserName>
+       </NavbarUserName>
+        : 
        <Welcome>Welcome, <UserName>User</UserName>
        </Welcome> }
        <NavbarUserSet>

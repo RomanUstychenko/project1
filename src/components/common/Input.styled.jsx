@@ -4,7 +4,7 @@ export const Form = styled.form`
  font-size: 25px;
     border: 1px solid rgb(7, 94, 138);
     border-radius: 5px;
-    padding: 30px 10px;
+    padding: 30px 10px 10px 10px;
     width: 300px;
     background-color: #919191;
 `
@@ -12,9 +12,15 @@ export const Form = styled.form`
 export const FormInputList = styled.div`
     display: flex;
     flex-direction: column;
+    &:not(:first-child) {
+    margin-top: 10px;
+}
     
 `
 export const FormInputLabel = styled.label`
+font-size: 25px;
+font-family: inherit;
+
 
 `
 export const FormInput = styled.input`

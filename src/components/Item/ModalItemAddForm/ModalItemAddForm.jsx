@@ -141,6 +141,7 @@ export default function ModalItemAddForm ({
         <Button 
         style={{
           position: 'relative',
+          marginTop: '10px',
           right: '0px',
           
         }}

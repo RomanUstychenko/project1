@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, FormInputListImg, ListSectionChange, FormInputSection, FormInputListSection, BtnChageSection, LabelSection, BtnArrow } from "./ModalItemDetail.styled";
+import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonWrapper, ButtonDel, FormImgWrapper, Img, Saved, Deleted, FormInputListImg, ListSectionChange, FormInputSection, FormInputListSection, BtnChageSection, LabelSection, BtnArrow } from "./ModalItemDetail.styled";
 import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/Input.styled";
 import {
   useSelector, 
@@ -27,7 +27,9 @@ export default function ModalItemDetail ({
    _id,
    itemImg,
    section,
-    closeModal}) {
+    closeModal,
+  // el
+}) {
 
 
 
@@ -56,7 +58,7 @@ export default function ModalItemDetail ({
   // const [section, setSection] = useState(category)
 // console.log(section)
 console.log(saved)
-console.log(newSectionName)
+// console.log(newSectionName)
   const itemImgID = nanoid();
   const itemNameID = nanoid();
   const itemPriceID = nanoid();
@@ -65,7 +67,7 @@ console.log(newSectionName)
  
 console.log(itemName, price)
 
-  const handleChange = (e) => {
+ async function handleChange  (e)  {
         const { name } = e.currentTarget;
         switch (name) {
           case 'newItemName':
@@ -177,32 +179,206 @@ const deleteImage = () => {
 
 const filt =  
   sections.filter(section => section._id === newSection)
+
+
+
+
 const OpenSectionList = () => {
+  console.log('open')
   setNewSectionName(true)
+  ChooseSectionList()
 }
 
-// console.log(filt.map(fi => fi.category))
-// console.log(newPrice)
+
+
+
+   
+
+
+
+
+const ChooseSectionList = () => {
+  function handleKeyDown () {
+    console.log("clickkk");
+    setNewSectionName(false);
+};
+const list = document.getElementsByName("listNewSection")
+for (let i = 0; i < list.length; i++) {
+ 
+  list[i].onchange = handleKeyDown
+}
+console.log (list)
+// const list2 = Array.from(list)
+
+
+// const el = document.getElementById("formWrap")
+// if (el !== undefined || null) {
+//   console.log("el")
+//   el.addEventListener("click", handleKeyDown, false);
+// };
+
+
+// if(list !== undefined) {
+//   console.log("list", list)
+//   console.log("lists", list2)
+//   // list[0].addEventListener("click", handleChange, false);
+// };
+
+  
+  
+CloseSectionList2()
+}
+
+// async function CloseSectionList () {
+
+//   const el = await document.getElementsByName("listNewSection");
+//   console.log('elList', el[0])
+//   const elListId = el[0];
+
+//   function handleKeyDown (e) {
+//     console.log("clickkk");
+//     const Check = e.composedPath().includes(elListId);
+//     console.log(Check)
+   
+// if (Check === true) {
+//   console.log('true')
+//   // setNewSectionName(true)
+//   if (elListId !== undefined || null) {
+//   console.log("el")
+//   elListId.addEventListener("click", handleChange, false);
+// }}
+    
+//     else {
+//       console.log('false')
+//       setNewSectionName(false);}
+    
+// };
+// const elForm = document.getElementById("formWrap")
+// if (elForm !== undefined || null) {
+//   console.log("el")
+//   elForm.addEventListener("click", handleKeyDown, false);
+// }
+ 
+//   // const elListId = await document.getElementById("listNewSection")
+//   // const elForm = document.getElementById("formWrap")
+//   console.log('elListId', elListId)
+//   // if (elListId !== undefined || null) {
+//   //     console.log("el")
+//   //     // elListId.addEventListener("click", handleChange, false);
+//   //     elListId.addEventListener("click", (e) => {
+//   //       console.log("clickkk");
+//   //       const withinBoundaries = e.composedPath().includes(elListId);
+//   //       console.log(withinBoundaries)
+//   //       console.log(e.composed);
+//   //       console.log(e.composedPath());
+//   //     });
+//     // } else
+//     // {elForm.addEventListener("click", handleKeyDown, false)};
+
+// // const elForm = document.getElementById("formWrap")
+// // if (elForm !== undefined || null) {
+// //   console.log("el")
+// //   elForm.addEventListener("click", handleKeyDown, false);
+// };
+
+async function CloseSectionList2 () {
+
+  const el = await document.getElementsByName("listNewSection");
+  console.log('elList', el[0])
+  console.log('elList', el)
+  const elListId = el[1];
+  const elBtn = el[0];
+
+  const elForm = document.getElementById("formWrap")
+  
+
+  
+  async function handleKeyDown (e) {
+    console.log("clickkk");
+    const CheckBtn =  e.composedPath().includes(elBtn);
+    const CheckList = e.composedPath().includes(elListId);
+    const CheckForm = e.composedPath().includes(elForm);
+    console.log(CheckBtn)
+    console.log(CheckList)
+    console.log(e.currentTarget)
+
+    if (CheckBtn || CheckList === true) {
+  console.log('true')
+  setNewSectionName(true)
+//   if (elListId !== undefined || null) {
+//   console.log("el")
+//   elListId.addEventListener("click", handleChange, false);
+// }
+}
+    
+    else {
+      console.log('false')
+      if (CheckForm === true) {
+        console.log('CheckForm', CheckForm)
+      setNewSectionName(false);}
+    }
+    // setNewSectionName(false);
+};
+
+// const elForm = document.getElementById("formWrap")
+if (elForm !== undefined || null) {
+  console.log("el")
+  elForm.addEventListener("click", handleKeyDown, false);
+}
+ 
+  // const elListId = await document.getElementById("listNewSection")
+  // const elForm = document.getElementById("formWrap")
+  console.log('elListId', elListId)
+  if (elListId !== undefined || null) {
+      console.log("el")
+      setNewSectionName(true)
+      elListId.addEventListener("click", handleChange, false);
+      // elListId.addEventListener("click", (e) => {
+      //   console.log("clickkk");
+      //   const withinBoundaries = e.composedPath().includes(elListId);
+      //   console.log(withinBoundaries)
+      //   console.log(e.composed);
+      //   console.log(e.composedPath());
+      // });
+    } else
+    {elForm.addEventListener("click", handleKeyDown, false)};
+
+// if (elForm !== undefined || null) {
+//   console.log("el")
+//   elForm.addEventListener("click", handleKeyDown, false);
+};
+
+
+// }
+
+
       return ( 
-        <FormWrapper>
+        <FormWrapper
+        id="formWrap"
+        onClick={e => e.stopPropagation()}
+        >
           <FormImgWrapper>
+              <Img
+            src={itemImg || noimg} 
+            alt="img" 
+            loading='lazy'/>
           <form
           encType="multipart/form-data" 
           method="post"
           onClick={e => e.stopPropagation()}
-          // onSubmit={handleSubmit}
           >
           <FormInputListImg >
-          {!itemImg && <FormInputLabelImg htmlFor={itemImgID}>Add image</FormInputLabelImg>}
-         {itemImg && <FormInputLabelImg htmlFor={itemImgID}>Change image</FormInputLabelImg>} 
+         
           <FormInputHidden 
           id={itemImgID} 
           type="file" 
           name="image" 
           accept="image/png, image/jpeg, image/jpg, image/bmp"
           onChange={handleChangeUpload} />
-          
-          {itemImg &&
+          <ButtonWrapper>
+          {!itemImg && <FormInputLabelImg htmlFor={itemImgID}>Add image</FormInputLabelImg>}
+         {itemImg && <FormInputLabelImg htmlFor={itemImgID}>Change image</FormInputLabelImg>} 
+         {itemImg &&
           <ButtonDel 
         style={{
           position: 'relative',
@@ -221,12 +397,11 @@ const OpenSectionList = () => {
         () => deleteImage()}
       />
           }
+          </ButtonWrapper>
         </FormInputListImg>
           </form>
-            <Img
-            src={itemImg || noimg} 
-            alt="img" 
-            loading='lazy'/>
+            
+           
           </FormImgWrapper>
           <div>
           {imgSavedCheck && <Saved>change saved!</Saved>}
@@ -234,6 +409,7 @@ const OpenSectionList = () => {
           </div>
 
           <Form 
+          
         onClick={e => e.stopPropagation()}
         onSubmit={handleSubmit}
         >
@@ -293,17 +469,25 @@ const OpenSectionList = () => {
           onChange={handleChange} />
           <BtnChageSection
          type="button"
-         onClick={() => OpenSectionList()}><BtnArrow/></BtnChageSection>
-{newSectionName &&  <ListSectionChange
-id={itemSectionID}
-name="newSection"
+         id="listNewSection"
+         name="listNewSection"
+         onClick={() => OpenSectionList()}>
+          <BtnArrow/>
+         </BtnChageSection>
+{newSectionName &&  
+<ListSectionChange
+id="listNewSection"
+name="listNewSection"
 value={section._id}
 onChange={handleChange}>
   
         {sections.map(section => 
-        <LabelSection>
+        <LabelSection
+        name="newSectionLabel"
+        id={itemSectionID}
+        >
  <FormInputHidden
-id={itemSectionID}
+// id={itemSectionID}
 type="radio"
 name="newSection"
 value={section._id}
@@ -311,7 +495,7 @@ onChange={handleChange}
 
 /> {section.category}</LabelSection>  )}
 
-        </ListSectionChange>} 
+  </ListSectionChange>} 
         </FormInputListSection>
 
         <Button 
@@ -331,5 +515,9 @@ onChange={handleChange}
         </Form>
         </FormWrapper>
         
-        )
+        );
+
+        
+
 };
+
