@@ -187,7 +187,7 @@ const filt =
 async function  OpenSectionList () {
   console.log('open')
   setNewSectionName(true)
-  console.log('NewSectionName', newSectionName)
+  // console.log('NewSectionName', newSectionName)
   CloseSectionList2()
 }
 
@@ -286,14 +286,16 @@ async function  OpenSectionList () {
 async function CloseSectionList2 (e) {
 
   const el = await document.getElementsByName("listNewSection");
+  const el2 = await document.getElementsByName("listNewSectionBtn");
+  // const el3 = await document.getElementsByName("newSectionLabel");
   // console.log('elList', el[0])
   // console.log('elList', el)
-  const elListId = el[1];
-  const elBtn = el[0];
-
+  const elListId = el[0];
+  const elBtn = el2[0];
+  
   const elForm = document.getElementById("formWrap")
   
-  
+  // console.log(elLabel)
 
 
   
@@ -302,20 +304,21 @@ async function CloseSectionList2 (e) {
     const CheckBtn =  e.composedPath().includes(elBtn);
     const CheckList = e.composedPath().includes(elListId);
     const CheckForm = e.composedPath().includes(elForm);
+    
     console.log(CheckBtn)
     console.log(CheckList)
     console.log(CheckForm)
-    console.log(e.currentTarget)
+   
     console.log('newSectionName' , newSectionName)
 
-    if (CheckList === true) {
-  console.log('Listtrue')
-  elListId.addEventListener("onChange", console.log("onChange"))
-  // setNewSectionName(true)
-    }
+  //   if (CheckList === true) {
+  // console.log('Listtrue')
+  // elListId.addEventListener("onChange", console.log("onChange"))
+  // // setNewSectionName(true)
+  //   }
     if (CheckList === false && CheckBtn === false && CheckForm === true) {
       console.log('Formtrue')
-      setNewSectionName(false)
+      // setNewSectionName(false)
         }
 //   setNewSectionName(true)
 // //   if (elListId !== undefined || null) {
@@ -364,7 +367,7 @@ async function CloseSectionList2 (e) {
 
 if (elForm !== undefined || null) {
   // console.log("elForm")
-  elForm.addEventListener("click", handleKeyDown);
+  elForm.addEventListener("click", handleKeyDown, false);
 };
 }
 
@@ -372,7 +375,8 @@ useEffect(() => {
   
   console.log(newSectionName)
   }, 
-   [ newSectionName])
+   [ newSectionName]);
+
       return ( 
         <FormWrapper
         
@@ -490,8 +494,8 @@ useEffect(() => {
           onChange={handleChange} />
           <BtnChageSection
          type="button"
-         id="listNewSection"
-         name="listNewSection"
+         id="listNewSectionBtn"
+         name="listNewSectionBtn"
          onClick={() => OpenSectionList()}>
           <BtnArrow/>
          </BtnChageSection>
