@@ -17,7 +17,7 @@ import { itemUpdate, imgUpdate
 import noimg from 'img/noimg.jpg'
 import { Button } from "components/Button/Button";
 import { getSections } from "redux/sections/sections-selector"
-
+import { useEffect } from "react";
 
 export default function ModalItemDetail ({
   //  itemsCategory, 
@@ -35,7 +35,7 @@ export default function ModalItemDetail ({
 
   const imgSavedCheck = useSelector(imgSaved);
   const sections = useSelector(getSections);
-  console.log("imgSavedCheck", imgSavedCheck)
+  // console.log("imgSavedCheck", imgSavedCheck)
   
  
 
@@ -65,7 +65,7 @@ console.log(saved)
   const itemDescriptionID = nanoid();
   const itemSectionID = nanoid();
  
-console.log(itemName, price)
+// console.log(itemName, price)
 
  async function handleChange  (e)  {
         const { name } = e.currentTarget;
@@ -83,6 +83,7 @@ console.log(itemName, price)
               setNewItemImg ( e.currentTarget.value);
             break;
             case 'newSection':
+              console.log(e.currentTarget.value)
               setNewSection ( e.currentTarget.value);
               setNewSectionName(false);
               // setNewSectionName ( e.currentTarget.value);
@@ -183,10 +184,11 @@ const filt =
 
 
 
-const OpenSectionList = () => {
+async function  OpenSectionList () {
   console.log('open')
   setNewSectionName(true)
-  ChooseSectionList()
+  console.log('NewSectionName', newSectionName)
+  CloseSectionList2()
 }
 
 
@@ -197,37 +199,37 @@ const OpenSectionList = () => {
 
 
 
-const ChooseSectionList = () => {
-  function handleKeyDown () {
-    console.log("clickkk");
-    setNewSectionName(false);
-};
-const list = document.getElementsByName("listNewSection")
-for (let i = 0; i < list.length; i++) {
+// const ChooseSectionList = () => {
+//   function handleKeyDown () {
+//     console.log("clickkk");
+//     setNewSectionName(false);
+// };
+// const list = document.getElementsByName("listNewSection")
+// for (let i = 0; i < list.length; i++) {
  
-  list[i].onchange = handleKeyDown
-}
-console.log (list)
-// const list2 = Array.from(list)
+//   list[i].onchange = handleKeyDown
+// }
+// console.log (list)
+// // const list2 = Array.from(list)
 
 
-// const el = document.getElementById("formWrap")
-// if (el !== undefined || null) {
-//   console.log("el")
-//   el.addEventListener("click", handleKeyDown, false);
-// };
+// // const el = document.getElementById("formWrap")
+// // if (el !== undefined || null) {
+// //   console.log("el")
+// //   el.addEventListener("click", handleKeyDown, false);
+// // };
 
 
-// if(list !== undefined) {
-//   console.log("list", list)
-//   console.log("lists", list2)
-//   // list[0].addEventListener("click", handleChange, false);
-// };
+// // if(list !== undefined) {
+// //   console.log("list", list)
+// //   console.log("lists", list2)
+// //   // list[0].addEventListener("click", handleChange, false);
+// // };
 
   
   
-CloseSectionList2()
-}
+// CloseSectionList2()
+// }
 
 // async function CloseSectionList () {
 
@@ -281,80 +283,99 @@ CloseSectionList2()
 // //   elForm.addEventListener("click", handleKeyDown, false);
 // };
 
-async function CloseSectionList2 () {
+async function CloseSectionList2 (e) {
 
   const el = await document.getElementsByName("listNewSection");
-  console.log('elList', el[0])
-  console.log('elList', el)
+  // console.log('elList', el[0])
+  // console.log('elList', el)
   const elListId = el[1];
   const elBtn = el[0];
 
   const elForm = document.getElementById("formWrap")
   
+  
+
 
   
   async function handleKeyDown (e) {
-    console.log("clickkk");
+    // console.log("clickkk");
     const CheckBtn =  e.composedPath().includes(elBtn);
     const CheckList = e.composedPath().includes(elListId);
     const CheckForm = e.composedPath().includes(elForm);
     console.log(CheckBtn)
     console.log(CheckList)
+    console.log(CheckForm)
     console.log(e.currentTarget)
+    console.log('newSectionName' , newSectionName)
 
-    if (CheckBtn || CheckList === true) {
-  console.log('true')
-  setNewSectionName(true)
-//   if (elListId !== undefined || null) {
-//   console.log("el")
-//   elListId.addEventListener("click", handleChange, false);
-// }
-}
-    
-    else {
-      console.log('false')
-      if (CheckForm === true) {
-        console.log('CheckForm', CheckForm)
-      setNewSectionName(false);}
+    if (CheckList === true) {
+  console.log('Listtrue')
+  elListId.addEventListener("onChange", console.log("onChange"))
+  // setNewSectionName(true)
     }
+    if (CheckList === false && CheckBtn === false && CheckForm === true) {
+      console.log('Formtrue')
+      setNewSectionName(false)
+        }
+//   setNewSectionName(true)
+// //   if (elListId !== undefined || null) {
+// //   console.log("el")
+// //   elListId.addEventListener("click", handleChange, false);
+// // }
+// }
+    
+//     else {
+      // console.log('false')
+    //   if (CheckForm === true) {
+    //     console.log('CheckForm', CheckForm)
+    //   // setNewSectionName(false);
+    // }
+    // }
     // setNewSectionName(false);
 };
 
 // const elForm = document.getElementById("formWrap")
-if (elForm !== undefined || null) {
-  console.log("el")
-  elForm.addEventListener("click", handleKeyDown, false);
-}
- 
-  // const elListId = await document.getElementById("listNewSection")
-  // const elForm = document.getElementById("formWrap")
-  console.log('elListId', elListId)
-  if (elListId !== undefined || null) {
-      console.log("el")
-      setNewSectionName(true)
-      elListId.addEventListener("click", handleChange, false);
-      // elListId.addEventListener("click", (e) => {
-      //   console.log("clickkk");
-      //   const withinBoundaries = e.composedPath().includes(elListId);
-      //   console.log(withinBoundaries)
-      //   console.log(e.composed);
-      //   console.log(e.composedPath());
-      // });
-    } else
-    {elForm.addEventListener("click", handleKeyDown, false)};
-
 // if (elForm !== undefined || null) {
 //   console.log("el")
 //   elForm.addEventListener("click", handleKeyDown, false);
-};
-
-
 // }
+ 
+  // const elListId = await document.getElementById("listNewSection")
+  // const elForm = document.getElementById("formWrap")
+  // console.log('elListId', elListId)
+  // if (elListId !== undefined || null) {
+  //     // console.log("elList")
+  //     setNewSectionName(true)
+  //     elListId.addEventListener("click", handleChange, false);
+  //     // elListId.addEventListener("click", (e) => {
+  //     //   console.log("clickkk");
+  //     //   const withinBoundaries = e.composedPath().includes(elListId);
+  //     //   console.log(withinBoundaries)
+  //     //   console.log(e.composed);
+  //     //   console.log(e.composedPath());
+  //     // });
+  //   } else
+  //   {elForm.addEventListener("click", handleKeyDown, false)};
 
+// if (elListId !== undefined || null) {
+//   console.log("elList")
+//   elListId.addEventListener("click", handleKeyDown);
+// };
 
+if (elForm !== undefined || null) {
+  // console.log("elForm")
+  elForm.addEventListener("click", handleKeyDown);
+};
+}
+
+useEffect(() => {
+  
+  console.log(newSectionName)
+  }, 
+   [ newSectionName])
       return ( 
         <FormWrapper
-        id="formWrap"
+        
         onClick={e => e.stopPropagation()}
         >
           <FormImgWrapper>
@@ -409,7 +430,7 @@ if (elForm !== undefined || null) {
           </div>
 
           <Form 
-          
+          id="formWrap"
         onClick={e => e.stopPropagation()}
         onSubmit={handleSubmit}
         >
