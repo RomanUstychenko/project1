@@ -17,7 +17,7 @@ import { itemUpdate, imgUpdate
 import noimg from 'img/noimg.jpg'
 import { Button } from "components/Button/Button";
 import { getSections } from "redux/sections/sections-selector"
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 export default function ModalItemDetail ({
   //  itemsCategory, 
@@ -285,13 +285,13 @@ async function  OpenSectionList () {
 
 async function CloseSectionList2 (e) {
 
-  const el = await document.getElementsByName("listNewSection");
-  const el2 = await document.getElementsByName("listNewSectionBtn");
+  // const el = await document.getElementsByName("listNewSection");
+  // const el2 = await document.getElementsByName("listNewSectionBtn");
   // const el3 = await document.getElementsByName("newSectionLabel");
   // console.log('elList', el[0])
   // console.log('elList', el)
-  const elListId = el[0];
-  const elBtn = el2[0];
+  // const elListId = el[0];
+  // const elBtn = el2[0];
   
   const elForm = document.getElementById("formWrap")
   
@@ -301,24 +301,27 @@ async function CloseSectionList2 (e) {
   
   async function handleKeyDown (e) {
     // console.log("clickkk");
-    const CheckBtn =  e.composedPath().includes(elBtn);
-    const CheckList = e.composedPath().includes(elListId);
+    // const CheckBtn =  e.composedPath().includes(elBtn);
+    // const CheckList = e.composedPath().includes(elListId);
     const CheckForm = e.composedPath().includes(elForm);
     
-    console.log(CheckBtn)
-    console.log(CheckList)
+    // console.log(CheckBtn)
+    // console.log(CheckList)
     console.log(CheckForm)
    
-    console.log('newSectionName' , newSectionName)
+    
 
   //   if (CheckList === true) {
   // console.log('Listtrue')
   // elListId.addEventListener("onChange", console.log("onChange"))
   // // setNewSectionName(true)
   //   }
-    if (CheckList === false && CheckBtn === false && CheckForm === true) {
+    if (
+      // CheckList === false &&
+      //  CheckBtn === false && 
+       CheckForm === true) {
       console.log('Formtrue')
-      // setNewSectionName(false)
+      setNewSectionName(false)
         }
 //   setNewSectionName(true)
 // //   if (elListId !== undefined || null) {
@@ -371,11 +374,11 @@ if (elForm !== undefined || null) {
 };
 }
 
-useEffect(() => {
+// useEffect(() => {
   
-  console.log(newSectionName)
-  }, 
-   [ newSectionName]);
+//   console.log(newSectionName)
+//   }, 
+//    [ newSectionName]);
 
       return ( 
         <FormWrapper
@@ -499,7 +502,7 @@ useEffect(() => {
          onClick={() => OpenSectionList()}>
           <BtnArrow/>
          </BtnChageSection>
-{newSectionName &&  
+{/* {newSectionName &&  
 <ListSectionChange
 id="listNewSection"
 name="listNewSection"
@@ -520,7 +523,7 @@ onChange={handleChange}
 
 /> {section.category}</LabelSection>  )}
 
-  </ListSectionChange>} 
+  </ListSectionChange>}  */}
         </FormInputListSection>
 
         <Button 
@@ -537,7 +540,30 @@ onChange={handleChange}
       text="Change Name"
       type="submit"
       />
+      
         </Form>
+        {newSectionName &&  
+<ListSectionChange
+id="listNewSection"
+name="listNewSection"
+value={section._id}
+onChange={handleChange}>
+  
+        {sections.map(section => 
+        <LabelSection
+        name="newSectionLabel"
+        id={itemSectionID}
+        >
+ <FormInputHidden
+// id={itemSectionID}
+type="radio"
+name="newSection"
+value={section._id}
+onChange={handleChange}
+
+/> {section.category}</LabelSection>  )}
+
+  </ListSectionChange>}
         </FormWrapper>
         
         );

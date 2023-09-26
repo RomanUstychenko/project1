@@ -84,8 +84,8 @@ height: 150px;
 export const ListSectionChange = styled.ul`
 z-index: 1000;
 position: absolute;
-top: 0 px;
-    right: 0px;
+bottom: -30px;
+right: 12px;
 display: flex;
 flex-direction: column;
 border: 1px solid #749574;
