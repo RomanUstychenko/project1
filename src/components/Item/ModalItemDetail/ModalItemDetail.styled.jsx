@@ -79,7 +79,17 @@ export const Img = styled.img`
 border-radius: 5px;
 width: 150px;
 height: 150px;
-    
+${FormInputLabelImg}:hover &,
+  :focus & {
+font-size: 100px;
+width: 500px;
+  }
+
+  &:hover,
+    &:focus {
+        cursor: pointer;
+        FormInputLabelImg.font-size: 100px;
+  }
 `
 export const ListSectionChange = styled.ul`
 z-index: 1000;
