@@ -262,9 +262,9 @@ if (elForm !== undefined || null) {
           name="image" 
           accept="image/png, image/jpeg, image/jpg, image/bmp"
           onChange={handleChangeUpload} />
-          <ButtonWrapper>
-          {!itemImg && <FormInputLabelImg htmlFor={itemImgID}>Add image</FormInputLabelImg>}
-         {itemImg && <FormInputLabelImg htmlFor={itemImgID}>Change image</FormInputLabelImg>} 
+          {/* <ButtonWrapper> */}
+          {!itemImg && <FormInputLabelImg className="my__unique__button__class-asdf123" htmlFor={itemImgID}>Add image</FormInputLabelImg>}
+         {itemImg && <FormInputLabelImg className="my__unique__button__class-asdf123" htmlFor={itemImgID}>Change image</FormInputLabelImg>} 
          {itemImg &&
           <ButtonDel 
         style={{
@@ -284,7 +284,7 @@ if (elForm !== undefined || null) {
         () => deleteImage()}
       />
           }
-          </ButtonWrapper>
+          {/* </ButtonWrapper> */}
         </FormInputListImg>
           </form>
             

@@ -7,10 +7,7 @@ z-index: 1;
 background-color: #919191;
     border: 1px solid rgb(7, 94, 138);
 `
-export const FormImgWrapper = styled.div`
-    display: block;
-    /* justify-content: space-between; */
-`
+
 export const FormInputHidden = styled.input`
     opacity: 0;
     width: 0;
@@ -35,8 +32,11 @@ margin-left: 6px;
     border: 1px solid #749574;
 `
 export const FormInputListImg = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     flex-wrap: wrap;
     align-content: space-between;
     
@@ -50,20 +50,8 @@ export const FormInputListSection = styled.div`
     margin-top: 25px;
     
 `
-export const FormInputLabelImg = styled.label`
-border: none;
-border-radius: 5px;
-margin-left: 10px;
-margin-top: 10px;
-padding: 3px 5px;
-background-color: ${props => props.theme.colors.btn};
-    font-size: 20px;
-     &:hover,
-       &:focus {
-        color: ${props => props.theme.colors.btnActive};
-        cursor: pointer;
-  }
-`
+
+
 
 export const Saved = styled.p`
 font-size: 20px;
@@ -75,22 +63,59 @@ export const Deleted = styled.p`
     color: red;
     text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 `
+
+
+
 export const Img = styled.img`
 border-radius: 5px;
 width: 150px;
 height: 150px;
-${FormInputLabelImg}:hover &,
-  :focus & {
-font-size: 100px;
-width: 500px;
+   
+`
+export const ImgA = styled(Img)`
+
+
+`
+
+export const FormImgWrapper = styled.div`
+position: relative;
+    display: block;
+    /* justify-content: space-between; */
+    /* &:hover .my__unique__button__class-asdf123  {
+        height: 290px;
+            border-radius:50px;
+            background-color: #fff;
+  } */
+     
+ 
+`
+
+export const FormInputLabelImg = styled.label`
+border: none;
+border-radius: 5px;
+margin-left: 10px;
+margin-top: 10px;
+padding: 3px 5px;
+background-color: ${props => props.theme.colors.btn};
+    font-size: 20px;
+
+    ${FormImgWrapper}:hover &, :focus & {
+    height: 290px;
+        border-radius:50px;
+        background-color: #fff;
+}
+
+     &:hover ,
+       &:focus {
+        color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
   }
 
-  &:hover,
-    &:focus {
-        cursor: pointer;
-        FormInputLabelImg.font-size: 100px;
-  }
 `
+
+
+
+
 export const ListSectionChange = styled.ul`
 z-index: 1000;
 position: absolute;
@@ -124,10 +149,12 @@ display: flex;
     height: 29px;
     align-items: center;
 `
+
 export const BtnArrow = styled(BiDownArrow)`
     /* color: red; */
     /* width: 100px;
     height:100px; */
+    
     &:hover,
        &:focus {
         color: ${props => props.theme.colors.btnActive};
