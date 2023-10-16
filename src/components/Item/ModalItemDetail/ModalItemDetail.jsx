@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, FormInputListImg, ListSectionChange, FormInputSection, FormInputListSection, BtnChageSection, LabelSection, BtnArrow } from "./ModalItemDetail.styled";
+import { HideAction, FormImgActionList, FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, FormInputListImg, ListSectionChange, FormInputSection, FormInputListSection, BtnChageSection, LabelSection, BtnArrow, FormImgAction } from "./ModalItemDetail.styled";
 import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/Input.styled";
 import {
   useSelector, 
@@ -245,48 +245,42 @@ if (elForm !== undefined || null) {
         onClick={e => e.stopPropagation()}
         >
           <FormImgWrapper>
-              <Img
-            src={itemImg || noimg} 
-            alt="img" 
-            loading='lazy'/>
-          <form
+             
+          <FormImgAction
           encType="multipart/form-data" 
           method="post"
           onClick={e => e.stopPropagation()}
           >
-          <FormInputListImg >
-         
-          <FormInputHidden 
-          id={itemImgID} 
-          type="file" 
-          name="image" 
-          accept="image/png, image/jpeg, image/jpg, image/bmp"
-          onChange={handleChangeUpload} />
-          {/* <ButtonWrapper> */}
-          {!itemImg && <FormInputLabelImg className="my__unique__button__class-asdf123" htmlFor={itemImgID}>Add image</FormInputLabelImg>}
-         {itemImg && <FormInputLabelImg className="my__unique__button__class-asdf123" htmlFor={itemImgID}>Change image</FormInputLabelImg>} 
-         {itemImg &&
-          <ButtonDel 
-        style={{
-          position: 'relative',
-          right: '0px',
-          height: '25px',
-          padding: '0px 0px',
-          width: '100px',
-          paddingLeft: '5px',
-          fontSize: 15,
-          color: '#010101',
-          backgroundColor: 'red',
-        }}
-      text="Delete image"
-      type="button"
-      onClick={ 
-        () => deleteImage()}
-      />
+            <FormImgActionList>
+             <Img
+            src={itemImg || noimg} 
+            alt="img" 
+            loading='lazy'/>
+            <HideAction>
+            {itemImg &&
+            <ButtonDel
+            type="button"
+            onClick={ 
+              () => deleteImage()}>
+X
+            </ButtonDel>
           }
-          {/* </ButtonWrapper> */}
-        </FormInputListImg>
-          </form>
+ <FormInputListImg >
+         
+         <FormInputHidden 
+         id={itemImgID} 
+         type="file" 
+         name="image" 
+         accept="image/png, image/jpeg, image/jpg, image/bmp"
+         onChange={handleChangeUpload} />
+         {!itemImg && <FormInputLabelImg className="my__unique__button__class-asdf123" htmlFor={itemImgID}>Add</FormInputLabelImg>}
+        {itemImg && <FormInputLabelImg className="my__unique__button__class-asdf123" htmlFor={itemImgID}>Change</FormInputLabelImg>} 
+       </FormInputListImg>
+            </HideAction>
+           
+         
+        </FormImgActionList>
+          </FormImgAction>
             
            
           </FormImgWrapper>

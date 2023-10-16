@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from "components/Button/Button";
+// import { Button } from "components/Button/Button";
 import {BiDownArrow} from 'react-icons/bi';
 
 export const FormWrapper = styled.div`
@@ -17,9 +17,27 @@ export const FormInputHidden = styled.input`
     padding: 0;
     margin: 0;
 `
-export const ButtonDel = styled(Button)`
-    
+export const ButtonDel = styled.button`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    right: 0px;
+    height: 25px;
+    width: 25px;
+    font-size: 15px;
+    color: #010101;
+    background-color: red;
+    border: none;
+    border-radius: 50%;
+    &:hover ,
+       &:focus {
+        color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  }
 `
+
+
 export const ButtonWrapper = styled.div`
     display: flex;
 `
@@ -31,16 +49,7 @@ margin-left: 6px;
     border-radius: 5px;
     border: 1px solid #749574;
 `
-export const FormInputListImg = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    /* flex-direction: column; */
-    flex-wrap: wrap;
-    align-content: space-between;
-    
-`
+
 export const FormInputListSection = styled.div`
     display: flex;
     position: relative;
@@ -67,6 +76,7 @@ export const Deleted = styled.p`
 
 
 export const Img = styled.img`
+
 border-radius: 5px;
 width: 150px;
 height: 150px;
@@ -78,7 +88,7 @@ export const ImgA = styled(Img)`
 `
 
 export const FormImgWrapper = styled.div`
-position: relative;
+/* position: relative; */
     display: block;
     /* justify-content: space-between; */
     /* &:hover .my__unique__button__class-asdf123  {
@@ -90,20 +100,45 @@ position: relative;
  
 `
 
+export const FormImgAction = styled.form`
+
+`
+export const FormImgActionList = styled.div`
+/* display: none; */
+margin-top: 10px;
+position: relative;
+
+
+`
+export const FormInputListImg = styled.div`
+/* display: none; */
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    align-content: space-between;
+    ${FormImgWrapper}:hover &, :focus & {
+    /* display: flex; */
+}
+    
+`
 export const FormInputLabelImg = styled.label`
+/* position: absolute; */
+bottom: 0px;
+left: 0px;
 border: none;
 border-radius: 5px;
-margin-left: 10px;
-margin-top: 10px;
+/* margin-left: 10px; */
+/* margin-top: 10px; */
 padding: 3px 5px;
 background-color: ${props => props.theme.colors.btn};
-    font-size: 20px;
+font-size: 20px;
+overflow: hidden;
 
-    ${FormImgWrapper}:hover &, :focus & {
-    height: 290px;
-        border-radius:50px;
-        background-color: #fff;
-}
+    
 
      &:hover ,
        &:focus {
@@ -161,4 +196,11 @@ export const BtnArrow = styled(BiDownArrow)`
         /* background-color: #c0bcbc; */
         cursor: pointer;
        }
+`
+
+export const HideAction = styled.div`
+display: none;
+${FormImgWrapper}:hover &, :focus & {
+    display: flex;
+}
 `
