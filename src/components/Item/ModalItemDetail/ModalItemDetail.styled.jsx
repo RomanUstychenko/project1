@@ -1,6 +1,19 @@
 import styled from 'styled-components';
-import { Button } from "components/Button/Button";
+// import { Button } from "components/Button/Button";
 import {BiDownArrow} from 'react-icons/bi';
+import { GrEdit } from "react-icons/gr";
+import { MdOutlineAddAPhoto } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
+
+export const ChangeImage = styled(GrEdit)`
+    
+`
+export const AddImage = styled(MdOutlineAddAPhoto)`
+    
+`
+export const DeleteImage = styled(MdDeleteForever)`
+    
+`
 
 export const FormWrapper = styled.div`
 z-index: 1;
@@ -17,9 +30,7 @@ export const FormInputHidden = styled.input`
     padding: 0;
     margin: 0;
 `
-export const ButtonDel = styled(Button)`
-    
-`
+
 export const ButtonWrapper = styled.div`
     display: flex;
 `
@@ -34,11 +45,11 @@ margin-left: 6px;
 export const FormInputListImg = styled.div`
     position: absolute;
     top: 0;
-    right: 0;
+    right: 50%;
     display: flex;
     /* flex-direction: column; */
     flex-wrap: wrap;
-    align-content: space-between;
+    /* align-content: space-between; */
     
 `
 export const FormInputListSection = styled.div`
@@ -91,6 +102,7 @@ position: relative;
 `
 
 export const FormInputLabelImg = styled.label`
+display: none;
 border: none;
 border-radius: 5px;
 margin-left: 10px;
@@ -100,9 +112,10 @@ background-color: ${props => props.theme.colors.btn};
     font-size: 20px;
 
     ${FormImgWrapper}:hover &, :focus & {
-    height: 290px;
-        border-radius:50px;
-        background-color: #fff;
+        display: block;
+    /* height: 290px; */
+        /* border-radius:50px; */
+        /* background-color: #fff; */
 }
 
      &:hover ,
@@ -113,7 +126,50 @@ background-color: ${props => props.theme.colors.btn};
 
 `
 
+export const ButtonDel = styled.button`
+margin-top: 10px;
+padding: 3px 5px;
+  background-color: ${props => props.theme.colors.btn};
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: inherit;
+    
+    height: 25px;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+      /* &:hover,
+       &:focus {
+        background-color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  } */
 
+
+
+display: none;
+position: relative;
+right: 0px;
+height: 25px;
+padding: 0px 0px;
+padding-left: 5px;
+font-size: 15;
+color: #010101;
+background-color: red;
+
+${FormImgWrapper}:hover &, :focus & {
+        display: block;
+    /* height: 290px; */
+        /* border-radius:50px; */
+        /* background-color: #fff; */
+}
+&:hover ,
+       &:focus {
+        background-color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  }
+`
 
 
 export const ListSectionChange = styled.ul`

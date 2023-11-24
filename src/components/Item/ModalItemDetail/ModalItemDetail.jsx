@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, FormInputListImg, ListSectionChange, FormInputSection, FormInputListSection, BtnChageSection, LabelSection, BtnArrow } from "./ModalItemDetail.styled";
+import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, FormInputListImg, ListSectionChange, FormInputSection, FormInputListSection, BtnChageSection, LabelSection, BtnArrow, ChangeImage, AddImage, DeleteImage } from "./ModalItemDetail.styled";
 import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/Input.styled";
 import {
   useSelector, 
@@ -263,26 +263,21 @@ if (elForm !== undefined || null) {
           accept="image/png, image/jpeg, image/jpg, image/bmp"
           onChange={handleChangeUpload} />
           {/* <ButtonWrapper> */}
-          {!itemImg && <FormInputLabelImg className="my__unique__button__class-asdf123" htmlFor={itemImgID}>Add image</FormInputLabelImg>}
-         {itemImg && <FormInputLabelImg className="my__unique__button__class-asdf123" htmlFor={itemImgID}>Change image</FormInputLabelImg>} 
+          {!itemImg && <FormInputLabelImg  htmlFor={itemImgID}>
+            <AddImage/>
+            </FormInputLabelImg>}
+         {itemImg && <FormInputLabelImg  htmlFor={itemImgID}>
+          <ChangeImage/>
+          </FormInputLabelImg>} 
          {itemImg &&
-          <ButtonDel 
-        style={{
-          position: 'relative',
-          right: '0px',
-          height: '25px',
-          padding: '0px 0px',
-          width: '100px',
-          paddingLeft: '5px',
-          fontSize: 15,
-          color: '#010101',
-          backgroundColor: 'red',
-        }}
-      text="Delete image"
+      <ButtonDel
       type="button"
-      onClick={ 
-        () => deleteImage()}
-      />
+    onClick={ 
+      () => deleteImage()}
+      >
+      <DeleteImage/>
+
+      </ButtonDel>
           }
           {/* </ButtonWrapper> */}
         </FormInputListImg>
