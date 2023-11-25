@@ -197,7 +197,6 @@ export const LabelSection = styled.label`
 `
 
 export const BtnChageSection = styled.button`
-/* z-index: 1000; */
 display: flex;
     position: absolute;
     top: 0;
@@ -207,11 +206,7 @@ display: flex;
 `
 
 export const BtnArrow = styled(BiDownArrow)`
-    /* color: red; */
-    /* width: 100px;
-    height:100px; */
-    
-    &:hover,
+     &:hover,
        &:focus {
         color: ${props => props.theme.colors.btnActive};
         /* background-color: #c0bcbc; */
