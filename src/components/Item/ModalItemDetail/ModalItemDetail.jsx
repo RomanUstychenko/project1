@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, FormInputListImg, ListSectionChange, FormInputSection, FormInputListSection, BtnChageSection, LabelSection, BtnArrow, ChangeImage, AddImage, DeleteImage } from "./ModalItemDetail.styled";
+import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, FormInputListImg, ListSectionChange, FormInputSection, FormInputListSection, BtnChageSection, LabelSection, BtnArrow, ChangeImage, AddImage, DeleteImage, FormImgAction } from "./ModalItemDetail.styled";
 import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/Input.styled";
 import {
   useSelector, 
@@ -249,12 +249,12 @@ if (elForm !== undefined || null) {
             src={itemImg || noimg} 
             alt="img" 
             loading='lazy'/>
-          <form
+          <FormImgAction
           encType="multipart/form-data" 
           method="post"
           onClick={e => e.stopPropagation()}
           >
-          <FormInputListImg >
+          {/* <FormInputListImg > */}
          
           <FormInputHidden 
           id={itemImgID} 
@@ -280,8 +280,8 @@ if (elForm !== undefined || null) {
       </ButtonDel>
           }
           {/* </ButtonWrapper> */}
-        </FormInputListImg>
-          </form>
+        {/* </FormInputListImg> */}
+          </FormImgAction>
             
            
           </FormImgWrapper>

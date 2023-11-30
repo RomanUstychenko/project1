@@ -42,14 +42,21 @@ margin-left: 6px;
     border-radius: 5px;
     border: 1px solid #749574;
 `
-export const FormInputListImg = styled.div`
-    position: absolute;
-    top: 0;
-    right: 50%;
+export const FormImgAction = styled.form`
     display: flex;
-    /* flex-direction: column; */
+    /* width: 100%; */
+    position: absolute;
+    top: 0%;
+    right: 50%;
+    transform: translate(+50%, 0%);
     flex-wrap: wrap;
-    /* align-content: space-between; */
+    align-content: space-between;
+`
+export const FormInputListImg = styled.div`
+    
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
     
 `
 export const FormInputListSection = styled.div`
@@ -102,67 +109,52 @@ position: relative;
 `
 
 export const FormInputLabelImg = styled.label`
+
 display: none;
 border: none;
 border-radius: 5px;
-margin-left: 10px;
 margin-top: 10px;
-padding: 3px 5px;
+padding: 3px ;
 background-color: ${props => props.theme.colors.btn};
-    font-size: 20px;
+box-sizing: border-box;
+font-size: 20px;
+height: 30px;
+width: 30px;
+text-decoration: none;
+font-family: inherit;
+transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     ${FormImgWrapper}:hover &, :focus & {
-        display: block;
-    /* height: 290px; */
-        /* border-radius:50px; */
-        /* background-color: #fff; */
+        display: inline;
 }
 
      &:hover ,
        &:focus {
-        color: ${props => props.theme.colors.btnActive};
+        background-color: green;
         cursor: pointer;
   }
 
 `
 
 export const ButtonDel = styled.button`
-margin-top: 10px;
-padding: 3px 5px;
-  background-color: ${props => props.theme.colors.btn};
-    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    border: none;
-border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    font-family: inherit;
-    
-    height: 25px;
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-      0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-      /* &:hover,
-       &:focus {
-        background-color: ${props => props.theme.colors.btnActive};
-        cursor: pointer;
-  } */
-
-
-
 display: none;
-position: relative;
-right: 0px;
-height: 25px;
-padding: 0px 0px;
-padding-left: 5px;
-font-size: 15;
-color: #010101;
+border: none;
+border-radius: 5px;
+margin-top: 10px;
+margin-left: 25px;
+padding: 3px ;
 background-color: red;
+font-size: 20px;
+height: 30px;
+width: 30px;
+text-decoration: none;
+font-family: inherit;
+transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+
 
 ${FormImgWrapper}:hover &, :focus & {
-        display: block;
-    /* height: 290px; */
-        /* border-radius:50px; */
-        /* background-color: #fff; */
+        display: inline;
 }
 &:hover ,
        &:focus {
