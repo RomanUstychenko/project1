@@ -22,7 +22,13 @@ export default function LivePage() {
     const dispatch = useDispatch();
     const sections = useSelector(getSections);
     const items = useSelector(getItemsLive);
-// console.log(items)
+
+    
+
+console.log(sections)
+
+console.log(items)
+
     useEffect(() => {
       
         dispatch(allUsers())
@@ -53,11 +59,14 @@ export default function LivePage() {
     <List key={nanoid()}>
       <Menu>Menu</Menu>
        {sections.map(section =>
+       
         <LiveItemsSections
+        
         key={nanoid()}
         section={section}
-        item={items.filter(i => 
+        items={items.filter(i => 
           i.section === section._id)}
+        item={items}
         />  )
 }
     </List>

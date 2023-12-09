@@ -3,43 +3,70 @@ import noimg from 'img/noimg.jpg'
 import {List, 
   // ListLive,
    Title, ImgLive, ItemList, ItemsGroup, ItemTitle, ItemDescription, Item} from './LiveItemsSections.styled'
+   import { useState } from 'react';
+   import { Modal } from "components/common/Modal/Modal";
+    // import LiveItemsList from "components/Live/LiveItemsList/LiveItemsList.jsx"
+import  LiveModalItemDetail  from "components/Live/LiveModalItemDetail/LiveModalItemDetail.jsx"
 
-// const btnId = nanoid();
-// const sectionId = nanoid();
 
 
 
-function LiveItemsSections ({section, item}) {
+function LiveItemsSections ({section, items, 
+  // item
+}) {
+
+  
+
+  const [modalDetailActive, setModalDetailActive] = useState(false);
+  const [openDetailsId, setOpenDetailsId] = useState("");
+
+  function openModal (list) {
+    setOpenDetailsId(list._id)
+    setModalDetailActive(true)
+  }
+
+  function closeModal () {
+      setModalDetailActive(false)
+      document.body.style.overflow = '';
+    }
+
+
  
   const { 
     category,
   } = section;
   
-  const buttons = [
+  const groups = [
     {
-      btn: category,
-      list: item,
+      category: category,
+      list: items,
+      item: items.filter(item => item._id === openDetailsId)
     }
   
   ];
   
-  return (
-   
-      // <ListLive key={nanoid()}>     // </ListLive>
 
-      <>
-                  {buttons.map(b => (
-              <List
-              key={nanoid()}>
+
+  
+
+
+  return (
+   <>
+                  {groups.map(g => (
+                  
+              <List key={nanoid()}>
                <b> <Title
-                key={nanoid()}>{b.btn}</Title> </b>
+                key={nanoid()}>{g.category}</Title> </b>
                 <ul>
-                {b.list.map(list => (
+                {g.list.map(list => (
                   
                 <ItemList 
-                key={nanoid()}
                 
-                > <ItemsGroup>
+                key={list._id}
+                onClick={() => openModal (list)}
+                >
+                  
+                   <ItemsGroup>
                   <ItemTitle>  <p>{list.itemName}</p></ItemTitle>
                   <ItemDescription>  <p>{list.description}</p></ItemDescription>
                   <Item><p>Price:</p>  <p>{list.price} </p></Item>
@@ -50,16 +77,38 @@ function LiveItemsSections ({section, item}) {
                   loading='lazy' 
                   />
                   </ItemList>
-                  
                 ))}
                 </ul>
               </List>
-              
+              ) 
               )
-              
-              )}
+              }
+
+           { modalDetailActive && (
+                <Modal
+                onClick={() => closeModal ()}
+                active={modalDetailActive}
+                setActive={setModalDetailActive}
+                >
+                 {groups.map(g => (
+                  <>
+                    {g.item.map(i =>
+                  <LiveModalItemDetail 
+                itemName={i.itemName} 
+                price={i.price}
+                description={i.description}
+                itemImg={i.itemImg}
+                _id={i._id}
+                section={category}
+                closeModal={closeModal}
+                setModalDetailActive={setModalDetailActive}
+                />
+                    )}
+                   </>
+                    ))}                                          
+                </Modal>
+               )}
        </>     
-  
   );
 }
 

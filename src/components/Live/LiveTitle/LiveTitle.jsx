@@ -12,7 +12,7 @@ export default function LiveTitle() {
   const location = useLocation();
   const category = (location.pathname.split('/')[2])
   const user = users.find(user => user._id === category)
-  console.log(user)
+  // console.log(user)
   const chekName = Boolean(user)
   const items = chekName ? [
    
@@ -28,11 +28,14 @@ export default function LiveTitle() {
   return (
     <List >
       {chekName ? items.map(({id, to, text}) => {
-       console.log({to})
-       console.log({text})
+      //  console.log({to})
+      //  console.log({text})
             return (
                 
-                    <Link  to={to} end>{text}</Link>
+                    <Link  
+                    key={id}
+                    to={to} 
+                    end>{text}</Link>
                 
             )})
          : <></> }

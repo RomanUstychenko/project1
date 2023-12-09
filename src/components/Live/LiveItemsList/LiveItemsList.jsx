@@ -1,95 +1,107 @@
-// import scss from "./ContactList.module.scss"
-import { useSelector, 
-  useDispatch
- } from 'react-redux';
-// import { useState } from 'react';
-// import { getItems,
-//   //  getItemsByCategory
-//    } from 'redux/items/items-selector';
-import  { getFilter }from 'redux/filter/filter-selector';
-// import { deleteItem,  geItemsByCategory} from "redux/items/items-operation";
-import ItemInList from "components/Item/ItemInList/ItemInList";
-
-import { useLocation,
-  //  useSearchParams
-   } from 'react-router-dom';
-   
-import { useEffect } from "react";
-import { fetchSections } from "redux/sections/sections-operation"
-import { 
-  // fetchItems,
-   geItemsByCategory } from "redux/items/items-operation"
-
-
-   
-
- export const ItemList = ({itemsCategory, items}) => {
-
-  const location = useLocation();
-
-  const category = location.pathname.split('/')[2];
-// console.log("category", category)
-
-const dispatch = useDispatch();
-console.log(itemsCategory)
-    // const items = useSelector(getItems);
-    // console.log(items)
-    // const itemsCategory = useSelector(getItemsByCategory);
-
-    const filter = useSelector(getFilter);
-    // const dispatch = useDispatch();
-
-    // if (category === "first") {dispatch(geItemsByCategory({category: category}))}
-
-    const getFilteredItem = () => {
-        if (!filter) {
-          return itemsCategory;
-        }
-            const normalizedFilter = filter.toLocaleLowerCase();
-            const filteredItem = itemsCategory.filter(({itemName}) => {
-            const nornalizedName = itemName.toLocaleLowerCase();
-            const result = nornalizedName.includes(normalizedFilter);
-            return result;
-          })
-          return filteredItem;
-        };
-
-// console.log(items)
-// if (category === items.section) {dispatch(geItemsByCategory({category: category}))}
+import { nanoid } from 'nanoid';
+import noimg from 'img/noimg.jpg'
+import {List, 
+  // ListLive,
+   Title, ImgLive, ItemList, ItemsGroup, ItemTitle, ItemDescription, Item} from './LiveItemsList.styled'
+   import { useState } from 'react';
+   import { Modal } from "components/common/Modal/Modal";
+   import { fetchItems } from "redux/items/items-operation"; 
+   import { 
+    // useSelector, 
+    useDispatch } from 'react-redux';
+import  LiveModalItemDetail  from "components/Live/LiveModalItemDetail/LiveModalItemDetail.jsx"
+// const btnId = nanoid();
+// const sectionId = nanoid();
 
 
 
-useEffect(() => {
-  // dispatch(fetchItems());
-  dispatch(fetchSections());
+function LiveItemsList ({section, items, item, modalDetailActive, setModalDetailActive}) {
 
-  
-    if (category === undefined) {
-      console.log("undef")
+  const dispatch = useDispatch();
+
+  // const [modalDetailActive, setModalDetailActive] = useState(false);
+
+  function closeModal () {
+    dispatch(fetchItems());
+      setModalDetailActive(false)
+      document.body.style.overflow = '';
     }
-    else {
-     
-      dispatch(geItemsByCategory({category: category}))
+ 
+  const { 
+    category,
+  } = section;
+  console.log("item", item)
+  console.log("items", items)
+  const buttons = [
+    {
+      btn: category,
+      list: items,
     }
   
-  }, 
-   [ dispatch, category, items])
+  ];
+  // console.log("btn",)
+  return (
+   
+      // <ListLive key={nanoid()}>     // </ListLive>
 
-
-
-
-    return (
       <>
-            <ul>
-            {getFilteredItem().map(filteredItem => 
-              <ItemInList
-              key={filteredItem._id}
-              itemsCategory={itemsCategory}
-              filteredItem={filteredItem}/>
-     )} 
-         </ul>
-         
-         </>
-    )
+                  {/* {buttons.map(b => (
+                  
+              <List key={nanoid()}>
+               <b> <Title
+                key={nanoid()}>{b.btn}</Title> </b>
+                <ul>
+                {b.list.map(list => (
+                  
+                <ItemList 
+                key={nanoid()}
+                onClick={() => setModalDetailActive(true)}
+                > <ItemsGroup>
+                  <ItemTitle>  <p>{list.itemName}</p></ItemTitle>
+                  <ItemDescription>  <p>{list.description}</p></ItemDescription>
+                  <Item><p>Price:</p>  <p>{list.price} </p></Item>
+                  </ItemsGroup>
+                  <ImgLive 
+                  src={list.itemImg || noimg} 
+                  alt="img" 
+                  loading='lazy' 
+                  />
+                  </ItemList>
+                ))}
+                </ul>
+              </List>
+              ) 
+              )
+              } */}
 
-         }
+           {/* { modalDetailActive && ( */}
+                <Modal
+                onClick={() => closeModal ()}
+                active={modalDetailActive}
+                setActive={setModalDetailActive}
+                
+                >
+                 {/* {item.map(i =>  */}
+                  <LiveModalItemDetail 
+                // onClick={e => e.stopPropagation()}
+                itemName={item.itemName}
+                price={item.price}
+                description={item.description}
+                itemImg={item.itemImg}
+                _id={item._id}
+                section={category}
+                closeModal={closeModal}
+                setModalDetailActive={setModalDetailActive}
+      
+                // onClick={e => e.stopPropagation()}
+                />
+                  {/* )}  */}
+                
+                </Modal>
+               {/* )} */}
+       </>     
+  
+  );
+}
+
+export default LiveItemsList;
