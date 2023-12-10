@@ -10,7 +10,6 @@ export const ItemFilterLabel = styled.label`
 export const ItemFilterInput = styled.input`
     max-width: 150px;
     padding-left: 10px;
-    /* width: 300px; */
     height: 25px;
     border-radius: 5px;
     border: 1px solid #749574;

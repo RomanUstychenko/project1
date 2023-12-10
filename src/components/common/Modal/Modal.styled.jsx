@@ -2,7 +2,8 @@ import styled
 //  {keyframes} 
  from 'styled-components';
 // import { device } from 'Device';
-import {IoMdCloseCircleOutline} from 'react-icons/io';
+// import {IoMdCloseCircleOutline} from 'react-icons/io';
+import { IoClose } from "react-icons/io5";
 
 
 export const Wrapp = styled.div`
@@ -33,17 +34,17 @@ transition: 1s;
 `
 export const CloseBtn = styled.button`
 position: absolute;
-top: 5px;
-right: 5px;
+top: 0px;
+right: 0px;
 background-color: transparent;
 border: none;
 padding: 0;
 
 `
-export const CloseIcon = styled(IoMdCloseCircleOutline)`
+export const CloseIcon = styled(IoClose)`
 color: #2e2828;
-width:20px;
-height: 20px;
+width:30px;
+height: 30px;
 &:hover,
        &:focus {
         color: ${props => props.theme.colors.btnActive};

@@ -35,7 +35,7 @@ export const ButtonWrapper = styled.div`
     display: flex;
 `
 export const FormInputSection = styled.input`
-margin-left: 6px;
+    margin-left: 6px;
     padding-left: 10px;
     width: 180px;
     height: 25px;
@@ -96,6 +96,7 @@ export const ImgA = styled(Img)`
 `
 
 export const FormImgWrapper = styled.div`
+margin-top: 5px;
 position: relative;
     display: block;
     /* justify-content: space-between; */

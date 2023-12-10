@@ -1,35 +1,18 @@
 // import { useState } from "react";
 // import { nanoid } from "nanoid";
-import { FormWrapper, FormImgWrapper, Img, ListDetails } from "./LiveModalItemDetail.styled";
-// import {
-//   useSelector, 
-//   // useDispatch 
-// } from 'react-redux';
+import { FormWrapper, FormImgWrapper, Img, ListDetails, ItemName, Description, Price } from "./LiveModalItemDetail.styled";
 
- 
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// // import { Formik } from 'formik';
-// import { useLocation,
-//   //  useSearchParams
-//    } from 'react-router-dom';
 import noimg from 'img/noimg.jpg'
 
-// import { getSections } from "redux/sections/sections-selector"
-// import { useEffect } from "react";
 
 export default function LiveModalItemDetail ({
-  //  itemsCategory, 
-  itemName,
+   itemName,
    price, 
    description, 
   //  _id,
-   itemImg,
-   section,
-
-
+   itemImg
 }) {
 
-  // const sections = useSelector(getSections);
  
   // const itemImgID = nanoid();
   // const itemNameID = nanoid();
@@ -37,7 +20,7 @@ export default function LiveModalItemDetail ({
   // const itemDescriptionID = nanoid();
   // const itemSectionID = nanoid();
  
-console.log(section)
+
 
       return ( 
         <FormWrapper
@@ -51,12 +34,11 @@ console.log(section)
             loading='lazy'/>
          
           </FormImgWrapper>
-          
-            <ListDetails><span>{itemName}</span></ListDetails> 
-            <ListDetails>price <span>{price}</span></ListDetails> 
-            <ListDetails><span>{description}</span></ListDetails> 
-            {/* <ListDetails>section <span>{section}</span></ListDetails> */}
-        
+          <ListDetails>
+            <ItemName>{itemName}</ItemName>
+            <Description>{description}</Description>
+            <Price>Price: {price}</Price> 
+            </ListDetails>
     
        
         </FormWrapper>
