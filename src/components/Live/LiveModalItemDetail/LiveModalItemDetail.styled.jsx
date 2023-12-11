@@ -33,6 +33,8 @@ export const ItemName = styled.li`
 export const Description = styled.li`
 max-height: 210px;
 overflow-y: scroll;
+/* overflow: hidden; */
+text-overflow: ellipsis;
 `
 export const Price = styled.li`
 position: absolute;

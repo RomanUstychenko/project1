@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import noimg from 'img/noimg.jpg'
 import {List, 
   // ListLive,
-   Title, ImgLive, ItemList, ItemsGroup, ItemTitle, ItemDescription, Item} from './LiveItemsSections.styled'
+   Title, ImgLive, ItemList, ItemsGroup, ItemTitle, ItemDescription, ItemPrice, ItemDescriptionList} from './LiveItemsSections.styled'
    import { useState } from 'react';
    import { Modal } from "components/common/Modal/Modal";
     // import LiveItemsList from "components/Live/LiveItemsList/LiveItemsList.jsx"
@@ -67,9 +67,12 @@ function LiveItemsSections ({section, items,
                 >
                   
                    <ItemsGroup>
-                  <ItemTitle>  <p>{list.itemName}</p></ItemTitle>
-                  <ItemDescription>  <p>{list.description}</p></ItemDescription>
-                  <Item><p>Price:</p>  <p>{list.price} </p></Item>
+                  <ItemTitle>{list.itemName}</ItemTitle>
+                  <ItemDescriptionList>
+                  <ItemDescription>{list.description}</ItemDescription>
+                  </ItemDescriptionList>
+                  
+                  <ItemPrice> Price: {list.price} </ItemPrice>
                   </ItemsGroup>
                   <ImgLive 
                   src={list.itemImg || noimg} 

@@ -24,10 +24,31 @@ font-family: inherit;
 
 `
 export const FormInput = styled.input`
-font-size: 15px;
+font-family: 'Times New Roman', Times, serif;
+font-size: 17px;
 margin-top: 10px;
     padding-left: 10px;
     max-width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid #749574;
+`
+export const FormInputDescription = styled.textarea`
+font-family: 'Times New Roman', Times, serif;
+font-size: 17px;
+margin-top: 10px;
+    padding-left: 10px;
+    max-width: 100%;
+    height: 100px;
+    border-radius: 5px;
+    border: 1px solid #749574;
+`
+export const FormInputSection = styled.input`
+font-family: 'Times New Roman', Times, serif;
+font-size: 17px;
+    margin-left: 6px;
+    padding-left: 10px;
+    width: 180px;
     height: 25px;
     border-radius: 5px;
     border: 1px solid #749574;

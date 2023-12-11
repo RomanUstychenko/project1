@@ -34,14 +34,7 @@ export const FormInputHidden = styled.input`
 export const ButtonWrapper = styled.div`
     display: flex;
 `
-export const FormInputSection = styled.input`
-    margin-left: 6px;
-    padding-left: 10px;
-    width: 180px;
-    height: 25px;
-    border-radius: 5px;
-    border: 1px solid #749574;
-`
+
 export const FormImgAction = styled.form`
     display: flex;
     /* width: 100%; */
