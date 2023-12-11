@@ -59,13 +59,15 @@ height: 20px;
 font-size: 17px;
 `
 export const ItemDescriptionList = styled.div`
+margin-top: 4px;
+margin-bottom: 4px;
 height: 50px;
 max-width: 200px;
 `
 export const ItemDescription = styled.p`
-padding: 3px;
-/* padding-left: 3px;
-padding-right: 3px; */
+/* padding: 3px; */
+padding-left: 3px;
+padding-right: 3px;
 height: 40px;
 font-size: 11px;
 overflow: hidden;
