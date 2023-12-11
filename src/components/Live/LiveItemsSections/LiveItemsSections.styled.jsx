@@ -48,31 +48,35 @@ export const ItemList = styled.li`
 text-overflow: ellipsis;
 `;
 export const ItemsGroup = styled.div`
+padding-top: 5px;
+padding-bottom: 5px;
   /* display:flex; */
   width: 100%;
 `
 export const ItemTitle = styled.p`
-height: 15px;
-  font-size: 12px;
+color: grey;
+height: 20px;
+font-size: 15px;
 `
 export const ItemDescriptionList = styled.div`
-height: 70px;
+height: 50px;
 max-width: 200px;
 `
 export const ItemDescription = styled.p`
 padding-left: 3px;
 padding-right: 3px;
-height: 70px;
+height: 40px;
+font-size: 11px;
 overflow: hidden;
 text-overflow: ellipsis;
 display: -webkit-box;
--webkit-line-clamp: 7;
+-webkit-line-clamp: 3;
 -webkit-box-orient: vertical;
 
-  font-size: 8px;
 `
 export const ItemPrice = styled.p`
-height: 15px;
-font-size: 10px;
+/* height: 15px; */
+font-size: 20px;
   display: flex;
+  color: #883030;
 `
