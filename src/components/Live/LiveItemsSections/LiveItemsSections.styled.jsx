@@ -56,15 +56,16 @@ padding-bottom: 5px;
 export const ItemTitle = styled.p`
 color: grey;
 height: 20px;
-font-size: 15px;
+font-size: 17px;
 `
 export const ItemDescriptionList = styled.div`
 height: 50px;
 max-width: 200px;
 `
 export const ItemDescription = styled.p`
-padding-left: 3px;
-padding-right: 3px;
+padding: 3px;
+/* padding-left: 3px;
+padding-right: 3px; */
 height: 40px;
 font-size: 11px;
 overflow: hidden;
@@ -76,7 +77,7 @@ display: -webkit-box;
 `
 export const ItemPrice = styled.p`
 /* height: 15px; */
-font-size: 20px;
+font-size: 17px;
   display: flex;
   color: #883030;
 `
