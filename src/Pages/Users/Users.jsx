@@ -4,9 +4,10 @@ import { nanoid } from "nanoid";
 import { getUser } from "redux/auth/auth-selector";
 import { userUpdate } from "redux/auth/auth-operation";
 // import { Navigate } from "react-router-dom"
-import { GoBack } from "./Users.styled";
+import {FormLogo, DataWrapper, DataLabel, DataInput, FormData, GoBackWrap, GoBack, ImgWraper, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Formik } from 'formik';
+import { Button } from "components/Button/Button";
 
 export default function Users() {
 
@@ -16,12 +17,21 @@ export default function Users() {
     const chekName = Boolean(user)
 
     const dispatch = useDispatch();
-const [name, setName] = useState('');
+const [updName, setName] = useState(user.name);
+const [updPhone, setUpdPhone] = useState(user.pnone);
+const [updDescription, setUpdDescription] = useState(user.description);
+const [updAddress, setUpdAddress] = useState(user.address);
+
 // const [onAddFile, setOnAddFile] = useState(null);
 // const [preview, setPreview] = useState('');
 
 const userNameID = nanoid();
-console.log(name)
+const userPhoneID = nanoid();
+const userDescriptionID = nanoid();
+const userAddressID = nanoid();
+const userPhotoID = nanoid();
+console.log(updName)
+console.log(updPhone)
 
 const handleChange = (e) => {
   const { name } = e.currentTarget;
@@ -29,7 +39,16 @@ const handleChange = (e) => {
         switch (name) {
           case 'name':
             setName ( e.currentTarget.value);
-            break;
+          break;
+          case 'phone':
+            setUpdPhone ( e.currentTarget.value);
+          break;
+          case 'description':
+            setUpdDescription ( e.currentTarget.value);
+          break;
+          case 'address':
+            setUpdAddress ( e.currentTarget.value);
+          break;
           default:
             break;
         }
@@ -45,7 +64,11 @@ const handleChange = (e) => {
       // else {
 
             dispatch(userUpdate(
-             {name}
+             {name: updName, 
+              phone: updPhone,
+              address: updAddress,
+              description: updDescription,
+            }
               )
               )}
             // }
@@ -77,46 +100,32 @@ const handleChangeUpload = e => {
 
   return (
     <>
+    <GoBackWrap>
     <GoBack
     to={"/items"} 
     end
-    >Close</GoBack>
-    <div>{chekName ? <p>
-    <img src={user.logoURL} alt="avatar" />
-    Welcome, <b>{user.name}</b></p> : <p>Welcome, <b>User</b></p> }</div>
+    >Close setting</GoBack>
+    </GoBackWrap>
+    
+    <ImgWraper>
+    {chekName ? 
+    <>
+    
+    <p> Welcome, <b>{user.name}</b></p>
+    <Img src={user.logoURL} alt="avatar" />
+    </>
+    : <p>Welcome, <b>User</b></p> }
+    </ImgWraper>
 
-
-        <form 
-        onClick={e => e.stopPropagation()}
-        onSubmit={handleSubmit}
-        >
-        <div>
-          <label htmlFor={userNameID}>UserName</label>
-          <input 
-          // className={scss.formInputName}
-          id={userNameID} 
-          type="text" 
-          name="name" 
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          defaultValue={user.name} 
-          onChange={handleChange} />
-        </div>
-        
-        <button 
-        type="submit">Change</button>
-        </form>
-        
-        <form 
+    <FormLogo 
         encType="multipart/form-data" 
         method="post"
         onClick={e => e.stopPropagation()}
         // onSubmit={handleChangeUpload}
         >
-          <input 
+          <FormInputHidden 
           
-          id={userNameID} 
+          id={userPhotoID} 
           type="file" 
           name="logo" 
           accept="image/png, image/jpeg, image/jpg, image/bmp"
@@ -125,11 +134,97 @@ const handleChangeUpload = e => {
           // defaultValue={user.avatarURL} 
           // onChange={handleChangeAvatar} 
           />
-      
+      <LabelLogo
+      htmlFor={userPhotoID}>
+        Change Logo
+      </LabelLogo>
 {/*         
         <button 
         type="submit">Change Logo</button> */}
-        </form>
+        </FormLogo>
+
+
+        <FormData 
+        onClick={e => e.stopPropagation()}
+        onSubmit={handleSubmit}
+        >
+          <DataWrapper>
+          <DataLabel
+          htmlFor={userNameID}>
+            Name
+          </DataLabel>   
+          <DataInput 
+          id={userNameID} 
+          type="text" 
+          name="name" 
+          placeholder="name of the place"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          defaultValue={user.name} 
+          onChange={handleChange} />
+        </DataWrapper>
+        <DataWrapper>
+        <DataLabel
+          htmlFor={userPhoneID}>
+            Phone
+          </DataLabel>
+        <DataInput 
+        id={userPhoneID} 
+        type="text" 
+        name="phone" 
+        minLength="13"
+        placeholder="+31234567890"
+        pattern="\+?[0-9\s\-\(\)]+"
+        defaultValue={user.phone} 
+        onChange={handleChange} />
+        </DataWrapper>
+        <DataWrapper>
+          <DataLabel
+          htmlFor={userAddressID}>
+            Address
+          </DataLabel>
+          <DataInput 
+          id={userAddressID} 
+          type="text" 
+          name="address" 
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          defaultValue={user.address} 
+          onChange={handleChange} />
+      </DataWrapper>
+      <DataWrapper>
+          <DataLabel
+          htmlFor={userDescriptionID}>
+            Description
+          </DataLabel>
+          <input 
+          id={userDescriptionID} 
+          type="text" 
+          name="description" 
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          defaultValue={user.description} 
+          onChange={handleChange} />
+      </DataWrapper>
+      <Button 
+      style={{
+        position: 'relative',
+        right: '0px',
+        height: '25px',
+        padding: '0px 0px',
+        minWidth: '100px',
+        fontSize: 15,
+        color: '#010101'
+      }}
+  
+    text="save changes"
+    type="submit"
+    />
+    </FormData>
+
     </>
   )
 }

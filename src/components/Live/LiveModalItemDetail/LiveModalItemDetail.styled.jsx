@@ -32,7 +32,7 @@ export const ItemName = styled.li`
 `
 export const Description = styled.li`
 max-height: 210px;
-overflow-y: scroll;
+overflow-y: auto;
 /* overflow: hidden; */
 text-overflow: ellipsis;
 `

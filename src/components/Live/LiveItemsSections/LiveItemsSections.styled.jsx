@@ -59,6 +59,9 @@ height: 20px;
 font-size: 17px;
 `
 export const ItemDescriptionList = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
 margin-top: 4px;
 margin-bottom: 4px;
 height: 50px;

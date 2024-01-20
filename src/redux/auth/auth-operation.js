@@ -91,7 +91,9 @@ export const userUpdate = createAsyncThunk(
         console.log(userData)
       try {
         const result = await api.userUpdate(userData);
+        console.log(result)
         return result;
+        
       } catch ({response}) {
         const error = {
             status: response.status,
