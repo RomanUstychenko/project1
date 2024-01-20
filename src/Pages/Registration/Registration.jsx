@@ -116,7 +116,7 @@ if (isUserRegister) {
           height: '35px',
         }}
         text="Registration"
-        type="button"
+        type="submit"
         />
        </form>
       

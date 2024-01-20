@@ -23,7 +23,7 @@ width: 150px;
 export const FormLogo = styled.form`
     
 `
-export const FormData = styled.form`
+export const DataForm = styled.form`
   
 `
 export const DataWrapper = styled.div`

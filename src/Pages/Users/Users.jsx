@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { getUser } from "redux/auth/auth-selector";
 import { userUpdate } from "redux/auth/auth-operation";
 // import { Navigate } from "react-router-dom"
-import {FormLogo, DataWrapper, DataLabel, DataInput, DataInputDescription, FormData, GoBackWrap, GoBack, ImgWraper, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
+import {FormLogo, DataWrapper, DataLabel, DataInput, DataInputDescription, DataForm, GoBackWrap, GoBack, ImgWraper, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Formik } from 'formik';
 import { Button } from "components/Button/Button";
@@ -119,7 +119,7 @@ const handleChangeUpload = e => {
       </LabelLogo>
         </FormLogo>
 
-        <FormData 
+        <DataForm 
         onClick={e => e.stopPropagation()}
         onSubmit={handleSubmit}
         >
@@ -198,7 +198,7 @@ const handleChangeUpload = e => {
     text="save changes"
     type="submit"
     />
-    </FormData>
+    </DataForm>
 
     </>
   )
