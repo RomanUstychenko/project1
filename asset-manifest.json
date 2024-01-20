@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/project1/static/css/main.50295707.css",
-    "main.js": "/project1/static/js/main.7391d8a5.js",
+    "main.js": "/project1/static/js/main.222b26ab.js",
     "static/js/364.aa5d3dff.chunk.js": "/project1/static/js/364.aa5d3dff.chunk.js",
-    "static/js/912.538444d7.chunk.js": "/project1/static/js/912.538444d7.chunk.js",
-    "static/js/828.b4f1895c.chunk.js": "/project1/static/js/828.b4f1895c.chunk.js",
+    "static/js/912.4e563efe.chunk.js": "/project1/static/js/912.4e563efe.chunk.js",
+    "static/js/828.c5d1769e.chunk.js": "/project1/static/js/828.c5d1769e.chunk.js",
     "static/js/326.6c70ca6f.chunk.js": "/project1/static/js/326.6c70ca6f.chunk.js",
     "static/js/342.2e1f0487.chunk.js": "/project1/static/js/342.2e1f0487.chunk.js",
     "static/js/172.3a6ab637.chunk.js": "/project1/static/js/172.3a6ab637.chunk.js",
@@ -18,10 +18,10 @@
     "static/js/458.af5bffb4.chunk.js": "/project1/static/js/458.af5bffb4.chunk.js",
     "index.html": "/project1/index.html",
     "main.50295707.css.map": "/project1/static/css/main.50295707.css.map",
-    "main.7391d8a5.js.map": "/project1/static/js/main.7391d8a5.js.map",
+    "main.222b26ab.js.map": "/project1/static/js/main.222b26ab.js.map",
     "364.aa5d3dff.chunk.js.map": "/project1/static/js/364.aa5d3dff.chunk.js.map",
-    "912.538444d7.chunk.js.map": "/project1/static/js/912.538444d7.chunk.js.map",
-    "828.b4f1895c.chunk.js.map": "/project1/static/js/828.b4f1895c.chunk.js.map",
+    "912.4e563efe.chunk.js.map": "/project1/static/js/912.4e563efe.chunk.js.map",
+    "828.c5d1769e.chunk.js.map": "/project1/static/js/828.c5d1769e.chunk.js.map",
     "326.6c70ca6f.chunk.js.map": "/project1/static/js/326.6c70ca6f.chunk.js.map",
     "342.2e1f0487.chunk.js.map": "/project1/static/js/342.2e1f0487.chunk.js.map",
     "172.3a6ab637.chunk.js.map": "/project1/static/js/172.3a6ab637.chunk.js.map",
@@ -36,6 +36,6 @@
   },
   "entrypoints": [
     "static/css/main.50295707.css",
-    "static/js/main.7391d8a5.js"
+    "static/js/main.222b26ab.js"
   ]
 }
