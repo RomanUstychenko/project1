@@ -29,12 +29,19 @@ export const FormData = styled.form`
 export const DataWrapper = styled.div`
   display: flex;
   margin-top: 10px;
+  justify-content: center;
 `
 export const DataLabel = styled.label`
   width: 90px;
 `
 export const DataInput = styled.input`
   height: 25px;
+  width: 180px;
+`
+export const DataInputDescription = styled.textarea`
+  height: 75px;
+  width: 180px;
+  font-family: inherit;
 `
 export const FormInputHidden = styled.input`
     opacity: 0;

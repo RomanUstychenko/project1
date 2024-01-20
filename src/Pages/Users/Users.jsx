@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { getUser } from "redux/auth/auth-selector";
 import { userUpdate } from "redux/auth/auth-operation";
 // import { Navigate } from "react-router-dom"
-import {FormLogo, DataWrapper, DataLabel, DataInput, FormData, GoBackWrap, GoBack, ImgWraper, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
+import {FormLogo, DataWrapper, DataLabel, DataInput, DataInputDescription, FormData, GoBackWrap, GoBack, ImgWraper, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Formik } from 'formik';
 import { Button } from "components/Button/Button";
@@ -56,40 +56,19 @@ const handleChange = (e) => {
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        // const duplicateUsers = user.find(user => user.name.toLocaleLowerCase() === name.toLocaleLowerCase());
-      //       if (duplicateUsers) {
-      //       Notify.failure(`${name} is already in use`)
-      //       return
-      // }
-      // else {
-
             dispatch(userUpdate(
              {name: updName, 
               phone: updPhone,
               address: updAddress,
               description: updDescription,
             }
-              )
-              )}
-            // }
-// const click = (e) => {
-//   // e.preventDefault();
-//   dispatch(allUsers( ) )
-// }
+            ))}
+      
 
-// const handleChangeAvatar = e => {
-//   setOnAddFile(e.currentTarget.files[0]);
-//   const reader = new FileReader();
-//   reader.onload = function (e) {
-//     setPreview(e.target.result);
-//   };
-//   reader.readAsDataURL(e.currentTarget.files[0]);
-// }
 const UploadFile = async fileSelect => {
   const imageURL = new FormData();
   imageURL.append('imageURL', fileSelect);
   dispatch(userUpdate(imageURL));
-  // setchangePhoto(true);
 };
 
 const handleChangeUpload = e => {
@@ -138,11 +117,7 @@ const handleChangeUpload = e => {
       htmlFor={userPhotoID}>
         Change Logo
       </LabelLogo>
-{/*         
-        <button 
-        type="submit">Change Logo</button> */}
         </FormLogo>
-
 
         <FormData 
         onClick={e => e.stopPropagation()}
@@ -199,7 +174,7 @@ const handleChangeUpload = e => {
           htmlFor={userDescriptionID}>
             Description
           </DataLabel>
-          <input 
+          <DataInputDescription 
           id={userDescriptionID} 
           type="text" 
           name="description" 

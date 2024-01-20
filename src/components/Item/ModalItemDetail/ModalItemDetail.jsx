@@ -329,7 +329,7 @@ if (elForm !== undefined || null) {
           name="newDescription" 
           pattern="[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may "
-          required
+          // required
           // value={itemsName} 
           defaultValue={description}
           onChange={handleChange} />
@@ -339,7 +339,7 @@ if (elForm !== undefined || null) {
         <FormInputListSection >
          <p>Section</p>
           <FormInputSection 
-          id={itemDescriptionID} 
+          id={itemSectionID} 
           type="text" 
           name="newSection" 
           pattern="[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
