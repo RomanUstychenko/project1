@@ -4,16 +4,16 @@ import { nanoid } from "nanoid";
 import { getUser } from "redux/auth/auth-selector";
 import { userUpdate } from "redux/auth/auth-operation";
 // import { Navigate } from "react-router-dom"
-import {FormLogo, DataWrapper, DataLabel, DataInput, DataInputDescription, DataForm, GoBackWrap, GoBack, ImgWraper, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
+import {Buttons, TextButton, FormLogo, DataWrapper, DataLabel, DataInput, DataInputDescription, DataForm, GoBackWrap, GoBack, ImgWraper, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { Formik } from 'formik';
-import { Button } from "components/Button/Button";
+// import { Button } from "components/Button/Button";
 
 export default function Users() {
 
     const user = useSelector(getUser)
     // const users = useSelector(getAllUser)
-    console.log(user)
+    
     const chekName = Boolean(user)
 
     const dispatch = useDispatch();
@@ -32,6 +32,7 @@ const userAddressID = nanoid();
 const userPhotoID = nanoid();
 console.log(updName)
 console.log(updPhone)
+console.log(user.phone)
 
 const handleChange = (e) => {
   const { name } = e.currentTarget;
@@ -184,20 +185,26 @@ const handleChangeUpload = e => {
           defaultValue={user.description} 
           onChange={handleChange} />
       </DataWrapper>
-      <Button 
+      {/* <Button 
       style={{
         position: 'relative',
         right: '0px',
-        height: '25px',
+        height: '30px',
         padding: '0px 0px',
-        minWidth: '100px',
-        fontSize: 15,
-        color: '#010101'
+        width: '100%',
+        fontSize: '30px',
+        color: '#010101',
+        marginTop: '15px',
       }}
   
     text="save changes"
     type="submit"
-    />
+    /> */}
+    <Buttons
+    type="submit">
+      <TextButton>save changes</TextButton>
+    </Buttons>
+    
     </DataForm>
 
     </>

@@ -6,13 +6,13 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const initialState = {
     users: {},
-    newUser: {_id: null, name: null, email: null, verify: false, logoURL: null  },
+    newUser: {_id: null, name: null, phone: null, address: null, description: null, email: null, verify: false, logoURL: null  },
     token: "",
     isRegister: false,
     isLogin: false,
     isLive: false,
     loading: false,
-    isLoadingUser: false,
+    // isLoadingUser: false,
     error: null,
 }
 
@@ -66,7 +66,8 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
     })
     .addCase(current.pending, pendingHandler)
     .addCase(current.fulfilled, (store, {payload}) => {
-        store.isLoadingUser = false;
+        // store.isLoadingUser = false;
+        store.loading = false;
         store.newUser = payload;
         store.isLogin = true;
     })
@@ -88,16 +89,22 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
     .addCase(userUpdate.pending, pendingHandler)
     .addCase(userUpdate.fulfilled, (store, { payload }) => {
       console.log(payload)
-        store.newUser = {
-          name: payload.user.name,
-          email: payload.user.email,
-          verify: payload.user.verify,
-          logoURL: payload.user.logoURL,
-          _id: payload.user._id
-        };
+      console.log(store.newUser)
+        // store.newUser = {
+        //   name: payload.user.name,
+        //   email: payload.user.email,
+        //   phone: payload.user.phone,
+        //   address: payload.user.address,
+        //   description: payload.user.description,
+        //   verify: payload.user.verify,
+        //   logoURL: payload.user.logoURL,
+        //   _id: payload.user._id
+        // };
+        store.newUser = payload.user
       })
       .addCase(userUpdate.rejected, (store, { meta, payload }) => {
-        store.isLoadingUser = false;
+        // store.isLoadingUser = false;
+        store.loading = false;
         store.error = payload;
         // toast.error(chooseValid(Object.keys(meta.arg)[0]));
         // function chooseValid(key) {

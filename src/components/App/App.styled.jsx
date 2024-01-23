@@ -6,14 +6,16 @@ export const Wrapper = styled.div`
 position: relative;
 margin: auto;
 text-align: center;
-    width: 240px;
+
+
+    /* width: 240px; */
     /* margin-left: auto;
     margin-right: auto; */
     /* display: block;
     align-items: center;
     justify-content: center; */
     @media ${device.mobile} {
-        width: 320px;
+        width: 360px;
     }
     @media ${device.tablet} {
         width: 768px;

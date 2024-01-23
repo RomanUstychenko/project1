@@ -28,7 +28,8 @@ justify-content: center;
 `
 export const NavbarUserSet = styled.div`
 display: flex;
-align-items: end;
+align-items: center;
+
     /* text-align: right; */
 `
 export const Welcome = styled.p`
@@ -40,14 +41,7 @@ align-items: center; */
     font-size: 20px;
 `
 
-export const Setting = styled(AiOutlineSetting)`
-    color: #291e1e;
-    width:20px;
-    &:hover, 
-    :focus {
-        color: #333d72;
-    }
-`
+
 
 // import { device } from 'Device';
 
@@ -65,6 +59,7 @@ export const NavbarMenuListItem = styled.li`
 `
 export const Link = styled(NavLink)`
     text-decoration: none;
+    margin-right: 10px;
     /* font-size: 40px; */
     /* font-weight: 700; */
     /* color: rgb(10, 3, 3); */
@@ -75,6 +70,23 @@ export const Link = styled(NavLink)`
         background-color: #3f51b5;
         border-radius: 5px;
     } */
+    /* &:hover, 
+    :focus {
+        color: #333d72;
+    } */
+`
+export const Setting = styled(AiOutlineSetting)`
+display: flex;
+  justify-content: center;
+  align-items: center;
+/* position: relative; */
+/* top: 50%; */
+/* left: 50%; */
+/* transform: translate(-50%, -50%); */
+/* margin: -50% 0 0 -50%; */
+    color: #050505;
+    width:30px;
+    height: 30px;
     &:hover, 
     :focus {
         color: #333d72;

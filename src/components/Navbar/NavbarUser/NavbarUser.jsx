@@ -38,11 +38,12 @@ const chekName = Boolean(user)
         : 
        <Welcome>Welcome, <UserName>User</UserName>
        </Welcome> }
+       
        <NavbarUserSet>
        <Link 
                to={"/users"} 
                end><Setting/>
-               </Link>
+        </Link>
                <Button 
         style={{
           position: 'relative',

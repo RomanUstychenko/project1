@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, ListSectionChange, FormInputListSection, BtnChageSection, LabelSection, BtnArrow, ChangeImage, AddImage, DeleteImage, FormImgAction } from "./ModalItemDetail.styled";
+import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, ListSectionChange, FormInputListSection, InputListWrapper, BtnChageSection, LabelSection, BtnArrow, ChangeImage, AddImage, DeleteImage, FormImgAction } from "./ModalItemDetail.styled";
 import { Form, FormInputList, FormInputLabel, FormInput, FormInputDescription, FormInputSection } from "components/common/Input.styled";
 import {
   useSelector, 
@@ -338,6 +338,8 @@ if (elForm !== undefined || null) {
 
         <FormInputListSection >
          <p>Section</p>
+
+         <InputListWrapper>     
           <FormInputSection 
           id={itemSectionID} 
           type="text" 
@@ -356,6 +358,7 @@ if (elForm !== undefined || null) {
          onClick={() => OpenSectionList()}>
           <BtnArrow/>
          </BtnChageSection>
+         </InputListWrapper>
 
         </FormInputListSection>
 

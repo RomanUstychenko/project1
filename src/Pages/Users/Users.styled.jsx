@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom"
+// import { Button } from "components/Button/Button";
+import {Btn, TextBtn } from 'components/Button/Button.styled';
 
-
+export const Buttons = styled(Btn)`
+  margin-top: 30px;
+  height: 30px;
+  width: 100%;
+`
+export const TextButton = styled(TextBtn)`
+  font-size: 16px;
+`
 export const GoBackWrap = styled.div`
 margin-top: 10px;
     display: flex;
@@ -24,11 +33,14 @@ export const FormLogo = styled.form`
     
 `
 export const DataForm = styled.form`
-  
+  margin-top: 30px;
 `
 export const DataWrapper = styled.div`
   display: flex;
-  margin-top: 10px;
+  &:not(:first-child) {
+    margin-top: 10px
+  };
+  
   justify-content: center;
 `
 export const DataLabel = styled.label`
@@ -65,8 +77,8 @@ export const LabelLogo = styled.label`
     text-decoration: none;
     cursor: pointer;
     font-family: inherit;
-    /* font-weight: 800; */
-    width: 200px;
+    font-weight: 800;
+    width: 100%;
     height: 30px;
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
       0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);

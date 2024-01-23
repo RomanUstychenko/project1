@@ -5,7 +5,7 @@ export const NavbarTitles = styled.nav`
     padding-top: 5px;
     padding-bottom: 5px;
     border: 1px solid ;
-    border-radius: 25px;
+    border-radius: 3px;
     background-color: #749574;
 `
     

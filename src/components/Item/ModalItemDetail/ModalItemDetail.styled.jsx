@@ -61,7 +61,11 @@ export const FormInputListSection = styled.div`
     margin-top: 25px;
     
 `
-
+export const InputListWrapper = styled.div`
+    display: flex;
+    /* justify-content: space-between; */
+    margin-left: 6px;
+`
 
 
 export const Saved = styled.p`

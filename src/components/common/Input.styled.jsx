@@ -46,9 +46,9 @@ margin-top: 10px;
 export const FormInputSection = styled.input`
 font-family: 'Times New Roman', Times, serif;
 font-size: 17px;
-    margin-left: 6px;
+    
     padding-left: 10px;
-    width: 180px;
+    width: 170px;
     height: 25px;
     border-radius: 5px;
     border: 1px solid #749574;

@@ -25,6 +25,7 @@ export default function App() {
 
 const dispatch = useDispatch();
 const isLoadingUser = useSelector(getLoadingUserStatus)
+console.log(isLoadingUser)
 
 useEffect(() => {
   dispatch(current())
@@ -39,10 +40,13 @@ useEffect(() => {
         color: '#010101'
       }}
     >
-      {isLoadingUser ?  <Loader/> : 
+      {isLoadingUser ? 
+       <Loader/> 
+       : 
       (
       <Suspense fallback={<Loader/>}>
         <Navbar />
+        
       <Routes>
       
         <Route element={<PublicRoute />}>
@@ -53,6 +57,7 @@ useEffect(() => {
           
         </Route>
         <Route element={<PrivateRoute />}>
+          
           <Route path="/" element={<MenuItems />}/>
           <Route path="/items/" element={<MenuItems />}>
             <Route path="/items/:category" element={<MenuItemsDetails />}/>
@@ -62,9 +67,12 @@ useEffect(() => {
         {/* <Route path="/live/" element={<LivePage />}/> */}
         <Route path="/live/:owner" element={<LivePage />}/>
      <Route path="*" element={<NotFound />}/>
-     </Routes>
+      
+      </Routes>
+
      </Suspense>
-      )      }
+      )    
+         }
       
     </Wrapper>
   )
