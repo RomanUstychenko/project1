@@ -5,14 +5,15 @@ import { useDispatch,
  } from "react-redux";
 import { register } from 'redux/auth/auth-operation';
 import { 
-  Title,
+  RegForm,
   RegistrationPage,
   RegistrationFormLabel, 
-  RegistrationFormLabelList,
-  RegistrationForm,
-  RegistrationFormInput,
-  RegistrationFormWrapper } from './Registration.styled';
-import { Button } from 'components/Button/Button';
+  RegistrationFormList,
+  RegistrationFormWrapper,
+  TextButton,
+ } from './Registration.styled';
+ import { LogRegInput } from 'components/common/GeneralStyle/Input.styled';
+import { ButtonLogReg } from 'components/common/GeneralStyle/LogRegButton.styled';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { isRegister } from 'redux/auth/auth-selector';
 import { Navigate } from 'react-router-dom';
@@ -78,47 +79,53 @@ if (isUserRegister) {
 
   return (
     <RegistrationPage>
-       <Title>Registration Form</Title> 
-       <form
+       
+       <RegForm
        onSubmit={handleSubmit}>
         <RegistrationFormWrapper>
-       <RegistrationForm >
-            {<RegistrationFormLabelList > <RegistrationFormLabel 
+       <RegistrationFormList >
+  
+              <RegistrationFormLabel 
             htmlFor={nameId}
             >Login </RegistrationFormLabel>
-            </RegistrationFormLabelList>}
-            <RegistrationFormInput 
+          
+            <LogRegInput 
             id={nameId} placeholder="Enter name" name="name" type="text" required onChange={handleChange} value={name}
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
              />
-        </RegistrationForm>
-        <RegistrationForm >
-            {<RegistrationFormLabelList ><RegistrationFormLabel 
+        </RegistrationFormList>
+        <RegistrationFormList >
+            <RegistrationFormLabel 
             htmlFor={emailId}
-            >E-mail </RegistrationFormLabel></RegistrationFormLabelList>}
-            <RegistrationFormInput 
+            >E-mail </RegistrationFormLabel>
+            <LogRegInput 
             id={emailId} placeholder="Enter email" name="email" type="email" required onChange={handleChange} value={email}
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
              />
-        </RegistrationForm>
-        <RegistrationForm >
-            {<RegistrationFormLabelList><RegistrationFormLabel 
+        </RegistrationFormList>
+        <RegistrationFormList >
+            <RegistrationFormLabel 
             htmlFor={passwordId}
             >Password </RegistrationFormLabel>
-            </RegistrationFormLabelList>}
-            <RegistrationFormInput 
+            
+            <LogRegInput 
             id={passwordId} placeholder="Enter password" name="password" type="password" required onChange={handleChange} value={password}
              />
-        </RegistrationForm>
+        </RegistrationFormList>
         </RegistrationFormWrapper>
-        <Button 
+        {/* <Button 
          style={{
           height: '35px',
         }}
         text="Registration"
         type="submit"
-        />
-       </form>
+        /> */}
+        <ButtonLogReg
+        type="submit"
+        >
+<TextButton>Registration</TextButton>
+        </ButtonLogReg>
+       </RegForm>
       
 
   

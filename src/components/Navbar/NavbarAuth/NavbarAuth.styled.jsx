@@ -1,12 +1,22 @@
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom"
+import { FaHome } from "react-icons/fa";
 
+export const Home = styled(FaHome)`
+      /* position: absolute;
+    left: 15px; */
+
+    /* color: #c4b210; */
+    
+`
 export const NavbarAuthList = styled.ul`
     display: flex;
-    margin-right: auto;
-    margin-left: auto;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    right: 15px;
+    /* margin-right: auto; */
+    /* margin-left: auto; */
+    /* align-items: center; */
+    /* justify-content: center; */
 
 
 `
@@ -16,27 +26,36 @@ export const Link = styled(NavLink)`
     font-weight: 700;
    color: inherit;
   
-    &.active {
-        padding-left: 5px;
-        padding-right: 5px;
-        color: white;
-        background-color: #3f51b5;
-        border-radius: 5px;
+    &.active
+     {   
+        color: ${props => props.theme.colors.navActive};
     }
     &:hover, 
     :focus {
-        color: #333d72;
+        color: ${props => props.theme.colors.navActive};
     }
 
 `
+export const LinkHome = styled(Link)`
+    font-size: 25px;
+    margin-left: 15px;
+     align-items: center;
+    justify-content: center;
+`
 export const NavbarAuthListItem = styled.li`
      &:first-child {
-    color: #c4b210;
-    font-size: 15px;
+      
 }
 color: rgb(10, 3, 3);
 font-size: 20px;
     &:not(:last-child) {
     margin-right: 20px;
+    /* position: absolute; */
+    /* right: 15px; */
+}
+&:last-child {
+    /* margin-right: 20px; */
+    /* position: absolute;
+    right: 15px; */
 }
 `

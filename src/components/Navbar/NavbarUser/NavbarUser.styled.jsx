@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom"
 import {AiOutlineSetting} from 'react-icons/ai';
+import { Btn, TextBtn } from 'components/Button/Button.styled';
 
-export const NavbarUserList = styled.div`
-    display: flex;
-    /* text-align: center; */
-    align-items: center;
-  justify-content: space-between;
-    position: relative;
-    margin-right: 5px;
-    font-size: 15px;
-    font-weight: 600;
+// export const NavbarUserList = styled.div`
+//     display: flex;
+//     /* text-align: center; */
+//     align-items: center;
+//   justify-content: space-between;
+//     position: relative;
+//     margin-right: 5px;
+//     font-size: 15px;
+//     font-weight: 600;
 
-`
+// `
 
 
 export const NavbarUserName = styled.div`
@@ -41,10 +42,6 @@ align-items: center; */
     font-size: 20px;
 `
 
-
-
-// import { device } from 'Device';
-
 export const NavbarMenuList = styled.ul`
     display: flex;
     margin-right: auto;
@@ -60,20 +57,6 @@ export const NavbarMenuListItem = styled.li`
 export const Link = styled(NavLink)`
     text-decoration: none;
     margin-right: 10px;
-    /* font-size: 40px; */
-    /* font-weight: 700; */
-    /* color: rgb(10, 3, 3); */
-    /* &.active {
-        padding-left: 5px;
-        padding-right: 5px;
-        color: white;
-        background-color: #3f51b5;
-        border-radius: 5px;
-    } */
-    /* &:hover, 
-    :focus {
-        color: #333d72;
-    } */
 `
 export const Setting = styled(AiOutlineSetting)`
 display: flex;
@@ -91,4 +74,10 @@ display: flex;
     :focus {
         color: #333d72;
     }
+`
+export const ButtonLogout = styled(Btn)`
+    margin-right: 15px;
+`
+export const TextButton = styled(TextBtn)`
+    
 `

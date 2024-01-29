@@ -1,4 +1,3 @@
-// import NavbarMenu from "components/Navbar/NavbarMenu/NavbarMenu"
 import NavbarAuth from "components/Navbar/NavbarAuth/NavbarAuth"
 import NavbarUser from "./NavbarUser/NavbarUser"
 import LiveTitle from "components/Live/LiveTitle/LiveTitle"
@@ -14,8 +13,6 @@ export default function Navbar() {
     {isUseLive ? <LiveTitle /> : 
     <NavbarTitles >
         <NavbarList >
-          {/* {isUserLogin &&  <NavbarMenu /> } */}
-          {/* {isUserLogin &&  !<NavbarLive />} */}
            {isUserLogin ? <NavbarUser /> : <NavbarAuth />}
            
         </NavbarList>

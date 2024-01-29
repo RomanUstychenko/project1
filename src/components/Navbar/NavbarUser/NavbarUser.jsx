@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { logout } from "redux/auth/auth-operation"
 import { NavbarUserList, NavbarUserName, Welcome, UserName, Setting, NavbarUserSet,
   // NavbarMenuList, NavbarMenuListItem, 
-  Link } from "./NavbarUser.styled";
-// import { NavbarMenuList, NavbarMenuListItem, Link } from "./NavbarMenu.styled"
+  Link, ButtonLogout, TextButton } from "./NavbarUser.styled";
 import { getUser } from "redux/auth/auth-selector";
 import { Button } from "components/Button/Button";
 
@@ -21,14 +20,8 @@ const onLogout =() => {
 const chekName = Boolean(user)
   return (
     <>
-    {/* <NavbarMenuList > */}
-    {/* <NavbarMenuListItem > */}
-              
-  {/* </NavbarMenuListItem> */}
-      
-  
-{/* </NavbarMenuList> */}
-    <NavbarUserList>
+   
+    {/* <NavbarUserList> */}
       {chekName ?
        <NavbarUserName >
          {/* <img src={user.avatarURL} alt="avatar" /> */}
@@ -44,7 +37,7 @@ const chekName = Boolean(user)
                to={"/users"} 
                end><Setting/>
         </Link>
-               <Button 
+               {/* <Button 
         style={{
           position: 'relative',
           right: '0px',
@@ -58,10 +51,16 @@ const chekName = Boolean(user)
       text="Logout"
       type="button"
       onClick={onLogout}
-      />
+      /> */}
+      <ButtonLogout
+      type="button"
+      onClick={onLogout}
+      >
+<TextButton>Logout</TextButton>
+      </ButtonLogout>
        </NavbarUserSet>
         
-    </NavbarUserList>
+    {/* </NavbarUserList> */}
     </>
   )
 }

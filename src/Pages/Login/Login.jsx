@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { login } from 'redux/auth/auth-operation';
-import { LoginPage, Title } from "./Login.styled";
+import { LoginPage, Title, Paragraph } from "./Login.styled";
 
 import LoginForm from 'components/LoginForm/loginForm';
 
@@ -12,7 +12,7 @@ export default function Login () {
     }
   return (
     <LoginPage>
-      <Title>Sign in please <br /> in your Menu</Title>
+      <Title>Sign in please <Paragraph /> in your Menu</Title>
       <LoginForm onSubmit={onLogin}/>
     </LoginPage>
   )

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/Input.styled";
+import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/GeneralStyle/Input.styled";
 import { useSelector, useDispatch } from 'react-redux';
 import { getSections } from 'redux/sections/sections-selector';
 import { addSection } from "redux/sections/sections-operation"; 

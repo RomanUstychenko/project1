@@ -1,8 +1,10 @@
 import { nanoid } from "nanoid";
 import useForm from 'components/hooks/useForm';
 import PropTypes from "prop-types";
-import { Button } from "components/Button/Button";
-import { LoginFormWrapper, LoginFormLabelList, LoginFormLabel, LoginFormList, LoginFormInput } from "./LoginForm.styled";
+// import { Button } from "components/Button/Button";
+import { FormLogin, LoginFormWrapper, LoginFormLabel, LoginFormList, TextButton } from "./LoginForm.styled";
+import { LogRegInput } from "components/common/GeneralStyle/Input.styled";
+import { ButtonLogReg } from 'components/common/GeneralStyle/LogRegButton.styled';
 
     const initialState = {
         email: "",
@@ -19,38 +21,53 @@ import { LoginFormWrapper, LoginFormLabelList, LoginFormLabel, LoginFormList, Lo
 
 
       return (
-        <div>
-        <form onSubmit={handleSubmit}>
+        
+        <FormLogin 
+        onSubmit={handleSubmit}
+        >
 <LoginFormWrapper>
        <LoginFormList>
-            <LoginFormLabelList>
               <LoginFormLabel
-            htmlFor={emailId}> Login </LoginFormLabel>
-            </LoginFormLabelList> 
-            <LoginFormInput 
+            htmlFor={emailId}> 
+            Login 
+            </LoginFormLabel>
+            <LogRegInput 
             id={emailId} placeholder="Enter name" name="email" type="text" required onChange={handleChange} value={email}
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
              />
         </LoginFormList>
+
         <LoginFormList>
-            <LoginFormLabelList >
               <LoginFormLabel
-            htmlFor={passwordId}>Password </LoginFormLabel>
-            </LoginFormLabelList>
-            <LoginFormInput 
-            id={passwordId} placeholder="Enter password" name="password" type="password" required onChange={handleChange} value={password}
+            htmlFor={passwordId}>Password 
+            </LoginFormLabel>
+            <LogRegInput 
+            id={passwordId} 
+            placeholder="Enter password" 
+            name="password" 
+            type="password" 
+            required onChange={handleChange}
+            value={password}
              />
         </LoginFormList>
+        
         </LoginFormWrapper>
-        <Button 
+        {/* <Button 
         style={{
           height: '35px',
         }}
         text="Login"
         type="submit"
-        />
-       </form>
-       </div>
+        /> */}
+        <ButtonLogReg
+        type="submit"
+        >
+          <TextButton>
+          Login
+          </TextButton>
+        </ButtonLogReg>
+       </FormLogin>
+       
       )
     };
 

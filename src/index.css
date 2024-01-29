@@ -89,6 +89,12 @@ td {
   text-decoration: none;
 }
 form, 
-label {
+label
+input
+ {
   box-sizing: border-box;
+}
+input:focus {
+  outline: 2px solid #F59256;
+  
 }

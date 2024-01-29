@@ -1,5 +1,30 @@
 import styled from 'styled-components';
+import { device } from 'Device';
 
+export const LogRegInput = styled.input`
+    box-sizing: border-box;
+padding-left: 10px;
+ border-radius: 5px;
+ border: none;
+ box-shadow: 7px 20px 14px rgba(10, 4, 1, 0.5);
+ &:focus, &:hover  {
+    
+    outline: 2px solid #F59256;
+ }
+ @media ${device.mobile} {
+    margin-top: 5px;
+    width: 300px;
+    height: 50px;
+    }
+    @media ${device.tablet} {
+        height: 40px;
+    }
+    @media ${device.desktop} {
+        margin-top: 10px;
+        width: 350px;
+        height: 50px;
+}
+`
 export const Form = styled.form`
  font-size: 25px;
     border: 1px solid rgb(7, 94, 138);

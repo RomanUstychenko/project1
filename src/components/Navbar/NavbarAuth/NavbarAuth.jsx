@@ -1,11 +1,17 @@
 import items from "./items"
-
-import { NavbarAuthList, Link, NavbarAuthListItem } from "./NavbarAuth.styled"
+import { Home } from "./NavbarAuth.styled";
+import { NavbarAuthList, Link, LinkHome, NavbarAuthListItem } from "./NavbarAuth.styled"
 
 
 
 export default function NavbarAuth() {
   return (
+    <>
+    <LinkHome
+    to={"/about"} 
+    end>
+      <Home/>
+    </LinkHome>
     <NavbarAuthList >
         {items.map(({id, to, text}) => {
             return (
@@ -15,5 +21,6 @@ export default function NavbarAuth() {
             )})
         }
     </NavbarAuthList>
+    </>
   )
 }
