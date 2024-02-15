@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { Home } from "./NavbarAuth.styled";
+// import { Home } from "./NavbarAuth.styled";
 
 const items = [
     // {id: nanoid(),
