@@ -1,90 +1,74 @@
-// import { useEffect } from "react";
 import  ModalItemAddForm  from "../../components/Item/ModalItemAddForm/ModalItemAddForm"
 import ModalAddSectionForm from "components/Section/ModalAddSectionForm/ModalAddSectionForm"
-// import {ItemList} from "../../components/Item/ItemList/ItemList"
-import { 
-  fetchItems,
-  //  geItemsByCategory
-   } from "redux/items/items-operation"
-// import Filter from "../../components/filter/Filter"
-import { Sections, SectionForm,
-  //  BtnAddSection 
-  } from "./MenuItems.styled";
+import {   fetchItems, } from "redux/items/items-operation"
+import { Sections, SectionForm, SectionWrap} from "./MenuItems.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-// import { getState } from 'redux/items/items-selector';
-import { 
-  // getItems,
-   getItemsByCategory } from 'redux/items/items-selector';
+import {  getItemsByCategory } from 'redux/items/items-selector';
 import { getSections } from "redux/sections/sections-selector"
 import { Modal } from "components/common/Modal/Modal";
 import ItemsSections from "components/Section/ItemSections/ItemsSections"
-import { useLocation,
-  // useParams
-  //  useSearchParams
-   } from 'react-router-dom'
-// import UseAuth from "components/hooks/useAuth"
-// import { Navigate } from "react-router-dom"
+import { useLocation } from 'react-router-dom'
 import { fetchSections } from "redux/sections/sections-operation"
-// import {  allUsers } from "redux/user/user-operation";
 import MenuItemsDetails from "components/MenuItemsDetails/MenuItemsDetails"
 import NavbarLive from "components/Navbar/NavbarLive/NavbarLive"
 import { Button } from "components/Button/Button";
 
+import React, { 
+  // useRef,
+   useContext } from 'react';
+// import styled , { css } from 'styled-components';
+// import useOnClickOutside from './ToggleMenu/onClickOutside';
+import { MenuContext } from "./ToggleMenu/navState";
+import HamburgerButton from './ToggleMenu/ToggleButton';
+// import { SideMenu } from './ToggleMenu/SideMenu';
+import NavState from "Pages/MenuItems/ToggleMenu/navState";
+
+
+
+
 export default function MenuItems() {
 
+  // const node = useRef();
+  // const { isMenuClose } = useContext(MenuContext);
+  // console.log(isMenuOpen)
+  // useOnClickOutside(node, () => {
+  //   // Only if menu is open
+  //   if (isMenuOpen) {
+  //     toggleMenuMode();
+  //   }
+  // });
 
   const location = useLocation();
   const category = location.pathname.split('/')[2];
   // console.log("category", category)
   const [modalActive, setModalActive] = useState(false);
-  const [modalSectionActive, setModalSectionActive] = useState(false);
+  const [modalAddSectionActive, setModalAddSectionActive] = useState(false);
+  // const [ModalChangeSectionActive, setModalChangeSectionActive] = useState(false);
 
-
-
-  function closeModal () {
-    setModalActive(false)
-    setModalSectionActive(false)
-    document.body.style.overflow = '';
-  }
 
   const dispatch = useDispatch();
-  // const items = useSelector(getItems);
   const itemsCategory = useSelector(getItemsByCategory);
-  const sections = useSelector(getSections);
-  // console.log("sections", sections)
-  // console.log(sections)
-//  const {loading, error} = useSelector(getState);
-
-
-      useEffect(() => {
-        // dispatch(allUsers())
-          dispatch(fetchItems());
-          dispatch(fetchSections());
-          
-        
-            // if (category === undefined) {
-              
-            // }
-            // else {
-             
-            //   dispatch(geItemsByCategory({category: category}))
-            // }
-          
-          }, 
-           [ dispatch
-            // category, 
-            // , items
-          ]
-          );
-
-    // const { category } = useParams();
-    // console.log(category)
-  return (
-    <>
-    <NavbarLive/>
-    <Sections  >
-      <SectionForm >
+  console.log(itemsCategory)
+  const   sections = useSelector(getSections);
+const sect = sections.map(({_id, category}) => ({_id, category}));
+console.log(sect)
+console.log(sections)
+  const SideMenu = () => {
+    const { isMenuClose } = useContext(MenuContext);
+    console.log(isMenuClose)
+  
+    return (
+  <>
+      <SectionWrap 
+      // ref={node}
+      close={isMenuClose}
+      >
+         <HamburgerButton
+         close={isMenuClose}
+         />
+  <SectionForm close={isMenuClose}
+      >
         <ul>
           {sections.map(section =>
            <ItemsSections
@@ -105,21 +89,54 @@ export default function MenuItems() {
     
       text="Add Section"
       type="button"
-      onClick={() => setModalSectionActive(true)}
+      onClick={() => setModalAddSectionActive(true)}
       />
-        {/* <Button
-      typAdd Sectione="button"
-      onClick={() => setModalSectionActive(true)}>
-        
-      </Button> */}
-      { modalSectionActive && (
+       </SectionForm>
+      </SectionWrap>
+      </>
+ 
+  );
+  };;
+
+  
+
+
+  function closeModal () {
+    setModalActive(false)
+    setModalAddSectionActive(false)
+    // setModalChangeSectionActive(false)
+    document.body.style.overflow = '';
+  }
+
+  
+
+      useEffect(() => {
+          dispatch(fetchItems());
+          dispatch(fetchSections());
+          }, 
+           [ dispatch
+            
+          ]
+          );
+
+  return (
+  
+    <>
+    <NavbarLive/>
+    <Sections  >
+     
+    <NavState>
+  
+       <SideMenu />
+      
+      { modalAddSectionActive && (
         <Modal
         onClick={() => closeModal ()}
-        active={modalSectionActive}
-        setActive={setModalSectionActive}>
+        active={modalAddSectionActive}
+        setActive={setModalAddSectionActive}>
         <ModalAddSectionForm 
         onClick={e => e.stopPropagation()}
-        setModalSectionActive={setModalSectionActive}
+        setModalSectionActive={setModalAddSectionActive}
         />
         </Modal>
       )}
@@ -136,26 +153,11 @@ export default function MenuItems() {
         />
         </Modal>
       )}
-      </SectionForm>
+    
       <MenuItemsDetails 
       setModalActive={setModalActive}
       />
-      {/* <div className={scss.contacts}>
-      <h2>Menu</h2>
-        <Filter />
-          {!loading && items.length > 0 && 
-          <ItemList
-          items={items} 
-          itemsCategory={itemsCategory}
-          />}
-          {loading && <p className={scss.contactsLoading}>...loading</p>}
-          {error && <p>No items yet</p>}
-      </div>
-      <button
-      type="button"
-      onClick={() => setModalActive(true)}>
-        Add Item
-      </button> */}
+      </NavState>
     </Sections>
     </>
     )

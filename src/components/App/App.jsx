@@ -10,6 +10,8 @@ import { getLoadingUserStatus } from "redux/auth/auth-selector";
 import {  allUsers } from "redux/user/user-operation";
 import { Wrapper } from "./App.styled";
 
+import NavState from "Pages/MenuItems/ToggleMenu/navState";
+
 const MenuItems = lazy(() => import("Pages/MenuItems/MenuItems"));
 const MenuItemsDetails = lazy(() => import("components/MenuItemsDetails/MenuItemsDetails"));
 const Users = lazy(() => import("Pages/Users/Users"));
@@ -57,8 +59,9 @@ useEffect(() => {
           
         </Route>
         <Route element={<PrivateRoute />}>
-          
+          {/* <NavState> */}
           <Route path="/" element={<MenuItems />}/>
+          {/* </NavState> */}
           <Route path="/items/" element={<MenuItems />}>
             <Route path="/items/:category" element={<MenuItemsDetails />}/>
           </Route>

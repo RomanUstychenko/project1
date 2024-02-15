@@ -24,24 +24,15 @@ import { fetchSections } from "redux/sections/sections-operation"
 // const btnId = nanoid();
 // const sectionId = nanoid();
 
-// const authButtons = [
-//   {
-//     btn: 'favorite ads',
-//     link: 'favorites-ads',
-//   },
-//   {
-//     btn: 'my ads',
-//     link: 'my-ads',
-//   },
-// ];
+
 
 function ItemsSections({section}) {
   // const sections = useSelector(getSections);
   // console.log(section)
-  const [modalActive, setModalActive] = useState(false);
+  const [ModalChangeSectionActive, setModalChangeSectionActive] = useState(false);
   const dispatch = useDispatch();
   function closeModal () {
-    setModalActive(false)
+    setModalChangeSectionActive(false)
     
     document.body.style.overflow = '';
     dispatch(fetchSections());
@@ -62,9 +53,9 @@ function ItemsSections({section}) {
   // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    // <Wrapper>
+    
       <FilterList key={nanoid()}>
-        {/* <CommonLinks> */}
+        
         
           {buttons.map(b => (
             // <Item key={btnId}>
@@ -78,14 +69,14 @@ function ItemsSections({section}) {
           ))}
           <BtnChange
           key={nanoid()}
-          onClick={() => setModalActive(true)}>
+          onClick={() => setModalChangeSectionActive(true)}>
                 <StyledChange/>
               </BtnChange>
-              { modalActive && (
+              { ModalChangeSectionActive && (
           <Modal
           onClick={() => closeModal ()}
-          active={modalActive}
-          setActive={setModalActive}>
+          active={ModalChangeSectionActive}
+          setActive={setModalChangeSectionActive}>
           <ModalChangeSectionName
           closeModal={closeModal}
           _id={_id}
@@ -94,19 +85,9 @@ function ItemsSections({section}) {
      
           </Modal>
          )}
-        {/* </CommonLinks> */}
-        {/* <AuthLinks>
-          {isLoggedIn &&
-            authButtons.map(b => (
-              <Item key={nanoid()}>
-                <Button to={'/items/' + b.link} name={b.link}>
-                  {b.btn}
-                </Button>
-              </Item>
-            ))}
-        </AuthLinks> */}
+        
       </FilterList>
-    // </Wrapper>
+    
   );
 }
 

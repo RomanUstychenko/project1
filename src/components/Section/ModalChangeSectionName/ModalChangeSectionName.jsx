@@ -25,7 +25,7 @@ export default function ModalChangeSectionName ({
   const [modalDeleteActive, setModalDeleteActive] = useState(false);
 
   const sectionNameID = nanoid();
- 
+  console.log(category)
  
   const handleChange = (e) => {
         const { name } = e.currentTarget;

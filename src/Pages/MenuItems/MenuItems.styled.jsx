@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 
 export const Sections = styled.div`
@@ -22,8 +22,49 @@ export const Sections = styled.div`
         cursor: pointer;
   }
  `   
+
+ 
+
+export const SectionWrap = styled.div`
+  width: 100%;
+
+  transition: 
+  width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  ${props =>
+    props.close &&
+    css`
+      width: 50px;
+    `}
+
+
+`
+
+
 export const SectionForm = styled.div`
+box-sizing: border-box;
     border: 4px;
     width: 150px;
+    padding-top: 25px;
+    /* display: none; */
+    opacity: 1;
+    /* position: fixed; */
+  /* top: 0; */
+  /* left: 0; */
+  /* width: 100%; */
+  height: 100vh;
+  background-color: #cbcbcb;
+
+  /* transform: translateX(0); */
+
+  transition: 
+  transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+  opacity 0.3s;
+
+  ${props =>
+    props.close &&
+    css`
+      transform: translateX(-100%);
+      opacity: 0;
+    `}
 `
 
