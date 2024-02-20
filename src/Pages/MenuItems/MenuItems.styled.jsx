@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-
+import { Btn, TextBtn } from 'components/Button/Button.styled';
 
 export const Sections = styled.div`
 /* color: white; */
@@ -10,30 +10,31 @@ export const Sections = styled.div`
     padding-left: 5px;
     padding-right: 5px;
 `
- export const BtnAddSection = styled.button`
+//  export const BtnAddSection = styled.button`
 
- padding: 10px 10px;
- border: none;
-    border-radius: 5px;
-    background-color: ${props => props.theme.colors.btn};
-        &:hover,
-       &:focus {
-        background-color: ${props => props.theme.colors.btnActive};
-        cursor: pointer;
-  }
- `   
+//  padding: 10px 10px;
+//  border: none;
+//     border-radius: 5px;
+//     background-color: ${props => props.theme.colors.btn};
+//         &:hover,
+//        &:focus {
+//         background-color: ${props => props.theme.colors.btnActive};
+//         cursor: pointer;
+//   }
+//  `   
 
  
 
 export const SectionWrap = styled.div`
-  width: 100%;
-
+position: relative;
+  
+  background-color: #cbcbcb;
   transition: 
   width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   ${props =>
     props.close &&
     css`
-      width: 50px;
+      width: 40px;
     `}
 
 
@@ -43,15 +44,15 @@ export const SectionWrap = styled.div`
 export const SectionForm = styled.div`
 box-sizing: border-box;
     border: 4px;
-    width: 150px;
-    padding-top: 25px;
+    width: 160px;
+    padding-top: 35px;
     /* display: none; */
     opacity: 1;
     /* position: fixed; */
   /* top: 0; */
   /* left: 0; */
   /* width: 100%; */
-  height: 100vh;
+  height: 90vh;
   background-color: #cbcbcb;
 
   /* transform: translateX(0); */
@@ -67,4 +68,16 @@ box-sizing: border-box;
       opacity: 0;
     `}
 `
+export const AddButton = styled(Btn)`
+        position: relative;
+          right: 0px;
+          height: 25px;
+          margin-top: 10px;
+          min-width: 100px;
+          font-size: 15px;
+          color: #010101;
+`
+export const AddButtonText = styled(TextBtn)`
+  
 
+`

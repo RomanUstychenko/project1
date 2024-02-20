@@ -12,10 +12,8 @@ import { Button } from "components/Button/Button";
 
 
 export default function ModalItemAddForm ({
-  // onClick,
    setModalActive, category, itemsCategory}) {
-  // const items = useSelector(getFilteredItems);
-  // console.log("category", category)
+  
   console.log(itemsCategory)
   const dispatch = useDispatch();
 
@@ -23,13 +21,7 @@ export default function ModalItemAddForm ({
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [section, setSection] = useState(category)
-// console.log(section)
-  // const [datat, setDatat] = useState({
-  //   name: '',
-  //   description: '',
-  //   phone: '',
 
-  // });
 
   const itemNameID = nanoid();
   const priceID = nanoid();
@@ -54,13 +46,7 @@ export default function ModalItemAddForm ({
 
   const handleSubmit = (e) => {
 
-    // const { name, description, phone } = values;
-
-    // const data = new FormData();
-
-    // data.append('name', name);
-    // data.append('description', description);
-    // data.append('phone', phone);
+  
 
         e.preventDefault()
         
@@ -150,10 +136,6 @@ export default function ModalItemAddForm ({
       type="submit"
       // onClick={() => setModalSectionActive(true)}
       />
-        {/* <button 
-        // onClick={values => handleSubmit(values)}
-        className={scss.formBtn}
-        type="submit">Add</button> */}
         </>
         </Form>
         )

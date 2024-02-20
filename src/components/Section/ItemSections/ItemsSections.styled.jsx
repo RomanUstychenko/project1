@@ -30,10 +30,15 @@ export const Item = styled.li`
 `;
 
 export const Button = styled(NavLink)`
+word-wrap: break-word;
+padding-left: 5px;
+
+box-sizing: border-box;
 /* list-style: none; */
 border: none;
-width: 100%;
+width: 77%;
 color: #181515;
+font-size: 20px;
 font-weight: 900;
   line-height: 1.35;
   letter-spacing: 0.04em;
@@ -72,7 +77,14 @@ export const BtnChange = styled.button`
   background-color: transparent;
 `
 export const StyledChange = styled(CiEdit)`
+width:  25px;
+height: 25px;
   color: red;
+  &:hover,
+       &:focus {
+        color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  }
   
 `
 export const DelSection = styled(MdDeleteForever)`

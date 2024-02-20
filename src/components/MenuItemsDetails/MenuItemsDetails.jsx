@@ -7,7 +7,7 @@ import {ItemList} from "../../components/Item/ItemList/ItemList"
 //   //  geItemsByCategory
 //    } from "redux/items/items-operation"
 import Filter from "../../components/filter/Filter"
-import { ItemsList, ItemsLoading, BtnWrapper,
+import { ItemsList, ItemsLoading, BtnWrapper, AddItemButton, AddItemText
   //  BtnAdd
    } from "./MenuItemsDetails.styled";
 import { 
@@ -73,7 +73,6 @@ export default function MenuItemsDetails({setModalActive}) {
     // const { category } = useParams();
     // console.log(category)
   return (
-    // <div  className={scss.phoneBook}>
       <>
       <ItemsList>
       { category &&
@@ -81,22 +80,12 @@ export default function MenuItemsDetails({setModalActive}) {
         <Filter />
         
          <BtnWrapper>
-        <Button 
-        style={{
-          position: 'relative',
-          right: '0px',
-          height: '25px',
-          padding: '0px 0px',
-          minWidth: '80px',
-          fontSize: 15,
-          color: '#010101',
-        }}
-    
-      text="Add Item"
-      type="button"
-      onClick={() => setModalActive(true)}
-      />
-        
+   
+        <AddItemButton
+        type="button"
+        onClick={() => setModalActive(true)}>
+          <AddItemText>Add Item</AddItemText>
+        </AddItemButton>
         </BtnWrapper>
         </>
         }

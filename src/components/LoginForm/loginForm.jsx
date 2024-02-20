@@ -6,12 +6,19 @@ import { FormLogin, LoginFormWrapper, LoginFormLabel, LoginFormList, TextButton 
 import { LogRegInput } from "components/common/GeneralStyle/Input.styled";
 import { ButtonLogReg } from 'components/common/GeneralStyle/LogRegButton.styled';
 
+import Loader from "components/Loader/Loader";
+import { getLoadingUserStatus } from "redux/auth/auth-selector";
+import { useSelector } from "react-redux";
     const initialState = {
         email: "",
         password: "",
       };
     
     export default function LoginForm({onSubmit}) {
+
+      const isLoadingUser = useSelector(getLoadingUserStatus)
+console.log("isLoadingUser", isLoadingUser)
+
 
         const {state, handleChange, handleSubmit} = useForm({initialState, onSubmit});
         const {email, password} = state;
@@ -63,7 +70,8 @@ import { ButtonLogReg } from 'components/common/GeneralStyle/LogRegButton.styled
         type="submit"
         >
           <TextButton>
-          Login
+          Login {isLoadingUser && 
+       <Loader/> }
           </TextButton>
         </ButtonLogReg>
        </FormLogin>

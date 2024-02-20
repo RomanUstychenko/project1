@@ -12,12 +12,11 @@ const initialState = {
     isLogin: false,
     isLive: false,
     loading: false,
-    // isLoadingUser: false,
     error: null,
 }
 
 const pendingHandler = (store, {payload}) => {
-    store.isLoading = true;
+    store.loading = true;
     store.error = null;
   };
 
@@ -66,13 +65,13 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
     })
     .addCase(current.pending, pendingHandler)
     .addCase(current.fulfilled, (store, {payload}) => {
-        // store.isLoadingUser = false;
+        
         store.loading = false;
         store.newUser = payload;
         store.isLogin = true;
     })
     .addCase(current.rejected, (store, {payload}) => {
-        store.isLoadingUser = false;
+        store.loading = false;
         store.error = payload;
     })
     // .addCase(allUsers.pending, pendingHandler)
@@ -103,7 +102,6 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
         store.newUser = payload.user
       })
       .addCase(userUpdate.rejected, (store, { meta, payload }) => {
-        // store.isLoadingUser = false;
         store.loading = false;
         store.error = payload;
         // toast.error(chooseValid(Object.keys(meta.arg)[0]));

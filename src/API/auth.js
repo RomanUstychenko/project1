@@ -2,9 +2,9 @@ import axios from "axios";
 
 const instance = axios.create({
     baseURL: 
-    "http://192.168.0.108:3001/api"
+    // "http://192.168.0.108:3001/api"
     // "http://localhost:3001/api" 
-    || 
+    // || 
     "https://rest-api-back.onrender.com/api"
     
 });
@@ -27,8 +27,7 @@ export const register = async (registerData) => {
 
 export const login = async (loginData) => {
     const { data } = await instance.post("/users/login", loginData);
-    // console.log("token", data)
-    // console.log(loginData)
+   
     instance.defaults.headers.common.authorization = `Bearer ${data.token}`;
     return data;
 }

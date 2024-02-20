@@ -1,7 +1,7 @@
 import  ModalItemAddForm  from "../../components/Item/ModalItemAddForm/ModalItemAddForm"
 import ModalAddSectionForm from "components/Section/ModalAddSectionForm/ModalAddSectionForm"
 import {   fetchItems, } from "redux/items/items-operation"
-import { Sections, SectionForm, SectionWrap} from "./MenuItems.styled";
+import { Sections, SectionForm, SectionWrap, AddButton, AddButtonText} from "./MenuItems.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import {  getItemsByCategory } from 'redux/items/items-selector';
@@ -12,13 +12,11 @@ import { useLocation } from 'react-router-dom'
 import { fetchSections } from "redux/sections/sections-operation"
 import MenuItemsDetails from "components/MenuItemsDetails/MenuItemsDetails"
 import NavbarLive from "components/Navbar/NavbarLive/NavbarLive"
-import { Button } from "components/Button/Button";
+// import { Button } from "components/Button/Button";
 
 import React, { 
   // useRef,
    useContext } from 'react';
-// import styled , { css } from 'styled-components';
-// import useOnClickOutside from './ToggleMenu/onClickOutside';
 import { MenuContext } from "./ToggleMenu/navState";
 import HamburgerButton from './ToggleMenu/ToggleButton';
 // import { SideMenu } from './ToggleMenu/SideMenu';
@@ -29,15 +27,6 @@ import NavState from "Pages/MenuItems/ToggleMenu/navState";
 
 export default function MenuItems() {
 
-  // const node = useRef();
-  // const { isMenuClose } = useContext(MenuContext);
-  // console.log(isMenuOpen)
-  // useOnClickOutside(node, () => {
-  //   // Only if menu is open
-  //   if (isMenuOpen) {
-  //     toggleMenuMode();
-  //   }
-  // });
 
   const location = useLocation();
   const category = location.pathname.split('/')[2];
@@ -76,12 +65,11 @@ console.log(sections)
            ></ItemsSections>)
         }
         </ul>
-        <Button 
+        {/* <Button 
         style={{
           position: 'relative',
           right: '0px',
           height: '25px',
-          padding: '0px 0px',
           minWidth: '100px',
           fontSize: 15,
           color: '#010101'
@@ -90,7 +78,12 @@ console.log(sections)
       text="Add Section"
       type="button"
       onClick={() => setModalAddSectionActive(true)}
-      />
+      /> */}
+      <AddButton
+      type="button"
+      onClick={() => setModalAddSectionActive(true)}>
+        <AddButtonText>Add Section</AddButtonText>
+      </AddButton>
        </SectionForm>
       </SectionWrap>
       </>
@@ -114,10 +107,7 @@ console.log(sections)
           dispatch(fetchItems());
           dispatch(fetchSections());
           }, 
-           [ dispatch
-            
-          ]
-          );
+           [ dispatch]);
 
   return (
   

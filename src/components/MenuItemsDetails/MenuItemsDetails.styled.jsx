@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-
+import { Btn, TextBtn } from 'components/Button/Button.styled';
 
 export const ItemsList = styled.div`
     margin-left: 5px;
-    width: 150px;
+    width: 100%;
 ` 
     
 export const ItemsLoading  = styled.p`
@@ -24,5 +24,18 @@ padding: 3px 10px;
         background-color: ${props => props.theme.colors.btnActive};
         cursor: pointer;
   }
+`
+export const AddItemButton = styled(Btn)`
+            position: relative;
+          right: 0px;
+          height: 25px;
+          padding: 0px 10px;
+          min-width: 80px;
+          font-size: 15px;
+          color: #010101;
+
+`
+export const AddItemText = styled(TextBtn)`
+    
 
 `

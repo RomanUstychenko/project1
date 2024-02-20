@@ -4,19 +4,21 @@ import { TbArrowsRight } from "react-icons/tb";
 
 export const MenuButton = styled.button`
 position: absolute;
+top: 0px;
+right: 0px;
  z-index: 1000;
   display: block;
-  transform-origin: 16px 11px;
-  /* float: left; */
-  /* margin-right: 29px; */
+  height: 30px;
   outline: 0;
   border: 0;
-  padding: 5px;
+  padding: 5px 5px 0px 5px;
+  /* padding-left: 5px;
+  padding-top: 5px; */
   background: none;
 
-  span {
+  /* span {
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  }
+  } */
 
   /* :focus {
     border: medium none rgb(111, 255, 176);
@@ -70,9 +72,10 @@ position: absolute;
 // `;
 
 export const BarOpen  = styled(TbArrowsRight)`
-  
+  width: 30px;
+  height: 30px;
 `
 export const BarClose  = styled(TbArrowsLeft)`
-  
-
+  width: 30px;
+  height: 30px;
 `

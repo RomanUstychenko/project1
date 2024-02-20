@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Btn = styled.button`
-  padding: 0px 5px;
+  padding: 0px 10px;
   background-color: ${props => props.theme.colors.btn};
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
