@@ -17,6 +17,7 @@ import {
 //   //  useEffect,
 //     useState } from "react";
 import { getState } from 'redux/items/items-selector';
+// import {itemsLoading} from 'redux/items/items-selector';
 import { getItems, getItemsByCategory } from 'redux/items/items-selector';
 import { getSections } from "redux/sections/sections-selector"
 // import { Modal } from "components/Modal/Modal";
@@ -55,9 +56,9 @@ export default function MenuItemsDetails({setModalActive}) {
   const sections = useSelector(getSections);
   console.log("sections", sections)
   // console.log(sections)
- const {loading, error} = useSelector(getState);
-
-
+ const { error, loading} = useSelector(getState);
+//  const {} = useSelector(itemLoading);
+console.log(loading)
     //   useEffect(() => {
        
     //       dispatch(fetchItems());
@@ -87,9 +88,9 @@ export default function MenuItemsDetails({setModalActive}) {
           <AddItemText>Add Item</AddItemText>
         </AddItemButton>
         </BtnWrapper>
-        </>
-        }
-        
+        </>}
+
+        {console.log(loading)}
           {!loading && items.length > 0 && 
           <ItemList
           items={items} 

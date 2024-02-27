@@ -16,7 +16,7 @@ const initialState = {
 }
 
 const pendingHandler = (store, {payload}) => {
-    store.loading = true;
+    // store.loading = true;
     store.error = null;
   };
 

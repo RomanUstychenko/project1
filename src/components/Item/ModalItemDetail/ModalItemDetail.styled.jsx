@@ -4,6 +4,7 @@ import {BiDownArrow} from 'react-icons/bi';
 import { GrEdit } from "react-icons/gr";
 import { MdOutlineAddAPhoto } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
+import { Btn, TextBtn } from 'components/Button/Button.styled';
 
 export const ChangeImage = styled(GrEdit)`
     
@@ -96,14 +97,6 @@ export const FormImgWrapper = styled.div`
 margin-top: 5px;
 position: relative;
     display: block;
-    /* justify-content: space-between; */
-    /* &:hover .my__unique__button__class-asdf123  {
-        height: 290px;
-            border-radius:50px;
-            background-color: #fff;
-  } */
-     
- 
 `
 
 export const FormInputLabelImg = styled.label`
@@ -202,4 +195,10 @@ export const BtnArrow = styled(BiDownArrow)`
         /* background-color: #c0bcbc; */
         cursor: pointer;
        }
+`
+export const RenameButton = styled(Btn)`
+    
+`
+export const RenameButtonText = styled(TextBtn)`
+    
 `

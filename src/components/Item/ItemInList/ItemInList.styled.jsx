@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {MdDeleteForever} from 'react-icons/md';
 
 export const ItemsList = styled.li`
+background-color: #d2d2d8;
 border-radius: 10px;
 box-shadow: 7px 20px 14px rgba(10, 4, 1, 0.1);
 width:  100%;

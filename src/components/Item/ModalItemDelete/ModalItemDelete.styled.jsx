@@ -1,9 +1,7 @@
 import styled from 'styled-components';
+import { Btn, TextBtn } from 'components/Button/Button.styled';
 
 export const TextWrapper = styled.div`
-    /* width: 250px;
-    height: 100px; */
-    /* border: 1px solid #749574; */
     font-size: 25px;
     border: 1px solid rgb(7, 94, 138);
     border-radius: 5px;
@@ -12,7 +10,15 @@ export const TextWrapper = styled.div`
     background-color: #919191;
 `
 export const Text = styled.p`
-margin-top: 20px;
 margin-bottom: 20px;
     font-size: 15px;
+`
+export const ItemDeleteButton = styled(Btn)`
+min-width: 80px;
+&:not(:last-child) {
+    margin-right: 25px;
+}
+`
+export const ItemDeleteTextButton = styled(TextBtn)`
+    
 `

@@ -1,35 +1,31 @@
-import React from 'react'
-import { 
-    // useSelector, 
-    useDispatch } from 'react-redux';
-    import { deleteItem, 
-        //  geItemsByCategory
-        } from "redux/items/items-operation";
+import { useDispatch } from 'react-redux';
+import { deleteItem } from 'redux/items/items-operation';
+import {
+  TextWrapper,
+  Text,
+  ItemDeleteButton,
+  ItemDeleteTextButton,
+} from './ModalItemDelete.styled';
 
-export default function ModalItemDelete({_id, closeModal}) {
+export default function ModalItemDelete({ _id, closeModal }) {
+  const dispatch = useDispatch();
 
-
-    const dispatch = useDispatch();
-
-    function DelItem () {
-        dispatch(deleteItem(_id));
-        closeModal ();
-      }
+  function DelItem() {
+    dispatch(deleteItem(_id));
+    closeModal();
+  }
 
   return (
-    <div
-      onClick={e => e.stopPropagation()}
-      // active={modalActive}
-      >
-        Do you really wont to delete?
-          <button
-          onClick={() => 
-            
-            {DelItem ()}} 
-          >
-            yes
-          </button>
-        
-      </div>
-  )
+    <TextWrapper onClick={e => e.stopPropagation()}>
+      <Text>Do you really wont to delete?</Text>
+
+      <ItemDeleteButton type="button" onClick={() => DelItem()}>
+        <ItemDeleteTextButton>Yes</ItemDeleteTextButton>
+      </ItemDeleteButton>
+
+      <ItemDeleteButton type="button" onClick={() => closeModal()}>
+        <ItemDeleteTextButton>No</ItemDeleteTextButton>
+      </ItemDeleteButton>
+    </TextWrapper>
+  );
 }

@@ -15,7 +15,7 @@ const initialState = {
 
 
 const pendingHandler = (store, {payload}) => {
-    store.isLoading = true;
+    // store.loading = true;
   };
 
 const itemsSlice = createSlice({
@@ -34,9 +34,11 @@ const itemsSlice = createSlice({
             store.loading = false;
             store.error = payload;
         })
-        .addCase(fetchItemsLive.pending, pendingHandler)
+        .addCase(fetchItemsLive.pending, 
+            // pendingHandler
+            )
         .addCase(fetchItemsLive.fulfilled, (store, {payload}) => {
-            store.loading = false;
+            // store.loading = false;
             store.isLive = true;
             store.itemsLive = payload;
         }) 

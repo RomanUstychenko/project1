@@ -1,26 +1,14 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, ListSectionChange, FormInputListSection, InputListWrapper, BtnChageSection, LabelSection, BtnArrow, ChangeImage, AddImage, DeleteImage, FormImgAction } from "./ModalItemDetail.styled";
+import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, ListSectionChange, FormInputListSection, InputListWrapper, BtnChageSection, LabelSection, BtnArrow, ChangeImage, AddImage, DeleteImage, FormImgAction, RenameButton, RenameButtonText } from "./ModalItemDetail.styled";
 import { Form, FormInputList, FormInputLabel, FormInput, FormInputDescription, FormInputSection } from "components/common/GeneralStyle/Input.styled";
-import {
-  useSelector, 
-  useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { imgSaved } from 'redux/items/items-selector';
-import { itemUpdate, imgUpdate
-  // geItemsByCategory
- } from "redux/items/items-operation"; 
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// // import { Formik } from 'formik';
-// import { useLocation,
-//   //  useSearchParams
-//    } from 'react-router-dom';
+import { itemUpdate, imgUpdate } from "redux/items/items-operation"; 
 import noimg from 'img/noimg.jpg'
-import { Button } from "components/Button/Button";
 import { getSections } from "redux/sections/sections-selector"
-// import { useEffect } from "react";
 
-export default function ModalItemDetail ({
-  //  itemsCategory, 
+export default function ModalItemDetail ({ 
   itemName,
    price, 
    description, 
@@ -28,22 +16,11 @@ export default function ModalItemDetail ({
    itemImg,
    section,
     closeModal,
-  // el
 }) {
-
-
 
   const imgSavedCheck = useSelector(imgSaved);
   const sections = useSelector(getSections);
-  // console.log("imgSavedCheck", imgSavedCheck)
-  
- 
 
-
-
-
-  //  const location = useLocation();
-  // const category = location.pathname.split('/')[2];
   const dispatch = useDispatch();
 
   const [newItemName, setNewItemName] = useState(itemName);
@@ -55,17 +32,14 @@ export default function ModalItemDetail ({
 
   const [saved, setSaved] = useState(false);
   const [deleted, setDeleted] = useState(false);
-  // const [section, setSection] = useState(category)
-// console.log(section)
+ 
 console.log(saved)
-// console.log(newSectionName)
   const itemImgID = nanoid();
   const itemNameID = nanoid();
   const itemPriceID = nanoid();
   const itemDescriptionID = nanoid();
   const itemSectionID = nanoid();
- 
-// console.log(itemName, price)
+
 
  async function handleChange  (e)  {
         const { name } = e.currentTarget;
@@ -104,10 +78,15 @@ console.log(saved)
       
       const handleChangeUpload = e => {
         const fileSelect = e.target.files[0];
-        // console.log(fileSelect)
         UploadFile(fileSelect);
-        // setSaved(imgSavedCheck);
-        // console.log(saved);
+        setDeleted(false);
+        console.log(imgSavedCheck)
+      //  if (imgSavedCheck === true) {
+      //   setSaved(true);
+      //   console.log('saved', saved)
+      // }
+        // setSaved(true);
+  
         
       };
       // if (imgSavedCheck) {
@@ -117,34 +96,7 @@ console.log(saved)
   const handleSubmit = (e) => {
 
         e.preventDefault()
-        // const duplicateItems = itemsCategory.find(itemCategory => itemCategory.itemName.toLocaleLowerCase() === newItemName.toLocaleLowerCase());
-      
-       
-          // if (duplicateItems) {
-          //   Notify.failure(`${itemName} is already in items`)
-          //   // alert (`${name} is already in contact`)
-          //   return
-          // }
-          // if (description === "") {
-          //   setSection (category)
-          //   dispatch(addItems(
-          //     {itemsName, price, section}
-          //     ));
-          //     setItemsName('');
-          //   // setDescription('');
-          //   setPrice('');
-          //   setSection('');
-          //   setModalActive(false);
-          // }
-          // else {
-            // setSection (category)
-
-            // console.log(_id)
-            // console.log(itemsName)
-            // console.log(dispatch(itemUpdate({_id, 
-            //   itemName: itemsName}
-            //  )))
-            // setSection (category)
+        
             if (newPrice === "") 
             {setNewPrice(price)}
 
@@ -172,7 +124,7 @@ const deleteImage = () => {
   dispatch(itemUpdate(
     {_id,
       itemImg: '',}));
-  setSaved(false)
+  setSaved(false);
   setDeleted(true);
 
 }
@@ -194,13 +146,7 @@ async function  OpenSectionList () {
 
 async function CloseSectionList (e) {
 
-  // const el = await document.getElementsByName("listNewSection");
-  // const el2 = await document.getElementsByName("listNewSectionBtn");
-  // const el3 = await document.getElementsByName("newSectionLabel");
-  // console.log('elList', el[0])
-  // console.log('elList', el)
-  // const elListId = el[0];
-  // const elBtn = el2[0];
+
   
   const elForm = document.getElementById("formWrap")
   
@@ -209,9 +155,7 @@ async function CloseSectionList (e) {
 
   
   async function handleKeyDown (e) {
-    // console.log("clickkk");
-    // const CheckBtn =  e.composedPath().includes(elBtn);
-    // const CheckList = e.composedPath().includes(elListId);
+   
     const CheckForm = e.composedPath().includes(elForm);
     
     // console.log(CheckBtn)
@@ -241,7 +185,6 @@ if (elForm !== undefined || null) {
 
       return ( 
         <FormWrapper
-        
         onClick={e => e.stopPropagation()}
         >
           <FormImgWrapper>
@@ -254,15 +197,12 @@ if (elForm !== undefined || null) {
           method="post"
           onClick={e => e.stopPropagation()}
           >
-          {/* <FormInputListImg > */}
-         
           <FormInputHidden 
           id={itemImgID} 
           type="file" 
           name="image" 
           accept="image/png, image/jpeg, image/jpg, image/bmp"
           onChange={handleChangeUpload} />
-          {/* <ButtonWrapper> */}
           {!itemImg && <FormInputLabelImg  htmlFor={itemImgID}>
             <AddImage/>
             </FormInputLabelImg>}
@@ -279,14 +219,13 @@ if (elForm !== undefined || null) {
 
       </ButtonDel>
           }
-          {/* </ButtonWrapper> */}
-        {/* </FormInputListImg> */}
           </FormImgAction>
-            
-           
+          
           </FormImgWrapper>
           <div>
+            {console.log(imgSavedCheck)}
           {imgSavedCheck && <Saved>change saved!</Saved>}
+          {/* {saved && <Saved>change saved!</Saved>} */}
           {deleted && <Deleted>image deleted!</Deleted>}
           </div>
 
@@ -304,7 +243,6 @@ if (elForm !== undefined || null) {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may "
           required
-          // value={itemsName} 
           defaultValue={itemName}
           onChange={handleChange} />
         </FormInputList>
@@ -316,8 +254,7 @@ if (elForm !== undefined || null) {
           name="newPrice" 
           pattern="[0-9]{1,10}"
           title="Name may "
-          required
-          // value={itemsName} 
+          required 
           defaultValue={price}
           onChange={handleChange} />
         </FormInputList>
@@ -329,12 +266,9 @@ if (elForm !== undefined || null) {
           name="newDescription" 
           pattern="[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may "
-          // required
-          // value={itemsName} 
           defaultValue={description}
           onChange={handleChange} />
         </FormInputList>
-        
 
         <FormInputListSection >
          <p>Section</p>
@@ -349,7 +283,6 @@ if (elForm !== undefined || null) {
           required 
           value={filt.map(fi => fi.category)}
         
-          
           onChange={handleChange} />
           <BtnChageSection
          type="button"
@@ -361,21 +294,11 @@ if (elForm !== undefined || null) {
          </InputListWrapper>
 
         </FormInputListSection>
-
-        <Button 
-        style={{
-          position: 'relative',
-          right: '0px',
-          height: '25px',
-          padding: '0px 0px',
-          minWidth: '100px',
-          fontSize: 15,
-          color: '#010101'
-        }}
-    
-      text="Change Name"
+      <RenameButton
       type="submit"
-      />
+      >
+        <RenameButtonText>Change Names</RenameButtonText>
+      </RenameButton>
       
         </Form>
         {newSectionName &&  
@@ -391,7 +314,6 @@ onChange={handleChange}>
         id={itemSectionID}
         >
  <FormInputHidden
-// id={itemSectionID}
 type="radio"
 name="newSection"
 value={section._id}
@@ -400,10 +322,6 @@ onChange={handleChange}
 /> {section.category}</LabelSection>  )}
 
   </ListSectionChange>}
-        </FormWrapper>
-        
+        </FormWrapper>    
         );
-
-        
-
 };
