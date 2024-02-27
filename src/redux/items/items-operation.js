@@ -21,7 +21,7 @@ export const fetchItems = createAsyncThunk(
     export const fetchItemsLive = createAsyncThunk(
         "items/live/fetch",
         async(datas, thunkApi) => {
-            console.log(datas)
+            // console.log(datas)
             try {
                 const data = await api.getItemsLive(               
                     datas,
@@ -45,8 +45,8 @@ export const fetchItems = createAsyncThunk(
             try {
                 
                 const  data  = await api.getItemsByCategory(category)
-                console.log(data)
-                console.log(category)
+                // console.log(data)
+                // console.log(category)
                 return data;
             } 
              catch (error) {
@@ -59,14 +59,14 @@ export const fetchItems = createAsyncThunk(
     export const addItems = createAsyncThunk(
         "items/add",
         async(datas, {rejectWithValue}) => {
-            console.log(datas)
+            // console.log(datas)
             try {
                 const result = await api.addItems(datas);
-                console.log(result)
+                // console.log(result)
                 return result;
                 
             } catch (error) {
-                console.log("error", error)
+                // console.log("error", error)
                 return rejectWithValue(error);
             }},
     );
@@ -84,12 +84,12 @@ export const fetchItems = createAsyncThunk(
     export const delItemsByCategory = createAsyncThunk(
         'items/delByCategory',
         async ( _id, {rejectWithValue}) => {
-            console.log(_id)
+            // console.log(_id)
             try {
                 
                 const  data  = await api.delItemsByCategory(_id)
-                console.log(data)
-                console.log(_id)
+                // console.log(data)
+                // console.log(_id)
                 return data;
             } 
              catch (error) {
@@ -100,11 +100,11 @@ export const fetchItems = createAsyncThunk(
     export const itemUpdate = createAsyncThunk(
         'items/itemUpdate',
         async ( datas, { rejectWithValue }) => {
-            console.log(datas)
+            // console.log(datas)
           try {
             
             const newArr = [datas].map(({_id, ...rest}) => (rest))
-            console.log(newArr)
+            // console.log(newArr)
             const result = await api.itemUpdate(datas._id, newArr);
             
             // console.log(result)
@@ -122,11 +122,11 @@ export const fetchItems = createAsyncThunk(
       export const imgUpdate = createAsyncThunk(
         'items/imgUpdate',
         async ( datas, { rejectWithValue }) => {
-            console.log(datas)
+            // console.log(datas)
           try {
             
-            const newArr = [datas].map(({_id, ...rest}) => (rest))
-            console.log(newArr)
+            // const newArr = [datas].map(({_id, ...rest}) => (rest))
+            // console.log(newArr)
             // const result = await api.imgUpdate(datas._id, newArr);
             const result = await api.imgUpdate(datas._id, datas.imageURL);
             // console.log(result)

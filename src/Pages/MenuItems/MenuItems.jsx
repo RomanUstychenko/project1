@@ -19,14 +19,14 @@ import React, {
    useContext } from 'react';
 import { MenuContext } from "./ToggleMenu/navState";
 import HamburgerButton from './ToggleMenu/ToggleButton';
-// import { SideMenu } from './ToggleMenu/SideMenu';
+import { SideMenus } from './ToggleMenu/SideMenus';
 import NavState from "Pages/MenuItems/ToggleMenu/navState";
 
 
 
 
 export default function MenuItems() {
-
+  const { isMenuClose } = useContext(MenuContext);
 
   const location = useLocation();
   const category = location.pathname.split('/')[2];
@@ -38,14 +38,14 @@ export default function MenuItems() {
 
   const dispatch = useDispatch();
   const itemsCategory = useSelector(getItemsByCategory);
-  console.log(itemsCategory)
+  // console.log(itemsCategory)
   const   sections = useSelector(getSections);
-const sect = sections.map(({_id, category}) => ({_id, category}));
-console.log(sect)
-console.log(sections)
+// const sect = sections.map(({_id, category}) => ({_id, category}));
+// console.log(sect)
+// console.log(sections)
   const SideMenu = () => {
     const { isMenuClose } = useContext(MenuContext);
-    console.log(isMenuClose)
+    // console.log(isMenuClose)
   
     return (
   <>
@@ -65,35 +65,16 @@ console.log(sections)
            ></ItemsSections>)
         }
         </ul>
-        {/* <Button 
-        style={{
-          position: 'relative',
-          right: '0px',
-          height: '25px',
-          minWidth: '100px',
-          fontSize: 15,
-          color: '#010101'
-        }}
-    
-      text="Add Section"
-      type="button"
-      onClick={() => setModalAddSectionActive(true)}
-      /> */}
-      <AddButton
+              <AddButton
       type="button"
       onClick={() => setModalAddSectionActive(true)}>
         <AddButtonText>Add Section</AddButtonText>
       </AddButton>
        </SectionForm>
       </SectionWrap>
-
       </>
- 
   );
   };;
-
-  
-
 
   function closeModal () {
     setModalActive(false)
@@ -101,8 +82,6 @@ console.log(sections)
     // setModalChangeSectionActive(false)
     document.body.style.overflow = '';
   }
-
-  
 
       useEffect(() => {
           dispatch(fetchItems());
@@ -118,7 +97,36 @@ console.log(sections)
      
     <NavState>
   
-       <SideMenu />
+       {/* <SideMenu /> */}
+       <SideMenus
+       isMenuClose={isMenuClose}>
+       <>
+       {console.log("isMenuClose", isMenuClose)}
+      <SectionWrap 
+      // ref={node}
+      close={isMenuClose}
+      >
+         <HamburgerButton
+         close={isMenuClose}
+         />
+  <SectionForm close={isMenuClose}
+      >
+        <ul>
+          {sections.map(section =>
+           <ItemsSections
+           section={section}
+           ></ItemsSections>)
+        }
+        </ul>
+              <AddButton
+      type="button"
+      onClick={() => setModalAddSectionActive(true)}>
+        <AddButtonText>Add Section</AddButtonText>
+      </AddButton>
+       </SectionForm>
+      </SectionWrap>
+      </>
+       </SideMenus>
       
       { modalAddSectionActive && (
         <Modal

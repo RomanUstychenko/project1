@@ -6,6 +6,8 @@ import UseAuth from "components/hooks/useAuth"
 import UseLive from "components/hooks/useLive"
 
 export default function Navbar() {
+
+
   const isUserLogin = UseAuth()
   const isUseLive = UseLive()
   return (
@@ -13,7 +15,7 @@ export default function Navbar() {
     {isUseLive ? <LiveTitle /> : 
     <NavbarTitles >
         <NavbarList >
-           {isUserLogin ? <NavbarUser /> : <NavbarAuth />}
+           {isUserLogin ? <NavbarUser/> : <NavbarAuth />}
            
         </NavbarList>
     

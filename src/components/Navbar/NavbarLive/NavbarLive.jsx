@@ -9,7 +9,7 @@ import { ToLiveLink, ToLiveLinkList } from "./NavbarLive.styled";
 
 export default function NavbarLive() {
   const user = useSelector(getUser);
-  console.log(user)
+  // console.log(user)
   const chekName = Boolean(user)
   const items = chekName ? [
    
@@ -23,10 +23,10 @@ export default function NavbarLive() {
 
   
   return (
-    <ToLiveLinkList>
+     <>
       {chekName ? items.map(({id, to, text}) => {
             return (
-                // <li  key={id}>
+                <ToLiveLinkList  key={id}>
                     <ToLiveLink  
                     target="_blank"
                     rel="noreferrer noopener"
@@ -34,11 +34,9 @@ export default function NavbarLive() {
                     end>
                       {text}
                      </ToLiveLink>
-                // </li>
+                 </ToLiveLinkList>
             )})
          : <></> }
-
-        
-    </ToLiveLinkList>
+     </>
   )
 }

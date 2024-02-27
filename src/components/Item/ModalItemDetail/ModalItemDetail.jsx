@@ -282,7 +282,7 @@ if (elForm !== undefined || null) {
           title="Name may "
           required 
           value={filt.map(fi => fi.category)}
-        
+          disabled
           onChange={handleChange} />
           <BtnChageSection
          type="button"

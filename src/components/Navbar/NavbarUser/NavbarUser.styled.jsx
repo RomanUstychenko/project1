@@ -19,13 +19,11 @@ import { Btn, TextBtn } from 'components/Button/Button.styled';
 export const NavbarUserName = styled.div`
 display: flex;
 width: 100%;
-/* margin-left: auto;
-margin-right: auto; */
 align-items: center;
 justify-content: center;
-/* text-align: center; */
-    /* font-size: 15px;
-    font-weight: 600; */
+`
+export const NavbarUserLogo = styled.img`
+    height: 35px;
 `
 export const NavbarUserSet = styled.div`
 display: flex;
@@ -54,7 +52,7 @@ export const NavbarMenuListItem = styled.li`
     margin-right: 20px;
 }
 `
-export const Link = styled(NavLink)`
+export const SettingLink = styled(NavLink)`
     text-decoration: none;
     margin-right: 10px;
 `

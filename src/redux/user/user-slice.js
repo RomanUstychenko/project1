@@ -22,10 +22,10 @@ const usersSlice = createSlice({name:"users", initialState,  extraReducers: buil
     .addCase(allUsers.pending, pendingHandler)
     .addCase(allUsers.fulfilled, (store, {payload}) => {
         store.loading = false;
-        console.log(payload)
+        // console.log(payload)
         // store.users.push(payload)
         store.users = payload;
-        console.log(store.users)
+        // console.log(store.users)
         // store.isLogin = true;
     })
     .addCase(allUsers.rejected, (store, {payload}) => {

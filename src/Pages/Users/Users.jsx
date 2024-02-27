@@ -5,9 +5,7 @@ import { getUser } from "redux/auth/auth-selector";
 import { userUpdate } from "redux/auth/auth-operation";
 // import { Navigate } from "react-router-dom"
 import {Buttons, TextButton, FormLogo, DataWrapper, DataLabel, DataInput, DataInputDescription, DataForm, GoBackWrap, GoBack, ImgWraper, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import { Formik } from 'formik';
-// import { Button } from "components/Button/Button";
+import HideSetting from "components/hooks/hideSetting";
 
 export default function Users() {
 
@@ -30,13 +28,21 @@ const userPhoneID = nanoid();
 const userDescriptionID = nanoid();
 const userAddressID = nanoid();
 const userPhotoID = nanoid();
-console.log(updName)
-console.log(updPhone)
-console.log(user.phone)
+
+const {
+  showSetting,
+} = HideSetting;
+
+// console.log('HideSetting', SettingActive)
+
+// function showSetting () {
+//   console.log(SettingActive)
+//   setSettingActive(true)
+// }
 
 const handleChange = (e) => {
   const { name } = e.currentTarget;
-  console.log(name)
+  
         switch (name) {
           case 'name':
             setName ( e.currentTarget.value);
@@ -74,7 +80,7 @@ const UploadFile = async fileSelect => {
 
 const handleChangeUpload = e => {
   const fileSelect = e.target.files[0];
-  console.log(fileSelect)
+  
   UploadFile(fileSelect);
 };
 
@@ -82,6 +88,7 @@ const handleChangeUpload = e => {
     <>
     <GoBackWrap>
     <GoBack
+    onClick={() => showSetting ()}
     to={"/items"} 
     end
     >Close setting</GoBack>
@@ -185,21 +192,6 @@ const handleChangeUpload = e => {
           defaultValue={user.description} 
           onChange={handleChange} />
       </DataWrapper>
-      {/* <Button 
-      style={{
-        position: 'relative',
-        right: '0px',
-        height: '30px',
-        padding: '0px 0px',
-        width: '100%',
-        fontSize: '30px',
-        color: '#010101',
-        marginTop: '15px',
-      }}
-  
-    text="save changes"
-    type="submit"
-    /> */}
     <Buttons
     type="submit">
       <TextButton>save changes</TextButton>

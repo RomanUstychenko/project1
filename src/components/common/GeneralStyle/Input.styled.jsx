@@ -67,11 +67,14 @@ margin-top: 10px;
     height: 100px;
     border-radius: 5px;
     border: 1px solid #749574;
+    &:focus, &:hover  {
+    outline: 2px solid #F59256;
+ }
 `
 export const FormInputSection = styled.input`
 font-family: 'Times New Roman', Times, serif;
 font-size: 17px;
-    
+    background-color: #FFF;
     padding-left: 10px;
     width: 170px;
     height: 25px;

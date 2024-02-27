@@ -6,21 +6,21 @@ export const getItems = async () => {
     return data;
 }
 export const getItemsLive = async (datas) => {
-  console.log(datas)
+  // console.log(datas)
   const {data} = await instance.get(`/items/live/${datas}`);
   return data;
 }
 
 
 export const getItemsByCategory =  async ({category}) => {
-    console.log(category)
+    // console.log(category)
     const { data } = await instance.get(`/items/${category}`);
             return data;     
 };
 
 export const addItems = async (data) => {
     const {data: result} = await instance.post('/items', data);
-    console.log(data)
+    // console.log(data)
     return result;
 }
 
@@ -29,16 +29,16 @@ export const deleteItem = async (_id) => {
     return data;
 }
 export const delItemsByCategory =  async (category) => {
-  console.log(category)
+  // console.log(category)
   const { data } = await instance.delete(`/items/${category}/remove`);
           return data;     
 };
 export const itemUpdate = async (_id, items) => {
     // try {
-        console.log("items", items)
+        // console.log("items", items)
       const { data} = await instance.patch(`/items/${_id}`, ...items);
-      console.log("_id", _id)
-      console.log("items", items)
+      // console.log("_id", _id)
+      // console.log("items", items)
     //   console.log("itemData", itemName)
       return data;
     // } catch (error) {
@@ -47,9 +47,9 @@ export const itemUpdate = async (_id, items) => {
   }
   export const imgUpdate = async (_id, items) => {
     // try {
-        console.log("FormData", items)
+        // console.log("FormData", items)
       const { data } = await instance.patch(`/items/${_id}`, items);
-      console.log("data", data)
+      // console.log("data", data)
       // console.log("items", items)
     //   console.log("itemData", itemName)
       return data;
