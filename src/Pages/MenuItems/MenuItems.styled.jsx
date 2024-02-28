@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Btn, TextBtn } from 'components/Button/Button.styled';
+import { device } from 'Device';
 
 export const Sections = styled.div`
 /* color: white; */
@@ -37,7 +38,7 @@ position: relative;
       width: 40px;
     `}
 
-
+    
 `
 
 
@@ -67,6 +68,10 @@ box-sizing: border-box;
       transform: translateX(-100%);
       opacity: 0;
     `}
+
+    @media ${device.tablet} {
+        width: 300px;
+    };
 `
 export const AddButton = styled(Btn)`
         position: relative;

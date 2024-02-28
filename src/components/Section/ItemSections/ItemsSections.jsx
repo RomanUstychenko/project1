@@ -1,34 +1,19 @@
 import {useState} from 'react';
-import { 
-  // useSelector,
-  useDispatch} from 'react-redux';
-// import { getSections } from 'redux/sections/sections-selector';
-// import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { nanoid } from 'nanoid';
+import { useDispatch} from 'react-redux';
+
+import { fetchSections } from "redux/sections/sections-operation"
+
 import {
   Button,
   FilterList,
   StyledChange,
   BtnChange,
-  // Item,
-  // Wrapper,
-  // AuthLinks,
-  // CommonLinks,
 } from './ItemsSections.styled';
 import { Modal } from 'components/common/Modal/Modal';
 import ModalChangeSectionName from '../ModalChangeSectionName/ModalChangeSectionName';
-// import { useEffect } from "react";
-// import {  geItemsByCategory } from "redux/items/items-operation";
-import { fetchSections } from "redux/sections/sections-operation"
-
-// const btnId = nanoid();
-// const sectionId = nanoid();
-
-
 
 function ItemsSections({section}) {
-  // const sections = useSelector(getSections);
-  // console.log(section)
+ 
   const [ModalChangeSectionActive, setModalChangeSectionActive] = useState(false);
   const dispatch = useDispatch();
   function closeModal () {
@@ -41,7 +26,6 @@ function ItemsSections({section}) {
     _id,
     category,
   } = section;
-  // console.log(category)
 
   const buttons = [
     {
@@ -50,25 +34,20 @@ function ItemsSections({section}) {
     }
   
   ];
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     
-      <FilterList key={nanoid()}>
-        
-        
+      <FilterList
+       key={section._id}
+       >
           {buttons.map(b => (
-            // <Item key={btnId}>
               <Button 
-              key={nanoid()}
+              key={b.link}
               to={'/items/' + b.link} name={b.link}>
                 {b.btn}
               </Button>
-              
-            //  </Item>
           ))}
           <BtnChange
-          key={nanoid()}
           onClick={() => setModalChangeSectionActive(true)}>
                 <StyledChange/>
               </BtnChange>
@@ -82,7 +61,6 @@ function ItemsSections({section}) {
           _id={_id}
           category={category}
           />
-     
           </Modal>
          )}
         

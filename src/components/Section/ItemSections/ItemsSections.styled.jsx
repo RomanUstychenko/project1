@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'Device';
 import { NavLink } from 'react-router-dom';
 // import {MdOutlineDriveFileRenameOutline} from 'react-icons/md';
 import {CiEdit} from 'react-icons/ci';
@@ -56,6 +57,9 @@ font-weight: 900;
    background-color: #749574;
   }
 
+  @media ${device.tablet} {  
+        width: 100%;
+    };
 `;
 export const CommonLinks = styled.div`
   display: flex;
