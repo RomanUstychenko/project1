@@ -57,11 +57,11 @@ console.log(saved)
               setNewItemImg ( e.currentTarget.value);
             break;
             case 'newSection':
-              console.log(e.currentTarget.value)
+              // console.log(e.currentTarget.value)
               setNewSection ( e.currentTarget.value);
               setNewSectionName(false);
               // setNewSectionName ( e.currentTarget.value);
-              console.log(newSection);
+              // console.log(newSection);
             break;
           default:
             break;
@@ -80,7 +80,7 @@ console.log(saved)
         const fileSelect = e.target.files[0];
         UploadFile(fileSelect);
         setDeleted(false);
-        console.log(imgSavedCheck)
+        // console.log(imgSavedCheck)
       //  if (imgSavedCheck === true) {
       //   setSaved(true);
       //   console.log('saved', saved)
@@ -129,15 +129,17 @@ const deleteImage = () => {
 
 }
 
-
-const filt =  
-  sections.filter(section => section._id === newSection)
-
-
+  const filter = () => {
+    const filterSection =  
+    sections.filter(data => data._id === newSection)
+    const filterResult = filterSection.map(fi => fi.category)
+  
+    return filterResult;
+  };
 
 
 async function  OpenSectionList () {
-  console.log('open')
+  // console.log('open')
   setNewSectionName(true)
   // console.log('NewSectionName', newSectionName)
   CloseSectionList()
@@ -160,7 +162,7 @@ async function CloseSectionList (e) {
     
     // console.log(CheckBtn)
     // console.log(CheckList)
-    console.log(CheckForm)
+    // console.log(CheckForm)
    
     
 
@@ -173,7 +175,7 @@ async function CloseSectionList (e) {
       // CheckList === false &&
       //  CheckBtn === false && 
        CheckForm === true) {
-      console.log('Formtrue')
+      // console.log('Formtrue')
       setNewSectionName(false)
         }
 };
@@ -223,7 +225,7 @@ if (elForm !== undefined || null) {
           
           </FormImgWrapper>
           <div>
-            {console.log(imgSavedCheck)}
+            {/* {console.log(imgSavedCheck)} */}
           {imgSavedCheck && <Saved>change saved!</Saved>}
           {/* {saved && <Saved>change saved!</Saved>} */}
           {deleted && <Deleted>image deleted!</Deleted>}
@@ -281,7 +283,7 @@ if (elForm !== undefined || null) {
           pattern="[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may "
           required 
-          value={filt.map(fi => fi.category)}
+          value={filter()}
           disabled
           onChange={handleChange} />
           <BtnChageSection
@@ -297,7 +299,7 @@ if (elForm !== undefined || null) {
       <RenameButton
       type="submit"
       >
-        <RenameButtonText>Change Names</RenameButtonText>
+        <RenameButtonText>Save Changes</RenameButtonText>
       </RenameButton>
       
         </Form>
@@ -312,6 +314,7 @@ onChange={handleChange}>
         <LabelSection
         name="newSectionLabel"
         id={itemSectionID}
+        key={section._id}
         >
  <FormInputHidden
 type="radio"

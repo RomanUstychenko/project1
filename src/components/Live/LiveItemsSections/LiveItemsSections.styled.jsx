@@ -68,6 +68,7 @@ height: 50px;
 max-width: 200px;
 `
 export const ItemDescription = styled.p`
+
 /* padding: 3px; */
 padding-left: 3px;
 padding-right: 3px;

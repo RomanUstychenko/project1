@@ -73,6 +73,7 @@ box-sizing: border-box;
         width: 300px;
     };
 `
+
 export const AddButton = styled(Btn)`
         position: relative;
           right: 0px;
