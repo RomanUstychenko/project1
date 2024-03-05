@@ -12,19 +12,21 @@ import {
   ItemSectionWrap,
   ItemSection,
 } from './ItemInList.styled';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { nanoid } from 'nanoid';
 
 import ModalItemDetail from '../ModalItemDetail/ModalItemDetail';
 import ModalItemDelete from '../ModalItemDelete/ModalItemDelete';
 import { fetchItems } from 'redux/items/items-operation';
 // import { FilterSection } from 'components/common/FilterSection/FilterSection';
-
+import { MenuContext } from 'Pages/MenuItems/ToggleMenu/navState';
 
 import { getSections } from "redux/sections/sections-selector"
 
 
 export default function ItemInList({ filteredItem }) {
+
+  const { isMenuClose } = useContext(MenuContext);
   const filteredItemId = nanoid();
   const { itemName, description, price, itemImg, _id, section } = filteredItem;
 
@@ -67,7 +69,9 @@ const filter = () => {
         <ItemsList key={nanoid()}>
          
              <Item onClick={() => setModalDetailActive(true)} key={filteredItemId}>
-             <ItemText>{itemName}</ItemText>
+             <ItemText
+             close={isMenuClose}
+             >{itemName}</ItemText>
              <ItemPriceWrap>
                <ItemPriceName>Price:</ItemPriceName> <ItemPrice>{price}</ItemPrice>
              </ItemPriceWrap>

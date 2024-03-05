@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { device } from 'Device';
 import {MdDeleteForever} from 'react-icons/md';
 
@@ -73,14 +73,31 @@ export const ItemText = styled.p`
     overflow: hidden;
     font-size: 20px;
     width: ${nameWidth[0]};
+    ${props =>
+    props.close &&
+    css`
+      width: 270px;
+    `}
     @media ${device.tablet} {
         
         width: ${nameWidth[1]};
         padding-left: 10px;
         text-align: left;
+
+        ${props =>
+    props.close &&
+    css`
+      width: 470px;
+    `}
+
     };
     @media ${device.desktop} {
         width: ${nameWidth[2]};
+        ${props =>
+    props.close &&
+    css`
+      width: 100%;
+    `}
     };
 `
 export const ItemPriceWrap = styled.span`
