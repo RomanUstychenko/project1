@@ -5,8 +5,7 @@ import {
  import { useLocation } from 'react-router-dom';
  import { useEffect } from "react";
 
-
- import { useResize } from "components/hooks/useResize";
+ import ItemsSize from './items';
 
 import { List, Names, NamesList } from './ItemList.styled';
 import  { getFilter }from 'redux/filter/filter-selector';
@@ -47,9 +46,8 @@ useEffect(() => {
       dispatch(geItemsByCategory({category: category}))
     }}, [ dispatch, category, items])
  
-  
-    const resultSize = useResize();
- 
+    const resultSize = ItemsSize();
+
     return (
       <>
             <List>
