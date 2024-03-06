@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom"
-// import { Button } from "components/Button/Button";
+import { device } from 'Device';
 import {Btn, TextBtn } from 'components/Button/Button.styled';
 
 export const Buttons = styled(Btn)`
   margin-top: 30px;
   height: 30px;
   width: 100%;
+  @media ${device.tablet} {
+    width: 400px;
+    height: 40px;
+    };
 `
 export const TextButton = styled(TextBtn)`
   font-size: 16px;
+  @media ${device.tablet} {
+    font-size: 20px;
+    };
 `
 export const GoBackWrap = styled.div`
 margin-top: 10px;
@@ -17,17 +24,36 @@ margin-top: 10px;
     justify-content: end;
 `
 export const GoBack = styled(NavLink) `
+margin-right: 10px;
 /* position: relative;
     top: 0px;
     right: 0x; */
     font-size: 18px;
 `
 export const ImgWraper = styled.div`
-    
+ @media ${device.tablet} {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    };
+`
+export const Welcome = styled.p`
+@media ${device.mobileOnly} {
+  margin-bottom: 10px;
+    };
+  
+  @media ${device.tablet} {
+    margin-right: 20px
+    };
+  ;
 `
 export const Img = styled.img`
-width: 150px;
+    width: 150px;
     height: 150px;
+    @media ${device.tablet} {
+      width: 170px;
+    height: 170px;
+    };
 `
 export const FormLogo = styled.form`
     
@@ -45,15 +71,37 @@ export const DataWrapper = styled.div`
 `
 export const DataLabel = styled.label`
   width: 90px;
+  font-size: 16px;
+  &:not(:last-child) {
+    margin-top: auto;
+  margin-bottom: auto;
+  }
+  @media ${device.tablet} {
+    font-size: 18px;
+    };
 `
 export const DataInput = styled.input`
-  height: 25px;
+border-radius: 5px;
+border: 0px;
   width: 180px;
+  height: 25px;
+  @media ${device.tablet} {
+    width: 310px;
+    height: 35px;
+    font-size: 18px;
+    };
 `
 export const DataInputDescription = styled.textarea`
-  height: 75px;
-  width: 180px;
-  font-family: inherit;
+border-radius: 5px;
+border: 0px;
+width: 180px;
+height: 75px;
+font-family: inherit;
+@media ${device.tablet} {
+    width: 310px;
+    height: 75px;
+    font-size: 18px;
+    };
 `
 export const FormInputHidden = styled.input`
     opacity: 0;
@@ -87,4 +135,8 @@ export const LabelLogo = styled.label`
         background-color: ${props => props.theme.colors.btnActive};
         cursor: pointer;
   }
+  @media ${device.tablet} {
+    width: 400px;
+    height: 40px;
+    };
 `

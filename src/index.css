@@ -89,7 +89,7 @@ td {
   text-decoration: none;
 }
 form, 
-label
+label,
 input
  {
   box-sizing: border-box;

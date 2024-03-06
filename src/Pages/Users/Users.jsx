@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import { getUser } from "redux/auth/auth-selector";
 import { userUpdate } from "redux/auth/auth-operation";
 // import { Navigate } from "react-router-dom"
-import {Buttons, TextButton, FormLogo, DataWrapper, DataLabel, DataInput, DataInputDescription, DataForm, GoBackWrap, GoBack, ImgWraper, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
+import {Buttons, TextButton, FormLogo, DataWrapper, DataLabel, DataInput, DataInputDescription, DataForm, GoBackWrap, GoBack, ImgWraper, Welcome, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
 import HideSetting from "components/hooks/hideSetting";
 
 export default function Users() {
@@ -98,7 +98,7 @@ const handleChangeUpload = e => {
     {chekName ? 
     <>
     
-    <p> Welcome, <b>{user.name}</b></p>
+    <Welcome> Welcome, <b>{user.name}</b></Welcome>
     <Img src={user.logoURL} alt="avatar" />
     </>
     : <p>Welcome, <b>User</b></p> }
@@ -134,7 +134,7 @@ const handleChangeUpload = e => {
           <DataWrapper>
           <DataLabel
           htmlFor={userNameID}>
-            Name
+            Name:
           </DataLabel>   
           <DataInput 
           id={userNameID} 
@@ -150,7 +150,7 @@ const handleChangeUpload = e => {
         <DataWrapper>
         <DataLabel
           htmlFor={userPhoneID}>
-            Phone
+            Phone:
           </DataLabel>
         <DataInput 
         id={userPhoneID} 
@@ -165,7 +165,7 @@ const handleChangeUpload = e => {
         <DataWrapper>
           <DataLabel
           htmlFor={userAddressID}>
-            Address
+            Address:
           </DataLabel>
           <DataInput 
           id={userAddressID} 
@@ -180,7 +180,7 @@ const handleChangeUpload = e => {
       <DataWrapper>
           <DataLabel
           htmlFor={userDescriptionID}>
-            Description
+            Description:
           </DataLabel>
           <DataInputDescription 
           id={userDescriptionID} 
@@ -194,7 +194,7 @@ const handleChangeUpload = e => {
       </DataWrapper>
     <Buttons
     type="submit">
-      <TextButton>save changes</TextButton>
+      <TextButton>Save changes</TextButton>
     </Buttons>
     
     </DataForm>
