@@ -90,11 +90,18 @@ td {
 }
 form, 
 label,
-input
+input,
+textarea
  {
   box-sizing: border-box;
 }
-input:focus {
+
+
+input:focus, 
+input:hover {
   outline: 2px solid #F59256;
-  
+}
+textarea:focus, 
+textarea:hover {
+  outline: 2px solid #F59256;
 }

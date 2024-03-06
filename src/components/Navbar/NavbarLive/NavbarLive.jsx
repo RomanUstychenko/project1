@@ -17,6 +17,10 @@ export default function NavbarLive() {
       to: `/live/${user._id}`,
       text: "Go to QR Menu",
   },
+  {id: nanoid(),
+    to: `/qr`,
+    text: "Create QR",
+},
    
     ] : "";
 

@@ -21,6 +21,7 @@ const Registration = lazy(() => import("Pages/Registration/Registration"));
 const LivePage = lazy(() => import("Pages/LivePage/LivePage"))
 const ModalRegisterVerify = lazy(() => import("Pages/ModalRegisterVerify/ModalRegisterVerify"))
 const About = lazy(() => import("Pages/About/About"))
+const QrResult = lazy(() => import("Pages/QRCode/QRCode"))
 
 export default function App() {
 
@@ -51,6 +52,7 @@ useEffect(() => {
       <Routes>
       
         <Route element={<PublicRoute />}>
+        
           <Route path="/about" element={<About />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Registration />}/>
@@ -64,8 +66,8 @@ useEffect(() => {
           </Route>
           <Route path="/users" element={<Users />}/>
         </Route>
-        {/* <Route path="/live/" element={<LivePage />}/> */}
         <Route path="/live/:owner" element={<LivePage />}/>
+        <Route path="/qr" element={<QrResult />}/>
      <Route path="*" element={<NotFound />}/>
       
       </Routes>

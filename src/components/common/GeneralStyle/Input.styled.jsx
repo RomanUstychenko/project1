@@ -54,9 +54,12 @@ font-size: 17px;
 margin-top: 10px;
     padding-left: 10px;
     max-width: 100%;
-    height: 25px;
+    height: 30px;
     border-radius: 5px;
     border: 1px solid #749574;
+    /* &:focus, &:hover  {
+    outline: 2px solid #F59256;
+ } */
 `
 export const FormInputDescription = styled.textarea`
 font-family: 'Times New Roman', Times, serif;
@@ -67,9 +70,9 @@ margin-top: 10px;
     height: 100px;
     border-radius: 5px;
     border: 1px solid #749574;
-    &:focus, &:hover  {
+    /* &:focus, &:hover  {
     outline: 2px solid #F59256;
- }
+ } */
 `
 export const FormInputSection = styled.input`
 font-family: 'Times New Roman', Times, serif;
@@ -77,9 +80,12 @@ font-size: 17px;
     background-color: #FFF;
     padding-left: 10px;
     width: 170px;
-    height: 25px;
+    height: 30px;
     border-radius: 5px;
-    border: 1px solid #749574;
+    border: 1px soloid #749574;
+      &:focus, &:hover  {
+    outline: none;
+ }
 `
 export const LabelName = styled.p`
     font-size: 20px;

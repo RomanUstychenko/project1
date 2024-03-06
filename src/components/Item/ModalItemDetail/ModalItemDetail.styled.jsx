@@ -184,7 +184,7 @@ display: flex;
     position: absolute;
     top: 0;
     right: 0;
-    height: 29px;
+    height: 30px;
     align-items: center;
 `
 
