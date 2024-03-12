@@ -6,7 +6,7 @@ export const MenuButton = styled.button`
 position: absolute;
 top: 0px;
 right: 0px;
- z-index: 1000;
+ /* z-index: 1000; */
   display: block;
   height: 30px;
   outline: 0;

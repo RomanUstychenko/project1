@@ -4,6 +4,7 @@ import { device } from 'Device';
 
 export const ToLiveLinkList = styled.div`
 margin-top: 10px;
+margin-bottom: 15px;
     display: flex;
     flex-direction: row-reverse;
     @media ${device.tablet} {

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import {
+  CreateQrWrap,
+  CreateQr,
   Sections,
   SectionForm,
   SectionWrap,
@@ -21,6 +23,7 @@ import MenuItemsDetails from 'components/MenuItemsDetails/MenuItemsDetails';
 import NavbarLive from 'components/Navbar/NavbarLive/NavbarLive';
 import ModalItemAddForm from '../../components/Item/ModalItemAddForm/ModalItemAddForm';
 import ModalAddSectionForm from 'components/Section/ModalAddSectionForm/ModalAddSectionForm';
+import QrResult from 'components/QRCode/QRCode';
 
 import { MenuContext } from './ToggleMenu/navState';
 import HamburgerButton from './ToggleMenu/ToggleButton';
@@ -29,8 +32,10 @@ import NavState from 'Pages/MenuItems/ToggleMenu/navState';
 export default function MenuItems() {
   const location = useLocation();
   const category = location.pathname.split('/')[2];
+
   const [modalActive, setModalActive] = useState(false);
   const [modalAddSectionActive, setModalAddSectionActive] = useState(false);
+const   [modalQrActive, setModalQrActive] = useState(false);
 
   const dispatch = useDispatch();
   const itemsCategory = useSelector(getItemsByCategory);
@@ -66,6 +71,7 @@ export default function MenuItems() {
   function closeModal() {
     setModalActive(false);
     setModalAddSectionActive(false);
+    setModalQrActive(false);
     document.body.style.overflow = '';
   }
   useEffect(() => {
@@ -76,6 +82,22 @@ export default function MenuItems() {
   return (
     <>
       <NavbarLive />
+      <CreateQrWrap>
+      <CreateQr onClick={() => setModalQrActive(true)}
+      >Create QR</CreateQr>
+      </CreateQrWrap>
+      
+          {modalQrActive && (
+            <Modal
+            onClick={() => closeModal()}
+            active={modalQrActive}
+            setActive={setModalQrActive}
+          >
+            <QrResult></QrResult>
+          </Modal>
+          )
+
+          }
       <Sections>
         <NavState>
           <SideMenu />

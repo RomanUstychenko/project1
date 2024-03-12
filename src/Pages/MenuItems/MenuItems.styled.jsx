@@ -3,32 +3,27 @@ import { Btn, TextBtn } from 'components/Button/Button.styled';
 import { device } from 'Device';
 
 export const Sections = styled.div`
-/* color: white; */
-    /* color: rgb(38, 146, 179); */
     display: flex;
     margin-top: 25px;
-    /* margin-left: 15px; */
     padding-left: 5px;
     padding-right: 5px;
+`  
+export const CreateQrWrap = styled.div`
+  display: flex;
+    justify-content: end;
+    margin-right: 15px;
 `
-//  export const BtnAddSection = styled.button`
 
-//  padding: 10px 10px;
-//  border: none;
-//     border-radius: 5px;
-//     background-color: ${props => props.theme.colors.btn};
-//         &:hover,
-//        &:focus {
-//         background-color: ${props => props.theme.colors.btnActive};
-//         cursor: pointer;
-//   }
-//  `   
-
- 
+ export const CreateQr = styled.p`
+  font-weight: bold;
+  
+  @media ${device.tablet} {
+    
+    };
+ `
 
 export const SectionWrap = styled.div`
 position: relative;
-  
   background-color: #cbcbcb;
   transition: 
   width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -36,11 +31,8 @@ position: relative;
     props.close &&
     css`
       width: 40px;
-    `}
-
-    
+    `}   
 `
-
 
 export const SectionForm = styled.div`
 box-sizing: border-box;
