@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject1=self.webpackChunkproject1||[]).push([[236],{1236:function(e,n,t){t.r(n),t.d(n,{default:function(){return h}});var r,o,c=t(7528),i=t(403),u=i.Ay.h1(r||(r=(0,c.A)(["\n    color: white;\n"]))),s=i.Ay.button(o||(o=(0,c.A)(["\n    \n    \n"]))),f=t(579);function h(e){e.onClick;return(0,f.jsxs)(f.Fragment,{children:[(0,f.jsx)(u,{children:"Thank You fo register, go to you email to verify"}),(0,f.jsx)(s,{type:"submit",children:"Resend verify code"})]})}}}]);
+//# sourceMappingURL=236.f36349cf.chunk.js.map
