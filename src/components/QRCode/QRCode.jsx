@@ -38,6 +38,7 @@ const saveQRCode = async () => {
     console.error('SVG елемент не знайдено');
     return;
   }
+  console.log(svgElement)
   htmlToImage.toPng(svgElement)
     .then(function (dataUrl) {
       const link = document.createElement('a');
