@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "redux/auth/auth-operation"
-import {  NavbarUserName, NavbarUserLogo, Welcome, UserName, Setting, NavbarUserSet, 
-  SettingLink, ButtonLogout, TextButton } from "./NavbarUser.styled";
+import {  NavbarSettingName, NavbarSettingLogo, Welcome, UserName, Setting, NavbarSettingSet, 
+  SettingLink, ButtonLogout, TextButton } from "./NavbarSetting.styled";
 import { getUser } from "redux/auth/auth-selector";
 import HideSetting from "components/hooks/hideSetting";
 
 
-export default function NavbarUser() {
+export default function NavbarSetting() {
 
 const user = useSelector(getUser)
 const dispatch = useDispatch();
@@ -35,16 +35,16 @@ const chekName = Boolean(user)
    
     
       {chekName ?
-       <NavbarUserName >
-         <NavbarUserLogo src={user.logoURL} alt="avatar" />
+       <NavbarSettingName >
+         <NavbarSettingLogo src={user.logoURL} alt="avatar" />
         
        <UserName>{user.name}</UserName>
-       </NavbarUserName>
+       </NavbarSettingName>
         : 
        <Welcome>Welcome, <UserName>User</UserName>
        </Welcome> }
       
-       <NavbarUserSet>
+       <NavbarSettingSet>
 
        {SettingActive && (
         <SettingLink 
@@ -60,8 +60,7 @@ const chekName = Boolean(user)
       >
 <TextButton>Logout</TextButton>
       </ButtonLogout>
-       </NavbarUserSet>
-        
+       </NavbarSettingSet>  
     </>
   )
 }

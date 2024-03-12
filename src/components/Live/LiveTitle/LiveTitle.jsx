@@ -28,8 +28,6 @@ export default function LiveTitle() {
   return (
     <List >
       {chekName ? items.map(({id, to, text}) => {
-      //  console.log({to})
-      //  console.log({text})
             return (
               <>
               <Img src={user.logoURL} alt="avatar" />

@@ -16,16 +16,16 @@ import { Btn, TextBtn } from 'components/Button/Button.styled';
 // `
 
 
-export const NavbarUserName = styled.div`
+export const NavbarSettingName = styled.div`
 display: flex;
 width: 100%;
 align-items: center;
 justify-content: center;
 `
-export const NavbarUserLogo = styled.img`
+export const NavbarSettingLogo = styled.img`
     height: 35px;
 `
-export const NavbarUserSet = styled.div`
+export const NavbarSettingSet = styled.div`
 display: flex;
 align-items: center;
 

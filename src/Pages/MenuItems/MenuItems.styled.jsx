@@ -17,6 +17,11 @@ export const CreateQrWrap = styled.div`
  export const CreateQr = styled.p`
   font-weight: bold;
   
+      &:hover,
+       &:focus {
+        color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  }
   @media ${device.tablet} {
     
     };

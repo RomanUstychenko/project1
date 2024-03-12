@@ -1,5 +1,5 @@
 import NavbarAuth from "components/Navbar/NavbarAuth/NavbarAuth"
-import NavbarUser from "./NavbarUser/NavbarUser"
+import NavbarSetting from "./NavbarSetting/NavbarSetting"
 import LiveTitle from "components/Live/LiveTitle/LiveTitle"
 import { NavbarTitles, NavbarList } from "./Navbar.styled"
 import UseAuth from "components/hooks/useAuth"
@@ -15,7 +15,7 @@ export default function Navbar() {
     {isUseLive ? <LiveTitle /> : 
     <NavbarTitles >
         <NavbarList >
-           {isUserLogin ? <NavbarUser/> : <NavbarAuth />}
+           {isUserLogin ? <NavbarSetting/> : <NavbarAuth />}
            
         </NavbarList>
     

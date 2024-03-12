@@ -17,12 +17,6 @@ export default function ModalAddSectionForm ({onClick, setModalSectionActive}) {
   const [category, setCategory] = useState('');
   
 
-  // const [datat, setDatat] = useState({
-  //   name: '',
-  //   description: '',
-  //   phone: '',
-
-  // });
 
   const sectionNameID = nanoid();
 ;
@@ -40,18 +34,9 @@ export default function ModalAddSectionForm ({onClick, setModalSectionActive}) {
 
   const handleSubmit = (e) => {
 
-    // const { name, description, phone } = values;
-
-    // const data = new FormData();
-
-    // data.append('name', name);
-    // data.append('description', description);
-    // data.append('phone', phone);
-
-        e.preventDefault()
+          e.preventDefault()
         const duplicateSections = sections.find(section => section.category.toLocaleLowerCase() === category.toLocaleLowerCase());
       
-       
           if (duplicateSections) {
             Notify.failure(`${category} is already in item`)
             return
@@ -59,9 +44,7 @@ export default function ModalAddSectionForm ({onClick, setModalSectionActive}) {
               dispatch(addSection({category}));
               setCategory('');
               setModalSectionActive(false);
-          
       }; 
-
 
       return ( 
         <Form 
@@ -95,12 +78,7 @@ export default function ModalAddSectionForm ({onClick, setModalSectionActive}) {
     
       text="Add"
       type="submit"
-      // onClick={() => setModalActive(true)}
       />
-        {/* <button 
-        // onClick={values => handleSubmit(values)}
-        className={scss.formBtn}
-        type="submit">Add</button> */}
         </>
         </Form>
         )

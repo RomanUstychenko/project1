@@ -20,5 +20,5 @@ font-family: ${props => props.theme.fonts.titleLive};
 `
 
 export const Img = styled.img`
-height: 100px;
+height: 40px;
 `
