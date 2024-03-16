@@ -4,30 +4,14 @@ import { device } from 'Device';
 
 export const Sections = styled.div`
     display: flex;
-    margin-top: 25px;
+    /* margin-top: 25px; */
     padding-left: 5px;
     padding-right: 5px;
 `  
-export const CreateQrWrap = styled.div`
-  display: flex;
-    justify-content: end;
-    margin-right: 15px;
-`
 
- export const CreateQr = styled.p`
-  font-weight: bold;
-  
-      &:hover,
-       &:focus {
-        color: ${props => props.theme.colors.btnActive};
-        cursor: pointer;
-  }
-  @media ${device.tablet} {
-    
-    };
- `
 
 export const SectionWrap = styled.div`
+height:calc(100vh - ${props => props.theme.size.navbarHeightMobile});
 position: relative;
   background-color: #cbcbcb;
   transition: 
@@ -36,7 +20,13 @@ position: relative;
     props.close &&
     css`
       width: 40px;
-    `}   
+    `};
+    @media ${device.tablet} {
+      height:calc(100vh - ${props => props.theme.size.navbarHeightTablet});
+    }; 
+    @media ${device.tablet} {
+      height:calc(100vh - ${props => props.theme.size.navbarHeightDesktop});
+    }; 
 `
 
 export const SectionForm = styled.div`
@@ -50,7 +40,8 @@ box-sizing: border-box;
   /* top: 0; */
   /* left: 0; */
   /* width: 100%; */
-  height: 90vh;
+  /* height: 90vh; */
+  
   background-color: #cbcbcb;
 
   /* transform: translateX(0); */

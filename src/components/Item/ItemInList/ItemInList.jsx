@@ -46,11 +46,7 @@ export default function ItemInList({ filteredItem }) {
     setModalDeleteActive(false);
     setModalDetailActive(false);
     document.body.style.overflow = '';
-  }
-
-
-
-
+  };
 
   const sections = useSelector(getSections);
 
@@ -62,6 +58,17 @@ const filter = () => {
   return filterResult;
 };
 
+
+// function formatNumber() {
+//   // Перевірка, чи число ціле
+//   if (Number.isInteger({price})) {
+//     return price.toFixed(2); // Додаємо два знаки після коми, якщо число ціле
+//   } else {
+//     return price.toFixed(2); // Додаємо один знак після коми, якщо число має десяткову частину
+//   }
+// };
+
+// console.log(formatNumber())
   return (
     <>
       {filteredItem && (

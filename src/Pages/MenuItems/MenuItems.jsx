@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import {
-  CreateQrWrap,
-  CreateQr,
   Sections,
   SectionForm,
   SectionWrap,
@@ -20,7 +18,7 @@ import { fetchSections } from 'redux/sections/sections-operation';
 import { Modal } from 'components/common/Modal/Modal';
 import ItemsSections from 'components/Section/ItemSections/ItemsSections';
 import MenuItemsDetails from 'components/MenuItemsDetails/MenuItemsDetails';
-import NavbarLive from 'components/Navbar/NavbarLive/NavbarLive';
+import QROptions from 'components/QROptions/QROptions';
 import ModalItemAddForm from '../../components/Item/ModalItemAddForm/ModalItemAddForm';
 import ModalAddSectionForm from 'components/Section/ModalAddSectionForm/ModalAddSectionForm';
 import QrResult from 'components/QRCode/QRCode';
@@ -81,11 +79,12 @@ const   [modalQrActive, setModalQrActive] = useState(false);
 
   return (
     <>
-      <NavbarLive />
-      <CreateQrWrap>
+      <QROptions 
+      setModalQrActive={setModalQrActive}/>
+      {/* <CreateQrWrap>
       <CreateQr onClick={() => setModalQrActive(true)}
       >Create QR</CreateQr>
-      </CreateQrWrap>
+      </CreateQrWrap> */}
       
           {modalQrActive && (
             <Modal

@@ -1,3 +1,4 @@
+
 export const theme = {
     colors: {
     mainTextLive: '#a19797',
@@ -14,4 +15,9 @@ export const theme = {
       mainLive: 'Rye, cursive',
       titleLive: 'Luckiest Guy, cursive',
     },
+    size: {
+      navbarHeightMobile: '40px',
+      navbarHeightTablet: '45px',
+      navbarHeightDesktop: '45px',
+    }
 }

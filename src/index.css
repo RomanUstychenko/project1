@@ -91,7 +91,8 @@ td {
 form, 
 label,
 input,
-textarea
+textarea,
+nav
  {
   box-sizing: border-box;
 }

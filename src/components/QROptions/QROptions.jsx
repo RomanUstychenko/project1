@@ -3,11 +3,11 @@ import { nanoid } from "nanoid";
 // import { NavLink } from "react-router-dom"
 import { getUser } from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
-import { ToLiveLink, ToLiveLinkList } from "./NavbarLive.styled";
+import { ToLiveLink, NavbarWrap, CreateQr } from "./QROptions.styled";
 
 
 
-export default function NavbarLive() {
+export default function QROptions({setModalQrActive}) {
   const user = useSelector(getUser);
   // console.log(user)
   const chekName = Boolean(user)
@@ -22,20 +22,26 @@ export default function NavbarLive() {
 
   
   return (
-     <>
+     <NavbarWrap>
       {chekName ? items.map(({id, to, text}) => {
             return (
-                <ToLiveLinkList  key={id}>
-                    <ToLiveLink  
+                // <ToLiveLinkList  key={id}>
+                    <ToLiveLink 
+                    key={id} 
                     target="_blank"
                     rel="noreferrer noopener"
                     to={to}
                     end>
                       {text}
                      </ToLiveLink>
-                 </ToLiveLinkList>
+                  // </ToLiveLinkList>
             )})
          : <></> }
-     </>
+
+      
+      <CreateQr onClick={() => setModalQrActive(true)}
+      >Create QR</CreateQr>
+      </NavbarWrap>
+    //  </>
   )
 }

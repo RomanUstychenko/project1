@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Btn, TextBtn } from 'components/Button/Button.styled';
 
 export const ItemsList = styled.div`
+margin-top: 60px;
     margin-left: 5px;
     width: 100%;
 ` 
