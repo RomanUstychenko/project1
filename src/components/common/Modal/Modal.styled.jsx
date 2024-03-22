@@ -8,6 +8,8 @@ import { IoClose } from "react-icons/io5";
 
 export const Wrapp = styled.div`
 position: relative;
+margin-top: auto;
+    margin-bottom: auto;
 `
 export const ModalBackdrop = styled.div`
   position: fixed;
@@ -21,7 +23,7 @@ export const ModalBackdrop = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   transition: 0.5s;
-  align-items: center;
+  /* align-items: center; */
 justify-content: center;
   display: flex;
   opacity: 0;
