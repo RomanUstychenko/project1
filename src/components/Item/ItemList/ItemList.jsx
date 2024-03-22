@@ -47,6 +47,7 @@ useEffect(() => {
     }}, [ dispatch, category, items])
  
     const resultSize = ItemsSize();
+    console.log(resultSize)
 
     return (
       <>

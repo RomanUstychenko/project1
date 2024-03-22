@@ -243,7 +243,7 @@ if (elForm !== undefined || null) {
           type="text" 
           name="newItemName" 
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may "
+          title="Name may"
           required
           defaultValue={itemName}
           onChange={handleChange} />
@@ -254,8 +254,8 @@ if (elForm !== undefined || null) {
           id={itemPriceID} 
           type="text" 
           name="newPrice" 
-          pattern="[0-9]{1,10}"
-          title="Name may "
+          pattern="^[0-9]+(\.[0-9]{1,2})?$"
+          title="price xxx.xx"
           required 
           defaultValue={price}
           onChange={handleChange} />

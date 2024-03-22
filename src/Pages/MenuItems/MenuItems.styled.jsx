@@ -17,7 +17,7 @@ position: relative;
   transition: 
   width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   ${props =>
-    props.close &&
+    props.value &&
     css`
       width: 40px;
     `};
@@ -51,7 +51,7 @@ box-sizing: border-box;
   opacity 0.3s;
 
   ${props =>
-    props.close &&
+    props.value &&
     css`
       transform: translateX(-100%);
       opacity: 0;

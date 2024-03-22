@@ -12,14 +12,14 @@ const nameSize =() =>
 {
   if (windowSize.width > "1279") {
     //// desktop//////
-    return nameWidth[2]
+    return nameWidth[4]
   }
   if (windowSize.width > "767") {
     //// tablet//////
-    return nameWidth[1]
+    return nameWidth[2]
   }
   if (windowSize.width > "359") {
-    //// tablet//////
+    //// mobile//////
     return nameWidth[0]
   }
   else {

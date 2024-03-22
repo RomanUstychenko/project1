@@ -4,12 +4,14 @@ import {MdDeleteForever} from 'react-icons/md';
 
 
 export const nameWidth = [
-  "150px", //// mobile//////
-  "200px",    //// tablet//////
-  "100%",    //// desktop//////
+  "150px", //// mobile//////        [0]
+  "270px", //// mobile slide//////  [1]
+  "100%",    //// tablet//////     [2]
+  "100%",    //// tablet slide///// [3]
+  "100%",    //// desktop//////     [4]
 ]
 export const priceWidth = [
-  "50px", //// tablet//////
+  "65px", //// tablet//////
  "250px"   //// desktop//////
 ];
 
@@ -73,28 +75,29 @@ export const ItemText = styled.p`
     overflow: hidden;
     font-size: 20px;
     width: ${nameWidth[0]};
+    
     ${props =>
-    props.close &&
+    props.value &&
     css`
-      width: 270px;
-    `}
+      width: ${nameWidth[1]};
+    `};
     @media ${device.tablet} {
         
-        width: ${nameWidth[1]};
+        width: ${nameWidth[2]};
         padding-left: 10px;
         text-align: left;
 
         ${props =>
-    props.close &&
+    props.value &&
     css`
-      width: 470px;
+      width: ${nameWidth[3]};
     `}
 
     };
     @media ${device.desktop} {
         width: ${nameWidth[2]};
         ${props =>
-    props.close &&
+    props.value &&
     css`
       width: 100%;
     `}
@@ -113,10 +116,12 @@ export const ItemPriceName = styled.b`
     };
 `
 export const ItemPrice = styled.p`
+
  @media ${device.tablet} 
- {width: ${priceWidth[0]}}
+ {width: ${priceWidth[0]}};
+
  @media ${device.desktop} 
- {width: ${priceWidth[1]}}
+ {width: ${priceWidth[1]}};
 `
 export const ItemSectionWrap = styled.span`
 display: none;

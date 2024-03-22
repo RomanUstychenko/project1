@@ -41,12 +41,14 @@ const   [modalQrActive, setModalQrActive] = useState(false);
 
   const SideMenu = () => {
     const { isMenuClose } = useContext(MenuContext);
+    
 
     return (
       <>
-        <SectionWrap close={isMenuClose} >
-          <HamburgerButton close={isMenuClose} />
-          <SectionForm close={isMenuClose} >
+        {/* <SectionWrap close={isMenuClose} > */}
+        <SectionWrap value={isMenuClose} >
+          <HamburgerButton value={isMenuClose} />
+          <SectionForm value={isMenuClose} >
             <ul>
               {sections.map((section) => (
                 <ItemsSections 

@@ -27,6 +27,7 @@ import { getSections } from "redux/sections/sections-selector"
 export default function ItemInList({ filteredItem }) {
 
   const { isMenuClose } = useContext(MenuContext);
+  
   const filteredItemId = nanoid();
   const { itemName, description, price, itemImg, _id, section } = filteredItem;
 
@@ -57,18 +58,21 @@ const filter = () => {
 
   return filterResult;
 };
+console.log(isMenuClose)
 
+function formatNumber(number) {
+  Number(number)
+    if (typeof number === 'number' && !isNaN(number)) {
+    if (Number.isInteger(number)) {
+      return number.toFixed(2); // Додаємо два знаки після коми, якщо число ціле
+    } else {
+      return number.toFixed(2); // Додаємо один знак після коми, якщо число має десяткову частину
+    }
+  } else {
+    return "Invalid number";
+  }
+}
 
-// function formatNumber() {
-//   // Перевірка, чи число ціле
-//   if (Number.isInteger({price})) {
-//     return price.toFixed(2); // Додаємо два знаки після коми, якщо число ціле
-//   } else {
-//     return price.toFixed(2); // Додаємо один знак після коми, якщо число має десяткову частину
-//   }
-// };
-
-// console.log(formatNumber())
   return (
     <>
       {filteredItem && (
@@ -76,11 +80,12 @@ const filter = () => {
         <ItemsList key={nanoid()}>
          
              <Item onClick={() => setModalDetailActive(true)} key={filteredItemId}>
+             
              <ItemText
-             close={isMenuClose}
+             value={isMenuClose}
              >{itemName}</ItemText>
              <ItemPriceWrap>
-               <ItemPriceName>Price:</ItemPriceName> <ItemPrice>{price}</ItemPrice>
+               <ItemPriceName>Price:</ItemPriceName> <ItemPrice>{ formatNumber(price)}</ItemPrice>
              </ItemPriceWrap>
              <ItemSectionWrap><ItemSection>{filter()}</ItemSection></ItemSectionWrap>
              </Item>
