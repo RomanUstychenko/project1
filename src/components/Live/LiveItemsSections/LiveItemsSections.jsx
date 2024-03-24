@@ -46,46 +46,45 @@ function LiveItemsSections ({section, items,
   ];
   
 
-
-  
-
-
   return (
    <>
-                  {groups.map(g => (
-                  
-              <List key={nanoid()}>
-               <b> <Title
-                key={nanoid()}>{g.category}</Title> </b>
-                <ul>
-                {g.list.map(list => (
-                  
-                <ItemList 
-                
-                key={list._id}
-                onClick={() => openModal (list)}
-                >
-                  
-                   <ItemsGroup>
-                  <ItemTitle>{list.itemName}</ItemTitle>
-                  <ItemDescriptionList>
-                  <ItemDescription>{list.description}</ItemDescription>
-                  </ItemDescriptionList>
-                  
-                  <ItemPrice> Price: {list.price} </ItemPrice>
-                  </ItemsGroup>
-                  <ImgLive 
-                  src={list.itemImg || noimg} 
-                  alt="img" 
-                  loading='lazy' 
-                  />
-                  </ItemList>
-                ))}
-                </ul>
-              </List>
-              ) 
-              )
-              }
+             {groups.map(gr => (
+              <List
+              key={section._id}
+              id={gr.category} >
+  <Title
+  key={gr.category}
+
+>{gr.category}</Title>
+
+<ul
+key={nanoid()}
+>
+{gr.list.map(list => (
+  
+<ItemList 
+key={nanoid()}
+onClick={() => openModal (list)}
+>
+  
+   <ItemsGroup>
+  <ItemTitle>{list.itemName}</ItemTitle>
+  <ItemDescriptionList>
+  <ItemDescription>{list.description}</ItemDescription>
+  </ItemDescriptionList>
+  
+  <ItemPrice> Price: {list.price} </ItemPrice>
+  </ItemsGroup>
+  <ImgLive 
+  src={list.itemImg || noimg} 
+  alt="img" 
+  loading='lazy' 
+  />
+  </ItemList>
+))}
+</ul>
+</List>
+             ))} 
 
            { modalDetailActive && (
                 <Modal
@@ -97,6 +96,7 @@ function LiveItemsSections ({section, items,
                   <>
                     {g.item.map(i =>
                   <LiveModalItemDetail 
+                  key={i._id}
                 itemName={i.itemName} 
                 price={i.price}
                 description={i.description}

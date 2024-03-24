@@ -10,7 +10,9 @@ import LiveItemsSections from "components/Live/LiveItemsSections/LiveItemsSectio
 import { useLocation } from 'react-router-dom'
 import {  fetchItemsLive } from "redux/items/items-operation"
 import { getItemsLive } from 'redux/items/items-selector';
-import { List, Menu } from "./LivePage.styled";
+import { List, 
+  // Menu,
+   ListCategory, ListCategoryItem } from "./LivePage.styled";
 
 
 export default function LivePage() {
@@ -43,30 +45,35 @@ console.log(items)
 
       [dispatch, category])
 
-
   
+const Anchor = (children) => {
+
+  return (`#${children}`)
+}
   return (
     <>
-    
-    {/* <ul key={nanoid()}>
-          {users.map(user =>
-           <LiveListUser
-           user={user}
-          //  sections={sections}
-           ></LiveListUser>
-            ) } 
-    </ul> */}
+   
+    <ListCategory
+    key={nanoid()}>
+      {sections.map(section =>
+        // <ListCategoryItem
+        // key={section._id}
+        // >
+        <ListCategoryItem
+        key={section._id}
+         href={Anchor(section.category)}
+         >{section.category}</ListCategoryItem>
+          // </ListCategoryItem>
+      )}
+    </ListCategory>
     <List key={nanoid()}>
-      <Menu>Menu</Menu>
+      {/* <Menu>Menu</Menu> */}
        {sections.map(section =>
-       
         <LiveItemsSections
-        
-        key={nanoid()}
+        key={section._id}
         section={section}
         items={items.filter(i => 
           i.section === section._id)}
-        item={items}
         />  )
 }
     </List>

@@ -2,15 +2,17 @@ import styled from 'styled-components';
 
 
 export const List = styled.div`
+padding-top: 40px;
 text-align: center;
 color: #ffffff;
 
 `
 
 export const Title = styled.h2`
+font-weight: bold;
   font-size: 25px;
-  position: sticky;
-  top: -1px;
+  /* position: sticky;
+  top: -1px; */
 `
 
 export const ImgLive = styled.img`
@@ -48,6 +50,7 @@ export const ItemList = styled.li`
 text-overflow: ellipsis;
 `;
 export const ItemsGroup = styled.div`
+
 padding-top: 5px;
 padding-bottom: 5px;
   /* display:flex; */
