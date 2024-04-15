@@ -61,27 +61,17 @@ export default function LivePage({navbarHide, setNavbarHide}) {
     //   }
     // };
      const handleScrollLink = () => {
-      // const anchors = Object.keys(scrollTargetRef.current);
       const anchor = document.getElementById("active")
-      // console.log(anchor)
-      if (navbarHide === true) {
-        setTimeout(() => {
-          setNavbarHide(false);
-        }, 1000);
-      }
-      // for (const anchor of anchors) {
-        // const element = document.querySelector(anchor);
+      
         if (anchor) {
-          // const rect = anchor.getBoundingClientRect();
-          // if (
-          //   rect.top >= 0 &&
-          //   rect.top <= window.innerWidth &&
-          //   rect.bottom >= 0
-          // ) {
             anchor.scrollIntoView({ behavior: 'smooth' });
-          // }
         }
-      // }
+        
+        if (navbarHide === true) {
+          setTimeout(() => {
+            setNavbarHide(false);
+          }, 1000);
+        }
     };
 
     const autoScroll = () => {
