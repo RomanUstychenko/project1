@@ -27,7 +27,7 @@ export default function LiveTitle({className}) {
                     // end
                     >{`${user.name}`}</Link>
                 </>  : <></> }
-                <style jsx>{`
+                <style>{`
        
        .hide-show {
         display: none;

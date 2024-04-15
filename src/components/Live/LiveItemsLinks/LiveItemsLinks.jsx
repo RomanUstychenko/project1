@@ -1,9 +1,11 @@
 import { nanoid } from 'nanoid';
 import { ListNavigation, ListCategory, ListCategoryItem, ListCategoryItemLink } from './LiveItemsLinks.styled';
-import LiveTitle from "components/Live/LiveTitle/LiveTitle"
+// import LiveTitle from "components/Live/LiveTitle/LiveTitle"
 
 function LiveItemsLinks({
-  scrollTargetRef, filteredSections, activeAnchor, navbarHide, setNavbarHide
+  scrollTargetRef, filteredSections, activeAnchor,
+  //  navbarHide,
+    setNavbarHide
   }) {
    
     const headerHeight = 45;
@@ -25,9 +27,9 @@ function LiveItemsLinks({
 
   return (
     <>
-    <LiveTitle
+    {/* <LiveTitle
     className={navbarHide === true ? 'hide-show' : ''}
-    />
+    /> */}
       <ListNavigation>
    <ListCategory>
         {filteredSections.map(section =>
@@ -46,7 +48,7 @@ key={nanoid()}>
     </ListCategoryItem>
         )}
   </ListCategory>
-  <style jsx>{`
+  <style>{`
        
        .active {
         color: red;

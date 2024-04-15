@@ -1,5 +1,5 @@
 import {Routes, Route } from "react-router-dom";
-import React,{ lazy, Suspense } from "react";
+import React,{ lazy, Suspense, useState } from "react";
 import Loader from "components/Loader/Loader";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,7 +26,8 @@ export default function App() {
 
 const dispatch = useDispatch();
 const isLoadingUser = useSelector(getLoadingUserStatus)
-console.log(isLoadingUser)
+
+const [navbarHide, setNavbarHide] = useState(false);
 
 useEffect(() => {
   dispatch(current())
@@ -46,7 +47,9 @@ useEffect(() => {
        : 
       (
       <Suspense fallback={<Loader/>}>
-        <Navbar />
+        <Navbar
+        navbarHide={navbarHide}
+        />
         
       <Routes>
       
@@ -65,7 +68,7 @@ useEffect(() => {
           </Route>
           <Route path="/users" element={<Users />}/>
         </Route>
-        <Route path="/live/:owner" element={<LivePage />}/>
+        <Route path="/live/:owner" element={<LivePage navbarHide={navbarHide} setNavbarHide={setNavbarHide}/>}/>
         
      <Route path="*" element={<NotFound />}/>
       

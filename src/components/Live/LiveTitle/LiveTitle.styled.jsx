@@ -8,7 +8,7 @@ padding-top: 20px;
     text-align: center;
 margin-left: auto;
 margin-right: auto;
-/* background-color: ${props => props.theme.colors.backgrondLive}; */
+background-color: ${props => props.theme.colors.backgrondLive};
 
 `
 export const Link = styled.p`

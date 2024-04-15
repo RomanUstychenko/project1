@@ -12,7 +12,7 @@ import { fetchSections } from 'redux/sections/sections-operation';
 import { fetchItemsLive } from 'redux/items/items-operation';
 import { getItemsLive } from 'redux/items/items-selector';
 
-export default function LivePage() {
+export default function LivePage({navbarHide, setNavbarHide}) {
   const location = useLocation();
   const category = location.pathname.split('/')[2];
   const dispatch = useDispatch();
@@ -35,7 +35,6 @@ export default function LivePage() {
   }, [dispatch, category]);
 
   const [activeAnchor, setActiveAnchor] = useState(null);
-  const [navbarHide, setNavbarHide] = useState(false);
   const sectionRefs = useRef({});
   const scrollTargetRef = useRef({});
 
@@ -91,10 +90,11 @@ export default function LivePage() {
       window.removeEventListener('scroll', handleScrollLink);
       window.removeEventListener('scroll', autoScroll);
     };
-  }, [scrollTargetRef, sectionRefs, navbarHide]);
+  }, [scrollTargetRef, sectionRefs, navbarHide, setNavbarHide]);
 
   return (
     <LiveWrapper>
+
       <LiveItemsLinks
         sectionRefs={sectionRefs}
         activeAnchor={activeAnchor}
