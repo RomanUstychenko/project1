@@ -68,7 +68,9 @@ useEffect(() => {
           </Route>
           <Route path="/users" element={<Users />}/>
         </Route>
-        <Route path="/live/:owner" element={<LivePage navbarHide={navbarHide} setNavbarHide={setNavbarHide}/>}/>
+        <Route path="/live/:owner" element={<LivePage 
+        navbarHide={navbarHide} setNavbarHide={setNavbarHide}
+        />}/>
         
      <Route path="*" element={<NotFound />}/>
       

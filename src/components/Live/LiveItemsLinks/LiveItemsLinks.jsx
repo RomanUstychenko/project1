@@ -4,7 +4,7 @@ import { ListNavigation, ListCategory, ListCategoryItem, ListCategoryItemLink } 
 
 function LiveItemsLinks({
   scrollTargetRef, filteredSections, activeAnchor,
-  //  navbarHide,
+   navbarHide,
     setNavbarHide
   }) {
    
@@ -21,16 +21,13 @@ function LiveItemsLinks({
       });
     };
 
-  const handleRefAssignment = (ref) => {
-    scrollTargetRef.current['#active'] = ref;
-  };
+  // const handleRefAssignment = (ref) => {
+  //   scrollTargetRef.current['#active'] = ref;
+  // };
 
   return (
     <>
-    {/* <LiveTitle
-    className={navbarHide === true ? 'hide-show' : ''}
-    /> */}
-      <ListNavigation>
+          <ListNavigation>
    <ListCategory>
         {filteredSections.map(section =>
 <ListCategoryItem
@@ -40,7 +37,7 @@ key={nanoid()}>
       id={activeAnchor === `#${section.category}` ? 'active' : ''}
       className={activeAnchor === `#${section.category}` ? 'active' : ''}
       href={`#${section.category}`} 
-      ref={ref => handleRefAssignment(ref)}
+      // ref={ref => handleRefAssignment(ref)}
     onClick={(e) => smoothScroll(`${section.category}`, e)}
     >
       {section.category}

@@ -39,26 +39,49 @@ export default function LivePage({navbarHide, setNavbarHide}) {
   const scrollTargetRef = useRef({});
 
   useEffect(() => {
-    const handleScrollLink = () => {
-      const anchors = Object.keys(scrollTargetRef.current);
+    // const handleScrollLink = () => {
+    //   const anchors = Object.keys(scrollTargetRef.current);
+    //   if (navbarHide === true) {
+    //     setTimeout(() => {
+    //       setNavbarHide(false);
+    //     }, 1000);
+    //   }
+    //   for (const anchor of anchors) {
+    //     const element = document.querySelector(anchor);
+    //     if (element) {
+    //       const rect = element.getBoundingClientRect();
+    //       if (
+    //         rect.top >= 0 &&
+    //         rect.top <= window.innerWidth &&
+    //         rect.bottom >= 0
+    //       ) {
+    //         element.scrollIntoView({ behavior: 'smooth' });
+    //       }
+    //     }
+    //   }
+    // };
+     const handleScrollLink = () => {
+      // const anchors = Object.keys(scrollTargetRef.current);
+      const anchor = document.getElementById("active")
+      // console.log(anchor)
       if (navbarHide === true) {
         setTimeout(() => {
           setNavbarHide(false);
         }, 1000);
       }
-      for (const anchor of anchors) {
-        const element = document.querySelector(anchor);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (
-            rect.top >= 0 &&
-            rect.top <= window.innerWidth &&
-            rect.bottom >= 0
-          ) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
+      // for (const anchor of anchors) {
+        // const element = document.querySelector(anchor);
+        if (anchor) {
+          // const rect = anchor.getBoundingClientRect();
+          // if (
+          //   rect.top >= 0 &&
+          //   rect.top <= window.innerWidth &&
+          //   rect.bottom >= 0
+          // ) {
+            anchor.scrollIntoView({ behavior: 'smooth' });
+          // }
         }
-      }
+      // }
     };
 
     const autoScroll = () => {
@@ -90,7 +113,9 @@ export default function LivePage({navbarHide, setNavbarHide}) {
       window.removeEventListener('scroll', handleScrollLink);
       window.removeEventListener('scroll', autoScroll);
     };
-  }, [scrollTargetRef, sectionRefs, navbarHide, setNavbarHide]);
+  }, [scrollTargetRef, sectionRefs, 
+    navbarHide, setNavbarHide
+  ]);
 
   return (
     <LiveWrapper>
