@@ -1,106 +1,100 @@
+import { useState } from 'react';
+
 import { nanoid } from 'nanoid';
-import noimg from 'img/noimg.jpg'
-import {List, 
-  // ListLive,
-   Title, ImgLive, ItemList, ItemsGroup, ItemTitle, ItemDescription, Item} from './LiveItemsList.styled'
-   import { useState } from 'react';
-   import { Modal } from "components/common/Modal/Modal";
-   import { fetchItems } from "redux/items/items-operation"; 
-   import { 
-    // useSelector, 
-    useDispatch } from 'react-redux';
-import  LiveModalItemDetail  from "components/Live/LiveModalItemDetail/LiveModalItemDetail.jsx"
-// const btnId = nanoid();
-// const sectionId = nanoid();
 
+import noimg from 'img/noimg.jpg';
+import {
+  List,
+  Title,
+  ImgLive,
+  ItemList,
+  ItemsGroup,
+  ItemTitle,
+  ItemDescription,
+  ItemDescriptionList,
+  ItemPrice,
+} from './LiveItemsList.styled';
+import { Modal } from 'components/common/Modal/Modal';
+import LiveModalItemDetail from 'components/Live/LiveModalItemDetail/LiveModalItemDetail.jsx';
 
+function LiveItemsList({ section, items, sectionRefs }) {
+  const [modalDetailActive, setModalDetailActive] = useState(false);
+  const [openDetailsId, setOpenDetailsId] = useState('');
 
-function LiveItemsList ({section, items, item, modalDetailActive, setModalDetailActive}) {
+  function openModal(list) {
+    setOpenDetailsId(list._id);
+    setModalDetailActive(true);
+  }
 
-  const dispatch = useDispatch();
+  function closeModal() {
+    setModalDetailActive(false);
+    document.body.style.overflow = '';
+  }
 
-  // const [modalDetailActive, setModalDetailActive] = useState(false);
+  const { category } = section;
 
-  function closeModal () {
-    dispatch(fetchItems());
-      setModalDetailActive(false)
-      document.body.style.overflow = '';
-    }
- 
-  const { 
-    category,
-  } = section;
-  console.log("item", item)
-  console.log("items", items)
-  const buttons = [
+  const groups = [
     {
-      btn: category,
+      category: category,
       list: items,
-    }
-  
+      item: items.filter(item => item._id === openDetailsId),
+    },
   ];
-  // console.log("btn",)
+
   return (
-   
-      // <ListLive key={nanoid()}>     // </ListLive>
+    <>
+      {groups.map(gr => (
+        <List
+          key={section._id}
+          id={gr.category}
+          ref={ref => (sectionRefs.current[`#${gr.category}`] = ref)}
+        >
+          <Title key={gr.category}>{gr.category}</Title>
 
-      <>
-                  {/* {buttons.map(b => (
-                  
-              <List key={nanoid()}>
-               <b> <Title
-                key={nanoid()}>{b.btn}</Title> </b>
-                <ul>
-                {b.list.map(list => (
-                  
-                <ItemList 
-                key={nanoid()}
-                onClick={() => setModalDetailActive(true)}
-                > <ItemsGroup>
-                  <ItemTitle>  <p>{list.itemName}</p></ItemTitle>
-                  <ItemDescription>  <p>{list.description}</p></ItemDescription>
-                  <Item><p>Price:</p>  <p>{list.price} </p></Item>
-                  </ItemsGroup>
-                  <ImgLive 
-                  src={list.itemImg || noimg} 
-                  alt="img" 
-                  loading='lazy' 
-                  />
-                  </ItemList>
-                ))}
-                </ul>
-              </List>
-              ) 
-              )
-              } */}
+          <ul key={nanoid()}>
+            {gr.list.map(list => (
+              <ItemList key={nanoid()} onClick={() => openModal(list)}>
+                <ItemsGroup>
+                  <ItemTitle>{list.itemName}</ItemTitle>
+                  <ItemDescriptionList>
+                    <ItemDescription>{list.description}</ItemDescription>
+                  </ItemDescriptionList>
 
-           {/* { modalDetailActive && ( */}
-                <Modal
-                onClick={() => closeModal ()}
-                active={modalDetailActive}
-                setActive={setModalDetailActive}
-                
-                >
-                 {/* {item.map(i =>  */}
-                  <LiveModalItemDetail 
-                // onClick={e => e.stopPropagation()}
-                itemName={item.itemName}
-                price={item.price}
-                description={item.description}
-                itemImg={item.itemImg}
-                _id={item._id}
-                section={category}
-                closeModal={closeModal}
-                setModalDetailActive={setModalDetailActive}
-      
-                // onClick={e => e.stopPropagation()}
+                  <ItemPrice> Price: {list.price} </ItemPrice>
+                </ItemsGroup>
+                <ImgLive src={list.itemImg || noimg} alt="img" loading="lazy" />
+              </ItemList>
+            ))}
+          </ul>
+        </List>
+      ))}
+
+      {modalDetailActive && (
+        <Modal
+          onClick={() => closeModal()}
+          active={modalDetailActive}
+          setActive={setModalDetailActive}
+        >
+          {groups.map(g => (
+            <>
+              {g.item.map(i => (
+                <LiveModalItemDetail
+                  key={i._id}
+                  itemName={i.itemName}
+                  price={i.price}
+                  description={i.description}
+                  itemImg={i.itemImg}
+                  _id={i._id}
+                  section={category}
+                  closeModal={closeModal}
+                  setModalDetailActive={setModalDetailActive}
                 />
-                  {/* )}  */}
-                
-                </Modal>
-               {/* )} */}
-       </>     
-  
+              ))}
+            </>
+          ))}
+        </Modal>
+      )}
+    </>
   );
 }
 

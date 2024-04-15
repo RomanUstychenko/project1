@@ -4,7 +4,7 @@ import { Link, List, Img } from "./LiveTitle.styled";
 import { useLocation } from 'react-router-dom'
 
 
-export default function LiveTitle() {
+export default function LiveTitle({className}) {
   const users = useSelector(getAllUser);
   const location = useLocation();
   const category = (location.pathname.split('/')[2])
@@ -13,15 +13,26 @@ export default function LiveTitle() {
   const chekName = Boolean(user)
    
   return (
-    <List >
+    <List
+    className={className}
+     >
             {chekName ?
               <>
               <Img src={user.logoURL} alt="avatar" />
                     <Link  
+                    // activeClassName={"qqqqqqq"}
                     key={user.id}
-                    to={`/live/${user._id}`} 
-                    end>{`${user.name}`}</Link>
+                    // to={`/live/${user._id}`} 
+                    // activeClassName={null}
+                    // end
+                    >{`${user.name}`}</Link>
                 </>  : <></> }
+                <style jsx>{`
+       
+       .hide-show {
+        display: none;
+      } 
+    `}</style>
     </List>
   )
 }
