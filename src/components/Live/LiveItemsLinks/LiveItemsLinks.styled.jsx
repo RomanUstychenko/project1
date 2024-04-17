@@ -7,6 +7,13 @@ export const ListNavigation = styled.nav`
   font-size: 35px;
   overflow-y: hidden;
   scrollbar-width: none;
+
+  overflow-x: auto; /* Дозволяє горизонтальну прокрутку */
+    /* overflow-y: hidden; Приховує вертикальну прокрутку */
+    white-space: nowrap; /* Забезпечує рядкову прокрутку */
+    scroll-behavior: smooth; /* Плавна прокрутка */
+
+
 `
 export const ListCategory = styled.ul`
   display: flex;

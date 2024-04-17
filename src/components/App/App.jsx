@@ -37,8 +37,6 @@ useEffect(() => {
   return (
     <Wrapper
       style={{
-        // height: '100vh',
-        // fontSize: 40,
         color: '#010101'
       }}
     >

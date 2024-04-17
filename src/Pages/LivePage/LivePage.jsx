@@ -12,6 +12,9 @@ import { fetchSections } from 'redux/sections/sections-operation';
 import { fetchItemsLive } from 'redux/items/items-operation';
 import { getItemsLive } from 'redux/items/items-selector';
 
+
+// import SmoothScroll from 'smooth-scroll';
+
 export default function LivePage({navbarHide, setNavbarHide}) {
   const location = useLocation();
   const category = location.pathname.split('/')[2];
@@ -39,33 +42,24 @@ export default function LivePage({navbarHide, setNavbarHide}) {
   const scrollTargetRef = useRef({});
 
   useEffect(() => {
-    // const handleScrollLink = () => {
-    //   const anchors = Object.keys(scrollTargetRef.current);
-    //   if (navbarHide === true) {
-    //     setTimeout(() => {
-    //       setNavbarHide(false);
-    //     }, 1000);
-    //   }
-    //   for (const anchor of anchors) {
-    //     const element = document.querySelector(anchor);
-    //     if (element) {
-    //       const rect = element.getBoundingClientRect();
-    //       if (
-    //         rect.top >= 0 &&
-    //         rect.top <= window.innerWidth &&
-    //         rect.bottom >= 0
-    //       ) {
-    //         element.scrollIntoView({ behavior: 'smooth' });
-    //       }
-    //     }
-    //   }
-    // };
+
      const handleScrollLink = () => {
       const anchor = document.getElementById("active")
-      
+      const element = document.getElementById("nav")
+     
         if (anchor) {
-            anchor.scrollIntoView({ behavior: 'smooth' });
-        }
+          const rect = anchor.getBoundingClientRect();
+          var distanceFromLeft = anchor.offsetLeft;
+          var containerVisibleWidth = element.offsetWidth;
+            if (
+              rect.left < 0 ||
+              rect.right > window.innerWidth
+            )
+            {
+              // anchor.scrollIntoView({ behavior: 'smooth' });
+              element.scrollLeft = distanceFromLeft - (containerVisibleWidth / 2);;
+            }
+        }  
         
         if (navbarHide === true) {
           setTimeout(() => {

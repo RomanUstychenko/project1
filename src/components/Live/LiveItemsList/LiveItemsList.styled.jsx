@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const List = styled.div`
+&:not(:first-child) {
 padding-top: 40px;
+}
 text-align: center;
 color: #ffffff;
 `

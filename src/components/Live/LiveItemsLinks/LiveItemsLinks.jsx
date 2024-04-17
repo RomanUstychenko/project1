@@ -8,7 +8,7 @@ function LiveItemsLinks({
     setNavbarHide
   }) {
    
-    const headerHeight = 45;
+    const headerHeight = 80;
 
     const smoothScroll = (target, e) => {
       e.preventDefault();
@@ -27,14 +27,18 @@ function LiveItemsLinks({
 
   return (
     <>
-          <ListNavigation>
-   <ListCategory>
+          <ListNavigation
+          id={"nav"}
+          >
+   <ListCategory
+   >
         {filteredSections.map(section =>
 <ListCategoryItem
-key={nanoid()}>
+key={nanoid()}
+id={activeAnchor === `#${section.category}` ? 'active' : ''}>
   <ListCategoryItemLink 
      key={nanoid()}
-      id={activeAnchor === `#${section.category}` ? 'active' : ''}
+      
       className={activeAnchor === `#${section.category}` ? 'active' : ''}
       href={`#${section.category}`} 
       // ref={ref => handleRefAssignment(ref)}
