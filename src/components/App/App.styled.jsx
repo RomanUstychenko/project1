@@ -9,7 +9,7 @@ text-align: center;
 
 
     @media ${device.mobile} {
-        width: 360px;
+        min-width: 360px;
     }
     @media ${device.tablet} {
         width: 768px;
