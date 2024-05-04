@@ -28,7 +28,11 @@ import { getItemsByCategory } from 'redux/items/items-selector';
 import { getSections } from "redux/sections/sections-selector"
 
 import { itemUpdate } from "redux/items/items-operation"; 
-export default function ItemInList({ filteredItem }) {
+
+import  { getFilter }from 'redux/filter/filter-selector';
+export default function ItemInList(
+  // {filteredItem}
+) {
 
   const itemsCategory = useSelector(getItemsByCategory);
   
@@ -100,7 +104,7 @@ function formatNumber(number) {
     return "Invalid number";
   }
 }
-console.log("filteredItem", filteredItem)
+// console.log("filteredItem", filteredItem)
 
 const handleItemDelete = (i) => {
   // setState({
@@ -201,7 +205,31 @@ const handleUpSection = (item, index) => {
 
 
             const activeItem = itemsCategory.filter((data) => data._id === idTarget)
-  return (
+ 
+
+
+            /////  Пошук елемента по назві /////////
+     const filterItem = useSelector(getFilter);
+
+    const getFilteredItem = () => {
+        if (!filterItem) {
+          return itemsCategory;
+        }
+            const normalizedFilter = filterItem.toLocaleLowerCase();
+            const filteredItem = itemsCategory.filter(({itemName}) => {
+            const nornalizedName = itemName.toLocaleLowerCase();
+            const result = nornalizedName.includes(normalizedFilter);
+            return result;
+          })
+          
+          return filteredItem;
+          
+        };
+ 
+ 
+ 
+ 
+            return (
     <>
       {/* {filteredItem && (
         
@@ -229,7 +257,8 @@ const handleUpSection = (item, index) => {
          
       )} */}
 
-      {itemsCategory.map((item, index) => (
+      {/* {itemsCategory.map((item, index) => ( */}
+        {getFilteredItem().map((item, index) => (
         <ItemsList key={nanoid()}>
           
           <ButtonWrap>
