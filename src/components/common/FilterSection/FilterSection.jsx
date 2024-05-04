@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
-import { getSections } from "redux/sections/sections-selector"
+// import { useSelector } from 'react-redux';
+// import { getSections } from "redux/sections/sections-selector"
 
 
 

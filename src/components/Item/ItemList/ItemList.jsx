@@ -1,5 +1,5 @@
 import { 
-  useSelector, 
+  // useSelector, 
   useDispatch
  } from 'react-redux';
  import { useLocation } from 'react-router-dom';
@@ -8,7 +8,7 @@ import {
  import ItemsSize from './items';
 
 import { List, Names, NamesList } from './ItemList.styled';
-import  { getFilter }from 'redux/filter/filter-selector';
+// import  { getFilter }from 'redux/filter/filter-selector';
 import ItemInList from "components/Item/ItemInList/ItemInList";
 
 import { fetchSections } from "redux/sections/sections-operation"
@@ -23,20 +23,20 @@ console.log(itemsCategory)
 
 const dispatch = useDispatch();
 
-    const filter = useSelector(getFilter);
+    // const filter = useSelector(getFilter);
 
-    const getFilteredItem = () => {
-        if (!filter) {
-          return itemsCategory;
-        }
-            const normalizedFilter = filter.toLocaleLowerCase();
-            const filteredItem = itemsCategory.filter(({itemName}) => {
-            const nornalizedName = itemName.toLocaleLowerCase();
-            const result = nornalizedName.includes(normalizedFilter);
-            return result;
-          })
-          return filteredItem;
-        };
+    // const getFilteredItem = () => {
+    //     if (!filter) {
+    //       return itemsCategory;
+    //     }
+    //         const normalizedFilter = filter.toLocaleLowerCase();
+    //         const filteredItem = itemsCategory.filter(({itemName}) => {
+    //         const nornalizedName = itemName.toLocaleLowerCase();
+    //         const result = nornalizedName.includes(normalizedFilter);
+    //         return result;
+    //       })
+    //       return filteredItem;
+    //     };
 
 useEffect(() => {
   dispatch(fetchSections());
