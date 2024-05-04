@@ -74,6 +74,7 @@ console.log(saved)
         dispatch(imgUpdate(
           {_id,
            imageURL}));
+        console.log("imageURL", imageURL)
       };
       
       const handleChangeUpload = e => {
