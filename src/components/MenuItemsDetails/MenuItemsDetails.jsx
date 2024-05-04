@@ -14,6 +14,7 @@ export default function MenuItemsDetails({setModalActive}) {
   const location = useLocation();
   const category = location.pathname.split('/')[2];
   const items = useSelector(getItems);
+  console.log("items", items)
   const itemsCategory = useSelector(getItemsByCategory);
   // const sections = useSelector(getSections);
   const { error, loading} = useSelector(getState);
@@ -35,7 +36,7 @@ export default function MenuItemsDetails({setModalActive}) {
         </BtnWrapper>
         </>}
 
-        {console.log(loading)}
+        {/* {console.log(loading)} */}
           {!loading && items.length > 0 && 
           <ItemList
           items={items} 

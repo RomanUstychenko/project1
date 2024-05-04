@@ -7,17 +7,25 @@ import { imgSaved } from 'redux/items/items-selector';
 import { itemUpdate, imgUpdate } from "redux/items/items-operation"; 
 import noimg from 'img/noimg.jpg'
 import { getSections } from "redux/sections/sections-selector"
+import { getItems } from "redux/items/items-selector";
+
 
 export default function ModalItemDetail ({ 
-  itemName,
-   price, 
-   description, 
    _id,
-   itemImg,
-   section,
+    activeItem,
     closeModal,
 }) {
 
+  const [{
+    itemName,
+     price, 
+     description,
+     idSort,
+     itemImg,
+     section
+  }] = activeItem 
+  
+ 
   const imgSavedCheck = useSelector(imgSaved);
   const sections = useSelector(getSections);
 
@@ -26,14 +34,12 @@ export default function ModalItemDetail ({
   const [newItemName, setNewItemName] = useState(itemName);
   const [newPrice, setNewPrice] = useState(price);
   const [newDescription, setNewDescription] = useState(description);
-  const [newItemImg, setNewItemImg] = useState(itemImg);
+  // const [newItemImg, setNewItemImg] = useState(itemImg);
   const [newSection, setNewSection] = useState(section);
   const [newSectionName, setNewSectionName] = useState(false);
 
-  const [saved, setSaved] = useState(false);
-  const [deleted, setDeleted] = useState(false);
+    const [deleted, setDeleted] = useState(false);
  
-console.log(saved)
   const itemImgID = nanoid();
   const itemNameID = nanoid();
   const itemPriceID = nanoid();
@@ -41,6 +47,10 @@ console.log(saved)
   const itemSectionID = nanoid();
 
 
+  
+
+  const items = useSelector(getItems)
+  console.log("items", items)
  async function handleChange  (e)  {
         const { name } = e.currentTarget;
         switch (name) {
@@ -53,24 +63,24 @@ console.log(saved)
             case 'newDescription':
               setNewDescription ( e.currentTarget.value);
             break;
-            case 'newItemImg':
-              setNewItemImg ( e.currentTarget.value);
-            break;
+            // case 'newItemImg':
+            //   setNewItemImg ( e.currentTarget.value);
+            //   console.log("newItemImg", newItemImg)
+            // break;
             case 'newSection':
-              // console.log(e.currentTarget.value)
               setNewSection ( e.currentTarget.value);
               setNewSectionName(false);
-              // setNewSectionName ( e.currentTarget.value);
-              // console.log(newSection);
+             
             break;
           default:
             break;
         }
       };
 
-      const UploadFile = async fileSelect => {
+      const UploadFile = async (fileSelect) => {
         const imageURL = new FormData();
         imageURL.append('imageURL', fileSelect);
+  
         dispatch(imgUpdate(
           {_id,
            imageURL}));
@@ -80,40 +90,59 @@ console.log(saved)
         const fileSelect = e.target.files[0];
         UploadFile(fileSelect);
         setDeleted(false);
-        // console.log(imgSavedCheck)
-      //  if (imgSavedCheck === true) {
-      //   setSaved(true);
-      //   console.log('saved', saved)
-      // }
-        // setSaved(true);
-  
-        
+        };
+      
+      const itemsNew = items.filter((data) => data.section === newSection)
+console.log("itemsNew", itemsNew)
+      // Функція для отримання максимального значення idSort в масиві
+      const getMaxIdSort = (itemsNew) => {
+        return itemsNew.reduce((max, itemNew) => {
+            return Math.max(max, parseInt(itemNew.idSort));
+        }, 0);
       };
-      // if (imgSavedCheck) {
-      //   setSaved(true)
-      // }
-      // console.log(newItemImg)
+
   const handleSubmit = (e) => {
 
         e.preventDefault()
         
             if (newPrice === "") 
             {setNewPrice(price)}
-
+if (section === newSection) {
+  console.log("sectionTarget === newSection")
             dispatch(itemUpdate(
-              {_id, 
+              {_id: _id, 
+                idSort: idSort,
                 itemName: newItemName,
               description: newDescription,
               price: newPrice,
-              itemImg: newItemImg,
+              itemImg: itemImg,
               section: newSection,
               
-              } ));
+              } ))
+            };
+  if (section !== newSection) {
+        console.log("sectionTarget !== newSection")
+     
+    const maxIdSort = getMaxIdSort(itemsNew);
+
+console.log("maxIdSort", maxIdSort)
+
+                        dispatch(itemUpdate(
+                          {_id: _id, 
+                            idSort: (maxIdSort + 1).toString(),
+                            itemName: newItemName,
+                          description: newDescription,
+                          price: newPrice,
+                          itemImg: itemImg,
+                          section: newSection,
+                          
+                          } ))
+                        };
                 // dispatch(geItemsByCategory({category: category}))
                 setNewItemName('');
               setNewDescription('');
               setNewPrice('');
-              setNewItemImg('');
+              // setNewItemImg('');
               setNewSection('');
               closeModal ();
               // setModalDetailActive(false);
@@ -122,9 +151,9 @@ console.log(saved)
 
 const deleteImage = () => {
   dispatch(itemUpdate(
-    {_id,
+    {_id: _id,
       itemImg: '',}));
-  setSaved(false);
+  // setSaved(false);
   setDeleted(true);
 
 }
@@ -139,43 +168,19 @@ const deleteImage = () => {
 
 
 async function  OpenSectionList () {
-  // console.log('open')
-  setNewSectionName(true)
-  // console.log('NewSectionName', newSectionName)
-  CloseSectionList()
+    setNewSectionName(true)
+    CloseSectionList()
 }
 
-
 async function CloseSectionList (e) {
-
-
-  
   const elForm = document.getElementById("formWrap")
-  
-  // console.log(elLabel)
-
-
   
   async function handleKeyDown (e) {
    
     const CheckForm = e.composedPath().includes(elForm);
     
-    // console.log(CheckBtn)
-    // console.log(CheckList)
-    // console.log(CheckForm)
-   
-    
-
-  //   if (CheckList === true) {
-  // console.log('Listtrue')
-  // elListId.addEventListener("onChange", console.log("onChange"))
-  // // setNewSectionName(true)
-  //   }
-    if (
-      // CheckList === false &&
-      //  CheckBtn === false && 
+      if (
        CheckForm === true) {
-      // console.log('Formtrue')
       setNewSectionName(false)
         }
 };
@@ -225,9 +230,7 @@ if (elForm !== undefined || null) {
           
           </FormImgWrapper>
           <div>
-            {/* {console.log(imgSavedCheck)} */}
           {imgSavedCheck && <Saved>change saved!</Saved>}
-          {/* {saved && <Saved>change saved!</Saved>} */}
           {deleted && <Deleted>image deleted!</Deleted>}
           </div>
 
@@ -307,7 +310,7 @@ if (elForm !== undefined || null) {
 <ListSectionChange
 id="listNewSection"
 name="listNewSection"
-value={section._id}
+value={section}
 onChange={handleChange}>
   
         {sections.map(section => 

@@ -7,6 +7,7 @@ export const theme = {
     btn: '#bd7a19',
     btnActive: '#aa8d64',
     navActive: '#926320',
+    stringActive: '#b3a695',
     mainTextBtn: `#010101;`,
       mainText: '#ada1a1',
  

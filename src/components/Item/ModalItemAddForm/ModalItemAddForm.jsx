@@ -44,9 +44,19 @@ export default function ModalItemAddForm ({
         }
       };
 
+      // Функція для отримання максимального значення idSort в масиві
+      const getMaxIdSort = (itemsCategory) => {
+        return itemsCategory.reduce((max, item) => {
+          console.log("max", max)
+          console.log("item", item)
+            return Math.max(max, parseInt(item.idSort));
+        }, 0);
+      };
+
   const handleSubmit = (e) => {
 
-  
+    const maxIdSort = getMaxIdSort(itemsCategory);
+    console.log("maxIdSort", maxIdSort)
 
         e.preventDefault()
         
@@ -57,21 +67,14 @@ export default function ModalItemAddForm ({
             Notify.failure(`${itemName} is already in item`)
             return
           }
-          if (description === "") {
+           else {
             setSection (category)
             dispatch(addItems(
-              {itemName, price, section}
-              ));
-              setItemName('');
-            // setDescription('');
-            setPrice('');
-            setSection('');
-            setModalActive(false);
-          }
-          else {
-            setSection (category)
-            dispatch(addItems(
-             {itemName, description, price, section}
+             {itemName, 
+              description, 
+              price, 
+              section,
+              idSort: (maxIdSort + 1).toString()}
               ));
               setItemName('');
               setDescription('');

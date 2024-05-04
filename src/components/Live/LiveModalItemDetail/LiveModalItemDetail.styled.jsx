@@ -4,7 +4,8 @@ import styled from 'styled-components';
 export const FormWrapper = styled.div`
 z-index: 1;
 color: black;
-width: 300px;
+min-width: 320px;
+    max-width: 370px;
 height: 500px;
 background-color: #919191;
     border: 1px solid rgb(7, 94, 138);
@@ -18,7 +19,7 @@ position: relative;
 export const Img = styled.img`
 border-radius: 5px;
 width: 250px;
-height: 200px;
+height: 250px;
 
 `
 

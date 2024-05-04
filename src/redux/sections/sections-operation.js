@@ -9,6 +9,7 @@ export const fetchSections = createAsyncThunk(
                 const data = await api.getSections({
                     owner,
                   });
+                  console.log("data", data)
             return data;
 
         } catch (error) {
@@ -57,11 +58,15 @@ export const fetchSections = createAsyncThunk(
     export const updateSection = createAsyncThunk(
         'sections/update',
         async ( datas, { rejectWithValue }) => {
+            console.log(datas)
           try {
             
             const newArr = [datas].map(({_id, ...rest}) => (rest))
+            // const newArr = [datas].map(({ ...rest}) => (rest))
+
             console.log(newArr)
             const result = await api.updateSection(datas._id, newArr);
+            // const result = await api.updateSection("65f077e9f50655929ea5e5f4", newArr);
             
             console.log(result)
             

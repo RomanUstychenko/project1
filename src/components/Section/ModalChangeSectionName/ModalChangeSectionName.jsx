@@ -15,16 +15,20 @@ import ModalSectionDelete from "../ModalSectionDelete/ModalSectionDelete";
 export default function ModalChangeSectionName ({ 
    category, 
    _id,
+   idSort,
    closeModal
   }) {
   const sections = useSelector(getSections);
   
   const dispatch = useDispatch();
-
+console.log("idSort", idSort)
   const [newSectionName, setNewSectionName] = useState(category);
+  // const [newIdSort, setNewIdSort] = useState(idSort);
+
   const [modalDeleteActive, setModalDeleteActive] = useState(false);
 
   const sectionNameID = nanoid();
+  console.log(_id)
   console.log(category)
  
   const handleChange = (e) => {
@@ -50,7 +54,9 @@ export default function ModalChangeSectionName ({
           }
 
             dispatch(updateSection(
-              {_id, 
+               {
+                _id,
+                idSort,
                 category: newSectionName,              
               } ));
                 setNewSectionName('');

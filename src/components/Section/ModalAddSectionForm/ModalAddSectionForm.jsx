@@ -7,14 +7,15 @@ import { addSection } from "redux/sections/sections-operation";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Button } from "components/Button/Button";
 
-export default function ModalAddSectionForm ({onClick, setModalSectionActive}) {
+export default function ModalAddSectionForm ({setModalSectionActive}) {
   // console.log(setModalSectionActive)
   const sections = useSelector(getSections);
-  // console.log(sections)
+  console.log(sections)
   
   const dispatch = useDispatch();
 
   const [category, setCategory] = useState('');
+  
   
 
 
@@ -32,8 +33,17 @@ export default function ModalAddSectionForm ({onClick, setModalSectionActive}) {
         }
       };
 
+      // Функція для отримання максимального значення idSort в масиві
+const getMaxIdSort = (sections) => {
+  return sections.reduce((max, section) => {
+      return Math.max(max, parseInt(section.idSort));
+  }, 0);
+};
+
   const handleSubmit = (e) => {
 
+    const maxIdSort = getMaxIdSort(sections);
+    // console.log((maxIdSort + 1).toString(),)
           e.preventDefault()
         const duplicateSections = sections.find(section => section.category.toLocaleLowerCase() === category.toLocaleLowerCase());
       
@@ -41,7 +51,9 @@ export default function ModalAddSectionForm ({onClick, setModalSectionActive}) {
             Notify.failure(`${category} is already in item`)
             return
           }
-              dispatch(addSection({category}));
+              dispatch(addSection({
+                idSort: (maxIdSort + 1).toString(),
+                category}));
               setCategory('');
               setModalSectionActive(false);
       }; 
@@ -58,8 +70,8 @@ export default function ModalAddSectionForm ({onClick, setModalSectionActive}) {
           id={sectionNameID} 
           type="text" 
           name="category" 
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          pattern="^[^0-9].*"
+          title="A section cannot start with a number"
           required
           value={category} 
           onChange={handleChange} />

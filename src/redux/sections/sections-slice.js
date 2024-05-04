@@ -20,7 +20,7 @@ const pendingHandler = (store, {payload}) => {
         builder
         .addCase(fetchSections.pending, pendingHandler)
         .addCase(fetchSections.fulfilled, (store, {payload}) => {
-            console.log("payload", payload)
+            console.log("fetchSections payload", payload)
             store.loading = false;
             store.sections = payload;
         }) 

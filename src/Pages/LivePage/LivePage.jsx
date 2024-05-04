@@ -26,6 +26,7 @@ export default function LivePage({navbarHide, setNavbarHide}) {
     .filter((course, index, array) => array.indexOf(course) === index);
 
   const uniqueIds = new Set(itemFiter);
+  console.log(sections)
 
   const filteredSections = sections.filter(item => uniqueIds.has(item._id));
 

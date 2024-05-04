@@ -17,7 +17,7 @@ const {
   hideSet,
 } = HideSetting();
 
-console.log('HideSetting', SettingActive)
+// console.log('HideSetting', SettingActive)
 
 
 const onLogout =() => {

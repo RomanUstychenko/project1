@@ -58,10 +58,22 @@ export const fetchItems = createAsyncThunk(
     
     export const addItems = createAsyncThunk(
         "items/add",
-        async(datas, {rejectWithValue}) => {
-            // console.log(datas)
+        async(data, {rejectWithValue}) => {
+            // console.log(data)
+            function removeEmptyValues(obj) {
+                const newObj = {};
+                for (const key in obj) {
+                    if (obj[key] !== '') {
+                        newObj[key] = obj[key];
+                    }
+                }
+                return newObj;
+            }
+            
+            const filteredData = removeEmptyValues(data);
+            // console.log(filteredData)
             try {
-                const result = await api.addItems(datas);
+                const result = await api.addItems(filteredData);
                 // console.log(result)
                 return result;
                 
@@ -122,7 +134,7 @@ export const fetchItems = createAsyncThunk(
       export const imgUpdate = createAsyncThunk(
         'items/imgUpdate',
         async ( datas, { rejectWithValue }) => {
-            // console.log(datas)
+            console.log(datas)
           try {
             
             // const newArr = [datas].map(({_id, ...rest}) => (rest))

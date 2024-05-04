@@ -5,11 +5,13 @@ export const getSections = async ({owner}) => {
   
   if (owner===undefined) {
     const {data} = await instance.get(`/sections`);
+    console.log("getSections data owner===undefined", data)
   return data
 }
   else {
     
     const {data} = await instance.get(`/sections/${owner}`);
+    console.log("getSections data owner!=undefined", data)
     return data;
   }
     
@@ -29,7 +31,7 @@ export const updateSection = async (_id, section) => {
     // try {
         console.log("section", section)
       const { data} = await instance.put(`/sections/${_id}`, ...section);
-      console.log("_id", _id)
+      console.log("updateSection data", data)
     //   console.log("items", items)
     //   console.log("itemData", itemName)
       return data;

@@ -12,7 +12,7 @@ import {
 
 import { fetchItems } from 'redux/items/items-operation';
 import { getItemsByCategory } from 'redux/items/items-selector';
-import { getSections } from 'redux/sections/sections-selector';
+// import { getSections } from 'redux/sections/sections-selector';
 import { fetchSections } from 'redux/sections/sections-operation';
 
 import { Modal } from 'components/common/Modal/Modal';
@@ -35,26 +35,38 @@ export default function MenuItems() {
   const [modalAddSectionActive, setModalAddSectionActive] = useState(false);
 const   [modalQrActive, setModalQrActive] = useState(false);
 
+
   const dispatch = useDispatch();
   const itemsCategory = useSelector(getItemsByCategory);
-  const sections = useSelector(getSections);
+  // const sections = useSelector(getSections);
 
+  useEffect(() => {
+    console.log("useefect")
+    dispatch(fetchItems());
+    dispatch(fetchSections());
+  }, [dispatch]);
+
+
+
+  // console.log(sections)
   const SideMenu = () => {
     const { isMenuClose } = useContext(MenuContext);
     
 
     return (
       <>
-        {/* <SectionWrap close={isMenuClose} > */}
-        <SectionWrap value={isMenuClose} >
+          <SectionWrap value={isMenuClose} >
           <HamburgerButton value={isMenuClose} />
           <SectionForm value={isMenuClose} >
             <ul>
-              {sections.map((section) => (
+              {/* {sections.map((section) => (
                 <ItemsSections 
                 key={section._id}
                 section={section}></ItemsSections>
-              ))}
+              ))} */}
+                 <ItemsSections 
+                // key={section._id}
+                ></ItemsSections>
             </ul>
             <AddButton
               type="button"
@@ -74,10 +86,7 @@ const   [modalQrActive, setModalQrActive] = useState(false);
     setModalQrActive(false);
     document.body.style.overflow = '';
   }
-  useEffect(() => {
-    dispatch(fetchItems());
-    dispatch(fetchSections());
-  }, [dispatch]);
+ 
 
   return (
     <>

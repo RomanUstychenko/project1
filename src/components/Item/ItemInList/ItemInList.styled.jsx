@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { device } from 'Device';
 import {MdDeleteForever} from 'react-icons/md';
-
+import { MdOutlineKeyboardDoubleArrowUp, MdOutlineKeyboardDoubleArrowDown  } from "react-icons/md";
 
 export const nameWidth = [
   "150px", //// mobile//////        [0]
@@ -43,6 +43,7 @@ background-color: #d2d2d8;
 border-radius: 10px;
 box-shadow: 7px 20px 14px rgba(10, 4, 1, 0.1);
 width:  100%;
+height: 50px;
     display: flex;
     cursor: pointer;
     &:not(:last-child) {
@@ -50,7 +51,7 @@ width:  100%;
 }
         &:hover,
        &:focus {
-        background-color: ${props => props.theme.colors.btnActive};   
+        background-color: ${props => props.theme.colors.stringActive};   
   }
 @media ${device.tablet} {
     height: 35px;
@@ -61,6 +62,7 @@ export const Item = styled.button`
 cursor: pointer;
 border: none;
 background-color: transparent;
+align-items: center;
     width: 100%;
     @media ${device.tablet} {
         width: 100%;
@@ -84,7 +86,7 @@ export const ItemText = styled.p`
     @media ${device.tablet} {
         
         width: ${nameWidth[2]};
-        padding-left: 10px;
+        /* padding-left: 10px; */
         text-align: left;
 
         ${props =>
@@ -160,4 +162,30 @@ export const DelIcon = styled(MdDeleteForever)`
         width: ${deleteStyle[1]};
         height: ${deleteStyle[1]};
     }
+`
+export const ButtonWrap = styled.div`
+    
+
+`
+export const MoveButtonSection = styled.button`
+  border: none;
+  background-color: inherit;
+  width: 20px;
+  padding: 0;
+  &:hover,
+       &:focus {
+        color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  }
+`
+export const MoveUpSection = styled(MdOutlineKeyboardDoubleArrowUp)`
+      height: 20px;
+    width: 20px;
+
+
+`
+export const MoveDownSection = styled(MdOutlineKeyboardDoubleArrowDown)`
+    height: 20px;
+    width: 20px;
+
 `

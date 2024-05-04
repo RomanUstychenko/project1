@@ -17,7 +17,7 @@ import { nanoid } from '@reduxjs/toolkit';
 
  export const ItemList = ({itemsCategory, items}) => {
 
-
+console.log(itemsCategory)
   const location = useLocation();
   const category = location.pathname.split('/')[2];
 
@@ -47,7 +47,7 @@ useEffect(() => {
     }}, [ dispatch, category, items])
  
     const resultSize = ItemsSize();
-    console.log(resultSize)
+    // console.log(resultSize)
 
     return (
       <>
@@ -65,12 +65,18 @@ useEffect(() => {
             )} )}
             
               </Names>
-            {getFilteredItem().map(filteredItem => 
+            {/* {getFilteredItem().map(filteredItem => 
               <ItemInList
               key={filteredItem._id}
               filteredItem={filteredItem}
               />
-     )} 
+     )}  */}
+         {/* {getFilteredItem().map(filteredItem =>  */}
+              <ItemInList
+              // key={filteredItem._id}
+              // filteredItem={filteredItem}
+              />
+     {/* )}  */}
          </List>
          </>
     )};
