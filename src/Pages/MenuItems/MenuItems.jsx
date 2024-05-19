@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -6,6 +6,7 @@ import {
   Sections,
   SectionForm,
   SectionWrap,
+  SectionWrapWrap,
   AddButton,
   AddButtonText,
 } from './MenuItems.styled';
@@ -23,7 +24,7 @@ import ModalItemAddForm from '../../components/Item/ModalItemAddForm/ModalItemAd
 import ModalAddSectionForm from 'components/Section/ModalAddSectionForm/ModalAddSectionForm';
 import QrResult from 'components/QRCode/QRCode';
 
-import { MenuContext } from './ToggleMenu/navState';
+// import { MenuContext } from './ToggleMenu/navState';
 import HamburgerButton from './ToggleMenu/ToggleButton';
 import NavState from 'Pages/MenuItems/ToggleMenu/navState';
 
@@ -34,7 +35,7 @@ export default function MenuItems() {
   const [modalActive, setModalActive] = useState(false);
   const [modalAddSectionActive, setModalAddSectionActive] = useState(false);
 const   [modalQrActive, setModalQrActive] = useState(false);
-
+const [moveSection, setMoveSection] = useState(false);
 
   const dispatch = useDispatch();
   const itemsCategory = useSelector(getItemsByCategory);
@@ -46,37 +47,47 @@ const   [modalQrActive, setModalQrActive] = useState(false);
     dispatch(fetchSections());
   }, [dispatch]);
 
-
-
+const moveMenu = () => {
+  
+  setMoveSection(!moveSection)
+  console.log("moveSection", moveSection)
+}
+ 
   // console.log(sections)
   const SideMenu = () => {
-    const { isMenuClose } = useContext(MenuContext);
+    // const { isMenuClose } = useContext(MenuContext);
     
-
+// console.log("isMenuClose", isMenuClose)
     return (
-      <>
-          <SectionWrap value={isMenuClose} >
-          <HamburgerButton value={isMenuClose} />
-          <SectionForm value={isMenuClose} >
-            <ul>
+      <SectionWrapWrap>
+
+          <SectionWrap value={moveSection} >
+          <HamburgerButton 
+          // value={isMenuClose}
+          moveMenu={moveMenu}
+          moveSection={moveSection}
+          />
+          <SectionForm value={moveSection} >
+            {/* <ul> */}
               {/* {sections.map((section) => (
                 <ItemsSections 
                 key={section._id}
                 section={section}></ItemsSections>
               ))} */}
                  <ItemsSections 
+                 dispatch={dispatch}
                 // key={section._id}
                 ></ItemsSections>
-            </ul>
+            {/* </ul> */}
             <AddButton
               type="button"
-              onClick={() => setModalAddSectionActive(true)}
+              onClick={() =>setModalAddSectionActive(true)}
             >
               <AddButtonText>Add Section</AddButtonText>
             </AddButton>
           </SectionForm>
         </SectionWrap>
-      </>
+       </SectionWrapWrap>
     );
   };
 
@@ -137,7 +148,10 @@ const   [modalQrActive, setModalQrActive] = useState(false);
               />
             </Modal>
           )}
-          <MenuItemsDetails setModalActive={setModalActive} />
+          <MenuItemsDetails 
+          setModalActive={setModalActive}
+          moveSection={moveSection}
+          />
         </NavState>
       </Sections>
     </>

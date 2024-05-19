@@ -17,7 +17,7 @@ import { nanoid } from '@reduxjs/toolkit';
 
  export const ItemList = ({itemsCategory, items}) => {
 
-console.log(itemsCategory)
+// console.log(itemsCategory)
   const location = useLocation();
   const category = location.pathname.split('/')[2];
 
@@ -39,7 +39,7 @@ const dispatch = useDispatch();
     //     };
 
 useEffect(() => {
-  dispatch(fetchSections());
+  // dispatch(fetchSections());
     if (category === undefined) {
     }
     else {

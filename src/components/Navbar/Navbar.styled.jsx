@@ -7,10 +7,22 @@ export const NavbarTitles = styled.nav`
     height: ${props => props.theme.size.navbarHeightMobile};
     /* border: 1px solid ; */
     border-radius: 3px;
-    background-color: #749574;
+    background-color: ${props => props.theme.colors.navbarUser};
     display: flex;
+
+
+    position: fixed;
+    top: 0px;
+    /* left: 0px; */
+    width: 100%;
+    z-index: 10;
+    @media ${device.mobileOnly} {
+   left: 0px;
+};
+
     @media ${device.tablet} {
         height: ${props => props.theme.size.navbarHeightTablet};
+        width: 768px;
 };
     @media ${device.desktop} {
         height: ${props => props.theme.size.navbarHeightDesktop};

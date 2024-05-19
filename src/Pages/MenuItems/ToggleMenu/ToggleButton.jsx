@@ -4,23 +4,25 @@ import { MenuContext } from './navState';
 import { MenuButton, BarClose, BarOpen } from './ToggleButton.styled';
 
 
-const HamburgerButton = () => {
-  const { isMenuClose, toggleMenuMode } = useContext(MenuContext);
+const HamburgerButton = ({moveMenu, moveSection}) => {
+  // const { isMenuClose, toggleMenuMode } = useContext(MenuContext);
+
+
+  console.log("moveSection", moveSection)
 
   const clickHandler = () => {
-    toggleMenuMode();
+    moveMenu();
+    // console.log("value", value)
+    // toggleMenuMode();
+    
   };
 
   return (
     <MenuButton
-      // className={isMenuOpen ? 'active' : ''}
-    //   aria-label="Открыть главное меню"
+      
       onClick={clickHandler}
-    >{isMenuClose ? <BarOpen />  : <BarClose />} 
-      {/* <BarClose />
-      <BarOpen /> */}
-      {/* <Bar />
-      <Bar /> */}
+    >{moveSection ? <BarOpen />  : <BarClose />} 
+
     </MenuButton>
   );
 };

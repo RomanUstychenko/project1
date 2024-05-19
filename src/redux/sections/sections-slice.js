@@ -60,7 +60,10 @@ const pendingHandler = (store, {payload}) => {
                 if (item._id === payload._id) {
                     store.sections[index] = payload} 
                 })
-
+                console.log("store.sections", store.sections)
+                console.log("store", store)
+                console.log("payload", payload)
+                console.log("initialState", initialState)
           })
         .addCase(updateSection.rejected, (store, { meta, payload }) => {
             store.loading = false;

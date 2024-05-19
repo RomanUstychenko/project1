@@ -3,8 +3,8 @@ import { nanoid } from "nanoid";
 import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, ListSectionChange, FormInputListSection, InputListWrapper, BtnChageSection, LabelSection, BtnArrow, ChangeImage, AddImage, DeleteImage, FormImgAction, RenameButton, RenameButtonText } from "./ModalItemDetail.styled";
 import { Form, FormInputList, FormInputLabel, FormInput, FormInputDescription, FormInputSection } from "components/common/GeneralStyle/Input.styled";
 import { useSelector, useDispatch } from 'react-redux';
-import { imgSaved } from 'redux/items/items-selector';
-import { itemUpdate, imgUpdate } from "redux/items/items-operation"; 
+import { imgSaved, getItemsByCategory } from 'redux/items/items-selector';
+import { itemUpdate, imgUpdate, fetchItems } from "redux/items/items-operation"; 
 import noimg from 'img/noimg.jpg'
 import { getSections } from "redux/sections/sections-selector"
 import { getItems } from "redux/items/items-selector";
@@ -50,7 +50,9 @@ export default function ModalItemDetail ({
   
 
   const items = useSelector(getItems)
+  // const itemsCategory = useSelector(getItemsByCategory);
   console.log("items", items)
+  // console.log("itemsCategory", itemsCategory)
  async function handleChange  (e)  {
         const { name } = e.currentTarget;
         switch (name) {
@@ -94,6 +96,7 @@ export default function ModalItemDetail ({
       
       const itemsNew = items.filter((data) => data.section === newSection)
 console.log("itemsNew", itemsNew)
+// console.log("itemsCategory", itemsCategory)
       // Функція для отримання максимального значення idSort в масиві
       const getMaxIdSort = (itemsNew) => {
         return itemsNew.reduce((max, itemNew) => {
@@ -138,7 +141,7 @@ console.log("maxIdSort", maxIdSort)
                           
                           } ))
                         };
-                // dispatch(geItemsByCategory({category: category}))
+                        dispatch(fetchItems());
                 setNewItemName('');
               setNewDescription('');
               setNewPrice('');

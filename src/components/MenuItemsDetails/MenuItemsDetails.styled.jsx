@@ -1,10 +1,39 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Btn, TextBtn } from 'components/Button/Button.styled';
+import { device } from 'Device';
 
 export const ItemsList = styled.div`
-margin-top: 60px;
-    margin-left: 5px;
+margin-top: 100px;
+    margin-left: 170px;
     width: 100%;
+    
+    transition: 
+    margin-left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    ${props =>
+    props.value &&
+    css`
+      margin-left: 40px;
+    `};
+    @media ${device.tablet} {
+        margin-left: 300px;
+        transition: 
+        margin-left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        ${props =>
+    props.value &&
+    css`
+      margin-left: 40px;
+    `};
+};
+    @media ${device.desktop} {
+        margin-left: 300px;
+        transition: 
+        margin-left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        ${props =>
+    props.value &&
+    css`
+      margin-left: 40px;
+    `};
+};
 ` 
     
 export const ItemsLoading  = styled.p`

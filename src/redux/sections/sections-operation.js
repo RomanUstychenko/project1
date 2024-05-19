@@ -5,10 +5,11 @@ export const fetchSections = createAsyncThunk(
     "sections/fetch",
     async(owner, thunkApi) => {
         try {
-            console.log("owner", owner)
+            
                 const data = await api.getSections({
                     owner,
                   });
+                  console.log("owner", owner)
                   console.log("data", data)
             return data;
 

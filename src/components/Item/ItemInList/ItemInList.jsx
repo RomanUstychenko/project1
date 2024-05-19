@@ -36,7 +36,7 @@ export default function ItemInList(
 
   const itemsCategory = useSelector(getItemsByCategory);
   
-  console.log("itemsCategory", itemsCategory)
+  // console.log("itemsCategory", itemsCategory)
   const { isMenuClose } = useContext(MenuContext);
   
   const filteredItemId = nanoid();
@@ -90,7 +90,7 @@ const filter = (item) => {
 
   return filterResult;
 };
-console.log(isMenuClose)
+// console.log(isMenuClose)
 
 function formatNumber(number) {
   Number(number)
@@ -201,6 +201,7 @@ const handleUpSection = (item, index) => {
           
           } ));
           dispatch(fetchItems());
+          console.log(itemsCategory)
             }
 
 

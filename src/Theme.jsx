@@ -3,6 +3,7 @@ export const theme = {
     colors: {
     mainTextLive: '#a19797',
     backgrondLive: 'rgb(31, 35, 36);',
+    navbarUser: '#c1c4c5',
     titleLive: '#7e2323',
     btn: '#bd7a19',
     btnActive: '#aa8d64',
@@ -20,5 +21,6 @@ export const theme = {
       navbarHeightMobile: '40px',
       navbarHeightTablet: '45px',
       navbarHeightDesktop: '45px',
+      navbarWidthTablet: '768px',
     }
 }

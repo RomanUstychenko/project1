@@ -9,22 +9,37 @@ export const Sections = styled.div`
     padding-right: 5px;
 `  
 
+export const SectionWrapWrap = styled.div`
+  
 
+`
 export const SectionWrap = styled.div`
 height:calc(100vh - ${props => props.theme.size.navbarHeightMobile});
-position: relative;
+
   background-color: #cbcbcb;
+
+  
+  position: fixed;
+    top: 40px;
+    /* left: 0px; */
+    z-index:  1000;
+    overflow-y: auto;
+
+    scrollbar-width: none;
+
   transition: 
-  width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width 0.3 s ease;
+  
   ${props =>
     props.value &&
     css`
+    /* position: relative; */
       width: 40px;
     `};
     @media ${device.tablet} {
       height:calc(100vh - ${props => props.theme.size.navbarHeightTablet});
     }; 
-    @media ${device.tablet} {
+    @media ${device.desktop} {
       height:calc(100vh - ${props => props.theme.size.navbarHeightDesktop});
     }; 
 `
@@ -42,13 +57,14 @@ box-sizing: border-box;
   /* width: 100%; */
   /* height: 90vh; */
   
+  
   background-color: #cbcbcb;
 
   /* transform: translateX(0); */
 
   transition: 
-  transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-  opacity 0.3s;
+  transform 1s cubic-bezier(0.645, 0.045, 0.355, 1),
+  opacity 2s;
 
   ${props =>
     props.value &&

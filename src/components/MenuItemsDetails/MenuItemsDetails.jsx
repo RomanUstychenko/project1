@@ -8,20 +8,21 @@ import { getItems, getItemsByCategory } from 'redux/items/items-selector';
 import { useLocation } from 'react-router-dom'
 
 
-export default function MenuItemsDetails({setModalActive}) {
+export default function MenuItemsDetails({setModalActive, moveSection}) {
 
 
   const location = useLocation();
   const category = location.pathname.split('/')[2];
   const items = useSelector(getItems);
-  console.log("items", items)
+  // console.log("items", items)
   const itemsCategory = useSelector(getItemsByCategory);
   // const sections = useSelector(getSections);
   const { error, loading} = useSelector(getState);
-
+console.log("moveSection", moveSection)
   return (
       <>
-      <ItemsList>
+      <ItemsList
+      value={moveSection}>
       { category &&
        <>
         <Filter />

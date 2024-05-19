@@ -15,67 +15,70 @@ export const Wrapper = styled.div`
 
 export const FilterList = styled.li`
 
+
+
   list-style: none;
   display: flex;
   /* &:not(:last-child) { */
     margin-bottom: 5px;
-/* } */
-  /* justify-content: flex-start; */
-  /* align-items: center; */
-  /* flex-wrap: wrap; */
-  /* gap: 12px; */
-  &:last-child {
-    /* width: 72%; */
 
-    };
+    min-height: 48px;
+  background-color: #cbcbcb;
+    border-radius: 10px;
+    box-shadow: 7px 20px 14px rgba(10, 4, 1, 0.1);
+    margin-bottom: 10px;
+  
+  transition: color 250ms linear, background-color 250ms linear;
+    &:hover,
+       &:focus {
+        background-color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  }
 `;
 
 export const Item = styled.li`
   display: flex;
 `;
 
-export const Button = styled(NavLink)`
+export const Button = styled.a`
 word-wrap: break-word;
 padding-left: 5px;
 
+
 box-sizing: border-box;
-/* list-style: none; */
 border: none;
-width: 60%;
+width: 70%;
 color: #181515;
 font-size: 20px;
 font-weight: 900;
   line-height: 1.35;
   letter-spacing: 0.04em;
   border-radius: 5px;
-  transition: color 250ms linear, background-color 250ms linear;
+  
   ${FilterList}:first-child & {
-    width: 72%;
+    width: 100%;
     @media ${device.tablet} {  
         width: 100%;
     };
     };
     ${FilterList}:last-child & {
-    width: 72%;
+    width: 100%;
     @media ${device.tablet} {  
         width: 100%;
     };
     };
-      &:hover,
-       &:focus {
-        background-color: ${props => props.theme.colors.btnActive};
-        cursor: pointer;
-  }
-
-  &.active {
-   color: #573131;
-   background-color: #749574;
-  }
-
+    
   @media ${device.tablet} {  
         width: 100%;
     };
 `;
+
+export const ex = styled.div`
+  
+  
+
+`
+
 export const CommonLinks = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -116,6 +119,7 @@ export const MoveButtonSection = styled.button`
   border: none;
   background-color: inherit;
   padding: 0;
+  width: 20px;
   &:hover,
        &:focus {
         color: ${props => props.theme.colors.btnActive};
@@ -130,3 +134,17 @@ export const MoveDownSection = styled(MdOutlineKeyboardDoubleArrowDown)`
 height: 20px;
     width: 20px;
 `
+export const FilterListWrap = styled.ul`
+
+   li.active {
+    
+  color: #573131;
+  background-color: #749574;
+
+}
+`
+export const MoveButtonWrap = styled.div`
+    
+    width: 20px;
+`
+

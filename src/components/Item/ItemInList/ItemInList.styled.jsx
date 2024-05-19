@@ -33,7 +33,7 @@ export const sectionWidth = [
 // const sectionStyle = namesItem.filter(data => data.title === "Section").map(data  => (data.width));
 
 const deleteStyle = [
-    "20px", /////mobile/////
+    "25px", /////mobile/////
     "25px" //// tablet//////
 ];
 
@@ -153,6 +153,7 @@ display: flex;
 `
 export const DelIcon = styled(MdDeleteForever)`
     width: ${deleteStyle[0]};
+    height: ${deleteStyle[0]};
     color: red;
     &:hover,
        &:focus {
@@ -165,7 +166,7 @@ export const DelIcon = styled(MdDeleteForever)`
 `
 export const ButtonWrap = styled.div`
     
-
+    width: 20px;
 `
 export const MoveButtonSection = styled.button`
   border: none;
