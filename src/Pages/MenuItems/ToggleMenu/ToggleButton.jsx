@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+// import React, { useContext } from 'react';
 // import styled from 'styled-components';
-import { MenuContext } from './navState';
+// import { MenuContext } from './navState';
 import { MenuButton, BarClose, BarOpen } from './ToggleButton.styled';
 
 

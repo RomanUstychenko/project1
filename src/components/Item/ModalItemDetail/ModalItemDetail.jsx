@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrapper, Img, Saved, Deleted, ListSectionChange, FormInputListSection, InputListWrapper, BtnChageSection, LabelSection, BtnArrow, ChangeImage, AddImage, DeleteImage, FormImgAction, RenameButton, RenameButtonText } from "./ModalItemDetail.styled";
 import { Form, FormInputList, FormInputLabel, FormInput, FormInputDescription, FormInputSection } from "components/common/GeneralStyle/Input.styled";
 import { useSelector, useDispatch } from 'react-redux';
-import { imgSaved, getItemsByCategory } from 'redux/items/items-selector';
+import { imgSaved } from 'redux/items/items-selector';
 import { itemUpdate, imgUpdate, fetchItems } from "redux/items/items-operation"; 
 import noimg from 'img/noimg.jpg'
 import { getSections } from "redux/sections/sections-selector"

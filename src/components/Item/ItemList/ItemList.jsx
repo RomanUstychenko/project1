@@ -11,7 +11,7 @@ import { List, Names, NamesList } from './ItemList.styled';
 // import  { getFilter }from 'redux/filter/filter-selector';
 import ItemInList from "components/Item/ItemInList/ItemInList";
 
-import { fetchSections } from "redux/sections/sections-operation"
+// import { fetchSections } from "redux/sections/sections-operation"
 import { geItemsByCategory } from "redux/items/items-operation"
 import { nanoid } from '@reduxjs/toolkit';
 
