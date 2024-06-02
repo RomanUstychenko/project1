@@ -129,11 +129,12 @@ console.log("location.pathname", location.pathname)
 
 
               
-const handleSection = (event, index) => {
+const handleSection = (event, index, item) => {
   event.preventDefault();
+  console.log("item", item._id)
   // const scrollPosition = listRef.current.scrollTop;
   if (!buttonClickedRef.current) {
-  setActiveIndex(index)
+  setActiveIndex(item._id)
   // setButtonClicked(true);
   
 setTimeout(() => {
@@ -162,10 +163,13 @@ setTimeout(() => {
             <FilterList
        key={index}
        id={item._id}
-       className={ (index  === activeIndex  ? "active" : "")
-       || (`${index}`=== activeIndex  ? "active" : "")
+      //  className={ (index  === activeIndex  ? "active" : "")
+      //  || (`${index}`=== activeIndex  ? "active" : "")
+      // } 
+      className={ (item._id  === activeIndex  ? "active" : "")
+       || (`${item._id}`=== activeIndex  ? "active" : "")
       } 
-       onClick={(event) => handleSection(event, index)}
+       onClick={(event) => handleSection(event, index, item)}
        >
                  
         <MoveButtonWrap>

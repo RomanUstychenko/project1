@@ -19,7 +19,7 @@ export const TextButton = styled(TextBtn)`
     };
 `
 export const GoBackWrap = styled.div`
-margin-top: 10px;
+margin-top: 50px;
     display: flex;
     justify-content: end;
 `

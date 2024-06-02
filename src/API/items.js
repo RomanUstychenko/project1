@@ -12,10 +12,17 @@ export const getItemsLive = async (datas) => {
 }
 
 
-export const getItemsByCategory =  async ({category}) => {
-    // console.log(category)
+export const getItemsByCategory = async ({ category }) => {
+  try {
     const { data } = await instance.get(`/items/${category}`);
-            return data;     
+    return data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      return [];
+    } else {
+      throw error;
+    }
+  }
 };
 
 export const addItems = async (data) => {

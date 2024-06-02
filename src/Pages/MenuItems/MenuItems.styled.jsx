@@ -20,9 +20,9 @@ height:calc(100vh - ${props => props.theme.size.navbarHeightMobile});
 
   
   position: fixed;
-    top: 40px;
+    top: ${props => props.theme.size.navbarHeightMobile};
     /* left: 0px; */
-    z-index:  1000;
+    z-index:  500;
     overflow-y: auto;
 
     scrollbar-width: none;
@@ -38,9 +38,11 @@ height:calc(100vh - ${props => props.theme.size.navbarHeightMobile});
     `};
     @media ${device.tablet} {
       height:calc(100vh - ${props => props.theme.size.navbarHeightTablet});
+      top: ${props => props.theme.size.navbarHeightTablet};
     }; 
     @media ${device.desktop} {
       height:calc(100vh - ${props => props.theme.size.navbarHeightDesktop});
+      top: ${props => props.theme.size.navbarHeightDesktop};
     }; 
 `
 
