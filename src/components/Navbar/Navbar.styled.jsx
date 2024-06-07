@@ -26,6 +26,7 @@ export const NavbarTitles = styled.nav`
 };
     @media ${device.desktop} {
         height: ${props => props.theme.size.navbarHeightDesktop};
+        width: 100%;
 };
 `
     

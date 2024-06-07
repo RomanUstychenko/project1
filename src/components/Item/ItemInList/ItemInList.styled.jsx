@@ -54,7 +54,7 @@ height: 50px;
         background-color: ${props => props.theme.colors.stringActive};   
   }
 @media ${device.tablet} {
-    height: 35px;
+    height: 50px;
     align-items: center;
     };
 `

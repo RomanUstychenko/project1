@@ -6,7 +6,7 @@ import {
   Sections,
   SectionForm,
   SectionWrap,
-  SectionWrapWrap,
+  // SectionWrapWrap,
   AddButton,
   AddButtonText,
 } from './MenuItems.styled';
@@ -52,16 +52,18 @@ const moveMenu = () => {
   setMoveSection(!moveSection)
   console.log("moveSection", moveSection)
 }
- 
+// const scrollRef = useRef(null);
   // console.log(sections)
   const SideMenu = () => {
     // const { isMenuClose } = useContext(MenuContext);
     
 // console.log("isMenuClose", isMenuClose)
     return (
-      <SectionWrapWrap>
+      // <SectionWrapWrap>
 
-          <SectionWrap value={moveSection} >
+          <SectionWrap 
+          // ref={scrollRef}
+          value={moveSection} >
           <HamburgerButton 
           // value={isMenuClose}
           moveMenu={moveMenu}
@@ -75,7 +77,8 @@ const moveMenu = () => {
                 section={section}></ItemsSections>
               ))} */}
                  <ItemsSections 
-                 dispatch={dispatch}
+                //  dispatch={dispatch}
+                //  scrollRef={scrollRef}
                 // key={section._id}
                 ></ItemsSections>
             {/* </ul> */}
@@ -87,7 +90,7 @@ const moveMenu = () => {
             </AddButton>
           </SectionForm>
         </SectionWrap>
-       </SectionWrapWrap>
+      //  </SectionWrapWrap>
     );
   };
 

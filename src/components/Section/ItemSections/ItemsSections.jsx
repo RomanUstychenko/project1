@@ -23,7 +23,9 @@ import {  useSelector } from 'react-redux';
 import { useNavigate  } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
-function ItemsSections() {
+function ItemsSections(
+  // {scrollRef}
+) {
  
   const [ModalChangeSectionActive, setModalChangeSectionActive] = useState(false);
     const [state, setState] = useState({
@@ -41,6 +43,7 @@ function ItemsSections() {
 
   // const listRef = useRef(null);
   const buttonClickedRef = useRef(false); // Використання useRef для buttonClicked
+  const scrollRef = useRef(null);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -127,19 +130,26 @@ console.log("location.pathname", location.pathname)
           // event.stopPropagation()
               };
 
-
+      
               
 const handleSection = (event, index, item) => {
   event.preventDefault();
+  event.stopPropagation();
   console.log("item", item._id)
-  // const scrollPosition = listRef.current.scrollTop;
   if (!buttonClickedRef.current) {
   setActiveIndex(item._id)
-  // setButtonClicked(true);
   
+  // Збереження позиції прокручування
+  // const scrollPosition = scrollRef.current.scrollTop;
+  
+  
+  // console.log("scrollRef", scrollRef.current.scrollTop)
+  // scrollRef.current.scrollTop;
+  // console.log("scrollPosition", scrollPosition)
 setTimeout(() => {
+  
   const sectionsId = sections[index]._id;
-  navigate('/items/' + sectionsId);
+  navigate('/items/' + sectionsId );
 }, 300);
   }
   
@@ -147,6 +157,27 @@ setTimeout(() => {
 
 }
               // console.log("activeIndex", activeIndex)
+
+              useEffect(() => {
+                
+                console.log("window.history.state", window.history.state)
+                console.log("scrollRef.current", scrollRef.current)
+                if (scrollRef.current) {
+                  const activeItem = scrollRef.current.querySelector('.active');
+  console.log("activeItem", activeItem)
+                  ;
+                  
+                  console.log("useeffectRefIf")
+                  // window.scrollTo(activeItem[0]);
+
+                  if (activeItem) {
+                    // Прокрутка до вибраного елементу, якщо він існує
+                    activeItem.scrollIntoView({ behavior: 'auto', block: 'nearest' });
+                  } else {
+                    console.log('Active item not found');
+                  }
+                }
+              }, [scrollRef]);
 
               useEffect(() => {
                 localStorage.setItem('activeIndex', JSON.stringify(activeIndex));
@@ -157,10 +188,12 @@ setTimeout(() => {
   return (
     <>
     <FilterListWrap
+   ref={scrollRef}
     >
           {sections.map((item, index) => (
                        
             <FilterList
+            
        key={index}
        id={item._id}
       //  className={ (index  === activeIndex  ? "active" : "")
