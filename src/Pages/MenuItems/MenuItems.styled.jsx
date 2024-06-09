@@ -14,7 +14,7 @@ export const SectionWrapWrap = styled.div`
 
 `
 export const SectionWrap = styled.div`
-height:calc(100vh - ${props => props.theme.size.navbarHeightMobile});
+/* height:calc(100vh - ${props => props.theme.size.navbarHeightMobile}); */
   background-color: #cbcbcb;
 
   
