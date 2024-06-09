@@ -141,7 +141,7 @@ export const fetchItems = createAsyncThunk(
             // console.log(newArr)
             // const result = await api.imgUpdate(datas._id, newArr);
             const result = await api.imgUpdate(datas._id, datas.imageURL);
-            // console.log(result)
+            console.log(result)
             
             return result;
           } catch ({response}) {

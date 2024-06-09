@@ -23,9 +23,10 @@ export const SectionWrap = styled.div`
     bottom: 0px;
     /* left: 0px; */
     z-index:  500;
-    overflow-y: auto;
+
+    
     /* max-height: 100vh; */
-    scrollbar-width: none;
+    
 
   transition: 
   width 0.3 s ease;
@@ -61,8 +62,10 @@ box-sizing: border-box;
   /* left: 0; */
   /* width: 100%; */
   /* height: 90vh; */
-  
-  
+  overflow-y: auto;
+    scrollbar-width: none;
+    /* height:calc(100vh - ${props => props.theme.size.navbarHeightMobile}); */
+  height: 100%;
   background-color: #cbcbcb;
 
   /* transform: translateX(0); */

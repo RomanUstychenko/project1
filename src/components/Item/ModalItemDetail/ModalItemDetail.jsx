@@ -82,7 +82,7 @@ export default function ModalItemDetail ({
       const UploadFile = async (fileSelect) => {
         const imageURL = new FormData();
         imageURL.append('imageURL', fileSelect);
-  
+  console.log("imageURL", imageURL)
         dispatch(imgUpdate(
           {_id,
            imageURL}));
