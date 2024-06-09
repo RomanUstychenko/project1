@@ -2,11 +2,11 @@ import axios from "axios";
 
 const instance = axios.create({
     baseURL: 
-    "http://192.168.0.108:3001/api",
+    // "http://192.168.0.108:3001/api"
     // "http://localhost:3001/api" ,
     // || 
-    // "https://rest-api-back.onrender.com/api",
-    headers: { 'Content-Type': 'application/json' }
+    "https://rest-api-back.onrender.com/api",
+    // headers: { 'Content-Type': 'application/json' }
 });
 
 const setToken = (token) => {
