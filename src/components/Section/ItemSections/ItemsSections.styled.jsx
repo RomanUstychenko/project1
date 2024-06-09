@@ -31,7 +31,7 @@ export const FilterList = styled.li`
   transition: color 250ms linear, background-color 250ms linear;
     &:hover,
        &:focus {
-        background-color: ${props => props.theme.colors.btnActive};
+        background-color: ${props => props.theme.colors.focusActive};
         cursor: pointer;
   }
 `;
@@ -139,7 +139,7 @@ export const FilterListWrap = styled.ul`
    li.active {
     
   color: #573131;
-  background-color: #749574;
+  background-color: ${props => props.theme.colors.btnActive};
 
 }
 `

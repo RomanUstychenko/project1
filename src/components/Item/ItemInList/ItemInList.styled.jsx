@@ -51,7 +51,7 @@ height: 50px;
 }
         &:hover,
        &:focus {
-        background-color: ${props => props.theme.colors.stringActive};   
+        background-color: ${props => props.theme.colors.focusActive};   
   }
 @media ${device.tablet} {
     height: 50px;
