@@ -6,6 +6,7 @@ import noimg from 'img/noimg.jpg';
 import {
   List,
   Title,
+  ListItems,
   ImgLive,
   ItemList,
   ItemsGroup,
@@ -51,7 +52,7 @@ function LiveItemsList({ section, items, sectionRefs }) {
         >
           <Title key={gr.category}>{gr.category}</Title>
 
-          <ul key={nanoid()}>
+          <ListItems key={nanoid()}>
             {gr.list.map(list => (
               <ItemList key={nanoid()} onClick={() => openModal(list)}>
                 <ItemsGroup>
@@ -65,7 +66,7 @@ function LiveItemsList({ section, items, sectionRefs }) {
                 <ImgLive src={list.itemImg || noimg} alt="img" loading="lazy" />
               </ItemList>
             ))}
-          </ul>
+          </ListItems>
         </List>
       ))}
 

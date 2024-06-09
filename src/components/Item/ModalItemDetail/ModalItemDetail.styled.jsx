@@ -163,14 +163,17 @@ right: 12px;
 display: flex;
 flex-direction: column;
 border: 1px solid #749574;
-width: 85px;
+width: 200px;
 max-height: 100px;
 overflow-y: scroll;
 background-color: white;
     
 `
 export const LabelSection = styled.label`
-    font-size: 15px;
+    font-size: 18px;
+    &:not(:last-child) {
+    margin-bottom: 5px;
+};
     &:hover,
        &:focus {
         color: ${props => props.theme.colors.btnActive};

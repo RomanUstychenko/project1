@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { device } from 'Device';
 
 
 export const LiveWrapper = styled.div`
@@ -11,6 +11,10 @@ padding-top: 10px;
 /* color: #ffffff; */
 font-family:  ${props => props.theme.fonts.mainLive};
 /* background-color: ${props => props.theme.colors.backgrondLive}; */
+
+@media ${device.tablet} {
+        /* display: flex; */
+};
 `
 export const Menu = styled.h2`
     font-size: 35px;

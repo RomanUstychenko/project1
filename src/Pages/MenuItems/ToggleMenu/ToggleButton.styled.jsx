@@ -17,6 +17,7 @@ right: 0px;
 
   &:hover,
   :focus{
+    cursor: pointer;
     color: ${props => props.theme.colors.btnActive};
   }
 `;
