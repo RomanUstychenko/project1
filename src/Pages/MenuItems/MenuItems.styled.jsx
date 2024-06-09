@@ -20,6 +20,7 @@ height:calc(100vh - ${props => props.theme.size.navbarHeightMobile});
   
   position: fixed;
     top: ${props => props.theme.size.navbarHeightMobile};
+    bottom: 0px;
     /* left: 0px; */
     z-index:  500;
     overflow-y: auto;
@@ -36,12 +37,14 @@ height:calc(100vh - ${props => props.theme.size.navbarHeightMobile});
       width: 40px;
     `};
     @media ${device.tablet} {
-      height:calc(100vh - ${props => props.theme.size.navbarHeightTablet});
+      /* height:calc(100vh - ${props => props.theme.size.navbarHeightTablet}); */
       top: ${props => props.theme.size.navbarHeightTablet};
+      /* bottom: 0px; */
     }; 
     @media ${device.desktop} {
-      height:calc(100vh - ${props => props.theme.size.navbarHeightDesktop});
+      /* height:calc(100vh - ${props => props.theme.size.navbarHeightDesktop}); */
       top: ${props => props.theme.size.navbarHeightDesktop};
+      /* bottom: 0px; */
     }; 
 `
 
