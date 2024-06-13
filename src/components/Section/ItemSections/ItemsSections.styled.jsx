@@ -56,15 +56,15 @@ font-weight: 900;
   border-radius: 5px;
   
   ${FilterList}:first-child & {
-    width: 100%;
+   /// width: 100%;
     @media ${device.tablet} {  
-        width: 100%;
+    ///    width: 100%;
     };
     };
     ${FilterList}:last-child & {
-    width: 100%;
+ ///   width: 100%;
     @media ${device.tablet} {  
-        width: 100%;
+   ///     width: 100%;
     };
     };
     

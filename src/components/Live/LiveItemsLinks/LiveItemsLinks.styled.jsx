@@ -3,15 +3,15 @@ import styled from 'styled-components';
 export const ListNavigation = styled.nav`
   position: sticky;
   top: 0px;
+  z-index: 1000;
   display: flex;
   font-size: 35px;
   overflow-y: hidden;
   scrollbar-width: none;
 
-  overflow-x: auto; /* Дозволяє горизонтальну прокрутку */
-    /* overflow-y: hidden; Приховує вертикальну прокрутку */
-    white-space: nowrap; /* Забезпечує рядкову прокрутку */
-    scroll-behavior: smooth; /* Плавна прокрутка */
+  overflow-x: auto;
+    white-space: nowrap; 
+    scroll-behavior: smooth; 
 
 
 `

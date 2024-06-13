@@ -99,6 +99,7 @@ display: -webkit-box;
   }
 @media ${device.tablet} {
   font-size: 15px;
+  -webkit-line-clamp: 4;
 };
 
 `
@@ -109,9 +110,10 @@ justify-content: center;
 margin-top: 4px;
 margin-bottom: 4px;
 height: 50px;
-max-width: 200px;
+max-width: 585px;
 @media ${device.tablet} {
   max-width: 220px;
+  height: 75px;
 };
 `
 
