@@ -39,6 +39,7 @@ export default function LivePage({navbarHide, setNavbarHide}) {
   }, [dispatch, category]);
 
   const [activeAnchor, setActiveAnchor] = useState(null);
+  console.log("activeAnchor", activeAnchor)
   const sectionRefs = useRef({});
   const scrollTargetRef = useRef({});
 
@@ -102,6 +103,7 @@ export default function LivePage({navbarHide, setNavbarHide}) {
     navbarHide, setNavbarHide
   ]);
 
+  console.log("filteredSections", filteredSections)
   return (
     <LiveWrapper>
 

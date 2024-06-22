@@ -1,11 +1,9 @@
 import { nanoid } from 'nanoid';
 import { ListNavigation, ListCategory, ListCategoryItem, ListCategoryItemLink } from './LiveItemsLinks.styled';
-// import LiveTitle from "components/Live/LiveTitle/LiveTitle"
+import translateCyrillic from 'components/common/transliteration/transliteration';
 
 function LiveItemsLinks({
-  scrollTargetRef, filteredSections, activeAnchor,
-   navbarHide,
-    setNavbarHide
+ filteredSections, activeAnchor, setNavbarHide
   }) {
    
     const headerHeight = 80;
@@ -21,9 +19,6 @@ function LiveItemsLinks({
       });
     };
 
-  // const handleRefAssignment = (ref) => {
-  //   scrollTargetRef.current['#active'] = ref;
-  // };
 
   return (
     <>
@@ -35,14 +30,13 @@ function LiveItemsLinks({
         {filteredSections.map(section =>
 <ListCategoryItem
 key={nanoid()}
-id={activeAnchor === `#${section.category}` ? 'active' : ''}>
+id={activeAnchor === `#${translateCyrillic(section.category)}` ? 'active' : ''}>
   <ListCategoryItemLink 
      key={nanoid()}
       
-      className={activeAnchor === `#${section.category}` ? 'active' : ''}
-      href={`#${section.category}`} 
-      // ref={ref => handleRefAssignment(ref)}
-    onClick={(e) => smoothScroll(`${section.category}`, e)}
+      className={activeAnchor === `#${translateCyrillic(section.category)}` ? 'active' : ''}
+      href={`#${translateCyrillic(section.category)}`} 
+    onClick={(e) => smoothScroll(`${translateCyrillic(section.category)}`, e)}
     >
       {section.category}
    </ListCategoryItemLink>

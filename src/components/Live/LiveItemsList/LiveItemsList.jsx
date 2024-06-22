@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { nanoid } from 'nanoid';
-
+import translateCyrillic from 'components/common/transliteration/transliteration';
 import noimg from 'img/noimg.jpg';
 import {
   List,
@@ -41,16 +41,16 @@ function LiveItemsList({ section, items, sectionRefs }) {
       item: items.filter(item => item._id === openDetailsId),
     },
   ];
-
+ 
   return (
     <>
       {groups.map(gr => (
         <List
           key={section._id}
-          id={gr.category}
-          ref={ref => (sectionRefs.current[`#${gr.category}`] = ref)}
+          id={translateCyrillic(gr.category)}
+          ref={ref => (sectionRefs.current[`#${translateCyrillic(gr.category)}`] = ref)}
         >
-          <Title key={gr.category}>{gr.category}</Title>
+          <Title key={translateCyrillic(gr.category)}>{gr.category}</Title>
 
           <ListItems key={nanoid()}>
             {gr.list.map(list => (
