@@ -11,7 +11,8 @@ right: 0px;
   height: 30px;
   outline: 0;
   border: 0;
-  padding: 5px 5px 0px 5px;
+  margin-top: 15px;
+  padding: 0px 5px;
   background: none;
 
 

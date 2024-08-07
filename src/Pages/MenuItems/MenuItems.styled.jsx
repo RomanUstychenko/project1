@@ -5,7 +5,7 @@ import { device } from 'Device';
 export const Sections = styled.div`
     display: flex;
     /* margin-top: 25px; */
-    padding-left: 5px;
+    /* padding-left: 5px; */
     padding-right: 5px;
 `  
 
@@ -15,8 +15,7 @@ export const SectionWrapWrap = styled.div`
 `
 export const SectionWrap = styled.div`
 /* height:calc(100vh - ${props => props.theme.size.navbarHeightMobile}); */
-  background-color: #cbcbcb;
-
+  background-color: ${props => props.theme.colors.sectionPanel};
   
   position: fixed;
     top: ${props => props.theme.size.navbarHeightMobile};
@@ -53,7 +52,7 @@ export const SectionForm = styled.div`
 box-sizing: border-box;
     border: 4px;
     width: 160px;
-    padding-top: 35px;
+    padding-top: 50px;
     padding-bottom: 20px;
     /* display: none; */
     opacity: 1;
@@ -66,7 +65,7 @@ box-sizing: border-box;
     scrollbar-width: none;
     /* height:calc(100vh - ${props => props.theme.size.navbarHeightMobile}); */
   height: 100%;
-  background-color: #cbcbcb;
+  /* background-color: #cbcbcb; */
 
   /* transform: translateX(0); */
 

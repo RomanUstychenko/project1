@@ -22,6 +22,7 @@ const {
 
 const onLogout =() => {
     dispatch(logout())
+    localStorage.clear()
 }
 
 // function hideSet () {

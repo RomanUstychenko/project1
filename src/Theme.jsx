@@ -7,10 +7,13 @@ export const theme = {
     titleLive: '#7e2323',
     btn: '#bd7a19',
     btnActive: '#aa8d64',
+    sectionActive: '#cbbfaf',
+    btnChangeActive: '#610505',
     navActive: '#926320',
-    focusActive: '#b3a695',
-    mainTextBtn: `#010101;`,
+    focusActive: '#cac8c8',
+    mainTextBtn: `#010101`,
       mainText: '#ada1a1',
+      sectionPanel: '#e3e3e3'
  
     },
     fonts: {

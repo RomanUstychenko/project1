@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from "react-router-dom"
 import {AiOutlineSetting} from 'react-icons/ai';
 import { Btn, TextBtn } from 'components/Button/Button.styled';
+import { device } from 'Device';
 
 // export const NavbarUserList = styled.div`
 //     display: flex;
@@ -20,7 +21,11 @@ export const NavbarSettingName = styled.div`
 display: flex;
 width: 100%;
 align-items: center;
-justify-content: center;
+/* justify-content: center; */
+margin-left: 25px;
+@media ${device.tablet} {
+    margin-left: 35px;
+    };
 `
 export const NavbarSettingLogo = styled.img`
     height: 35px;

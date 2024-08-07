@@ -23,9 +23,9 @@ export const FilterList = styled.li`
     margin-bottom: 5px;
 
     min-height: 48px;
-  background-color: #cbcbcb;
-    border-radius: 10px;
-    box-shadow: 7px 20px 14px rgba(10, 4, 1, 0.1);
+  /* background-color: #cbcbcb; */
+    /* border-radius: 10px; */
+    /* box-shadow: 7px 20px 14px rgba(10, 4, 1, 0.1); */
     margin-bottom: 10px;
   
   transition: color 250ms linear, background-color 250ms linear;
@@ -41,24 +41,25 @@ export const Item = styled.li`
 `;
 
 export const Button = styled.a`
+text-align: left;
 word-wrap: break-word;
 padding-left: 5px;
-
-
+margin-top: auto;
+margin-bottom: auto;
 box-sizing: border-box;
 border: none;
 width: 70%;
 color: #181515;
 font-size: 20px;
 font-weight: 900;
-  line-height: 1.35;
-  letter-spacing: 0.04em;
-  border-radius: 5px;
+line-height: 1.35;
+letter-spacing: 0.04em;
+border-radius: 5px;
   
   ${FilterList}:first-child & {
    /// width: 100%;
     @media ${device.tablet} {  
-    ///    width: 100%;
+      
     };
     };
     ${FilterList}:last-child & {
@@ -70,6 +71,7 @@ font-weight: 900;
     
   @media ${device.tablet} {  
         width: 100%;
+        padding-left: 10px;
     };
 `;
 
@@ -98,6 +100,11 @@ export const BtnChange = styled.button`
   border: none;
   background-color: transparent;
   padding: 0;
+  margin-right: 2px;
+  @media ${device.tablet} {  
+        
+        margin-right: 5px;
+    };
 `
 export const StyledChange = styled(CiEdit)`
 width:  25px;
@@ -106,7 +113,7 @@ height: 25px;
   color: red;
   &:hover,
        &:focus {
-        color: ${props => props.theme.colors.btnActive};
+        color: ${props => props.theme.colors.btnChangeActive};
         cursor: pointer;
   }
   
@@ -139,12 +146,18 @@ export const FilterListWrap = styled.ul`
    li.active {
     
   color: #573131;
-  background-color: ${props => props.theme.colors.btnActive};
+  background-color: ${props => props.theme.colors.sectionActive};
 
 }
 `
 export const MoveButtonWrap = styled.div`
-    
+    padding-left: 5px;
     width: 20px;
+    ${FilterList}:first-child & {
+      display: flex;
+    };
+    ${FilterList}:last-child & {
+      display: flex;
+    };
 `
 

@@ -25,7 +25,7 @@ console.log("moveSection", moveSection)
       value={moveSection}>
       { category &&
        <>
-        <Filter />
+        
         
          <BtnWrapper>
    
@@ -35,9 +35,10 @@ console.log("moveSection", moveSection)
           <AddItemText>Add Item</AddItemText>
         </AddItemButton>
         </BtnWrapper>
+        <Filter 
+        primary={true}/>
         </>}
 
-        {/* {console.log(loading)} */}
           {!loading && items.length > 0 && 
           <ItemList
           items={items} 

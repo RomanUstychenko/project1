@@ -159,9 +159,6 @@ setTimeout(() => {
               // console.log("activeIndex", activeIndex)
 
               useEffect(() => {
-                
-                console.log("window.history.state", window.history.state)
-                console.log("scrollRef.current", scrollRef.current)
                 if (scrollRef.current) {
                   const activeItem = scrollRef.current.querySelector('.active');
   console.log("activeItem", activeItem)

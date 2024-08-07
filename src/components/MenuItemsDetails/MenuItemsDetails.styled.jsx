@@ -5,6 +5,7 @@ import { device } from 'Device';
 export const ItemsList = styled.div`
 margin-top: 100px;
     margin-left: 170px;
+    margin-bottom: 25px;
     width: 100%;
     
     transition: 

@@ -6,7 +6,7 @@ import  { getFilter }from 'redux/filter/filter-selector';
 // import { nanoid } from "nanoid";
 import { setFilter } from "redux/filter/filter-slice";
 
-const Filter = () => {
+const Filter = ({ primary }) => {
 
     const filters = useSelector(getFilter);
     const dispatch = useDispatch();
@@ -19,7 +19,8 @@ const Filter = () => {
       };
 
 return (
-    <ItemsFilter>
+    <ItemsFilter
+    primary={primary}>
               {/* <ItemFilterLabel
               
               htmlFor={findID}

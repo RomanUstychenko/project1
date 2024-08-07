@@ -6,9 +6,9 @@ import { MdOutlineKeyboardDoubleArrowUp, MdOutlineKeyboardDoubleArrowDown  } fro
 export const nameWidth = [
   "150px", //// mobile//////        [0]
   "270px", //// mobile slide//////  [1]
-  "100%",    //// tablet//////     [2]
-  "100%",    //// tablet slide///// [3]
-  "100%",    //// desktop//////     [4]
+  "100%",  //// tablet+desktop////  [2]
+  "100%",  //// tablet slide/////   [3]
+  "90px",  //// desktop(only name)//[4]
 ]
 export const priceWidth = [
   "65px", //// tablet//////
@@ -17,7 +17,7 @@ export const priceWidth = [
 
 export const sectionWidth = [
   "160px", //// tablet//////
- "500px"  //// desktop//////
+ "350px"  //// desktop//////
 ];
 
 
@@ -39,15 +39,19 @@ const deleteStyle = [
 
 
 export const ItemsList = styled.li`
-background-color: #d2d2d8;
-border-radius: 10px;
-box-shadow: 7px 20px 14px rgba(10, 4, 1, 0.1);
+/* background-color: #d2d2d8; */
+/* border-radius: 10px; */
+/* box-shadow: 7px 20px 14px rgba(10, 4, 1, 0.1); */
+border-bottom: 1px solid #ccc;
 width:  100%;
 height: 50px;
     display: flex;
     cursor: pointer;
     &:not(:last-child) {
     margin-bottom: 10px;
+    
+    
+
 }
         &:hover,
        &:focus {
@@ -68,7 +72,7 @@ align-items: center;
         width: 100%;
         font-size: 20px;
         display: flex;
-        padding: 0px;
+        /* padding: 0px; */
     };
 `
 export const ItemText = styled.p`
@@ -86,7 +90,6 @@ export const ItemText = styled.p`
     @media ${device.tablet} {
         
         width: ${nameWidth[2]};
-        /* padding-left: 10px; */
         text-align: left;
 
         ${props =>
@@ -101,7 +104,7 @@ export const ItemText = styled.p`
         ${props =>
     props.value &&
     css`
-      width: 100%;
+      width: ${nameWidth[3]};
     `}
     };
 `
@@ -167,6 +170,12 @@ export const DelIcon = styled(MdDeleteForever)`
 export const ButtonWrap = styled.div`
     
     width: 20px;
+    ${ItemsList}:nth-child(2) & {
+      display: flex;
+    };
+    ${ItemsList}:last-child & {
+      display: flex;
+    };
 `
 export const MoveButtonSection = styled.button`
   border: none;

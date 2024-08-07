@@ -4,7 +4,7 @@ import {
  } from 'react-redux';
  import { useLocation } from 'react-router-dom';
  import { useEffect } from "react";
-
+ import Filter from "components/filter/Filter"
  import ItemsSize from './items';
 
 import { List, Names, NamesList } from './ItemList.styled';
@@ -53,8 +53,11 @@ useEffect(() => {
       <>
             <List>
             <Names>
+            <Filter 
+            primary={false}/>
               {resultSize.map(({title, width})  => {
             return (
+              <>
                 <NamesList
                 key={(nanoid())}
                 style={{width}}
@@ -62,6 +65,7 @@ useEffect(() => {
                   <p
                 style={{width}}
                 >{title}</p></NamesList>
+                </>
             )} )}
             
               </Names>
