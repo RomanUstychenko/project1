@@ -13,8 +13,8 @@ export const theme = {
     focusActive: '#cac8c8',
     mainTextBtn: `#010101`,
       mainText: '#ada1a1',
-      sectionPanel: '#e3e3e3'
- 
+      sectionPanel: '#e3e3e3',
+    inputIcon: '#cac8c8',
     },
     fonts: {
       mainLive: 'Rye, cursive',

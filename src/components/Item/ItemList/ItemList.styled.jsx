@@ -11,24 +11,41 @@ export const List = styled.ul`
     margin-top: 0px;
 }
 `
-export const Names = styled.ul`
+export const NamesWrap = styled.div`
   display: none;
+  @media ${device.tablet} {
+        display: flex;
+        /* align-items: center; */
+        justify-content: space-between;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #161616;
+    
+        /* margin-bottom: 20px; */
+    };
+`
+export const NamesList = styled.ul`
+  /* display: none; */
   @media ${device.tablet} {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-bottom: 5px;
-        border-bottom: 1px solid #161616;
-
+        width: 100%;
+        /* padding-bottom: 5px; */
+        /* border-bottom: 1px solid #161616; */
+     
         /* margin-bottom: 20px; */
     };
 `
-export const NamesList = styled.li`
+export const Names = styled.li`
      display: none;
   @media ${device.tablet} {
     color: grey;
     display: flex;
     justify-content: center;
+    &:first-child {
+        padding-left: 25px;
+        text-align: left;
+    }
     };
 
 `

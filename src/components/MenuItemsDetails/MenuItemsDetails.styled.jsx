@@ -44,6 +44,13 @@ export const BtnWrapper = styled.div`
     display: flex;
     flex-direction: row-reverse;
     margin: 10px 0px;
+
+    @media ${device.desktop} {
+    position: absolute;
+    right: 20px;
+    margin: 0px;
+    margin-top: 5px;
+    }
 `
 export const BtnAdd = styled.button`
 padding: 3px 10px;

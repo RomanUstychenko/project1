@@ -8,7 +8,7 @@ export const nameWidth = [
   "270px", //// mobile slide//////  [1]
   "100%",  //// tablet+desktop////  [2]
   "100%",  //// tablet slide/////   [3]
-  "90px",  //// desktop(only name)//[4]
+  "100%",  //// desktop(only name)//[4]
 ]
 export const priceWidth = [
   "65px", //// tablet//////
@@ -17,7 +17,7 @@ export const priceWidth = [
 
 export const sectionWidth = [
   "160px", //// tablet//////
- "350px"  //// desktop//////
+ "450px"  //// desktop//////
 ];
 
 

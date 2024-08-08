@@ -7,7 +7,7 @@ import {
  import Filter from "components/filter/Filter"
  import ItemsSize from './items';
 
-import { List, Names, NamesList } from './ItemList.styled';
+import { List, NamesWrap, NamesList, Names } from './ItemList.styled';
 // import  { getFilter }from 'redux/filter/filter-selector';
 import ItemInList from "components/Item/ItemInList/ItemInList";
 
@@ -52,23 +52,24 @@ useEffect(() => {
     return (
       <>
             <List>
-            <Names>
+            <NamesWrap>
             <Filter 
             primary={false}/>
+            <NamesList>
               {resultSize.map(({title, width})  => {
             return (
               <>
-                <NamesList
+                <Names
                 key={(nanoid())}
                 style={{width}}
                 >
                   <p
                 style={{width}}
-                >{title}</p></NamesList>
+                >{title}</p></Names>
                 </>
             )} )}
-            
-              </Names>
+            </NamesList>
+              </NamesWrap>
             {/* {getFilteredItem().map(filteredItem => 
               <ItemInList
               key={filteredItem._id}
