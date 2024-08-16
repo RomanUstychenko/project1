@@ -211,6 +211,7 @@ const handleUpSection = (item, index) => {
 
             /////  Пошук елемента по назві /////////
      const filterItem = useSelector(getFilter);
+     console.log("filterItem", filterItem)
 
     const getFilteredItem = () => {
         if (!filterItem) {
@@ -227,41 +228,11 @@ const handleUpSection = (item, index) => {
           
         };
  
- 
- 
- 
-            return (
+             return (
     <>
-      {/* {filteredItem && (
-        
+      {getFilteredItem().map((item, index) => (
         <ItemsList key={nanoid()}>
-          <div>
-          <button>up</button>
-         <button>up</button>
-          </div>
-         
-             <Item onClick={() => setModalDetailActive(true)} key={filteredItemId}>
-             
-             <ItemText
-             value={isMenuClose}
-             >{itemName}</ItemText>
-             <ItemPriceWrap>
-               <ItemPriceName>Price:</ItemPriceName> <ItemPrice>{ formatNumber(price)}</ItemPrice>
-             </ItemPriceWrap>
-             <ItemSectionWrap><ItemSection>{filter()}</ItemSection></ItemSectionWrap>
-             </Item>
-           <DelItem onClick={() => setModalDeleteActive(true)}>
-             <DelIcon />
-           </DelItem>
-           
-       </ItemsList>
-         
-      )} */}
-
-      {/* {itemsCategory.map((item, index) => ( */}
-        {getFilteredItem().map((item, index) => (
-        <ItemsList key={nanoid()}>
-          
+           {filterItem === '' && (
           <ButtonWrap>
           {index !== 0 && (
           <MoveButtonSection
@@ -274,6 +245,7 @@ const handleUpSection = (item, index) => {
          ><MoveDownSection/></MoveButtonSection>
           )}
           </ButtonWrap>
+           )}
              <Item onClick={() => handleItemDetail(item)} key={filteredItemId}>
              
              <ItemText

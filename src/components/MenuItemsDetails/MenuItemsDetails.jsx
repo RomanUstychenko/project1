@@ -6,7 +6,7 @@ import { getState } from 'redux/items/items-selector';
 import { getItems, getItemsByCategory } from 'redux/items/items-selector';
 // import { getSections } from "redux/sections/sections-selector"
 import { useLocation } from 'react-router-dom'
-
+// import { nanoid } from '@reduxjs/toolkit';
 
 export default function MenuItemsDetails({setModalActive, moveSection}) {
 
@@ -18,15 +18,14 @@ export default function MenuItemsDetails({setModalActive, moveSection}) {
   const itemsCategory = useSelector(getItemsByCategory);
   // const sections = useSelector(getSections);
   const { error, loading} = useSelector(getState);
-console.log("moveSection", moveSection)
+
+
   return (
       <>
       <ItemsList
       value={moveSection}>
       { category &&
        <>
-        
-        
          <BtnWrapper>
    
         <AddItemButton

@@ -4,7 +4,7 @@ import { IoSearchSharp } from 'react-icons/io5';
 import { IoClose } from 'react-icons/io5';
 
 export const ItemsFilter = styled.div`
-  display: ${props => (props.primary ? 'flex' : 'none')};
+  display: ${props => (props.$primary ? 'flex' : 'none')};
   flex-direction: column;
   position: relative;
   justify-content: center;
@@ -12,8 +12,8 @@ export const ItemsFilter = styled.div`
     margin-left: 15px;
   }
   @media ${device.desktop} {
-    display: ${props => (props.primary ? 'none' : 'flex')};
-    min-width: ${props => (props.primary ? '' : '250px')};
+    display: ${props => (props.$primary ? 'none' : 'flex')};
+    min-width: ${props => (props.$primary ? '' : '250px')};
     /* max-width: ${props => (props.primary ? '' : '300px')}; */
   }
 `;
