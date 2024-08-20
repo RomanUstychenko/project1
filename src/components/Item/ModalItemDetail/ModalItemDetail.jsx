@@ -4,7 +4,9 @@ import { FormWrapper, FormInputHidden, FormInputLabelImg, ButtonDel, FormImgWrap
 import { Form, FormInputList, FormInputLabel, FormInput, FormInputDescription, FormInputSection } from "components/common/GeneralStyle/Input.styled";
 import { useSelector, useDispatch } from 'react-redux';
 import { imgSaved } from 'redux/items/items-selector';
-import { itemUpdate, imgUpdate, fetchItems } from "redux/items/items-operation"; 
+import { itemUpdate, imgUpdate, 
+  imgDelete,
+   fetchItems } from "redux/items/items-operation"; 
 import noimg from 'img/noimg.jpg'
 import { getSections } from "redux/sections/sections-selector"
 import { getItems } from "redux/items/items-selector";
@@ -22,6 +24,7 @@ export default function ModalItemDetail ({
      description,
      idSort,
      itemImg,
+     itemImgId,
      section
   }] = activeItem 
   
@@ -80,13 +83,19 @@ export default function ModalItemDetail ({
       };
 
       const UploadFile = async (fileSelect) => {
+        const chekImg = Boolean(itemImg)
+        console.log("chekImg", chekImg)
         const imageURL = new FormData();
         imageURL.append('imageURL', fileSelect);
-  console.log("imageURL", imageURL)
+        if (chekImg) {
+        console.log("true")
+        dispatch(imgDelete(itemImgId))
+          }
         dispatch(imgUpdate(
           {_id,
-           imageURL}));
-      };
+            imageURL}));
+                 };
+
       
       const handleChangeUpload = e => {
         const fileSelect = e.target.files[0];
@@ -156,7 +165,9 @@ const deleteImage = () => {
   dispatch(itemUpdate(
     {_id: _id,
       itemImg: '',}));
-  // setSaved(false);
+      // console.log("itemImg", itemImg)
+  dispatch(imgDelete(itemImgId))
+  
   setDeleted(true);
 
 }

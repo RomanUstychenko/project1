@@ -123,9 +123,9 @@ const itemsSlice = createSlice({
           .addCase(imgUpdate.pending, pendingHandler)
         .addCase(imgUpdate.fulfilled, (store,  {payload} ) => {
             store.loading = false;
-            store.itemsByCategory.forEach((item, index) => {
+            store.items.forEach((item, index) => {
                 if (item._id === payload._id) {
-                    store.itemsByCategory[index] = payload} 
+                    store.items[index] = payload} 
                 })
             store.imgSaved = true;
             // setTimeout(store.imgSaved = false, 5000);
