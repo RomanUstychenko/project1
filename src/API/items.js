@@ -63,12 +63,20 @@ export const itemUpdate = async (_id, items) => {
     }
   }
 
-
-
   export const deleteImage = async (publicId) => {
     console.log("publicId", publicId)
     try {
       const response = await instance.delete('cloudinary/deleteImage', { data: { public_id: publicId } });
+      console.log(response.data.message);
+    } catch (error) {
+      console.error('Error deleting image:', error);
+    }
+  };
+
+  export const deleteImages = async (public_ids) => {
+    console.log("public_ids", public_ids)
+    try {
+      const response = await instance.delete('cloudinary/deleteImages', { data: { public_ids: public_ids } });
       console.log(response.data.message);
     } catch (error) {
       console.error('Error deleting image:', error);

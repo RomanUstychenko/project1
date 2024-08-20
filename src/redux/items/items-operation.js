@@ -177,4 +177,25 @@ console.log("imageURL", imageURL)
           }
         }
       );
+
+      export const imgSectionDelete = createAsyncThunk(
+        'items/imgSectionDelete',
+        async ( data, { rejectWithValue }) => {
+            console.log(data)
+          try {
+            
+        
+            const result = await api.deleteImages(data);
+            console.log(result)
+            
+            return result;
+          } catch ({response}) {
+            const error = {
+                status: response.status,
+                message: response.data.message
+            }
+           return rejectWithValue(error)
+          }
+        }
+      );
       
