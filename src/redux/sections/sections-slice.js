@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice } from "@reduxjs/toolkit";
 import { fetchSections, addSection, deleteSection, updateSection } from "./sections-operation";
 
 
 const initialState = {
-    // upd: [],
+    menuOptions: "",
     sections: [],
-    sectionsLive: [],
+    allSections: [],
     loading: false,
     error: null,
 }
@@ -22,11 +22,12 @@ const pendingHandler = (store, {payload}) => {
         .addCase(fetchSections.fulfilled, (store, {payload}) => {
             console.log("fetchSections payload", payload)
             store.loading = false;
-            store.sections = payload;
+            store.sections = payload.filteredSections;
+            store.allSections = payload.data;
         }) 
         .addCase(fetchSections.rejected, (store, {payload}) => {
             store.loading = false;
-            store.error = payload;
+            store.error = payload.filteredSections;
         })
         .addCase(addSection.pending, pendingHandler)
         .addCase(addSection.fulfilled, (store, {payload}) => {
@@ -80,7 +81,13 @@ const pendingHandler = (store, {payload}) => {
             //   }
             // }
           })
+
+          .addCase(setMenuOptions, (store, { payload }) => {
+            store.menuOptions = payload;
+          });
     }
 });
+
+export const setMenuOptions = createAction('sections/setMenuOptions');
 
 export const sectionsReducer = sectionsSlice.reducer;

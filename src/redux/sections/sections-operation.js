@@ -3,18 +3,23 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchSections = createAsyncThunk(
     "sections/fetch",
-    async(owner, thunkApi) => {
+    async(data, {rejectWithValue}) => {
+        console.log("data", data)
         try {
             
-                const data = await api.getSections({
-                    owner,
-                  });
-                  console.log("owner", owner)
+                const result = await api.getSections(data);
+                  console.log("result", result)
                   console.log("data", data)
-            return data;
+
+                //   const filteredSections = result.filter(section => 
+                //     section.menuOptions === 'bar'
+                // );
+    
+                // console.log("filteredSections", filteredSections);
+            return result;
 
         } catch (error) {
-            return thunkApi.rejectWithValue(error);
+            return rejectWithValue(error);
         }}
     );
 

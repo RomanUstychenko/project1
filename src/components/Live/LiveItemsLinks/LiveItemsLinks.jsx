@@ -22,6 +22,10 @@ function LiveItemsLinks({
 
   return (
     <>
+    <ul>
+  <li>Menu Kitchen</li>
+  <li>Menu Bar</li>
+</ul>
           <ListNavigation
           id={"nav"}
           >

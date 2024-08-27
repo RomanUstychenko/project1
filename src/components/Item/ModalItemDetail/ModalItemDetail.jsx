@@ -8,7 +8,9 @@ import { itemUpdate, imgUpdate,
   imgDelete,
    fetchItems } from "redux/items/items-operation"; 
 import noimg from 'img/noimg.jpg'
-import { getSections } from "redux/sections/sections-selector"
+import { 
+  // getSections, 
+  getAllSections } from "redux/sections/sections-selector"
 import { getItems } from "redux/items/items-selector";
 
 
@@ -30,7 +32,9 @@ export default function ModalItemDetail ({
   
  
   const imgSavedCheck = useSelector(imgSaved);
-  const sections = useSelector(getSections);
+  // const sections = useSelector(getAllSections);
+  const allSections = useSelector(getAllSections);
+  console.log("allSections", allSections)
 
   const dispatch = useDispatch();
 
@@ -174,7 +178,7 @@ const deleteImage = () => {
 
   const filter = () => {
     const filterSection =  
-    sections.filter(data => data._id === newSection)
+    allSections.filter(data => data._id === newSection)
     const filterResult = filterSection.map(fi => fi.category)
   
     return filterResult;
@@ -327,7 +331,7 @@ name="listNewSection"
 value={section}
 onChange={handleChange}>
   
-        {sections.map(section => 
+        {allSections.map(section => 
         <LabelSection
         name="newSectionLabel"
         id={itemSectionID}

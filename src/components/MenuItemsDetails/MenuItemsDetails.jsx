@@ -1,6 +1,8 @@
 import {ItemList} from "../../components/Item/ItemList/ItemList"
 import Filter from "../../components/filter/Filter"
-import { ItemsList, ItemsLoading, BtnWrapper, AddItemButton, AddItemText } from "./MenuItemsDetails.styled";
+import { ItemsList,
+  //  ItemsLoading,
+    BtnWrapper, AddItemButton, AddItemText } from "./MenuItemsDetails.styled";
 import {  useSelector } from "react-redux";
 import { getState } from 'redux/items/items-selector';
 import { getItems, getItemsByCategory } from 'redux/items/items-selector';
@@ -13,15 +15,19 @@ export default function MenuItemsDetails({setModalActive, moveSection}) {
 
   const location = useLocation();
   const category = location.pathname.split('/')[2];
+  console.log("category", category)
+  console.log("location", location)
   const items = useSelector(getItems);
   // console.log("items", items)
   const itemsCategory = useSelector(getItemsByCategory);
   // const sections = useSelector(getSections);
-  const { error, loading} = useSelector(getState);
+  const { 
+    // error,
+     loading} = useSelector(getState);
 
 
   return (
-      <>
+      
       <ItemsList
       value={moveSection}>
       { category &&
@@ -36,18 +42,23 @@ export default function MenuItemsDetails({setModalActive, moveSection}) {
         </BtnWrapper>
         <Filter 
         primary={true}/>
-        </>}
+        
 
           {!loading && items.length > 0 && 
           <ItemList
           items={items} 
           itemsCategory={itemsCategory}
-          />}
-          {loading && <ItemsLoading >...loading</ItemsLoading>}
-          {error && <p>No items yet</p>}
+          />
+    
+           } 
+          </>}
+
+          {/* {loading && <ItemsLoading >...loading</ItemsLoading>}
+          {error && <p>No items yet</p>} */}
+
+          
       </ItemsList>
       
-      </>
-    // </div>
+    
     )
 };

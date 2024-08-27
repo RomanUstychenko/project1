@@ -3,6 +3,7 @@ import { useDispatch} from 'react-redux';
 
 import { fetchSections, updateSection } from "redux/sections/sections-operation"
 import { getSections } from 'redux/sections/sections-selector';
+import { getMenuOptions } from 'redux/sections/sections-selector';
 
 import {
   Button,
@@ -40,6 +41,7 @@ function ItemsSections(
     return savedIndex !== null ? JSON.parse(savedIndex) : null;
   });
   
+  // const [currentSection, setCurrentSection] = useState(null);
 
   // const listRef = useRef(null);
   const buttonClickedRef = useRef(false); // Використання useRef для buttonClicked
@@ -52,10 +54,23 @@ function ItemsSections(
   function closeModal () {
     setModalChangeSectionActive(false)
     document.body.style.overflow = '';
-    // dispatch(fetchSections());
+
   };
  
   const sections = useSelector(getSections);
+  const menuActive = useSelector(getMenuOptions);
+
+  // const filteredSection = sections.filter(section => section.menuOptions === menuActive)
+  const filteredSection = sections.filter(section => section.menuOptions)
+
+//   useEffect(() => {
+//   if (filteredSection.length > 0) {
+//     setCurrentSection(filteredSection[0]);
+//     console.log("filteredSection", filteredSection)
+//     console.log("currentSection", currentSection)
+//   }
+// }, [filteredSection]);
+
 
 
   const handleSectionChange = (item) => {
@@ -72,27 +87,29 @@ function ItemsSections(
   const handleDownSection = (item, index) => {
     // setButtonClicked(true)
     buttonClickedRef.current = true;
-const downIdSort = sections[index + 1].idSort;  //// над поточним IdSort
-const tempIdSort = sections[index].idSort; //// поточний IdSort
-const downElement = sections.find(item => item.idSort === downIdSort);
+const downIdSort = filteredSection[index + 1].idSort;  //// над поточним IdSort
+const tempIdSort = filteredSection[index].idSort; //// поточний IdSort
+const downElement = filteredSection.find(item => item.idSort === downIdSort);
 
 
 ///// оновлення idSort поточного елемента /////////
         dispatch(updateSection({
           _id: item._id,
           idSort: downIdSort,
-          category: item.category
+          category: item.category,
+          menuOptions: item.menuOptions
         }));
  ///// оновлення idSort верхнього елемента /////////       
         dispatch(updateSection({
           _id: downElement._id,
           idSort: tempIdSort,
-          category: downElement.category
+          category: downElement.category,
+          menuOptions: item.menuOptions
         }));
         
         setTimeout(() => {
           navigate(location.pathname);
-          dispatch(fetchSections());
+          dispatch(fetchSections(menuActive));
         }, 300)
        
       };
@@ -103,28 +120,30 @@ console.log("location.pathname", location.pathname)
     buttonClickedRef.current = true; // Позначаємо, що була натиснута кнопка
     
     
-        const upIdSort = sections[index - 1].idSort;  //// над поточним IdSort
-        const tempIdSort = sections[index].idSort; //// поточний IdSort
-        const upElement = sections.find(item => item.idSort === upIdSort);
+        const upIdSort = filteredSection[index - 1].idSort;  //// над поточним IdSort
+        const tempIdSort = filteredSection[index].idSort; //// поточний IdSort
+        const upElement = filteredSection.find(item => item.idSort === upIdSort);
         
         
         ///// оновлення idSort поточного елемента /////////
                 dispatch(updateSection({
                   _id: item._id,
                   idSort: upIdSort,
-                  category: item.category
+                  category: item.category,
+                  menuOptions: item.menuOptions
                 }));
          ///// оновлення idSort верхнього елемента /////////       
          dispatch(updateSection({
                   _id: upElement._id,
                   idSort: tempIdSort,
-                  category: upElement.category
+                  category: upElement.category,
+                  menuOptions: item.menuOptions
                 }));
 
 
                 setTimeout(() => {
                   navigate(location.pathname);
-                  dispatch(fetchSections());
+                  dispatch(fetchSections(menuActive));
                 }, 300)
           
           // event.stopPropagation()
@@ -182,12 +201,14 @@ setTimeout(() => {
                },[activeIndex]);
 
 
+       
+console.log("filteredSection", filteredSection)
   return (
     <>
     <FilterListWrap
    ref={scrollRef}
     >
-          {sections.map((item, index) => (
+          {filteredSection.map((item, index) => (
                        
             <FilterList
             
@@ -209,7 +230,7 @@ setTimeout(() => {
           <MoveUpSection/>
         </MoveButtonSection>
         )}
-        {index !== sections.length - 1 && (
+        {index !== filteredSection.length - 1 && (
               <MoveButtonSection
               onClick={() => handleDownSection(item, index)}
               >

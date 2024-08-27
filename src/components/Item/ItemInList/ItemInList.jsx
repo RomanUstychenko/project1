@@ -82,8 +82,10 @@ const [idTarget, setIdTarget] =  useState("");
   };
 
   const sections = useSelector(getSections);
+  console.log("sections", sections)
 
 const filter = (item) => {
+  // console.log("item", item)
   const filterSection =  
   sections.filter(data => data._id === item.section)
   const filterResult = filterSection.map(fi => fi.category)

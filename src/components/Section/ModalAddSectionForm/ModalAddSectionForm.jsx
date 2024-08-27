@@ -2,7 +2,7 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/GeneralStyle/Input.styled";
 import { useSelector, useDispatch } from 'react-redux';
-import { getSections } from 'redux/sections/sections-selector';
+import { getSections, getMenuOptions } from 'redux/sections/sections-selector';
 import { addSection } from "redux/sections/sections-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Button } from "components/Button/Button";
@@ -11,7 +11,8 @@ export default function ModalAddSectionForm ({setModalSectionActive}) {
   // console.log(setModalSectionActive)
   const sections = useSelector(getSections);
   console.log(sections)
-  
+  const menuActive = useSelector(getMenuOptions);
+
   const dispatch = useDispatch();
 
   const [category, setCategory] = useState('');
@@ -53,6 +54,7 @@ const getMaxIdSort = (sections) => {
           }
               dispatch(addSection({
                 idSort: (maxIdSort + 1).toString(),
+                menuOptions: menuActive,
                 category}));
               setCategory('');
               setModalSectionActive(false);

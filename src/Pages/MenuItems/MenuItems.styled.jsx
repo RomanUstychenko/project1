@@ -9,10 +9,6 @@ export const Sections = styled.div`
     padding-right: 5px;
 `  
 
-export const SectionWrapWrap = styled.div`
-  
-
-`
 export const SectionWrap = styled.div`
 /* height:calc(100vh - ${props => props.theme.size.navbarHeightMobile}); */
   background-color: ${props => props.theme.colors.sectionPanel};
@@ -21,14 +17,13 @@ export const SectionWrap = styled.div`
     top: ${props => props.theme.size.navbarHeightMobile};
     bottom: 0px;
     /* left: 0px; */
-    z-index:  500;
+    z-index: 500;
 
     
     /* max-height: 100vh; */
     
 
-  transition: 
-  width 0.3 s ease;
+  transition: width 0.3 s ease;
   
   ${props =>
     props.value &&
@@ -47,7 +42,37 @@ export const SectionWrap = styled.div`
       /* bottom: 0px; */
     }; 
 `
+export const MenuOptions = styled.ul`
+  position: absolute;
+  display: flex;
+  top: 5px;
+  left: 0px;
+  ${props =>
+    props.value &&
+    css`
+      transform: translateX(-100%);
+      opacity: 0;
+    `}
+`
+export const MenuOptionsKitchen = styled.li`
+  padding-left: 5px;
 
+      &:hover,
+       &:focus {
+        color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  };
+
+`
+export const MenuOptionsBar = styled.li`
+  margin-left: 10px;
+  &:hover,
+       &:focus {
+        color: ${props => props.theme.colors.btnActive};
+        cursor: pointer;
+  };
+  
+`
 export const SectionForm = styled.div`
 box-sizing: border-box;
     border: 4px;

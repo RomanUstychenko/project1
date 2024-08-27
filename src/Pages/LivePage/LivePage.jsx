@@ -7,7 +7,7 @@ import LiveItemsList from 'components/Live/LiveItemsList/LiveItemsList';
 import LiveItemsLinks from 'components/Live/LiveItemsLinks/LiveItemsLinks';
 
 import { allUsers } from 'redux/user/user-operation';
-import { getSections } from 'redux/sections/sections-selector';
+import { getSections, getAllSections } from 'redux/sections/sections-selector';
 import { fetchSections } from 'redux/sections/sections-operation';
 import { fetchItemsLive } from 'redux/items/items-operation';
 import { getItemsLive } from 'redux/items/items-selector';
@@ -20,6 +20,8 @@ export default function LivePage({navbarHide, setNavbarHide}) {
   const category = location.pathname.split('/')[2];
   const dispatch = useDispatch();
   const sections = useSelector(getSections);
+  const allSections = useSelector(getAllSections);
+  console.log("allSections", allSections)
   const items = useSelector(getItemsLive);
   const itemFiter = items
     .flatMap(item => item.section)
@@ -28,7 +30,7 @@ export default function LivePage({navbarHide, setNavbarHide}) {
   const uniqueIds = new Set(itemFiter);
   console.log(sections)
 
-  const filteredSections = sections.filter(item => uniqueIds.has(item._id));
+  const filteredSections = allSections.filter(item => uniqueIds.has(item._id));
 
   useEffect(() => {
     dispatch(allUsers());

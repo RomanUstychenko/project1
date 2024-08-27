@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   Sections,
   SectionForm,
   SectionWrap,
-  // SectionWrapWrap,
+  MenuOptions,
+  MenuOptionsKitchen,
+  MenuOptionsBar,
   AddButton,
   AddButtonText,
 } from './MenuItems.styled';
@@ -15,6 +17,8 @@ import { fetchItems } from 'redux/items/items-operation';
 import { getItemsByCategory } from 'redux/items/items-selector';
 // import { getSections } from 'redux/sections/sections-selector';
 import { fetchSections } from 'redux/sections/sections-operation';
+import { setMenuOptions } from 'redux/sections/sections-slice';
+import { getMenuOptions } from 'redux/sections/sections-selector';
 
 import { Modal } from 'components/common/Modal/Modal';
 import ItemsSections from 'components/Section/ItemSections/ItemsSections';
@@ -29,8 +33,11 @@ import HamburgerButton from './ToggleMenu/ToggleButton';
 import NavState from 'Pages/MenuItems/ToggleMenu/navState';
 
 export default function MenuItems() {
+
+  const navigate = useNavigate();
   const location = useLocation();
   const category = location.pathname.split('/')[2];
+  console.log("category", category)
 
   const [modalActive, setModalActive] = useState(false);
   const [modalAddSectionActive, setModalAddSectionActive] = useState(false);
@@ -40,12 +47,14 @@ const [moveSection, setMoveSection] = useState(false);
   const dispatch = useDispatch();
   const itemsCategory = useSelector(getItemsByCategory);
   // const sections = useSelector(getSections);
+  const menuActive = useSelector(getMenuOptions);
 
   useEffect(() => {
     console.log("useefect")
+    
+    dispatch(fetchSections(menuActive));
     dispatch(fetchItems());
-    dispatch(fetchSections());
-  }, [dispatch]);
+  }, [dispatch, menuActive]);
 
 const moveMenu = () => {
   
@@ -54,34 +63,58 @@ const moveMenu = () => {
 }
 // const scrollRef = useRef(null);
   // console.log(sections)
-  const SideMenu = () => {
-    // const { isMenuClose } = useContext(MenuContext);
+
+
+  
+  const kitchenActive = () => {
+console.log("kitchenActive")
+dispatch(setMenuOptions("kitchen"));
+
+const currentPath = location.pathname;
+const newPath = currentPath.split('/').slice(0, -1).join('/');
+navigate(newPath);
+
+console.log("menuActive", menuActive)
+  };
+
+  const barActive = () => {
+    console.log("BarActive")
+    dispatch(setMenuOptions("bar"));
     
-// console.log("isMenuClose", isMenuClose)
+    const currentPath = location.pathname;
+const newPath = currentPath.split('/').slice(0, -1).join('/');
+navigate(newPath);
+
+console.log("menuActive", menuActive)
+  };
+
+
+  const SideMenu = () => {
+  
+
+    console.log("menuActive", menuActive)
     return (
-      // <SectionWrapWrap>
+      
 
           <SectionWrap 
-          // ref={scrollRef}
           value={moveSection} >
           <HamburgerButton 
-          // value={isMenuClose}
           moveMenu={moveMenu}
           moveSection={moveSection}
           />
+          <MenuOptions value={moveSection}>
+          <MenuOptionsKitchen
+          onClick={() => kitchenActive()}
+          >Menu Kitchen</MenuOptionsKitchen>
+          <MenuOptionsBar
+          onClick={() => barActive()}
+          >Menu Bar</MenuOptionsBar>
+          </MenuOptions >
           <SectionForm value={moveSection} >
-            {/* <ul> */}
-              {/* {sections.map((section) => (
-                <ItemsSections 
-                key={section._id}
-                section={section}></ItemsSections>
-              ))} */}
-                 <ItemsSections 
-                //  dispatch={dispatch}
-                //  scrollRef={scrollRef}
-                // key={section._id}
-                ></ItemsSections>
-            {/* </ul> */}
+           
+                 <ItemsSections />
+            
+            
             <AddButton
               type="button"
               onClick={() =>setModalAddSectionActive(true)}
@@ -90,7 +123,6 @@ const moveMenu = () => {
             </AddButton>
           </SectionForm>
         </SectionWrap>
-      //  </SectionWrapWrap>
     );
   };
 
