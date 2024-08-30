@@ -32,6 +32,7 @@ function ItemsSections(
     const [state, setState] = useState({
     idTarget: "",
     idSortTarget: "",
+    menuOptions: "",
     valueTarget: "",
   });
   
@@ -78,6 +79,7 @@ function ItemsSections(
     setState({
       idTarget: item._id,
       idSortTarget: item.idSort,
+      menuOptions: item.menuOptions,
       valueTarget: item.category,
     });
     setModalChangeSectionActive(true)
@@ -267,6 +269,7 @@ console.log("filteredSection", filteredSection)
           _id={state.idTarget}
           idSort={state.idSortTarget}
           category={state.valueTarget}
+          menuOptions={state.menuOptions}
           />
           </Modal>
          )} 
