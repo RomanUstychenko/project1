@@ -16,7 +16,8 @@ export default function ModalChangeSectionName ({
    category, 
    _id,
    idSort,
-   closeModal
+   closeModal, 
+   menuOptions
   }) {
   const sections = useSelector(getSections);
   
@@ -57,6 +58,7 @@ console.log("idSort", idSort)
                {
                 _id,
                 idSort,
+                menuOptions,
                 category: newSectionName,              
               } ));
                 setNewSectionName('');
