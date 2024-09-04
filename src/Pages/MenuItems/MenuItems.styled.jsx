@@ -54,25 +54,29 @@ export const MenuOptions = styled.ul`
       opacity: 0;
     `}
 `
-export const MenuOptionsKitchen = styled.li`
-  padding-left: 5px;
-
+export const MenuOptionsList = styled.li`
+  
+  p.active {
+    color: ${props => props.theme.colors.btnActive};
+  }
       &:hover,
        &:focus {
-        color: ${props => props.theme.colors.btnActive};
+        color: ${props => props.theme.colors.focusActive};
         cursor: pointer;
   };
 
+&:first-child {
+  padding-left: 5px;
+};
+&:not(:first-child) {
+  margin-left: 5px;
+}
 `
-export const MenuOptionsBar = styled.li`
-  margin-left: 10px;
-  &:hover,
-       &:focus {
-        color: ${props => props.theme.colors.btnActive};
-        cursor: pointer;
-  };
+export const MenuOptionsText = styled.p`
+  width: 55px;
   
 `
+
 export const SectionForm = styled.div`
 box-sizing: border-box;
     border: 4px;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 // import { Button } from "components/Button/Button";
-import {BiDownArrow} from 'react-icons/bi';
+// import {BiDownArrow} from 'react-icons/bi';
+import { IoIosArrowDown } from "react-icons/io";
 import { GrEdit } from "react-icons/gr";
 import { MdOutlineAddAPhoto } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
@@ -62,10 +63,15 @@ export const FormInputListSection = styled.div`
     margin-top: 25px;
     
 `
+export const FormInputListSectionName = styled.div`
+ width: 30%;
+`
 export const InputListWrapper = styled.div`
     display: flex;
+    position: relative;
     /* justify-content: space-between; */
-    margin-left: 6px;
+    /* margin-left: 6px; */
+    width: 70%;
 `
 
 
@@ -159,11 +165,11 @@ export const ListSectionChange = styled.ul`
 z-index: 1000;
 position: absolute;
 bottom: -30px;
-right: 12px;
+right: 13px;
 display: flex;
 flex-direction: column;
 border: 1px solid #749574;
-width: 200px;
+width: 192px;
 max-height: 100px;
 overflow-y: scroll;
 background-color: white;
@@ -189,9 +195,11 @@ display: flex;
     right: 0;
     height: 30px;
     align-items: center;
+    background-color: transparent;
+    border: none;
 `
 
-export const BtnArrow = styled(BiDownArrow)`
+export const BtnArrow = styled(IoIosArrowDown)`
      &:hover,
        &:focus {
         color: ${props => props.theme.colors.btnActive};

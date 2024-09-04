@@ -9,6 +9,7 @@ import {
   ItemPriceWrap,
   ItemPriceName,
   ItemPrice,
+  ItemWeight,
   ItemSectionWrap,
   ItemSection,
   ButtonWrap,
@@ -26,13 +27,12 @@ import { fetchItems } from 'redux/items/items-operation';
 import { MenuContext } from 'Pages/MenuItems/ToggleMenu/navState';
 import { getItemsByCategory } from 'redux/items/items-selector';
 import { getSections } from "redux/sections/sections-selector"
-
+import { setItemWeightUnit } from 'redux/items/items-slice';
 import { itemUpdate } from "redux/items/items-operation"; 
 
 import  { getFilter }from 'redux/filter/filter-selector';
-export default function ItemInList(
-  // {filteredItem}
-) {
+
+export default function ItemInList() {
 
   const itemsCategory = useSelector(getItemsByCategory);
   
@@ -66,6 +66,7 @@ const [idTarget, setIdTarget] =  useState("");
 
   function closeModal() {
     dispatch(fetchItems());
+    dispatch(setItemWeightUnit(''))
     setModalDeleteActive(false);
     setModalDetailActive(false);
     // setState({
@@ -92,7 +93,7 @@ const filter = (item) => {
 
   return filterResult;
 };
-// console.log(isMenuClose)
+console.log("isMenuClose", isMenuClose)
 
 function formatNumber(number) {
   Number(number)
@@ -254,8 +255,13 @@ const handleUpSection = (item, index) => {
              value={isMenuClose}
              >{item.itemName}</ItemText>
              <ItemPriceWrap>
-               <ItemPriceName>Price:</ItemPriceName> <ItemPrice>{ formatNumber(item.price)}</ItemPrice>
+               <ItemPriceName>Price:</ItemPriceName> <ItemPrice>{ formatNumber(item.price)}  </ItemPrice>
+               {item.weight && (
+                <ItemWeight>/ {item.weight}</ItemWeight>
+               )}
+               
              </ItemPriceWrap>
+             
              <ItemSectionWrap><ItemSection>{filter(item)}</ItemSection></ItemSectionWrap>
              </Item>
            <DelItem onClick={() => handleItemDelete(item)}>

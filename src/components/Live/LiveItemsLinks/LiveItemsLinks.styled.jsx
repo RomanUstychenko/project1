@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const ListMenu = styled.ul`
+  
+`
+
+
+
+
 export const ListNavigation = styled.nav`
   position: sticky;
   top: 0px;

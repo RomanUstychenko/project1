@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -7,8 +7,8 @@ import {
   SectionForm,
   SectionWrap,
   MenuOptions,
-  MenuOptionsKitchen,
-  MenuOptionsBar,
+  MenuOptionsList,
+  MenuOptionsText,
   AddButton,
   AddButtonText,
 } from './MenuItems.styled';
@@ -28,11 +28,12 @@ import ModalItemAddForm from '../../components/Item/ModalItemAddForm/ModalItemAd
 import ModalAddSectionForm from 'components/Section/ModalAddSectionForm/ModalAddSectionForm';
 import QrResult from 'components/QRCode/QRCode';
 
-// import { MenuContext } from './ToggleMenu/navState';
 import HamburgerButton from './ToggleMenu/ToggleButton';
 import NavState from 'Pages/MenuItems/ToggleMenu/navState';
+import { MenuContext } from 'Pages/MenuItems/ToggleMenu/navState';
 
 export default function MenuItems() {
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -42,7 +43,6 @@ export default function MenuItems() {
   const [modalActive, setModalActive] = useState(false);
   const [modalAddSectionActive, setModalAddSectionActive] = useState(false);
 const   [modalQrActive, setModalQrActive] = useState(false);
-const [moveSection, setMoveSection] = useState(false);
 
   const dispatch = useDispatch();
   const itemsCategory = useSelector(getItemsByCategory);
@@ -56,19 +56,13 @@ const [moveSection, setMoveSection] = useState(false);
     dispatch(fetchItems());
   }, [dispatch, menuActive]);
 
-const moveMenu = () => {
-  
-  setMoveSection(!moveSection)
-  console.log("moveSection", moveSection)
-}
-// const scrollRef = useRef(null);
-  // console.log(sections)
-
 
   
-  const kitchenActive = () => {
+  const handleMenuActive = (item) => {
 console.log("kitchenActive")
-dispatch(setMenuOptions("kitchen"));
+console.log("item", item)
+localStorage.setItem('menuOptions', item);
+dispatch(setMenuOptions(item));
 
 const currentPath = location.pathname;
 const newPath = currentPath.split('/').slice(0, -1).join('/');
@@ -77,40 +71,57 @@ navigate(newPath);
 console.log("menuActive", menuActive)
   };
 
-  const barActive = () => {
-    console.log("BarActive")
-    dispatch(setMenuOptions("bar"));
+//   const barActive = () => {
+//     console.log("BarActive")
+//     dispatch(setMenuOptions("bar"));
     
-    const currentPath = location.pathname;
-const newPath = currentPath.split('/').slice(0, -1).join('/');
-navigate(newPath);
+//     const currentPath = location.pathname;
+// const newPath = currentPath.split('/').slice(0, -1).join('/');
+// navigate(newPath);
 
-console.log("menuActive", menuActive)
-  };
-
+// console.log("menuActive", menuActive)
+//   };
+const menuItems = [
+  {item: "kitchen"},
+  {item: "bar"}
+]
 
   const SideMenu = () => {
-  
-
+    const { isMenuClose } = useContext(MenuContext);
+console.log("isMenuClose", isMenuClose)
     console.log("menuActive", menuActive)
     return (
       
 
           <SectionWrap 
-          value={moveSection} >
+          value={isMenuClose} >
           <HamburgerButton 
-          moveMenu={moveMenu}
-          moveSection={moveSection}
+          
           />
-          <MenuOptions value={moveSection}>
-          <MenuOptionsKitchen
+         
+          <MenuOptions value={isMenuClose}>
+
+          {menuItems.map(({item}, index) => (
+           
+            <MenuOptionsList
+            key={index}
+
+            onClick={() => handleMenuActive(item)}
+            >
+            <MenuOptionsText
+            className={(menuActive === item ? "active" : "")}
+            >Menu {item}</MenuOptionsText>
+            </MenuOptionsList>
+          ))}
+
+          {/* <MenuOptionsKitchen
           onClick={() => kitchenActive()}
           >Menu Kitchen</MenuOptionsKitchen>
           <MenuOptionsBar
           onClick={() => barActive()}
-          >Menu Bar</MenuOptionsBar>
+          >Menu Bar</MenuOptionsBar> */}
           </MenuOptions >
-          <SectionForm value={moveSection} >
+          <SectionForm value={isMenuClose} >
            
                  <ItemsSections />
             
@@ -185,7 +196,7 @@ console.log("menuActive", menuActive)
           )}
           <MenuItemsDetails 
           setModalActive={setModalActive}
-          moveSection={moveSection}
+          
           />
         </NavState>
       </Sections>

@@ -75,21 +75,26 @@ align-items: center;
         /* padding: 0px; */
     };
 `
+
+/* width: calc(100vw - 235px); */
+
 export const ItemText = styled.p`
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     font-size: 20px;
-    width: ${nameWidth[0]};
-    
+    /* width: ${nameWidth[0]};  */
+    width: calc(100vw - 350px);  
+
     ${props =>
     props.value &&
     css`
-      width: ${nameWidth[1]};
+      width: calc(100vw - 105px);
     `};
     @media ${device.tablet} {
         
-        width: ${nameWidth[2]};
+      width: 176px;
+      /* width: calc(100vw - 235px); */
         text-align: left;
 
         ${props =>
@@ -100,7 +105,7 @@ export const ItemText = styled.p`
 
     };
     @media ${device.desktop} {
-        width: ${nameWidth[2]};
+      width: ${nameWidth[2]};
         ${props =>
     props.value &&
     css`
@@ -128,6 +133,17 @@ export const ItemPrice = styled.p`
  @media ${device.desktop} 
  {width: ${priceWidth[1]}};
 `
+export const ItemSizeWrap = styled.span`
+display: flex;
+`
+export const ItemWeight = styled.p`
+@media ${device.tablet} {
+    display: none;
+    };
+`
+
+
+
 export const ItemSectionWrap = styled.span`
 display: none;
 @media ${device.tablet} {

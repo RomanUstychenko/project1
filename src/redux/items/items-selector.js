@@ -10,3 +10,4 @@ export const getFilteredItems = ({filter, items}) => {
     if (!filter) 
     {return items.items};
 };
+export const getItemWeightUnit = ({items}) =>(items.itemWeightUnit)

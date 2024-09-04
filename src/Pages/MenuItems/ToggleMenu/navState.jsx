@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 
 export const MenuContext = createContext({
   isMenuClose: false,
-  toggleMenu: () => {},
+  toggleMenuMode: () => {},
 });
 
 const NavState = ({ children }) => {
-  const [isMenuClose, toggleMenu] = useState(false);
+  const [isMenuClose, setMenuClose] = useState(false);
 
   function toggleMenuMode() {
-    toggleMenu(!isMenuClose);
+    setMenuClose(!isMenuClose);
+    console.log("isMenuClose", isMenuClose)
   }
 
   return (

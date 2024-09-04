@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice } from "@reduxjs/toolkit";
 import { fetchItems, fetchItemsLive, geItemsByCategory, addItems, delItemsByCategory,  deleteItem, itemUpdate, imgUpdate } from "./items-operation";
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { toast } from 'react-toastify';
@@ -7,6 +7,7 @@ const initialState = {
     items: [],
     itemsLive: [],
     itemsByCategory: [],
+    itemWeightUnit: '',
     imgSaved: false,
     isLive: false,
     loading: false,
@@ -137,7 +138,11 @@ const itemsSlice = createSlice({
             console.log(meta)
             console.log(payload)
           })
+          .addCase(setItemWeightUnit, (store, { payload }) => {
+            store.itemWeightUnit = payload;
+          });
     }
 });
+export const setItemWeightUnit = createAction('items/setItemWeightUnit');
 
 export const itemsReducer = itemsSlice.reducer;

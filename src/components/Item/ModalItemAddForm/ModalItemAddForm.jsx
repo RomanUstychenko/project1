@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from "nanoid";
 import { Form, FormInputList, FormInputLabel, FormInput } from "components/common/GeneralStyle/Input.styled";
-import {
-  // useSelector, 
-  useDispatch } from 'react-redux';
-// import { getFilteredItems } from 'redux/items/items-selector';
 
+// import { getFilteredItems } from 'redux/items/items-selector';
+import { getItemWeightUnit } from 'redux/items/items-selector';
+import { setItemWeightUnit } from 'redux/items/items-slice';
 import { addItems } from "redux/items/items-operation"; 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Button } from "components/Button/Button";
-
+import WeightSelect from 'components/common/WeightSelect/WeightSelect';
 
 export default function ModalItemAddForm ({
    setModalActive, category, itemsCategory}) {
@@ -19,13 +19,24 @@ export default function ModalItemAddForm ({
 
   const [itemName, setItemName] = useState('');
   const [price, setPrice] = useState('');
+  const [weight, setWeight] = useState('');
   const [description, setDescription] = useState('');
   const [section, setSection] = useState(category)
 
-
+  const inputRef = useRef(null);
+  
   const itemNameID = nanoid();
-  const priceID = nanoid();
   const descriptionID = nanoid();
+  const priceID = nanoid();
+  const weightID = nanoid();
+
+  const unit = useSelector(getItemWeightUnit)
+  const unitCheck = () => {
+    if (!unit) {
+      return 'g'
+    }
+    return unit
+  }
 
   const handleChange = (e) => {
         const { name } = e.currentTarget;
@@ -38,6 +49,9 @@ export default function ModalItemAddForm ({
             break;
           case 'price':
             setPrice (e.currentTarget.value);
+            break;
+          case 'weight':
+            setWeight (e.currentTarget.value);
             break;
           default:
             break;
@@ -73,13 +87,16 @@ export default function ModalItemAddForm ({
              {itemName, 
               description, 
               price, 
+              weight: weight + unitCheck(),
               section,
               idSort: (maxIdSort + 1).toString()}
               ));
               setItemName('');
               setDescription('');
               setPrice('');
+              setWeight('');
               setSection('');
+              dispatch(setItemWeightUnit(''))
               setModalActive(false);
           }
       }; 
@@ -125,6 +142,24 @@ export default function ModalItemAddForm ({
           value={price} 
           onChange={handleChange} 
           required/>
+        </FormInputList>
+        <FormInputList>
+          <FormInputLabel htmlFor={priceID}>Weight</FormInputLabel>
+          <FormInput 
+          ref={inputRef}
+          id={weightID} 
+          type="number" 
+          name="weight" 
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="weight must be digits and can contain spaces, dashes, parentheses and can start with +"
+          value={weight} 
+          onChange={handleChange} 
+          />
+        <WeightSelect
+          data={weight}
+          inputRef={inputRef}
+          />
+
         </FormInputList>
 
         <Button 

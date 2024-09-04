@@ -3,7 +3,7 @@ import { fetchSections, addSection, deleteSection, updateSection } from "./secti
 
 
 const initialState = {
-    menuOptions: "",
+    menuOptions: localStorage.getItem('menuOptions') || "",
     sections: [],
     allSections: [],
     loading: false,

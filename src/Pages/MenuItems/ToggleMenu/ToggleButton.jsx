@@ -1,27 +1,21 @@
-// import React, { useContext } from 'react';
-// import styled from 'styled-components';
-// import { MenuContext } from './navState';
+import React, { useContext } from 'react';
+import { MenuContext } from './navState';
 import { MenuButton, BarClose, BarOpen } from './ToggleButton.styled';
 
 
-const HamburgerButton = ({moveMenu, moveSection}) => {
-  // const { isMenuClose, toggleMenuMode } = useContext(MenuContext);
-
-
-  console.log("moveSection", moveSection)
+const HamburgerButton = () => {
+  const { isMenuClose, toggleMenuMode } = useContext(MenuContext);
 
   const clickHandler = () => {
-    moveMenu();
-    // console.log("value", value)
-    // toggleMenuMode();
-    
+    toggleMenuMode();
+    console.log("isMenuClose", isMenuClose)
   };
 
   return (
     <MenuButton
       
       onClick={clickHandler}
-    >{moveSection ? <BarOpen />  : <BarClose />} 
+    >{isMenuClose ? <BarOpen />  : <BarClose />} 
 
     </MenuButton>
   );

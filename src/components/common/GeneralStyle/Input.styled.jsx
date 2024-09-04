@@ -35,11 +35,23 @@ export const Form = styled.form`
 `
    
 export const FormInputList = styled.div`
+position: relative;
     display: flex;
     flex-direction: column;
     &:not(:first-child) {
     margin-top: 10px;
 }
+    
+`
+export const PriceWeightWrapper = styled.div`
+    display: flex;
+`
+export const FormInputListPriceWeight = styled.div`
+position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-top: 10px;
     
 `
 export const FormInputLabel = styled.label`
@@ -61,6 +73,43 @@ margin-top: 10px;
     outline: 2px solid #F59256;
  } */
 `
+export const FormInputPriceWeight = styled.input`
+font-family: 'Times New Roman', Times, serif;
+font-size: 17px;
+margin-top: 10px;
+    padding-left: 10px;
+    max-width: 95%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #749574;
+    /* &:focus, &:hover  {
+    outline: 2px solid #F59256;
+ } */
+`
+export const SelectUnitWeight = styled.select`
+    width: 50px;
+    height: 27px;
+    position: absolute;
+    right: 7px;
+    bottom: 2px;
+    border: none;
+    border-radius: 5px;
+`
+export const OptionUnitWeight = styled.option`
+ /* background-color: #0fc01e;
+  color: #fc1c1c; */
+
+  &:checked {
+    background-color: #15ff00;
+    /* color: white; */
+  };
+  &:focus, &:hover  {
+    background-color: #15ff00;
+ };
+ &.active {
+    background-color: #e77307;
+ }
+`
 export const FormInputDescription = styled.textarea`
 font-family: 'Times New Roman', Times, serif;
 font-size: 17px;
@@ -79,13 +128,13 @@ font-family: 'Times New Roman', Times, serif;
 font-size: 17px;
     background-color: #FFF;
     padding-left: 10px;
-    width: 170px;
+    width: 100%;
     height: 30px;
     border-radius: 5px;
-    border: 1px soloid #749574;
-      &:focus, &:hover  {
+    border: 1px solid #749574;
+      /* &:focus, &:hover  {
     outline: none;
- }
+ } */
 `
 export const LabelName = styled.p`
     font-size: 20px;

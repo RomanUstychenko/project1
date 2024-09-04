@@ -8,18 +8,22 @@ import { getState } from 'redux/items/items-selector';
 import { getItems, getItemsByCategory } from 'redux/items/items-selector';
 // import { getSections } from "redux/sections/sections-selector"
 import { useLocation } from 'react-router-dom'
+import {  useContext } from 'react';
+import { MenuContext } from "Pages/MenuItems/ToggleMenu/navState";
 // import { nanoid } from '@reduxjs/toolkit';
 
 export default function MenuItemsDetails({setModalActive, moveSection}) {
 
-
+  const { isMenuClose } = useContext(MenuContext);
+  console.log("isMenuClose", isMenuClose)
   const location = useLocation();
   const category = location.pathname.split('/')[2];
   console.log("category", category)
   console.log("location", location)
   const items = useSelector(getItems);
-  // console.log("items", items)
+  console.log("items", items)
   const itemsCategory = useSelector(getItemsByCategory);
+  console.log("itemsCategory", itemsCategory)
   // const sections = useSelector(getSections);
   const { 
     // error,
@@ -29,7 +33,7 @@ export default function MenuItemsDetails({setModalActive, moveSection}) {
   return (
       
       <ItemsList
-      value={moveSection}>
+      value={isMenuClose}>
       { category &&
        <>
          <BtnWrapper>
