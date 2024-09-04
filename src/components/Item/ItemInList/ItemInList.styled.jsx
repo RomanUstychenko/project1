@@ -84,7 +84,7 @@ export const ItemText = styled.p`
     overflow: hidden;
     font-size: 20px;
     /* width: ${nameWidth[0]};  */
-    width: calc(100vw - 350px);  
+    width: calc(100vw - 235px);  
 
     ${props =>
     props.value &&

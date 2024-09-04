@@ -80,9 +80,13 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
   
   const defaultWeight = () => {
     if (weight) {
-      return parseFloat(weight)
+      const num = parseFloat(weight)
+      if (!isNaN(num) && /\d/.test(weight)) {
+        return num; // Повертає тільки число
+      }
+
     }
-    else return
+    else return ""
   };
 
   
@@ -90,18 +94,14 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
   const [newItemName, setNewItemName] = useState(itemName);
   const [newPrice, setNewPrice] = useState(price);
   const [newDescription, setNewDescription] = useState(description);
-  const [newWeight, setNewWeight] = useState(defaultWeight());
+  const [newWeight, setNewWeight] = useState(defaultWeight() || "");
+  // const [newWeight, setNewWeight] = useState(weight);
   const [newSection, setNewSection] = useState(section);
   const [newSectionName, setNewSectionName] = useState(false);
 
   // const [unit, setUnit] = useState({ value: defaultWeightUnit(), label: defaultWeightUnit() });
   const unit = useSelector(getItemWeightUnit)
-  const unitCheck = () => {
-    if (!unit) {
-      return 'g'
-    }
-    return unit
-  }
+
   // const [unit, setUnit] = useState(defaultWeightUnit());
   
   const [deleted, setDeleted] = useState(false);
@@ -151,6 +151,16 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
     }
   }
 
+  const formatWeight = () => {
+    if (!newWeight) {
+      return '';
+    } else if (!unit) {
+      return `${newWeight}g`;
+    } else {
+      return `${newWeight}${unit}`;
+    }
+  };
+
   const UploadFile = async fileSelect => {
     const chekImg = Boolean(itemImg);
     console.log('chekImg', chekImg);
@@ -188,6 +198,8 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
     if (section === newSection) {
       console.log('sectionTarget === newSection');
       console.log("unit", unit)
+      console.log("newWeight", newWeight)
+      
       dispatch(
         itemUpdate({
           _id: _id,
@@ -195,11 +207,13 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
           itemName: newItemName,
           description: newDescription,
           price: newPrice,
-          weight: newWeight + unitCheck(),
+          // weight: newWeight + unitCheck(),
+          weight: formatWeight(),
           itemImg: itemImg,
           section: newSection,
         })
       );
+      console.log("weight", weight)
     }
     if (section !== newSection) {
       console.log('sectionTarget !== newSection');
@@ -215,7 +229,8 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
           itemName: newItemName,
           description: newDescription,
           price: newPrice,
-          weight: newWeight + unitCheck(),
+          // weight: newWeight + unitCheck(),
+          weight: formatWeight(),
           itemImg: itemImg,
           section: newSection,
         })
@@ -383,7 +398,7 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
 
 
       <WeightSelect
-      data={weight}
+      weight={weight}
       inputRef={inputRef}
       />
           </FormInputListPriceWeight>

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SelectUnitWeight, OptionUnitWeight } from './WeightSelect.styled';
 import { setItemWeightUnit } from 'redux/items/items-slice';
 import { getItemWeightUnit } from 'redux/items/items-selector';
-const WeightSelect = ({data, inputRef}) => {
-console.log("data", data)
+const WeightSelect = ({weight, inputRef}) => {
+console.log("data", weight)
    
     //  const [unit, setUnit] = useState(defaultWeightUnit());
      const dispatch = useDispatch();
@@ -22,16 +22,16 @@ const unit = useSelector(getItemWeightUnit)
 //       };
 
 useEffect(() => {
-  if (data && !unit) {
-    dispatch(setItemWeightUnit(data.replace(/[0-9]/g, '')));
+  if (weight && !unit) {
+    dispatch(setItemWeightUnit(weight.replace(/[0-9]/g, '')));
   }
-}, [data, unit, dispatch]);
+}, [weight, unit, dispatch]);
 
 const defaultWeightUnit = () => {
   if (unit) {
     return unit;
-  } else if (data) {
-    return data.replace(/[0-9]/g, '');
+  } else if (weight) {
+    return weight.replace(/[0-9]/g, '');
   } else {
     return;
   }
