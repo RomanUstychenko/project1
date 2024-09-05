@@ -60,7 +60,7 @@ const nameItem = [
     
 {title: "Name",
   width: nameSize()},
-{title: "Price",
+{title: "Price/Weight",
 width: priceSize()},
 {title: "Section",
 width: sectionSize()}

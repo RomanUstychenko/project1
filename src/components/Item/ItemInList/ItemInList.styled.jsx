@@ -6,17 +6,17 @@ import { MdOutlineKeyboardDoubleArrowUp, MdOutlineKeyboardDoubleArrowDown  } fro
 export const nameWidth = [
   "150px", //// mobile//////        [0]
   "270px", //// mobile slide//////  [1]
-  "100%",  //// tablet+desktop////  [2]
+  "100%",  //// tablet+desktop//// [2]
   "100%",  //// tablet slide/////   [3]
   "100%",  //// desktop(only name)//[4]
 ]
 export const priceWidth = [
-  "65px", //// tablet//////
+  "105px", //// tablet//////
  "250px"   //// desktop//////
 ];
 
 export const sectionWidth = [
-  "160px", //// tablet//////
+  "165px", //// tablet//////
  "450px"  //// desktop//////
 ];
 
@@ -65,9 +65,10 @@ height: 50px;
 export const Item = styled.button`
 cursor: pointer;
 border: none;
+padding: 0px 5px;
 background-color: transparent;
 align-items: center;
-    width: 100%;
+width: 100%;
     @media ${device.tablet} {
         width: 100%;
         font-size: 20px;
@@ -84,23 +85,28 @@ export const ItemText = styled.p`
     overflow: hidden;
     font-size: 20px;
     /* width: ${nameWidth[0]};  */
-    width: calc(100vw - 235px);  
+    @media ${device.mobileOnly} {
+      width: calc(100vw - 235px);  
 
-    ${props =>
-    props.value &&
-    css`
-      width: calc(100vw - 105px);
-    `};
+${props =>
+props.value &&
+css`
+  width: calc(100vw - 105px);
+`};
+    }
+    
     @media ${device.tablet} {
-        
-      width: 176px;
-      /* width: calc(100vw - 235px); */
+      flex-grow: 1;
+      flex-shrink: 1;
+    width: 0px;
+      font-size: 18px;
         text-align: left;
+
 
         ${props =>
     props.value &&
     css`
-      width: ${nameWidth[3]};
+      /* width: ${nameWidth[3]}; */
     `}
 
     };
@@ -115,30 +121,32 @@ export const ItemText = styled.p`
 `
 export const ItemPriceWrap = styled.span`
 display: flex;
-@media ${device.tablet} {
-    /* border: 1px solid rgb(7, 94, 138); */
-    };
+@media ${device.tablet} 
+ {font-size: 16px;
+  justify-content: center;
+  width: ${priceWidth[0]}
+};
+
+ @media ${device.desktop} 
+ {width: ${priceWidth[1]}};
 
 `
 export const ItemPriceName = styled.b`
+
 @media ${device.tablet} {
     display: none;
     };
 `
 export const ItemPrice = styled.p`
+flex-shrink: 0;
 
- @media ${device.tablet} 
- {width: ${priceWidth[0]}};
-
- @media ${device.desktop} 
- {width: ${priceWidth[1]}};
 `
 export const ItemSizeWrap = styled.span`
 display: flex;
 `
 export const ItemWeight = styled.p`
 @media ${device.tablet} {
-    display: none;
+    font-size: 16px;
     };
 `
 
@@ -152,14 +160,17 @@ display: none;
     };
 `
 export const ItemSection = styled.p`
+
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    
 @media ${device.tablet} {
-    width:calc(${sectionWidth[0]} - ${deleteStyle[1]}) ;
+  font-size: 16px;
+    width:calc(${sectionWidth[0]} - ${deleteStyle[1]} - 5px) ;
     };
     @media ${device.desktop} {
-    width:calc(${sectionWidth[1]} - ${deleteStyle[1]}) ;
+    width:calc(${sectionWidth[1]} - ${deleteStyle[1]} - 5px) ;
     };
 `
 

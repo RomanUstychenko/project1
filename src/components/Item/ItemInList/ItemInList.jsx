@@ -255,7 +255,7 @@ const handleUpSection = (item, index) => {
              value={isMenuClose}
              >{item.itemName}</ItemText>
              <ItemPriceWrap>
-               <ItemPriceName>Price:</ItemPriceName> <ItemPrice>{ formatNumber(item.price)}  </ItemPrice>
+               <ItemPriceName>Price:</ItemPriceName> <ItemPrice>{ formatNumber(item.price)}</ItemPrice>
                {item.weight && (
                 <ItemWeight>/ {item.weight}</ItemWeight>
                )}
@@ -267,11 +267,11 @@ const handleUpSection = (item, index) => {
            <DelItem onClick={() => handleItemDelete(item)}>
              <DelIcon />
            </DelItem>
-           
+          
        </ItemsList>
 
       ))}
-
+       
       {modalDeleteActive && (
         <Modal
           onClick={() => closeModal()}

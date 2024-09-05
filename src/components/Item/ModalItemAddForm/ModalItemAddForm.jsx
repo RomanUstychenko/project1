@@ -31,12 +31,16 @@ export default function ModalItemAddForm ({
   const weightID = nanoid();
 
   const unit = useSelector(getItemWeightUnit)
-  const unitCheck = () => {
-    if (!unit) {
-      return 'g'
+ 
+  const formatWeight = () => {
+    if (!weight) {
+      return '';
+    } else if (!unit) {
+      return `${weight}g`;
+    } else {
+      return `${weight}${unit}`;
     }
-    return unit
-  }
+  };
 
   const handleChange = (e) => {
         const { name } = e.currentTarget;
@@ -87,7 +91,7 @@ export default function ModalItemAddForm ({
              {itemName, 
               description, 
               price, 
-              weight: weight + unitCheck(),
+              weight: formatWeight(),
               section,
               idSort: (maxIdSort + 1).toString()}
               ));

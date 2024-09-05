@@ -50,8 +50,11 @@ export const FormInputListPriceWeight = styled.div`
 position: relative;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 49%;
     margin-top: 10px;
+   &:first-child {
+    margin-right: 2%;
+   }
     
 `
 export const FormInputLabel = styled.label`
@@ -78,13 +81,16 @@ font-family: 'Times New Roman', Times, serif;
 font-size: 17px;
 margin-top: 10px;
     padding-left: 10px;
-    max-width: 95%;
+    max-width: 100%;
     height: 30px;
     border-radius: 5px;
     border: 1px solid #749574;
     /* &:focus, &:hover  {
     outline: 2px solid #F59256;
  } */
+   /* :not(:first-child) { */
+        /* align-self: end; */
+    /* } */
 `
 export const SelectUnitWeight = styled.select`
     width: 50px;

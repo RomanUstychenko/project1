@@ -110,7 +110,7 @@ box-sizing: border-box;
     `}
 
     @media ${device.tablet} {
-        width: 300px;
+        width: 270px;
     };
 `
 

@@ -16,7 +16,7 @@ margin-top: 100px;
       margin-left: 40px;
     `};
     @media ${device.tablet} {
-        margin-left: 300px;
+        margin-left: 270px;
         transition: 
         margin-left 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         ${props =>
