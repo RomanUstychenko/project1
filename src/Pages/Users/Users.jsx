@@ -7,11 +7,13 @@ import { userUpdate } from "redux/auth/auth-operation";
 import {Buttons, TextButton, FormLogo, DataWrapper, DataLabel, DataInput, DataInputDescription, DataForm, GoBackWrap, GoBack, ImgWraper, Welcome, Img,  FormInputHidden, LabelLogo } from "./Users.styled";
 import HideSetting from "components/hooks/hideSetting";
 
+import {imgDelete} from 'redux/items/items-operation';
+
 export default function Users() {
 
     const user = useSelector(getUser)
     // const users = useSelector(getAllUser)
-    
+    console.log("user", user)
     const chekName = Boolean(user)
 
     const dispatch = useDispatch();
@@ -19,6 +21,7 @@ const [updName, setName] = useState(user.name);
 const [updPhone, setUpdPhone] = useState(user.pnone);
 const [updDescription, setUpdDescription] = useState(user.description);
 const [updAddress, setUpdAddress] = useState(user.address);
+// const [updLogoURLId, setUpdLogoURLId] = useState(user.address);
 
 // const [onAddFile, setOnAddFile] = useState(null);
 // const [preview, setPreview] = useState('');
@@ -68,14 +71,22 @@ const handleChange = (e) => {
               phone: updPhone,
               address: updAddress,
               description: updDescription,
+              // logoURLId: updLogoURLId,
             }
             ))}
       
 
 const UploadFile = async fileSelect => {
+  const chekImg = Boolean(user.logoURL);
+    console.log('chekImg', chekImg);
   const imageURL = new FormData();
   imageURL.append('imageURL', fileSelect);
-  dispatch(userUpdate(imageURL));
+  if (chekImg) {
+    console.log('true');
+    dispatch(imgDelete(user.logoURLId));
+  }
+  dispatch(userUpdate( imageURL ));
+
 };
 
 const handleChangeUpload = e => {

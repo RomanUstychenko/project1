@@ -12,7 +12,7 @@ export const nameWidth = [
 ]
 export const priceWidth = [
   "105px", //// tablet//////
- "250px"   //// desktop//////
+ "200px"   //// desktop//////
 ];
 
 export const sectionWidth = [
@@ -44,7 +44,7 @@ export const ItemsList = styled.li`
 /* box-shadow: 7px 20px 14px rgba(10, 4, 1, 0.1); */
 border-bottom: 1px solid #ccc;
 width:  100%;
-height: 50px;
+min-height: 50px;
     display: flex;
     cursor: pointer;
     &:not(:last-child) {
@@ -58,9 +58,13 @@ height: 50px;
         background-color: ${props => props.theme.colors.focusActive};   
   }
 @media ${device.tablet} {
-    height: 50px;
+  min-height: 50px;
     align-items: center;
     };
+`
+
+export const ItemWrap = styled.div`
+  width: 100%;
 `
 export const Item = styled.button`
 cursor: pointer;
@@ -78,13 +82,22 @@ width: 100%;
 `
 
 /* width: calc(100vw - 235px); */
-
+export const ItemTextWrap = styled.div`
+ 
+    
+    @media ${device.tablet} {
+      flex-grow: 1;
+      flex-shrink: 1;
+    width: 0px;
+      font-size: 18px;
+        text-align: left;
+    }
+`
 export const ItemText = styled.p`
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     font-size: 20px;
-    /* width: ${nameWidth[0]};  */
     @media ${device.mobileOnly} {
       width: calc(100vw - 235px);  
 
@@ -96,39 +109,33 @@ css`
     }
     
     @media ${device.tablet} {
-      flex-grow: 1;
-      flex-shrink: 1;
-    width: 0px;
       font-size: 18px;
-        text-align: left;
-
-
-        ${props =>
-    props.value &&
-    css`
-      /* width: ${nameWidth[3]}; */
-    `}
-
     };
-    @media ${device.desktop} {
-      width: ${nameWidth[2]};
-        ${props =>
-    props.value &&
-    css`
-      width: ${nameWidth[3]};
-    `}
+
+`
+export const ItemDescription = styled.p`
+  display: none;
+  @media ${device.tablet} {
+    display: flex;
+    text-align: left;
+    padding: 0px 5px;
+      font-size: 14px;
+      font-style: italic;
     };
 `
 export const ItemPriceWrap = styled.span`
 display: flex;
 @media ${device.tablet} 
- {font-size: 16px;
+ {font-size: 14px;
   justify-content: center;
   width: ${priceWidth[0]}
 };
 
  @media ${device.desktop} 
- {width: ${priceWidth[1]}};
+ {
+  font-size: 16px;
+  width: ${priceWidth[1]}
+};
 
 `
 export const ItemPriceName = styled.b`
@@ -146,7 +153,7 @@ display: flex;
 `
 export const ItemWeight = styled.p`
 @media ${device.tablet} {
-    font-size: 16px;
+    /* font-size: 16px; */
     };
 `
 

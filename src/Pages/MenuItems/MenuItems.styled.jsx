@@ -42,6 +42,10 @@ export const SectionWrap = styled.div`
       /* bottom: 0px; */
     }; 
 `
+export const MenuActiveWrap = styled.div`
+  width: 100%;
+  height: 50px;
+`
 export const MenuOptions = styled.ul`
   position: absolute;
   display: flex;
@@ -81,7 +85,7 @@ export const SectionForm = styled.div`
 box-sizing: border-box;
     border: 4px;
     width: 160px;
-    padding-top: 50px;
+    /* padding-top: 50px; */
     padding-bottom: 20px;
     /* display: none; */
     opacity: 1;

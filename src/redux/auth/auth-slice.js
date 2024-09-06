@@ -6,7 +6,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const initialState = {
     users: {},
-    newUser: {_id: null, name: null, phone: null, address: null, description: null, email: null, verify: false, logoURL: null  },
+    newUser: {_id: null, name: null, phone: null, address: null, description: null, email: null, verify: false, logoURL: null, logoURLId: null  },
     token: "",
     isRegister: false,
     isLogin: false,
@@ -99,7 +99,7 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
         //   logoURL: payload.user.logoURL,
         //   _id: payload.user._id
         // };
-        store.newUser = payload.user
+        store.newUser = payload
       })
       .addCase(userUpdate.rejected, (store, { meta, payload }) => {
         store.loading = false;

@@ -32,6 +32,9 @@ export const Form = styled.form`
     padding: 30px 10px 10px 10px;
     width: 300px;
     background-color: #919191;
+    @media ${device.desktop} {
+        width: 350px;
+    }
 `
    
 export const FormInputList = styled.div`
@@ -58,7 +61,7 @@ position: relative;
     
 `
 export const FormInputLabel = styled.label`
-font-size: 25px;
+font-size: 24px;
 font-family: inherit;
 
 

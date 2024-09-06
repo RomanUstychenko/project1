@@ -2,7 +2,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Modal } from 'components/common/Modal/Modal';
 import {
   ItemsList,
+  ItemTextWrap,
   ItemText,
+  ItemDescription,
+  ItemWrap,
   Item,
   DelItem,
   DelIcon,
@@ -32,6 +35,7 @@ import { itemUpdate } from "redux/items/items-operation";
 
 import  { getFilter }from 'redux/filter/filter-selector';
 
+import formatNumber from 'components/hooks/formatNumber';
 export default function ItemInList() {
 
   const itemsCategory = useSelector(getItemsByCategory);
@@ -95,18 +99,18 @@ const filter = (item) => {
 };
 console.log("isMenuClose", isMenuClose)
 
-function formatNumber(number) {
-  Number(number)
-    if (typeof number === 'number' && !isNaN(number)) {
-    if (Number.isInteger(number)) {
-      return number.toFixed(2); // Додаємо два знаки після коми, якщо число ціле
-    } else {
-      return number.toFixed(2); // Додаємо один знак після коми, якщо число має десяткову частину
-    }
-  } else {
-    return "Invalid number";
-  }
-}
+// function formatNumber(number) {
+//   Number(number)
+//     if (typeof number === 'number' && !isNaN(number)) {
+//     if (Number.isInteger(number)) {
+//       return number.toFixed(2); // Додаємо два знаки після коми, якщо число ціле
+//     } else {
+//       return number.toFixed(2); // Додаємо один знак після коми, якщо число має десяткову частину
+//     }
+//   } else {
+//     return "Invalid number";
+//   }
+// }
 // console.log("filteredItem", filteredItem)
 
 const handleItemDelete = (i) => {
@@ -248,22 +252,29 @@ const handleUpSection = (item, index) => {
          ><MoveDownSection/></MoveButtonSection>
           )}
           </ButtonWrap>
-           )}
-             <Item onClick={() => handleItemDetail(item)} key={filteredItemId}>
-             
+           )}<ItemWrap onClick={() => handleItemDetail(item)} key={filteredItemId}>
+             <Item >
+             <ItemTextWrap>
              <ItemText
              value={isMenuClose}
              >{item.itemName}</ItemText>
+             
+             </ItemTextWrap>
              <ItemPriceWrap>
                <ItemPriceName>Price:</ItemPriceName> <ItemPrice>{ formatNumber(item.price)}</ItemPrice>
                {item.weight && (
-                <ItemWeight>/ {item.weight}</ItemWeight>
+                <ItemWeight>/{item.weight}</ItemWeight>
                )}
                
              </ItemPriceWrap>
              
              <ItemSectionWrap><ItemSection>{filter(item)}</ItemSection></ItemSectionWrap>
              </Item>
+<ItemDescription>
+             {item.description}
+             </ItemDescription>
+
+             </ItemWrap>
            <DelItem onClick={() => handleItemDelete(item)}>
              <DelIcon />
            </DelItem>

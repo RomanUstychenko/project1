@@ -10,6 +10,7 @@ export const SelectUnitWeight = styled.select`
     bottom: 2px;
     border: none;
     border-radius: 5px;
+    background-color: inherit;
 `
 export const OptionUnitWeight = styled.option`
  /* background-color: #0fc01e;

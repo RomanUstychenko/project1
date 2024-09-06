@@ -70,12 +70,14 @@ export const DataWrapper = styled.div`
   justify-content: center;
 `
 export const DataLabel = styled.label`
-  width: 90px;
+  width: 100px;
   font-size: 16px;
-  &:not(:last-child) {
+  /* &:not(:last-child) { */
+  padding-right: 5px;
+  text-align: end;
     margin-top: auto;
   margin-bottom: auto;
-  }
+  /* } */
   @media ${device.tablet} {
     font-size: 18px;
     };

@@ -13,10 +13,12 @@ import {
   ItemTitle,
   ItemDescription,
   ItemDescriptionList,
+  ItemPriceList,
   ItemPrice,
 } from './LiveItemsList.styled';
 import { Modal } from 'components/common/Modal/Modal';
 import LiveModalItemDetail from 'components/Live/LiveModalItemDetail/LiveModalItemDetail.jsx';
+import formatNumber from 'components/hooks/formatNumber';
 
 function LiveItemsList({ section, items, sectionRefs }) {
   const [modalDetailActive, setModalDetailActive] = useState(false);
@@ -48,6 +50,7 @@ function LiveItemsList({ section, items, sectionRefs }) {
         <List
           key={section._id}
           id={translateCyrillic(gr.category)}
+          // id={gr.category}
           ref={ref => (sectionRefs.current[`#${translateCyrillic(gr.category)}`] = ref)}
         >
           <Title key={translateCyrillic(gr.category)}>{gr.category}</Title>
@@ -60,8 +63,13 @@ function LiveItemsList({ section, items, sectionRefs }) {
                   <ItemDescriptionList>
                     <ItemDescription>{list.description}</ItemDescription>
                   </ItemDescriptionList>
-
-                  <ItemPrice> Price: {list.price} </ItemPrice>
+<ItemPriceList>
+                  <ItemPrice> Price: { formatNumber(list.price) }</ItemPrice>
+                  {list.weight && (
+                      <p>/{list.weight}</p>
+                  )}
+                  
+                  </ItemPriceList>
                 </ItemsGroup>
                 <ImgLive src={list.itemImg || noimg} alt="img" loading="lazy" />
               </ItemList>
@@ -100,3 +108,5 @@ function LiveItemsList({ section, items, sectionRefs }) {
 }
 
 export default LiveItemsList;
+
+

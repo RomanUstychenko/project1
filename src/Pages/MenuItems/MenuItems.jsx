@@ -6,6 +6,7 @@ import {
   Sections,
   SectionForm,
   SectionWrap,
+  MenuActiveWrap,
   MenuOptions,
   MenuOptionsList,
   MenuOptionsText,
@@ -95,6 +96,7 @@ console.log("isMenuClose", isMenuClose)
 
           <SectionWrap 
           value={isMenuClose} >
+            <MenuActiveWrap>
           <HamburgerButton 
           
           />
@@ -113,14 +115,8 @@ console.log("isMenuClose", isMenuClose)
             >Menu {item}</MenuOptionsText>
             </MenuOptionsList>
           ))}
-
-          {/* <MenuOptionsKitchen
-          onClick={() => kitchenActive()}
-          >Menu Kitchen</MenuOptionsKitchen>
-          <MenuOptionsBar
-          onClick={() => barActive()}
-          >Menu Bar</MenuOptionsBar> */}
           </MenuOptions >
+          </MenuActiveWrap>
           <SectionForm value={isMenuClose} >
            
                  <ItemsSections />
@@ -194,6 +190,7 @@ console.log("isMenuClose", isMenuClose)
               />
             </Modal>
           )}
+          
           <MenuItemsDetails 
           setModalActive={setModalActive}
           

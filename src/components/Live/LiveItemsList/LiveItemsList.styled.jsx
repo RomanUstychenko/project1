@@ -25,8 +25,8 @@ export const ListItems = styled.ul`
 
 export const ItemList = styled.li`
   display: flex;
-  height: 100px;
-  align-items: center;
+  min-height: 100px;
+  /* align-items: center; */
   justify-content: space-between;
   margin-left:auto;
   margin-right: auto;
@@ -46,9 +46,15 @@ text-overflow: ellipsis;
 }
 @media ${device.tablet} {
         width: 350px;
-        height: 150px;
+        min-height: 150px;
         margin-top: 10px;
 };
+@media ${device.desktop} {
+        width: 480px;
+        /* min-height: 150px;
+        margin-top: 10px; */
+};
+
 `;
 
 export const ImgLive = styled.img`
@@ -57,29 +63,36 @@ export const ImgLive = styled.img`
   height: 100px;
   justify-content: flex-end;
   border-radius: 5px;
+  align-self: center; 
   @media ${device.tablet} {
-    
         width: 130px;
         height: 130px;
+};
+@media ${device.desktop} {
+        width: 180px;
+        height: 180px;
 };
 `
 
 
 export const ItemsGroup = styled.div`
+display: flex;
+flex-direction: column;
+flex-grow: 1;
 padding-top: 5px;
-padding-bottom: 5px;
+/* padding-bottom: 5px; */
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   @media ${device.tablet} {
     position: relative;
 };
 `
 export const ItemTitle = styled.p`
 color: grey;
-
+padding-right: 5px;
 font-size: 17px;
 @media ${device.mobileOnly} {
-  height: 20px;
+  /* height: 20px; */
   }
 @media ${device.tablet} {
     font-size: 25px;
@@ -95,7 +108,7 @@ display: -webkit-box;
 -webkit-line-clamp: 3;
 -webkit-box-orient: vertical;
 @media ${device.mobileOnly} {
-  height: 40px;
+  /* height: 40px; */
   }
 @media ${device.tablet} {
   font-size: 15px;
@@ -108,22 +121,31 @@ display: flex;
 align-items: center;
 justify-content: center;
 margin-top: 4px;
-margin-bottom: 4px;
-height: 50px;
+margin-bottom: 10px;
+/* height: 50px; */
 max-width: 585px;
 @media ${device.tablet} {
   max-width: 220px;
-  height: 75px;
+};
+@media ${device.desktop} {
+  max-width: 300px;
 };
 `
+export const ItemPriceList = styled.div`
+display: flex;
+color: #883030;
+font-size: 17px;
+margin-top: auto;
+@media ${device.tablet} {
+  
+  font-size: 20px;
+};
+`
+  
 
 export const ItemPrice = styled.p`
-font-size: 17px;
+
   display: flex;
-  color: #883030;
-  @media ${device.tablet} {
-    position: absolute;
-    bottom: 5px;
-    font-size: 20px;
-};
+  
+
 `

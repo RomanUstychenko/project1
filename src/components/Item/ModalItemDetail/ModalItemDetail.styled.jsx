@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'Device';
 // import { Button } from "components/Button/Button";
 // import {BiDownArrow} from 'react-icons/bi';
 import { IoIosArrowDown } from "react-icons/io";
@@ -18,6 +19,7 @@ export const DeleteImage = styled(MdDeleteForever)`
 `
 
 export const FormWrapper = styled.div`
+/* width: 300px; */
 z-index: 1;
 background-color: #919191;
     border: 1px solid rgb(7, 94, 138);
@@ -63,8 +65,10 @@ export const FormInputListSection = styled.div`
     margin-top: 25px;
     
 `
-export const FormInputListSectionName = styled.div`
+export const FormInputListSectionName = styled.p`
  width: 30%;
+ text-align: left;
+ font-size: 24px;
 `
 export const InputListWrapper = styled.div`
     display: flex;
@@ -92,6 +96,10 @@ export const Img = styled.img`
 border-radius: 5px;
 width: 150px;
 height: 150px;
+@media ${device.desktop} {
+        width: 200px;
+        height: 200px;
+}
    
 `
 export const ImgA = styled(Img)`
