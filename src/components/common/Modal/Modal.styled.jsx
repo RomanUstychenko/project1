@@ -20,7 +20,7 @@ export const ModalBackdrop = styled.div`
   height: 100vh;
   background-color: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   transition: 0.5s;
   /* align-items: center; */

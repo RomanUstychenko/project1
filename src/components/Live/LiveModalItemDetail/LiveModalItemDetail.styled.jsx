@@ -7,6 +7,7 @@ display: flex;
 flex-direction: column;
 /* padding-left: 5px;
 padding-right: 5px; */
+margin-bottom: 55px;
 padding: 0px 5px 5px 5px;
 min-width: 320px;
 max-width: 370px;
@@ -22,7 +23,7 @@ background-color: black;
     }; 
 `
 export const FormImgWrapper = styled.div`
-margin-top: 15px;
+margin-top: 25px;
 position: relative;
     display: block;
     @media ${device.tablet} {
@@ -35,8 +36,8 @@ border-radius: 5px;
 width: 300px;
 height: 300px;
 @media ${device.tablet} {
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
     };
 `
 

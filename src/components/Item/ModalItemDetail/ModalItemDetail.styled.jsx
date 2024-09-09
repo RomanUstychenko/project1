@@ -23,6 +23,7 @@ export const FormWrapper = styled.div`
 z-index: 1;
 background-color: #919191;
     border: 1px solid rgb(7, 94, 138);
+    margin-bottom: 55px;
 `
 
 export const FormInputHidden = styled.input`
