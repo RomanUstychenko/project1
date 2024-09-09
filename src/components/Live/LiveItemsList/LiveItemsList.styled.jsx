@@ -14,6 +14,9 @@ color: #ffffff;
 export const Title = styled.h2`
   font-weight: bold;
   font-size: 25px;
+  @media ${device.desktop} {
+    font-size: 35px;
+};
 `
 export const ListItems = styled.ul`
   @media ${device.tablet} {
@@ -97,6 +100,7 @@ font-size: 17px;
 @media ${device.tablet} {
     font-size: 25px;
 };
+
 `
 export const ItemDescription = styled.p`
 padding-left: 3px;
@@ -114,6 +118,9 @@ display: -webkit-box;
   font-size: 15px;
   -webkit-line-clamp: 4;
 };
+@media ${device.desktop} {
+  -webkit-line-clamp: 5;
+};
 
 `
 export const ItemDescriptionList = styled.div`
@@ -121,7 +128,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 margin-top: 4px;
-margin-bottom: 10px;
+margin-bottom: 4px;
 /* height: 50px; */
 max-width: 585px;
 @media ${device.tablet} {

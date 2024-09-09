@@ -238,7 +238,10 @@ const handleUpSection = (item, index) => {
              return (
     <>
       {getFilteredItem().map((item, index) => (
-        <ItemsList key={nanoid()}>
+        <ItemsList 
+        key={nanoid()}
+        onClick={() => handleItemDetail(item)}
+        >
            {filterItem === '' && (
           <ButtonWrap>
           {index !== 0 && (
@@ -252,7 +255,7 @@ const handleUpSection = (item, index) => {
          ><MoveDownSection/></MoveButtonSection>
           )}
           </ButtonWrap>
-           )}<ItemWrap onClick={() => handleItemDetail(item)} key={filteredItemId}>
+           )}<ItemWrap  key={filteredItemId}>
              <Item >
              <ItemTextWrap>
              <ItemText

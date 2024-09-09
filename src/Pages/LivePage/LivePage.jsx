@@ -74,12 +74,12 @@ export default function LivePage({navbarHide, setNavbarHide}) {
 
     const autoScroll = () => {
       const anchors = Object.keys(sectionRefs.current);
-      console.log("anchors", anchors)
+      // console.log("anchors", anchors)
       let mostVisibleAnchor = null;
       let mostVisiblePercentage = 0;
       for (const anchor of anchors) {
         const element = document.querySelector(anchor);
-        console.log("element", element)
+        // console.log("element", element)
         if (element) {
           const rect = element.getBoundingClientRect();
           const visiblePercentage =

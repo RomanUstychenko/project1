@@ -5,6 +5,7 @@ import { ModalBackdrop, CloseBtn, Wrapp, CloseIcon } from './Modal.styled';
 // const modalRoot = document.querySelector('#modal_root');
 
 export const Modal = ({active, className, onClick, setActive, children}) => {
+  document.body.style.overflow = 'hidden';
 
   const handleKeyDown = e => {
     if (e.code === 'Escape') {

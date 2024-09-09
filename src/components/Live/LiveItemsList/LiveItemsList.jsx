@@ -88,15 +88,8 @@ function LiveItemsList({ section, items, sectionRefs }) {
             <>
               {g.item.map(i => (
                 <LiveModalItemDetail
+                item={i}
                   key={i._id}
-                  itemName={i.itemName}
-                  price={i.price}
-                  description={i.description}
-                  itemImg={i.itemImg}
-                  _id={i._id}
-                  section={category}
-                  closeModal={closeModal}
-                  setModalDetailActive={setModalDetailActive}
                 />
               ))}
             </>
