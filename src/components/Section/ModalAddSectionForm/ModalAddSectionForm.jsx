@@ -56,6 +56,7 @@ const getMaxIdSort = (sections) => {
                 idSort: (maxIdSort + 1).toString(),
                 menuOptions: menuActive,
                 category}));
+                // dispatch(fetchSections());
               setCategory('');
               setModalSectionActive(false);
       }; 

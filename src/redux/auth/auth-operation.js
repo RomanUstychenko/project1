@@ -19,6 +19,23 @@ export const register = createAsyncThunk(
     }
 );
 
+export const resendVerificationEmail = createAsyncThunk(
+    "auth/resendVerificationEmail",
+    async (email, { rejectWithValue }) => {
+        console.log("email", email)
+        try {
+            const result = await api.resendVerificationEmail({ email });
+            return result;
+        } catch ({ response }) {
+            const error = {
+                status: response.status,
+                message: response.data.message,
+            };
+            return rejectWithValue(error);
+        }
+    }
+);
+
 export const login = createAsyncThunk(
     "auth/login",
     async(data, {rejectWithValue}) => {

@@ -1,7 +1,11 @@
 import React from 'react'
+import { NotFoundWrap, NotFondText } from './NotFound.styled'
+
 
 export default function NotFound() {
   return (
-    <div>NotFound</div>
+    <NotFoundWrap>
+      <NotFondText>404 Page Not Found</NotFondText>
+      </NotFoundWrap>
   )
 }

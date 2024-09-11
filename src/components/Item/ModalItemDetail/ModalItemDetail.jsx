@@ -1,7 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback  } from 'react';
 import { nanoid } from 'nanoid';
-// import Select from 'react-select';
-// import { options, option, customStyles } from './SelectOption';
 import {
   FormWrapper,
   FormInputHidden,
@@ -35,8 +33,6 @@ import {
   FormInputPriceWeight,
   FormInputDescription,
   FormInputSection,
-  // SelectUnitWeight,
-  // OptionUnitWeight
 } from 'components/common/GeneralStyle/Input.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { imgSaved } from 'redux/items/items-selector';
@@ -72,10 +68,9 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
   ] = activeItem;
 
   const imgSavedCheck = useSelector(imgSaved);
-  // const sections = useSelector(getAllSections);
+  // const sections = useSelector(getSections);
   const allSections = useSelector(getAllSections);
-  console.log('allSections', allSections);
-
+  
   const dispatch = useDispatch();
   
   const defaultWeight = () => {
@@ -89,24 +84,16 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
     else return ""
   };
 
-  
-
-  const [newItemName, setNewItemName] = useState(itemName);
+    const [newItemName, setNewItemName] = useState(itemName);
   const [newPrice, setNewPrice] = useState(price);
   const [newDescription, setNewDescription] = useState(description);
   const [newWeight, setNewWeight] = useState(defaultWeight() || "");
-  // const [newWeight, setNewWeight] = useState(weight);
   const [newSection, setNewSection] = useState(section);
   const [newSectionName, setNewSectionName] = useState(false);
-
-  // const [unit, setUnit] = useState({ value: defaultWeightUnit(), label: defaultWeightUnit() });
-  const unit = useSelector(getItemWeightUnit)
-
-  // const [unit, setUnit] = useState(defaultWeightUnit());
-  
   const [deleted, setDeleted] = useState(false);
  
-
+  const unit = useSelector(getItemWeightUnit)
+  
   const itemImgID = nanoid();
   const itemNameID = nanoid();
   const itemPriceID = nanoid();
@@ -116,15 +103,13 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
 
   const inputRef = useRef(null);
   const inputSectionRef = useRef(null);
+  const formRef = useRef(null);
 
   const activeSectionInput = () => {
-    console.log("activeSectionInput")
     inputSectionRef.current.focus();
   }
   const items = useSelector(getItems);
-  // const itemsCategory = useSelector(getItemsByCategory);
-  console.log('items', items);
-  // console.log("itemsCategory", itemsCategory)
+  
   async function handleChange(e) {
     const { name } = e.currentTarget;
     switch (name) {
@@ -139,7 +124,6 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
         break;
       case 'newWeight':
         setNewWeight(e.currentTarget.value);
-        console.log('newWeight', newWeight);
         break;
       case 'newSection':
         setNewSection(e.currentTarget.value);
@@ -163,11 +147,9 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
 
   const UploadFile = async fileSelect => {
     const chekImg = Boolean(itemImg);
-    console.log('chekImg', chekImg);
     const imageURL = new FormData();
     imageURL.append('imageURL', fileSelect);
     if (chekImg) {
-      console.log('true');
       dispatch(imgDelete(itemImgId));
     }
     dispatch(imgUpdate({ _id, imageURL }));
@@ -180,8 +162,7 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
   };
 
   const itemsNew = items.filter(data => data.section === newSection);
-  console.log('itemsNew', itemsNew);
-  // console.log("itemsCategory", itemsCategory)
+  
   // Функція для отримання максимального значення idSort в масиві
   const getMaxIdSort = itemsNew => {
     return itemsNew.reduce((max, itemNew) => {
@@ -196,10 +177,6 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
       setNewPrice(price);
     }
     if (section === newSection) {
-      console.log('sectionTarget === newSection');
-      console.log("unit", unit)
-      console.log("newWeight", newWeight)
-      
       dispatch(
         itemUpdate({
           _id: _id,
@@ -207,21 +184,14 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
           itemName: newItemName,
           description: newDescription,
           price: newPrice,
-          // weight: newWeight + unitCheck(),
           weight: formatWeight(),
           itemImg: itemImg,
           section: newSection,
         })
       );
-      console.log("weight", weight)
     }
     if (section !== newSection) {
-      console.log('sectionTarget !== newSection');
-
-      const maxIdSort = getMaxIdSort(itemsNew);
-
-      console.log('maxIdSort', maxIdSort);
-
+        const maxIdSort = getMaxIdSort(itemsNew);
       dispatch(
         itemUpdate({
           _id: _id,
@@ -229,7 +199,6 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
           itemName: newItemName,
           description: newDescription,
           price: newPrice,
-          // weight: newWeight + unitCheck(),
           weight: formatWeight(),
           itemImg: itemImg,
           section: newSection,
@@ -244,28 +213,13 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
     setNewWeight('');
     setNewSection('');
     closeModal();
-    // setModalDetailActive(false);
-    // }
   };
 
   const deleteImage = () => {
     dispatch(itemUpdate({ _id: _id, itemImg: '' }));
-    // console.log("itemImg", itemImg)
     dispatch(imgDelete(itemImgId));
-
     setDeleted(true);
   };
-
-  // const handleUnitChange = (e) => {
-  //   setUnit(e.target.value);
-  //   inputRef.current.focus();
-  // };
-
-  // const handleChangeUnit = (option) => {
-  //   console.log("option", option)
-  //   setUnit(option);
-  //   inputRef.current.focus();
-  // };
 
   const filter = () => {
     const filterSection = allSections.filter(data => data._id === newSection);
@@ -276,27 +230,70 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
 
   async function OpenSectionList() {
     setNewSectionName(true);
-    CloseSectionList();
   }
 
-  async function CloseSectionList(e) {
-    const elForm = document.getElementById('formWrap');
+  // async function CloseSectionList(e) {
+  //   console.log("CloseSectionList")
+  //   const elForm = document.getElementById('formWrap');
+  //   // const elFormNewSection = await document.getElementById('listNewSection'); 
+  //   async function handleKeyDown(e) {
+  //     const CheckForm = e.composedPath().includes(elForm);
+  //     // const CheckFormNewSection = e.composedPath().includes(elFormNewSection);
+  //     // console.log("elFormNewSection", elFormNewSection)
+  //   //   if (CheckFormNewSection === true) {
+  //   //     console.log("CheckFormNewSection", CheckFormNewSection)
+  //   //        return
+  //   //     }
+  //   // else 
+  //    if (CheckForm === true) {
+  //       setNewSectionName(false);
+  //       // console.log("CheckFormNewSection", CheckFormNewSection)
+  //     }
+  //   }
 
-    async function handleKeyDown(e) {
-      const CheckForm = e.composedPath().includes(elForm);
+  //   if (elForm !== undefined || null) {
+  //     elForm.addEventListener('click', handleKeyDown, false);
+  //   }
+  // }
 
-      if (CheckForm === true) {
-        setNewSectionName(false);
-      }
-    }
 
-    if (elForm !== undefined || null) {
-      elForm.addEventListener('click', handleKeyDown, false);
-    }
+ // Функція для закриття списку при кліку поза ним
+ const handleClickOutside = useCallback((e) => {
+  console.log("handleClickOutside", e)
+  // Перевірка: якщо клік поза межами formWrap
+  const ulElement = formRef.current.querySelector('ul');
+
+  if (ulElement && ulElement.contains(e.target)) {
+    console.log("Clicked intside, closing list");
+    // setNewSectionName(false);
+    return
+  }
+  // Якщо клік на formWrap, але не на ul, закрити список
+  console.log("Clicked on formWrap, closing list");
+  setNewSectionName(false);
+}, []);
+
+// Додаємо слухач при відкритті списку
+useEffect(() => {
+  
+  if (newSectionName) {
+    console.log("if newSectionName")
+    document.addEventListener('mousedown', console.log("click"));
+    document.addEventListener('mousedown', handleClickOutside);
+    // CloseSectionList();
+  } 
+  else {
+    console.log("else newSectionName")
+    document.removeEventListener('mousedown', handleClickOutside);
   }
 
+  // Очищуємо слухач при демонтажі компонента
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+}, [newSectionName, handleClickOutside]); // Викликаємо useEffect тільки тоді, коли змінюється newSectionName
 
-  console.log("unit", unit)
+
 
   return (
     <FormWrapper onClick={e => e.stopPropagation()}>
@@ -338,8 +335,9 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
 
       <Form
         id="formWrap"
-        onClick={e => e.stopPropagation()}
+        // onClick={e => e.stopPropagation()}
         onSubmit={handleSubmit}
+        ref={formRef}
       >
         <FormInputList>
           <FormInputLabel htmlFor={itemNameID}>Name</FormInputLabel>
@@ -381,22 +379,6 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
               defaultValue={defaultWeight()}
               onChange={handleChange}
             />
-
-        {/* <Select
-        value={unit}
-        onChange={handleChangeUnit}
-        options={options}
-        styles={customStyles}
-         placeholder=""
-      /> */}
-            {/* <SelectUnitWeight value={unit} onChange={handleUnitChange}>
-              {option.map((value) => (
-                <OptionUnitWeight value={value}>{value}</OptionUnitWeight>
-
-              ))}
-      </SelectUnitWeight> */}
-
-
       <WeightSelect
       weight={weight}
       inputRef={inputRef}
@@ -432,10 +414,36 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
               title="Name may "
               required
               value={filter()}
-              // disabled
               readOnly
               onChange={handleChange}
             />
+
+{newSectionName ? (
+        <ListSectionChange
+          id="listNewSection"
+          name="listNewSection"
+          value={section}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {allSections.map(section => (
+            <LabelSection
+              name="newSectionLabel"
+              id={itemSectionID}
+              key={section._id}
+              
+            >
+              <FormInputHidden
+                type="radio"
+                name="newSection"
+                value={section._id}
+                onChange={handleChange}
+              />{' '}
+              {section.category}
+            </LabelSection>
+          ))}
+        </ListSectionChange>
+      ) : null}
+
             <BtnChageSection
               type="button"
               id="listNewSectionBtn"
@@ -450,7 +458,7 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
           <RenameButtonText>Save Changes</RenameButtonText>
         </RenameButton>
       </Form>
-      {newSectionName && (
+      {/* {newSectionName && (
         <ListSectionChange
           id="listNewSection"
           name="listNewSection"
@@ -475,7 +483,7 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
             </LabelSection>
           ))}
         </ListSectionChange>
-      )}
+      )} */}
     </FormWrapper>
   );
 }

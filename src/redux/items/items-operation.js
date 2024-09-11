@@ -20,11 +20,11 @@ export const fetchItems = createAsyncThunk(
     );
     export const fetchItemsLive = createAsyncThunk(
         "items/live/fetch",
-        async(datas, thunkApi) => {
+        async(items, thunkApi) => {
             // console.log(datas)
             try {
                 const data = await api.getItemsLive(               
-                    datas,
+                    items,
                     {
                         // itemName,
                         // description,

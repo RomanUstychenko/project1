@@ -10,6 +10,7 @@ export const theme = {
     sectionActive: '#cbbfaf',
     btnChangeActive: '#610505',
     navActive: '#926320',
+    inputActive: '#F59256;',
     focusActive: '#cac8c8',
     mainTextBtn: `#010101`,
       mainText: '#ada1a1',

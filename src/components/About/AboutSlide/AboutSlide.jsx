@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {SliderContainer, Slide} from './AboutSlide.styled';
+import { SliderContainer, Slide } from './AboutSlide.styled';
 
 const AboutSlide = ({ images }) => {
   const [current, setCurrent] = useState(0);
@@ -14,10 +14,7 @@ const AboutSlide = ({ images }) => {
 
   return (
     <SliderContainer>
-      <Slide 
-      src={images[current]} 
-      alt={`Slide ${current}`} 
-      />
+      <Slide src={images[current]} alt={`Slide ${current}`} />
     </SliderContainer>
   );
 };

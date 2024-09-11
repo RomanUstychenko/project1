@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, login, logout, current, userUpdate } from "./auth-operation";
+import { register, resendVerificationEmail, login, logout, current, userUpdate } from "./auth-operation";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 // import { toast } from 'react-toastify';
 
@@ -9,6 +9,7 @@ const initialState = {
     newUser: {_id: null, name: null, phone: null, address: null, description: null, email: null, verify: false, logoURL: null, logoURLId: null  },
     token: "",
     isRegister: false,
+    emailSent: false,
     isLogin: false,
     isLive: false,
     loading: false,
@@ -26,8 +27,9 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
 
     .addCase(register.pending, pendingHandler)
     .addCase(register.fulfilled, (store, {payload}) => {
+        console.log("payload", payload)
         store.loading = false;
-        store.newUser = payload.user;
+        store.newUser = payload;
         store.token = payload.token;
         store.isRegister = true;
     })
@@ -36,6 +38,14 @@ const authSlice = createSlice({name:"auth", initialState,  extraReducers: builde
         store.error = payload;
         Notify.failure(`Login or email is already exists`)
     })
+    
+    .addCase(resendVerificationEmail.fulfilled, (state, action) => {
+        state.emailSent = true;  // Фіксуємо, що лист було повторно відправлено
+    })
+    .addCase(resendVerificationEmail.rejected, (state, action) => {
+        state.error = action.payload;
+    })
+
     .addCase(login.pending, pendingHandler)
     .addCase(login.fulfilled, (store, {payload}) => {
         console.log(payload)

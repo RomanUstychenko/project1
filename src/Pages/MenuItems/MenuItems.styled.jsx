@@ -86,7 +86,8 @@ box-sizing: border-box;
     border: 4px;
     width: 160px;
     /* padding-top: 50px; */
-    padding-bottom: 20px;
+    padding-bottom: 60px;
+    
     /* display: none; */
     opacity: 1;
     /* position: fixed; */

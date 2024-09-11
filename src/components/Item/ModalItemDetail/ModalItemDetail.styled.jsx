@@ -173,11 +173,14 @@ ${FormImgWrapper}:hover &, :focus & {
 export const ListSectionChange = styled.ul`
 z-index: 1000;
 position: absolute;
-bottom: -30px;
-right: 13px;
+/* bottom: -30px;
+right: 13px; */
+top: 0px;
+right: 0px;
 display: flex;
 flex-direction: column;
-border: 1px solid #749574;
+border: 1px solid ${props => props.theme.colors.inputActive};
+border-radius: 5px;
 width: 192px;
 max-height: 100px;
 overflow-y: scroll;

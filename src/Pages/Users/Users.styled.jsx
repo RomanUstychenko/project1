@@ -88,9 +88,7 @@ border: 0px;
 padding: 5px;
   width: 180px;
   height: 25px;
-  /* &:focus, &:hover  {
-    outline: 2px solid #F59256;
- } */
+  
   @media ${device.tablet} {
     width: 310px;
     height: 35px;
@@ -104,9 +102,7 @@ padding: 5px;
 width: 180px;
 height: 75px;
 font-family: inherit;
-/* &:focus, &:hover  {
-    outline: 2px solid #F59256;
- } */
+
 @media ${device.tablet} {
     width: 310px;
     height: 75px;

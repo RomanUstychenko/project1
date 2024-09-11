@@ -121,13 +121,15 @@ console.log("isMenuClose", isMenuClose)
            
                  <ItemsSections />
             
-            
-            <AddButton
+            {menuActive && (
+              <AddButton
               type="button"
               onClick={() =>setModalAddSectionActive(true)}
             >
               <AddButtonText>Add Section</AddButtonText>
             </AddButton>
+            )}
+            
           </SectionForm>
         </SectionWrap>
     );

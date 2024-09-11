@@ -16,10 +16,9 @@ import {
 import { ButtonLogReg } from 'components/common/GeneralStyle/LogRegButton.styled';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { isRegister } from 'redux/auth/auth-selector';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 // import { Modal } from 'components/Modal/Modal';
-// import ModalRegisterVerify from 'components/ModalRegisterVerify/ModalRegisterVerify';
-
+import RegisterVerify from 'Pages/RegisterVerify/RegisterVerify';
 export default function Registration() {
 
   const [name, setName] = useState('');
@@ -70,17 +69,14 @@ const handleSubmit = (e) => {
 //       console.log("enter name")
 //     }
 // }
-if (isUserRegister) {
-  return <Navigate to="/register/verify" />
-//  return console.log("userRegister")
-
-  // setModalActive(true)
-;}
-
+// if (isUserRegister) {
+//   return <Navigate to="/register/verify" />
+// ;}
+console.log("isUserRegister", isUserRegister)
   return (
     <RegistrationPage>
-       
-       <RegForm
+       {!isUserRegister && (
+        <RegForm
        onSubmit={handleSubmit}>
         <RegistrationFormWrapper>
        <RegistrationFormList >
@@ -126,6 +122,12 @@ if (isUserRegister) {
 <TextButton>Registration</TextButton>
         </ButtonLogReg>
        </RegForm>
+       )}
+       {isUserRegister && (
+        <><RegisterVerify/>
+</>
+
+       )}
       
 
   

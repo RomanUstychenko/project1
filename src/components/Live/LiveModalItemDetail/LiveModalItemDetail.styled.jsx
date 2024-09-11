@@ -58,12 +58,12 @@ color: grey;
 export const DescriptionWrap = styled.li`
     position: relative;
     overflow: hidden; 
+    margin-bottom: auto;
+    margin-top: auto;
 `
 export const Description = styled.p`
 max-height: 180px;
 overflow-y: auto;
-margin-bottom: auto;
-margin-top: auto;
 color: #ffffff;
 text-overflow: ellipsis;
 @media ${device.tablet} {

@@ -1,16 +1,14 @@
-import instance from "./auth";
-
+import instance from './auth';
 
 export const getItems = async () => {
-    const {data} = await instance.get('/items');
-    return data;
-}
-export const getItemsLive = async (datas) => {
-  // console.log(datas)
-  const {data} = await instance.get(`/items/live/${datas}`);
+  const { data } = await instance.get('/items');
   return data;
-}
+};
 
+export const getItemsLive = async items => {
+  const { data } = await instance.get(`/items/live/${items}`);
+  return data;
+};
 
 export const getItemsByCategory = async ({ category }) => {
   try {
@@ -25,60 +23,57 @@ export const getItemsByCategory = async ({ category }) => {
   }
 };
 
-export const addItems = async (data) => {
-    const {data: result} = await instance.post('/items', data);
-    // console.log(data)
-    return result;
-}
-
-export const deleteItem = async (_id) => {
-    const {data} = await instance.delete(`/items/${_id}`);
-    return data;
-}
-export const delItemsByCategory =  async (category) => {
-  // console.log(category)
-  const { data } = await instance.delete(`/items/${category}/remove`);
-          return data;     
+export const addItems = async data => {
+  const { data: result } = await instance.post('/items', data);
+  return result;
 };
+
+export const deleteItem = async _id => {
+  const { data } = await instance.delete(`/items/${_id}`);
+  return data;
+};
+
+export const delItemsByCategory = async category => {
+  const { data } = await instance.delete(`/items/${category}/remove`);
+  return data;
+};
+
 export const itemUpdate = async (_id, items) => {
-    // try {
-        // console.log("items", items)
-      const { data} = await instance.patch(`/items/${_id}`, ...items);
-      // console.log("_id", _id)
-      // console.log("items", items)
-    //   console.log("itemData", itemName)
-      return data;
-    // } catch (error) {
-    //   throw error;;
-    // }
+  try {
+    const { data } = await instance.patch(`/items/${_id}`, ...items);
+    return data;
+  } catch (error) {
+    throw error;
   }
-  export const imgUpdate = async (_id, items) => {
-    try {
-        console.log("FormData", items)
-      const { data } = await instance.patch(`/items/${_id}`,   items  );
-     
-      return data;
-    } catch (error) {
-      throw error;;
-    }
+};
+
+export const imgUpdate = async (_id, items) => {
+  try {
+    const { data } = await instance.patch(`/items/${_id}`, items);
+    return data;
+  } catch (error) {
+    throw error;
   }
+};
 
-  export const deleteImage = async (publicId) => {
-    console.log("publicId", publicId)
-    try {
-      const response = await instance.delete('cloudinary/deleteImage', { data: { public_id: publicId } });
-      console.log(response.data.message);
-    } catch (error) {
-      console.error('Error deleting image:', error);
-    }
-  };
+export const deleteImage = async publicId => {
+  try {
+    const response = await instance.delete('cloudinary/deleteImage', {
+      data: { public_id: publicId },
+    });
+    console.log(response.data.message);
+  } catch (error) {
+    console.error('Error deleting image:', error);
+  }
+};
 
-  export const deleteImages = async (public_ids) => {
-    console.log("public_ids", public_ids)
-    try {
-      const response = await instance.delete('cloudinary/deleteImages', { data: { public_ids: public_ids } });
-      console.log(response.data.message);
-    } catch (error) {
-      console.error('Error deleting image:', error);
-    }
-  };
+export const deleteImages = async public_ids => {
+  try {
+    const response = await instance.delete('cloudinary/deleteImages', {
+      data: { public_ids: public_ids },
+    });
+    console.log(response.data.message);
+  } catch (error) {
+    console.error('Error deleting image:', error);
+  }
+};

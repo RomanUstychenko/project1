@@ -15,15 +15,14 @@ import { MenuContext } from "Pages/MenuItems/ToggleMenu/navState";
 export default function MenuItemsDetails({setModalActive, moveSection}) {
 
   const { isMenuClose } = useContext(MenuContext);
-  console.log("isMenuClose", isMenuClose)
+ 
   const location = useLocation();
   const category = location.pathname.split('/')[2];
-  console.log("category", category)
-  console.log("location", location)
+  
   const items = useSelector(getItems);
-  console.log("items", items)
+  
   const itemsCategory = useSelector(getItemsByCategory);
-  console.log("itemsCategory", itemsCategory)
+  
   // const sections = useSelector(getSections);
   const { 
     // error,

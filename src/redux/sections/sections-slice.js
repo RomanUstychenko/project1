@@ -35,6 +35,7 @@ const pendingHandler = (store, {payload}) => {
             store.error = null;
             console.log(payload)
             store.sections.push(payload)
+            store.allSections.push(payload)
         })
         .addCase(addSection.rejected, (store, {payload}) => {
             store.loading = false;
@@ -45,6 +46,7 @@ const pendingHandler = (store, {payload}) => {
         .addCase(deleteSection.fulfilled, (store, {payload}) => {
             store.loading = false;
             store.sections = store.sections.filter(section => section._id !== payload);
+            store.allSections = store.allSections.filter(section => section._id !== payload);
         })
         .addCase(deleteSection.rejected, (store, {payload}) => {
             store.loading = false;

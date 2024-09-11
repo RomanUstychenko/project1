@@ -14,7 +14,6 @@ export const ItemsFilter = styled.div`
   @media ${device.desktop} {
     display: ${props => (props.$primary ? 'none' : 'flex')};
     min-width: ${props => (props.$primary ? '' : '250px')};
-    /* max-width: ${props => (props.primary ? '' : '300px')}; */
   }
 `;
 export const ItemFilterInput = styled.input`
