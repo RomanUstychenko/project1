@@ -5,6 +5,7 @@ import translateCyrillic from 'components/common/transliteration/transliteration
 import noimg from 'img/noimg.jpg';
 import {
   List,
+  MenuName,
   Title,
   ListItems,
   ImgLive,
@@ -34,48 +35,55 @@ function LiveItemsList({ section, items, sectionRefs }) {
     document.body.style.overflow = '';
   }
 
-  const { category } = section;
-
+  const { category, menuOptions } = section;
+  console.log('section', section);
+  console.log('menuOptions', menuOptions);
   const groups = [
     {
       category: category,
+      menu: menuOptions,
       list: items,
       item: items.filter(item => item._id === openDetailsId),
     },
   ];
- 
+  console.log('groups', groups);
   return (
     <>
       {groups.map(gr => (
-        <List
-          key={section._id}
-          id={translateCyrillic(gr.category)}
-          // id={gr.category}
-          ref={ref => (sectionRefs.current[`#${translateCyrillic(gr.category)}`] = ref)}
-        >
-          <Title key={translateCyrillic(gr.category)}>{gr.category}</Title>
+        <>
+          <List
+            key={section._id}
+            id={translateCyrillic(gr.category)}
+            ref={ref =>
+              (sectionRefs.current[`#${translateCyrillic(gr.category)}`] = ref)
+            }
+          >
+            <MenuName>Menu {gr.menu}</MenuName>
+            <Title key={translateCyrillic(gr.category)}>{gr.category}</Title>
 
-          <ListItems key={nanoid()}>
-            {gr.list.map(list => (
-              <ItemList key={nanoid()} onClick={() => openModal(list)}>
-                <ItemsGroup>
-                  <ItemTitle>{list.itemName}</ItemTitle>
-                  <ItemDescriptionList>
-                    <ItemDescription>{list.description}</ItemDescription>
-                  </ItemDescriptionList>
-<ItemPriceList>
-                  <ItemPrice> Price: { formatNumber(list.price) }</ItemPrice>
-                  {list.weight && (
-                      <p>/{list.weight}</p>
-                  )}
-                  
-                  </ItemPriceList>
-                </ItemsGroup>
-                <ImgLive src={list.itemImg || noimg} alt="img" loading="lazy" />
-              </ItemList>
-            ))}
-          </ListItems>
-        </List>
+            <ListItems key={nanoid()}>
+              {gr.list.map(list => (
+                <ItemList key={nanoid()} onClick={() => openModal(list)}>
+                  <ItemsGroup>
+                    <ItemTitle>{list.itemName}</ItemTitle>
+                    <ItemDescriptionList>
+                      <ItemDescription>{list.description}</ItemDescription>
+                    </ItemDescriptionList>
+                    <ItemPriceList>
+                      <ItemPrice> Price: {formatNumber(list.price)}</ItemPrice>
+                      {list.weight && <p>/{list.weight}</p>}
+                    </ItemPriceList>
+                  </ItemsGroup>
+                  <ImgLive
+                    src={list.itemImg || noimg}
+                    alt="img"
+                    loading="lazy"
+                  />
+                </ItemList>
+              ))}
+            </ListItems>
+          </List>
+        </>
       ))}
 
       {modalDetailActive && (
@@ -87,10 +95,7 @@ function LiveItemsList({ section, items, sectionRefs }) {
           {groups.map(g => (
             <>
               {g.item.map(i => (
-                <LiveModalItemDetail
-                item={i}
-                  key={i._id}
-                />
+                <LiveModalItemDetail item={i} key={i._id} />
               ))}
             </>
           ))}
@@ -101,5 +106,3 @@ function LiveItemsList({ section, items, sectionRefs }) {
 }
 
 export default LiveItemsList;
-
-

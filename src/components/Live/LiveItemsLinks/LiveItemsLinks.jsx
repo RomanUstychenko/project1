@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import {ListMenu, ListNavigation, ListCategory, ListCategoryItem, ListCategoryItemLink } from './LiveItemsLinks.styled';
+import { ListNavigation, ListCategory, ListCategoryItem, ListCategoryItemLink } from './LiveItemsLinks.styled';
 import translateCyrillic from 'components/common/transliteration/transliteration';
 
 function LiveItemsLinks({
@@ -22,10 +22,7 @@ function LiveItemsLinks({
 
   return (
     <>
-    <ListMenu>
-  <li>Menu Kitchen</li>
-  <li>Menu Bar</li>
-</ListMenu>
+    
           <ListNavigation
           id={"nav"}
           >

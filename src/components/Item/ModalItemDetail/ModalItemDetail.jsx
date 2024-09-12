@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback  } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { nanoid } from 'nanoid';
 import {
   FormWrapper,
@@ -43,10 +43,7 @@ import {
   fetchItems,
 } from 'redux/items/items-operation';
 import noimg from 'img/noimg.jpg';
-import {
-  // getSections,
-  getAllSections,
-} from 'redux/sections/sections-selector';
+import { getSections } from 'redux/sections/sections-selector';
 import { getItems } from 'redux/items/items-selector';
 
 import WeightSelect from 'components/common/WeightSelect/WeightSelect';
@@ -68,32 +65,29 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
   ] = activeItem;
 
   const imgSavedCheck = useSelector(imgSaved);
-  // const sections = useSelector(getSections);
-  const allSections = useSelector(getAllSections);
-  
+  const sections = useSelector(getSections);
+
   const dispatch = useDispatch();
-  
+
   const defaultWeight = () => {
     if (weight) {
-      const num = parseFloat(weight)
+      const num = parseFloat(weight);
       if (!isNaN(num) && /\d/.test(weight)) {
         return num; // Повертає тільки число
       }
-
-    }
-    else return ""
+    } else return '';
   };
 
-    const [newItemName, setNewItemName] = useState(itemName);
+  const [newItemName, setNewItemName] = useState(itemName);
   const [newPrice, setNewPrice] = useState(price);
   const [newDescription, setNewDescription] = useState(description);
-  const [newWeight, setNewWeight] = useState(defaultWeight() || "");
+  const [newWeight, setNewWeight] = useState(defaultWeight() || '');
   const [newSection, setNewSection] = useState(section);
   const [newSectionName, setNewSectionName] = useState(false);
   const [deleted, setDeleted] = useState(false);
- 
-  const unit = useSelector(getItemWeightUnit)
-  
+
+  const unit = useSelector(getItemWeightUnit);
+
   const itemImgID = nanoid();
   const itemNameID = nanoid();
   const itemPriceID = nanoid();
@@ -107,9 +101,9 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
 
   const activeSectionInput = () => {
     inputSectionRef.current.focus();
-  }
+  };
   const items = useSelector(getItems);
-  
+
   async function handleChange(e) {
     const { name } = e.currentTarget;
     switch (name) {
@@ -128,7 +122,7 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
       case 'newSection':
         setNewSection(e.currentTarget.value);
         setNewSectionName(false);
-        activeSectionInput()
+        activeSectionInput();
         break;
       default:
         break;
@@ -162,7 +156,7 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
   };
 
   const itemsNew = items.filter(data => data.section === newSection);
-  
+
   // Функція для отримання максимального значення idSort в масиві
   const getMaxIdSort = itemsNew => {
     return itemsNew.reduce((max, itemNew) => {
@@ -191,7 +185,7 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
       );
     }
     if (section !== newSection) {
-        const maxIdSort = getMaxIdSort(itemsNew);
+      const maxIdSort = getMaxIdSort(itemsNew);
       dispatch(
         itemUpdate({
           _id: _id,
@@ -206,7 +200,7 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
       );
     }
     dispatch(fetchItems());
-    dispatch(setItemWeightUnit(''))
+    dispatch(setItemWeightUnit(''));
     setNewItemName('');
     setNewDescription('');
     setNewPrice('');
@@ -222,8 +216,8 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
   };
 
   const filter = () => {
-    const filterSection = allSections.filter(data => data._id === newSection);
-    const filterResult = filterSection.map(fi => fi.category);
+    const filterSection = sections.filter(data => data._id === newSection);
+    const filterResult = filterSection.map(data => data.category);
 
     return filterResult;
   };
@@ -232,68 +226,31 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
     setNewSectionName(true);
   }
 
-  // async function CloseSectionList(e) {
-  //   console.log("CloseSectionList")
-  //   const elForm = document.getElementById('formWrap');
-  //   // const elFormNewSection = await document.getElementById('listNewSection'); 
-  //   async function handleKeyDown(e) {
-  //     const CheckForm = e.composedPath().includes(elForm);
-  //     // const CheckFormNewSection = e.composedPath().includes(elFormNewSection);
-  //     // console.log("elFormNewSection", elFormNewSection)
-  //   //   if (CheckFormNewSection === true) {
-  //   //     console.log("CheckFormNewSection", CheckFormNewSection)
-  //   //        return
-  //   //     }
-  //   // else 
-  //    if (CheckForm === true) {
-  //       setNewSectionName(false);
-  //       // console.log("CheckFormNewSection", CheckFormNewSection)
-  //     }
-  //   }
+  // Функція для закриття списку при кліку поза ним
+  const handleClickOutside = useCallback(e => {
+    // Перевірка: якщо клік поза межами formWrap
+    const ulElement = formRef.current.querySelector('ul');
 
-  //   if (elForm !== undefined || null) {
-  //     elForm.addEventListener('click', handleKeyDown, false);
-  //   }
-  // }
+    if (ulElement && ulElement.contains(e.target)) {
+      // setNewSectionName(false);
+      return;
+    }
+    // Якщо клік на formWrap, але не на ul, закрити список
+    setNewSectionName(false);
+  }, []);
 
-
- // Функція для закриття списку при кліку поза ним
- const handleClickOutside = useCallback((e) => {
-  console.log("handleClickOutside", e)
-  // Перевірка: якщо клік поза межами formWrap
-  const ulElement = formRef.current.querySelector('ul');
-
-  if (ulElement && ulElement.contains(e.target)) {
-    console.log("Clicked intside, closing list");
-    // setNewSectionName(false);
-    return
-  }
-  // Якщо клік на formWrap, але не на ul, закрити список
-  console.log("Clicked on formWrap, closing list");
-  setNewSectionName(false);
-}, []);
-
-// Додаємо слухач при відкритті списку
-useEffect(() => {
-  
-  if (newSectionName) {
-    console.log("if newSectionName")
-    document.addEventListener('mousedown', console.log("click"));
-    document.addEventListener('mousedown', handleClickOutside);
-    // CloseSectionList();
-  } 
-  else {
-    console.log("else newSectionName")
-    document.removeEventListener('mousedown', handleClickOutside);
-  }
-
-  // Очищуємо слухач при демонтажі компонента
-  return () => {
-    document.removeEventListener('mousedown', handleClickOutside);
-  };
-}, [newSectionName, handleClickOutside]); // Викликаємо useEffect тільки тоді, коли змінюється newSectionName
-
-
+  // Додаємо слухач при відкритті списку
+  useEffect(() => {
+    if (newSectionName) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    // Очищуємо слухач при демонтажі компонента
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [newSectionName, handleClickOutside]); // Викликаємо useEffect тільки тоді, коли змінюється newSectionName
 
   return (
     <FormWrapper onClick={e => e.stopPropagation()}>
@@ -333,12 +290,7 @@ useEffect(() => {
         {deleted && <Deleted>image deleted!</Deleted>}
       </div>
 
-      <Form
-        id="formWrap"
-        // onClick={e => e.stopPropagation()}
-        onSubmit={handleSubmit}
-        ref={formRef}
-      >
+      <Form id="formWrap" onSubmit={handleSubmit} ref={formRef}>
         <FormInputList>
           <FormInputLabel htmlFor={itemNameID}>Name</FormInputLabel>
           <FormInput
@@ -367,9 +319,9 @@ useEffect(() => {
             />
           </FormInputListPriceWeight>
           <FormInputListPriceWeight>
-            <FormInputLabel 
-            ref={inputRef}
-            htmlFor={itemWeightID}>Weight</FormInputLabel>
+            <FormInputLabel ref={inputRef} htmlFor={itemWeightID}>
+              Weight
+            </FormInputLabel>
             <FormInputPriceWeight
               id={itemWeightID}
               type="text"
@@ -379,10 +331,7 @@ useEffect(() => {
               defaultValue={defaultWeight()}
               onChange={handleChange}
             />
-      <WeightSelect
-      weight={weight}
-      inputRef={inputRef}
-      />
+            <WeightSelect weight={weight} inputRef={inputRef} />
           </FormInputListPriceWeight>
         </PriceWeightWrapper>
 
@@ -406,7 +355,7 @@ useEffect(() => {
 
           <InputListWrapper>
             <FormInputSection
-            ref={inputSectionRef}
+              ref={inputSectionRef}
               id={itemSectionID}
               type="text"
               name="newSection"
@@ -418,31 +367,30 @@ useEffect(() => {
               onChange={handleChange}
             />
 
-{newSectionName ? (
-        <ListSectionChange
-          id="listNewSection"
-          name="listNewSection"
-          value={section}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {allSections.map(section => (
-            <LabelSection
-              name="newSectionLabel"
-              id={itemSectionID}
-              key={section._id}
-              
-            >
-              <FormInputHidden
-                type="radio"
-                name="newSection"
-                value={section._id}
-                onChange={handleChange}
-              />{' '}
-              {section.category}
-            </LabelSection>
-          ))}
-        </ListSectionChange>
-      ) : null}
+            {newSectionName ? (
+              <ListSectionChange
+                id="listNewSection"
+                name="listNewSection"
+                value={section}
+                onClick={e => e.stopPropagation()}
+              >
+                {sections.map(section => (
+                  <LabelSection
+                    name="newSectionLabel"
+                    id={itemSectionID}
+                    key={section._id}
+                  >
+                    <FormInputHidden
+                      type="radio"
+                      name="newSection"
+                      value={section._id}
+                      onChange={handleChange}
+                    />{' '}
+                    {section.category}
+                  </LabelSection>
+                ))}
+              </ListSectionChange>
+            ) : null}
 
             <BtnChageSection
               type="button"
@@ -458,32 +406,6 @@ useEffect(() => {
           <RenameButtonText>Save Changes</RenameButtonText>
         </RenameButton>
       </Form>
-      {/* {newSectionName && (
-        <ListSectionChange
-          id="listNewSection"
-          name="listNewSection"
-          value={section}
-          // onChange={handleChange}
-        >
-          {allSections.map(section => (
-            <LabelSection
-              name="newSectionLabel"
-              id={itemSectionID}
-              key={section._id}
-              
-            >
-              <FormInputHidden
-                type="radio"
-                name="newSection"
-                value={section._id}
-                onChange={handleChange}
-                // onClick={activeSectionInput()}
-              />{' '}
-              {section.category}
-            </LabelSection>
-          ))}
-        </ListSectionChange>
-      )} */}
     </FormWrapper>
   );
 }

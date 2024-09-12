@@ -30,7 +30,23 @@ export default function LivePage({navbarHide, setNavbarHide}) {
   const uniqueIds = new Set(itemFiter);
   console.log(sections)
 
+  /////// фільтрація пустих секцій
   const filteredSections = allSections.filter(item => uniqueIds.has(item._id));
+
+  ///// 
+  // const filteredSectionsBar = filteredSections.filter(section => section.menuOptions === "bar");
+  // const filteredSectionsKitchen = filteredSections.filter(section => section.menuOptions === "kitchen");
+  // console.log("filteredSectionsBar", filteredSectionsBar)
+
+
+  const sectionsByMenuOption = filteredSections.reduce((acc, section) => {
+    if (section.menuOptions === "bar") {
+      acc.bar.push(section);
+    } else if (section.menuOptions === "kitchen") {
+      acc.kitchen.push(section);
+    }
+    return acc;
+  }, { bar: [], kitchen: [] });
 
   useEffect(() => {
     dispatch(allUsers());
@@ -119,18 +135,44 @@ export default function LivePage({navbarHide, setNavbarHide}) {
         filteredSections={filteredSections}
         navbarHide={navbarHide}
         setNavbarHide={setNavbarHide}
-      />
-
+      />   
       <List>
-        {filteredSections.map(section => (
+        {/* {filteredSectionsKitchen.map(section => (
           <LiveItemsList
             key={section._id}
             sectionRefs={sectionRefs}
             section={section}
             items={items.filter(i => i.section === section._id)}
           />
-        ))}
+        ))} */}
+          {sectionsByMenuOption.kitchen.map(section => (
+        <LiveItemsList
+          key={section._id}
+          sectionRefs={sectionRefs}
+          section={section}
+          items={items.filter(i => i.section === section._id)}
+        />
+      ))}
+      </List>
+      <List>
+        {/* {filteredSectionsBar.map(section => (
+          <LiveItemsList
+            key={section._id}
+            sectionRefs={sectionRefs}
+            section={section}
+            items={items.filter(i => i.section === section._id)}
+          />
+        ))} */}
+        {sectionsByMenuOption.bar.map(section => (
+        <LiveItemsList
+          key={section._id}
+          sectionRefs={sectionRefs}
+          section={section}
+          items={items.filter(i => i.section === section._id)}
+        />
+      ))}
       </List>
     </LiveWrapper>
   );
 }
+
