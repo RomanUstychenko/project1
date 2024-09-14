@@ -1,5 +1,1 @@
-
-export const getAllUser = ({users}) => users.users;
-
-
-
+export const getAllUser = ({ users }) => users.users;

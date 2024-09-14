@@ -11,11 +11,12 @@ const NavState = ({ children }) => {
 
   function toggleMenuMode() {
     setMenuClose(!isMenuClose);
-    console.log("isMenuClose", isMenuClose)
   }
 
   return (
-    <MenuContext.Provider value={{ isMenuClose, toggleMenuMode }}>{children}</MenuContext.Provider>
+    <MenuContext.Provider value={{ isMenuClose, toggleMenuMode }}>
+      {children}
+    </MenuContext.Provider>
   );
 };
 

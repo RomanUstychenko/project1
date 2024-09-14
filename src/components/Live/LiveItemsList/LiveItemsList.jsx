@@ -36,8 +36,7 @@ function LiveItemsList({ section, items, sectionRefs }) {
   }
 
   const { category, menuOptions } = section;
-  console.log('section', section);
-  console.log('menuOptions', menuOptions);
+
   const groups = [
     {
       category: category,
@@ -46,7 +45,7 @@ function LiveItemsList({ section, items, sectionRefs }) {
       item: items.filter(item => item._id === openDetailsId),
     },
   ];
-  console.log('groups', groups);
+
   return (
     <>
       {groups.map(gr => (

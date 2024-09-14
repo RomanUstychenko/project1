@@ -21,8 +21,6 @@ import {
   MoveDownSection,
 } from './ItemInList.styled';
 import { useState, useContext } from 'react';
-import { nanoid } from 'nanoid';
-
 import ModalItemDetail from '../ModalItemDetail/ModalItemDetail';
 import ModalItemDelete from '../ModalItemDelete/ModalItemDelete';
 import { fetchItems } from 'redux/items/items-operation';
@@ -40,22 +38,24 @@ export default function ItemInList() {
 
   const { isMenuClose } = useContext(MenuContext);
 
-  const filteredItemId = nanoid();
-
   const dispatch = useDispatch();
 
-  const [modalDeleteActive, setModalDeleteActive] = useState(false);
-  const [modalDetailActive, setModalDetailActive] = useState(false);
-  const [idTarget, setIdTarget] = useState('');
+  const [modalData, setModalData] = useState({
+    isActive: false,
+    type: '',
+    id: '',
+  });
 
   function closeModal() {
     dispatch(fetchItems());
     dispatch(setItemWeightUnit(''));
-    setModalDeleteActive(false);
-    setModalDetailActive(false);
-    setIdTarget('');
+    setModalData({ isActive: false, type: '', id: '' });
     document.body.style.overflow = '';
   }
+
+  const handleModalOpen = (type, id) => {
+    setModalData({ isActive: true, type, id });
+  };
 
   const sections = useSelector(getSections);
 
@@ -64,16 +64,6 @@ export default function ItemInList() {
     const filterResult = filterSection.map(fi => fi.category);
 
     return filterResult;
-  };
-
-  const handleItemDelete = i => {
-    setIdTarget(i._id);
-    setModalDeleteActive(true);
-  };
-
-  const handleItemDetail = i => {
-    setIdTarget(i._id);
-    setModalDetailActive(true);
   };
 
   const handleUpSection = (item, index) => {
@@ -140,8 +130,7 @@ export default function ItemInList() {
     dispatch(fetchItems());
   };
 
-  const activeItem = itemsCategory.filter(data => data._id === idTarget);
-
+  const activeItem = itemsCategory.filter(data => data._id === modalData.id);
   /////  Пошук елемента по назві /////////
   const filterItem = useSelector(getFilter);
 
@@ -162,7 +151,7 @@ export default function ItemInList() {
   return (
     <>
       {getFilteredItem().map((item, index) => (
-        <ItemsList key={nanoid()}>
+        <ItemsList key={item._id}>
           {filterItem === '' && (
             <ButtonWrap>
               {index !== 0 && (
@@ -179,7 +168,7 @@ export default function ItemInList() {
               )}
             </ButtonWrap>
           )}
-          <ItemWrap onClick={() => handleItemDetail(item)} key={filteredItemId}>
+          <ItemWrap onClick={() => handleModalOpen('detail', item._id)}>
             <Item>
               <ItemTextWrap>
                 <ItemText value={isMenuClose}>{item.itemName}</ItemText>
@@ -196,32 +185,27 @@ export default function ItemInList() {
             </Item>
             <ItemDescription>{item.description}</ItemDescription>
           </ItemWrap>
-          <DelItem onClick={() => handleItemDelete(item)}>
+          <DelItem onClick={() => handleModalOpen('delete', item._id)}>
             <DelIcon />
           </DelItem>
         </ItemsList>
       ))}
 
-      {modalDeleteActive && (
+      {modalData.isActive && (
         <Modal
-          onClick={() => closeModal()}
-          active={modalDeleteActive}
-          setActive={setModalDeleteActive}
+          onClick={closeModal}
+          active={modalData.isActive}
+          setActive={() => setModalData(false)}
         >
-          <ModalItemDelete closeModal={closeModal} _id={idTarget} />
-        </Modal>
-      )}
-      {modalDetailActive && (
-        <Modal
-          onClick={() => closeModal()}
-          active={modalDetailActive}
-          setActive={setModalDetailActive}
-        >
-          <ModalItemDetail
-            _id={idTarget}
-            activeItem={activeItem}
-            closeModal={closeModal}
-          />
+          {modalData.type === 'delete' ? (
+            <ModalItemDelete closeModal={closeModal} _id={modalData.id} />
+          ) : (
+            <ModalItemDetail
+              _id={modalData.id}
+              activeItem={activeItem}
+              closeModal={closeModal}
+            />
+          )}
         </Modal>
       )}
     </>

@@ -35,7 +35,8 @@ export const LoginFormList = styled.div`
 `;
 
 export const LoginFormLabel = styled.label`
-  color: white;
+  color: black;
+  font-weight: bold;
   display: block;
   @media ${device.mobile} {
     font-size: 20px;

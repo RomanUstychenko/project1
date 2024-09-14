@@ -21,7 +21,6 @@ const initialState = {
 
 export default function LoginForm({ onSubmit }) {
   const isLoadingUser = useSelector(getLoadingUserStatus);
-  console.log('isLoadingUser', isLoadingUser);
 
   const { state, handleChange, handleSubmit } = useForm({
     initialState,

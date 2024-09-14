@@ -1,6 +1,5 @@
-
 export const theme = {
-    colors: {
+  colors: {
     mainTextLive: '#a19797',
     backgrondLive: 'rgb(31, 35, 36);',
     navbarUser: '#c1c4c5',
@@ -13,18 +12,18 @@ export const theme = {
     inputActive: '#F59256;',
     focusActive: '#cac8c8',
     mainTextBtn: `#010101`,
-      mainText: '#ada1a1',
-      sectionPanel: '#e3e3e3',
+    mainText: '#ada1a1',
+    sectionPanel: '#e3e3e3',
     inputIcon: '#cac8c8',
-    },
-    fonts: {
-      mainLive: 'Rye, cursive',
-      titleLive: 'Luckiest Guy, cursive',
-    },
-    size: {
-      navbarHeightMobile: '40px',
-      navbarHeightTablet: '45px',
-      navbarHeightDesktop: '45px',
-      navbarWidthTablet: '768px',
-    }
-}
+  },
+  fonts: {
+    mainLive: 'Rye, cursive',
+    titleLive: 'Luckiest Guy, cursive',
+  },
+  size: {
+    navbarHeightMobile: '40px',
+    navbarHeightTablet: '45px',
+    navbarHeightDesktop: '45px',
+    navbarWidthTablet: '768px',
+  },
+};

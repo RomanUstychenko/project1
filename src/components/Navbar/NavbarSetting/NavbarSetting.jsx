@@ -1,67 +1,54 @@
-import { useDispatch, useSelector } from "react-redux"
-import { logout } from "redux/auth/auth-operation"
-import {  NavbarSettingName, NavbarSettingLogo, Welcome, UserName, Setting, NavbarSettingSet, 
-  SettingLink, ButtonLogout, TextButton } from "./NavbarSetting.styled";
-import { getUser } from "redux/auth/auth-selector";
-import HideSetting from "components/hooks/hideSetting";
-
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from 'redux/auth/auth-operation';
+import {
+  NavbarSettingName,
+  NavbarSettingLogo,
+  Welcome,
+  UserName,
+  Setting,
+  NavbarSettingSet,
+  SettingLink,
+  ButtonLogout,
+  TextButton,
+} from './NavbarSetting.styled';
+import { getUser } from 'redux/auth/auth-selector';
+import HideSetting from 'components/hooks/hideSetting';
 
 export default function NavbarSetting() {
+  const user = useSelector(getUser);
+  const dispatch = useDispatch();
+  const { SettingActive, hideSet } = HideSetting();
 
-const user = useSelector(getUser)
-const dispatch = useDispatch();
-// const Sett = HideSetting()
-const {
-  SettingActive, 
-  // setSettingActive,
-  hideSet,
-} = HideSetting();
+  const onLogout = () => {
+    dispatch(logout());
+    localStorage.clear();
+  };
 
-// console.log('HideSetting', SettingActive)
-
-
-const onLogout =() => {
-    dispatch(logout())
-    localStorage.clear()
-}
-
-// function hideSet () {
-//   setSettingActive(false)
-// }
-// console.log(user)
-
-const chekName = Boolean(user)
+  const chekName = Boolean(user);
   return (
     <>
-   
-    
-      {chekName ?
-       <NavbarSettingName >
-         <NavbarSettingLogo src={user.logoURL} alt="avatar" />
-        
-       <UserName>{user.name}</UserName>
-       </NavbarSettingName>
-        : 
-       <Welcome>Welcome, <UserName>User</UserName>
-       </Welcome> }
-      
-       <NavbarSettingSet>
+      {chekName ? (
+        <NavbarSettingName>
+          <NavbarSettingLogo src={user.logoURL} alt="avatar" />
 
-       {SettingActive && (
-        <SettingLink 
-        onClick={() => hideSet ()}
-               to={"/users"} 
-               end><Setting/>
-        </SettingLink>
+          <UserName>{user.name}</UserName>
+        </NavbarSettingName>
+      ) : (
+        <Welcome>
+          Welcome, <UserName>User</UserName>
+        </Welcome>
+      )}
 
-        )}      
-      <ButtonLogout
-      type="button"
-      onClick={onLogout}
-      >
-<TextButton>Logout</TextButton>
-      </ButtonLogout>
-       </NavbarSettingSet>  
+      <NavbarSettingSet>
+        {SettingActive && (
+          <SettingLink onClick={() => hideSet()} to={'/users'} end>
+            <Setting />
+          </SettingLink>
+        )}
+        <ButtonLogout type="button" onClick={onLogout}>
+          <TextButton>Logout</TextButton>
+        </ButtonLogout>
+      </NavbarSettingSet>
     </>
-  )
+  );
 }

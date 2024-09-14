@@ -1,19 +1,12 @@
 import React from 'react';
 import { AboutText, Aboutwrapper } from './About.styled';
 import AboutSlide from 'components/About/AboutSlide/AboutSlide';
-import menu from 'img/about/menu.jpg'
-import items from 'img/about/items.jpg'
-import modal from 'img/about/modal.jpg'
+import menu from 'img/about/menu.jpg';
+import items from 'img/about/items.jpg';
+import modal from 'img/about/modal.jpg';
 
 export default function About() {
-
-
-  const images = [
-    menu,
-    items,
-    modal,
-    
-  ];
+  const images = [menu, items, modal];
   return (
     <Aboutwrapper>
       <AboutText>
@@ -22,9 +15,7 @@ export default function About() {
         There are functions of adding dishes, categories to them. You can also
         add, update or delete photos for each dish.
       </AboutText>
-      <AboutSlide 
-      images={images}
-      />
+      <AboutSlide images={images} />
     </Aboutwrapper>
   );
 }

@@ -1,21 +1,8 @@
-import { nanoid } from "nanoid";
-// import { Home } from "./NavbarAuth.styled";
+import { nanoid } from 'nanoid';
 
 const items = [
-    // {id: nanoid(),
-    //     to: "/about",
-    //     text: <Home />
-    // },
-    {id: nanoid(),
-    to: "/register",
-    text: "Registration"
-},
-    {id: nanoid(),
-    to: "/login",
-    text: "Login"
-},
-
-]
-
+  { id: nanoid(), to: '/register', text: 'Registration' },
+  { id: nanoid(), to: '/login', text: 'Login' },
+];
 
 export default items;

@@ -1,86 +1,59 @@
 import styled from 'styled-components';
-import { NavLink } from "react-router-dom"
-import {AiOutlineSetting} from 'react-icons/ai';
+import { NavLink } from 'react-router-dom';
+import { AiOutlineSetting } from 'react-icons/ai';
 import { Btn, TextBtn } from 'components/Button/Button.styled';
 import { device } from 'Device';
 
-// export const NavbarUserList = styled.div`
-//     display: flex;
-//     /* text-align: center; */
-//     align-items: center;
-//   justify-content: space-between;
-//     position: relative;
-//     margin-right: 5px;
-//     font-size: 15px;
-//     font-weight: 600;
-
-// `
-
-
 export const NavbarSettingName = styled.div`
-display: flex;
-width: 100%;
-align-items: center;
-/* justify-content: center; */
-margin-left: 25px;
-@media ${device.tablet} {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-left: 25px;
+  @media ${device.tablet} {
     margin-left: 35px;
-    };
-`
+  }
+`;
 export const NavbarSettingLogo = styled.img`
-    height: 35px;
-`
+  height: 35px;
+`;
 export const NavbarSettingSet = styled.div`
-display: flex;
-align-items: center;
-
-    /* text-align: right; */
-`
-export const Welcome = styled.p`
-    
-`
+  display: flex;
+  align-items: center;
+`;
+export const Welcome = styled.p``;
 export const UserName = styled.p`
-/* text-align: center;
-align-items: center; */
-    font-size: 20px;
-`
+  font-size: 20px;
+`;
 
 export const NavbarMenuList = styled.ul`
-    display: flex;
-    margin-right: auto;
-    margin-left: auto;
-    align-items: center;
-    justify-content: center;
-`
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+  justify-content: center;
+`;
 export const NavbarMenuListItem = styled.li`
-    &:not(:last-child) {
+  &:not(:last-child) {
     margin-right: 20px;
-}
-`
+  }
+`;
 export const SettingLink = styled(NavLink)`
-    text-decoration: none;
-    margin-right: 10px;
-`
+  text-decoration: none;
+  margin-right: 10px;
+`;
 export const Setting = styled(AiOutlineSetting)`
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-/* position: relative; */
-/* top: 50%; */
-/* left: 50%; */
-/* transform: translate(-50%, -50%); */
-/* margin: -50% 0 0 -50%; */
-    color: #050505;
-    width:30px;
-    height: 30px;
-    &:hover, 
-    :focus {
-        color: #333d72;
-    }
-`
+  color: #050505;
+  width: 30px;
+  height: 30px;
+  &:hover,
+  :focus {
+    color: #333d72;
+  }
+`;
 export const ButtonLogout = styled(Btn)`
-    margin-right: 15px;
-`
-export const TextButton = styled(TextBtn)`
-    
-`
+  margin-right: 15px;
+`;
+export const TextButton = styled(TextBtn)``;
