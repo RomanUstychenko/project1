@@ -78,11 +78,13 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
     } else return '';
   };
 
-  const [newItemName, setNewItemName] = useState(itemName);
-  const [newPrice, setNewPrice] = useState(price);
-  const [newDescription, setNewDescription] = useState(description);
-  const [newWeight, setNewWeight] = useState(defaultWeight() || '');
-  const [newSection, setNewSection] = useState(section);
+  const [formData, setFormData] = useState({
+    newItemName: itemName,
+    newPrice: price,
+    newDescription: description,
+    newWeight: defaultWeight() || '',
+    newSection: section,
+  });
   const [newSectionName, setNewSectionName] = useState(false);
   const [deleted, setDeleted] = useState(false);
 
@@ -99,55 +101,48 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
   const inputSectionRef = useRef(null);
   const formRef = useRef(null);
 
-  const activeSectionInput = () => {
+  const activeSectionInput = useCallback(() => {
     inputSectionRef.current.focus();
-  };
+  }, []);
+
   const items = useSelector(getItems);
 
-  async function handleChange(e) {
-    const { name } = e.currentTarget;
-    switch (name) {
-      case 'newItemName':
-        setNewItemName(e.currentTarget.value);
-        break;
-      case 'newPrice':
-        setNewPrice(e.currentTarget.value);
-        break;
-      case 'newDescription':
-        setNewDescription(e.currentTarget.value);
-        break;
-      case 'newWeight':
-        setNewWeight(e.currentTarget.value);
-        break;
-      case 'newSection':
-        setNewSection(e.currentTarget.value);
-        setNewSectionName(false);
-        activeSectionInput();
-        break;
-      default:
-        break;
+  const handleChange = e => {
+    const { name, value } = e.currentTarget;
+
+    if (name === 'newSection') {
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value,
+      }));
+      setNewSectionName(false);
+      activeSectionInput();
+    } else {
+      setFormData(prevState => ({
+        ...prevState,
+        [name]: value,
+      }));
     }
-  }
+  };
 
   const formatWeight = () => {
-    if (!newWeight) {
-      return '';
-    } else if (!unit) {
-      return `${newWeight}g`;
-    } else {
-      return `${newWeight}${unit}`;
-    }
+    return !formData.newWeight ? '' : `${formData.newWeight}${unit || 'g'}`;
   };
 
-  const UploadFile = async fileSelect => {
-    const chekImg = Boolean(itemImg);
-    const imageURL = new FormData();
-    imageURL.append('imageURL', fileSelect);
-    if (chekImg) {
-      dispatch(imgDelete(itemImgId));
-    }
-    dispatch(imgUpdate({ _id, imageURL }));
-  };
+  const UploadFile = useCallback(
+    fileSelect => {
+      const imageURL = new FormData();
+      imageURL.append('imageURL', fileSelect);
+
+      if (itemImg) {
+        console.log('delete image');
+        dispatch(imgDelete(itemImgId));
+      }
+      console.log('update image');
+      dispatch(imgUpdate({ _id, imageURL }));
+    },
+    [itemImg, itemImgId, dispatch, _id]
+  );
 
   const handleChangeUpload = e => {
     const fileSelect = e.target.files[0];
@@ -155,7 +150,7 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
     setDeleted(false);
   };
 
-  const itemsNew = items.filter(data => data.section === newSection);
+  const itemsNew = items.filter(data => data.section === formData.newSection);
 
   // Функція для отримання максимального значення idSort в масиві
   const getMaxIdSort = itemsNew => {
@@ -167,45 +162,49 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (newPrice === '') {
-      setNewPrice(price);
+    if (formData.newPrice === '') {
+      setFormData({
+        newPrice: price,
+      });
     }
-    if (section === newSection) {
+    if (section === formData.newSection) {
       dispatch(
         itemUpdate({
           _id: _id,
           idSort: idSort,
-          itemName: newItemName,
-          description: newDescription,
-          price: newPrice,
+          itemName: formData.newItemName,
+          description: formData.newDescription,
+          price: formData.newPrice,
           weight: formatWeight(),
           itemImg: itemImg,
-          section: newSection,
+          section: formData.newSection,
         })
       );
     }
-    if (section !== newSection) {
+    if (section !== formData.newSection) {
       const maxIdSort = getMaxIdSort(itemsNew);
       dispatch(
         itemUpdate({
           _id: _id,
           idSort: (maxIdSort + 1).toString(),
-          itemName: newItemName,
-          description: newDescription,
-          price: newPrice,
+          itemName: formData.newItemName,
+          description: formData.newDescription,
+          price: formData.newPrice,
           weight: formatWeight(),
           itemImg: itemImg,
-          section: newSection,
+          section: formData.newSection,
         })
       );
     }
     dispatch(fetchItems());
     dispatch(setItemWeightUnit(''));
-    setNewItemName('');
-    setNewDescription('');
-    setNewPrice('');
-    setNewWeight('');
-    setNewSection('');
+    setFormData({
+      newItemName: '',
+      newPrice: '',
+      newDescription: '',
+      newWeight: '',
+      newSection: '',
+    });
     closeModal();
   };
 
@@ -216,7 +215,9 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
   };
 
   const filter = () => {
-    const filterSection = sections.filter(data => data._id === newSection);
+    const filterSection = sections.filter(
+      data => data._id === formData.newSection
+    );
     const filterResult = filterSection.map(data => data.category);
 
     return filterResult;
@@ -232,10 +233,8 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
     const ulElement = formRef.current.querySelector('ul');
 
     if (ulElement && ulElement.contains(e.target)) {
-      // setNewSectionName(false);
       return;
     }
-    // Якщо клік на formWrap, але не на ul, закрити список
     setNewSectionName(false);
   }, []);
 
@@ -246,11 +245,10 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
     }
-    // Очищуємо слухач при демонтажі компонента
-    return () => {
+       return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [newSectionName, handleClickOutside]); // Викликаємо useEffect тільки тоді, коли змінюється newSectionName
+  }, [newSectionName, handleClickOutside]); 
 
   return (
     <FormWrapper onClick={e => e.stopPropagation()}>

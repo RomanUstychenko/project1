@@ -103,6 +103,16 @@ export default function LivePage({ navbarHide, setNavbarHide }) {
     };
   }, [scrollTargetRef, sectionRefs, navbarHide, setNavbarHide]);
 
+  const renderSections = sections =>
+    sections.map(section => (
+      <LiveItemsList
+        key={section._id}
+        sectionRefs={sectionRefs}
+        section={section}
+        items={items.filter(i => i.section === section._id)}
+      />
+    ));
+
   return (
     <LiveWrapper>
       <LiveItemsLinks
@@ -114,26 +124,8 @@ export default function LivePage({ navbarHide, setNavbarHide }) {
         navbarHide={navbarHide}
         setNavbarHide={setNavbarHide}
       />
-      <List>
-        {sectionsByMenuOption.kitchen.map(section => (
-          <LiveItemsList
-            key={section._id}
-            sectionRefs={sectionRefs}
-            section={section}
-            items={items.filter(i => i.section === section._id)}
-          />
-        ))}
-      </List>
-      <List>
-        {sectionsByMenuOption.bar.map(section => (
-          <LiveItemsList
-            key={section._id}
-            sectionRefs={sectionRefs}
-            section={section}
-            items={items.filter(i => i.section === section._id)}
-          />
-        ))}
-      </List>
+      <List>{renderSections(sectionsByMenuOption.kitchen)}</List>
+      <List>{renderSections(sectionsByMenuOption.bar)}</List>
     </LiveWrapper>
   );
 }

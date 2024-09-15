@@ -10,6 +10,16 @@ import ItemInList from 'components/Item/ItemInList/ItemInList';
 import { geItemsByCategory } from 'redux/items/items-operation';
 import { getItems } from 'redux/items/items-selector';
 
+const NameHeaders = ({ resultSize }) => (
+  <NamesList>
+    {resultSize.map(({ title, width }) => (
+      <Names key={title} style={{ width }}>
+        <p style={{ width }}>{title}</p>
+      </Names>
+    ))}
+  </NamesList>
+);
+
 export const ItemList = () => {
   const location = useLocation();
   const category = location.pathname.split('/')[2];
@@ -23,21 +33,12 @@ export const ItemList = () => {
     }
   }, [dispatch, category, items]);
 
-  const resultSize = ItemsSize();
   return (
     <>
       <List>
         <NamesWrap>
           <Filter primary={false} />
-          <NamesList>
-            {resultSize.map(({ title, width }) => {
-              return (
-                <Names key={title} style={{ width }}>
-                  <p style={{ width }}>{title}</p>
-                </Names>
-              );
-            })}
-          </NamesList>
+          <NameHeaders resultSize={ItemsSize()} />
         </NamesWrap>
 
         <ItemInList />
