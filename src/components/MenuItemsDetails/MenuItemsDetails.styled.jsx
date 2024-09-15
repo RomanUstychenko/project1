@@ -70,3 +70,8 @@ export const AddItemButton = styled(Btn)`
   color: #010101;
 `;
 export const AddItemText = styled(TextBtn)``;
+
+export const NoItems = styled.p`
+  margin-top: 25px;
+  font-size: 20px;
+`

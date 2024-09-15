@@ -14,6 +14,22 @@ import {
 import { getUser } from 'redux/auth/auth-selector';
 import HideSetting from 'components/hooks/hideSetting';
 
+function UserGreeting({ user }) {
+  if (user) {
+    return (
+      <NavbarSettingName>
+        <NavbarSettingLogo src={user.logoURL} alt="avatar" />
+        <UserName>{user.name}</UserName>
+      </NavbarSettingName>
+    );
+  }
+  return (
+    <Welcome>
+      Welcome, <UserName>User</UserName>
+    </Welcome>
+  );
+}
+
 export default function NavbarSetting() {
   const user = useSelector(getUser);
   const dispatch = useDispatch();
@@ -24,21 +40,9 @@ export default function NavbarSetting() {
     localStorage.clear();
   };
 
-  const chekName = Boolean(user);
   return (
     <>
-      {chekName ? (
-        <NavbarSettingName>
-          <NavbarSettingLogo src={user.logoURL} alt="avatar" />
-
-          <UserName>{user.name}</UserName>
-        </NavbarSettingName>
-      ) : (
-        <Welcome>
-          Welcome, <UserName>User</UserName>
-        </Welcome>
-      )}
-
+      <UserGreeting user={user} />
       <NavbarSettingSet>
         {SettingActive && (
           <SettingLink onClick={() => hideSet()} to={'/users'} end>

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { getUser } from 'redux/auth/auth-selector';
 import { userUpdate } from 'redux/auth/auth-operation';
@@ -26,37 +26,47 @@ import { imgDelete } from 'redux/items/items-operation';
 
 export default function Users() {
   const user = useSelector(getUser);
-  const chekName = Boolean(user);
 
   const dispatch = useDispatch();
-  const [updName, setName] = useState(user.name);
-  const [updPhone, setUpdPhone] = useState(user.pnone);
-  const [updDescription, setUpdDescription] = useState(user.description);
-  const [updAddress, setUpdAddress] = useState(user.address);
+  const [updName, setName] = useState('');
+  const [updPhone, setUpdPhone] = useState('');
+  const [updDescription, setUpdDescription] = useState('');
+  const [updAddress, setUpdAddress] = useState('');
 
-  const userNameID = nanoid();
-  const userPhoneID = nanoid();
-  const userDescriptionID = nanoid();
-  const userAddressID = nanoid();
-  const userPhotoID = nanoid();
+
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setUpdPhone(user.phone);
+      setUpdDescription(user.description);
+      setUpdAddress(user.address);
+    }
+  }, [user]);
+
+
+  const userNameID = useMemo(() => nanoid(), []);
+  const userPhoneID = useMemo(() => nanoid(), []);
+  const userDescriptionID = useMemo(() => nanoid(), []);
+  const userAddressID = useMemo(() => nanoid(), []);
+  const userPhotoID = useMemo(() => nanoid(), []);
 
   const { showSetting } = HideSetting;
 
   const handleChange = e => {
-    const { name } = e.currentTarget;
+    const { name, value } = e.currentTarget;
 
     switch (name) {
       case 'name':
-        setName(e.currentTarget.value);
+        setName(value);
         break;
       case 'phone':
-        setUpdPhone(e.currentTarget.value);
+        setUpdPhone(value);
         break;
       case 'description':
-        setUpdDescription(e.currentTarget.value);
+        setUpdDescription(value);
         break;
       case 'address':
-        setUpdAddress(e.currentTarget.value);
+        setUpdAddress(value);
         break;
       default:
         break;
@@ -75,11 +85,10 @@ export default function Users() {
     );
   };
 
-  const UploadFile = async fileSelect => {
-    const chekImg = Boolean(user.logoURL);
+  const UploadFile = fileSelect => {
     const imageURL = new FormData();
     imageURL.append('imageURL', fileSelect);
-    if (chekImg) {
+    if (user.logoURL) {
       dispatch(imgDelete(user.logoURLId));
     }
     dispatch(userUpdate(imageURL));
@@ -100,7 +109,7 @@ export default function Users() {
       </GoBackWrap>
 
       <ImgWraper>
-        {chekName ? (
+        {user ? (
           <>
             <Welcome>
               {' '}

@@ -14,6 +14,7 @@ import { ButtonLogReg } from 'components/common/GeneralStyle/LogRegButton.styled
 import Loader from 'components/Loader/Loader';
 import { getLoadingUserStatus } from 'redux/auth/auth-selector';
 import { useSelector } from 'react-redux';
+import { useMemo } from 'react';
 const initialState = {
   email: '',
   password: '',
@@ -28,8 +29,8 @@ export default function LoginForm({ onSubmit }) {
   });
   const { email, password } = state;
 
-  const emailId = nanoid();
-  const passwordId = nanoid();
+  const emailId = useMemo(() => nanoid(), []);
+  const passwordId = useMemo(() => nanoid(), []);
 
   return (
     <FormLogin onSubmit={handleSubmit}>

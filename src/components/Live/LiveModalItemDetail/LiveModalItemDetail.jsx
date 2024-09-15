@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   FormWrapper,
   FormImgWrapper,
@@ -38,14 +38,18 @@ export default function LiveModalItemDetail({ item }) {
   }, []);
 
   // Відстеження позиції прокрутки
-  const handleScroll = () => {
+
+  const handleScroll = useCallback(() => {
     const element = contentRef.current;
     if (element) {
-      const isAtBottom =
-        element.scrollHeight - element.scrollTop === element.clientHeight;
-      setIsScrollAtEnd(isAtBottom); // Якщо в кінці прокрутки
+      console.log('handleScroll');
+      setIsScrollAtEnd(
+        element.scrollHeight -
+          Math.ceil(element.scrollTop + element.clientHeight) <=
+          1
+      );
     }
-  };
+  }, []);
 
   return (
     <FormWrapper onClick={e => e.stopPropagation()}>

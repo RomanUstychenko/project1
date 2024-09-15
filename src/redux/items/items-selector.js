@@ -1,3 +1,4 @@
+import { createSelector } from '@reduxjs/toolkit';
 export const getItems = ({ items }) => items.items;
 export const getItemsLive = ({ items }) => items.itemsLive;
 export const isLive = ({ items }) => items.isLive;
@@ -14,3 +15,13 @@ export const getFilteredItems = ({ filter, items }) => {
   }
 };
 export const getItemWeightUnit = ({ items }) => items.itemWeightUnit;
+
+export const getItemsState = createSelector(
+  [getItems, getItemsByCategory, getState],
+  (items, itemsByCategory, state) => ({
+    items,
+    itemsCategory: itemsByCategory,
+    loading: state.loading,
+    error: state.error,
+  })
+);

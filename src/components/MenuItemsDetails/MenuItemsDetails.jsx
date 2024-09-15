@@ -5,28 +5,21 @@ import {
   BtnWrapper,
   AddItemButton,
   AddItemText,
+  NoItems,
 } from './MenuItemsDetails.styled';
 import { useSelector } from 'react-redux';
-import { getState } from 'redux/items/items-selector';
-import { getItems, getItemsByCategory } from 'redux/items/items-selector';
+import { getItemsState } from 'redux/items/items-selector';
 import { useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import { MenuContext } from 'Pages/MenuItems/ToggleMenu/navState';
 
-export default function MenuItemsDetails({ setModalActive, moveSection }) {
+export default function MenuItemsDetails({ setModalActive }) {
   const { isMenuClose } = useContext(MenuContext);
 
   const location = useLocation();
   const category = location.pathname.split('/')[2];
 
-  const items = useSelector(getItems);
-
-  const itemsCategory = useSelector(getItemsByCategory);
-
-  const {
-    // error,
-    loading,
-  } = useSelector(getState);
+  const { items, itemsCategory, loading } = useSelector(getItemsState);
 
   return (
     <ItemsList value={isMenuClose}>
@@ -44,9 +37,7 @@ export default function MenuItemsDetails({ setModalActive, moveSection }) {
           )}
         </>
       )}
-
-      {/* {loading && <ItemsLoading >...loading</ItemsLoading>}
-          {error && <p>No items yet</p>} */}
+      {itemsCategory.length === 0 && <NoItems>No items yet</NoItems>}
     </ItemsList>
   );
 }
