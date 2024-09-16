@@ -66,67 +66,41 @@ export default function ItemInList() {
     return filterResult;
   };
 
-  const handleUpSection = (item, index) => {
+  const updateItemSort = (item, newIdSort) => {
+    dispatch(
+      itemUpdate({
+        _id: item._id,
+        idSort: newIdSort,
+        itemName: item.itemName,
+        description: item.description,
+        price: item.price,
+        itemImg: item.itemImg,
+        section: item.section,
+      })
+    );
+  };
+
+  const handleUpItem = (item, index) => {
     const upIdSort = itemsCategory[index - 1].idSort;
     const tempIdSort = itemsCategory[index].idSort;
     const upElement = itemsCategory.find(item => item.idSort === upIdSort);
 
     ///// оновлення idSort поточного елемента /////////
-    dispatch(
-      itemUpdate({
-        _id: item._id,
-        itemName: item.itemName,
-        description: item.description,
-        price: item.price,
-        itemImg: item.itemImg,
-        section: item.section,
-        idSort: upIdSort,
-      })
-    );
+    updateItemSort(item, upIdSort);
     ///// оновлення idSort верхнього елемента /////////
-    dispatch(
-      itemUpdate({
-        _id: upElement._id,
-        itemName: upElement.itemName,
-        description: upElement.description,
-        price: upElement.price,
-        itemImg: upElement.itemImg,
-        section: upElement.section,
-        idSort: tempIdSort,
-      })
-    );
+    updateItemSort(upElement, tempIdSort);
     dispatch(fetchItems());
   };
 
-  const handleDownSection = (item, index) => {
+  const handleDownItem = (item, index) => {
     const downIdSort = itemsCategory[index + 1].idSort;
     const tempIdSort = itemsCategory[index].idSort;
     const downElement = itemsCategory.find(item => item.idSort === downIdSort);
 
     ///// оновлення idSort поточного елемента /////////
-    dispatch(
-      itemUpdate({
-        _id: item._id,
-        itemName: item.itemName,
-        description: item.description,
-        price: item.price,
-        itemImg: item.itemImg,
-        section: item.section,
-        idSort: downIdSort,
-      })
-    );
+    updateItemSort(item, downIdSort);
     ///// оновлення idSort верхнього елемента /////////
-    dispatch(
-      itemUpdate({
-        _id: downElement._id,
-        itemName: downElement.itemName,
-        description: downElement.description,
-        price: downElement.price,
-        itemImg: downElement.itemImg,
-        section: downElement.section,
-        idSort: tempIdSort,
-      })
-    );
+    updateItemSort(downElement, tempIdSort);
     dispatch(fetchItems());
   };
 
@@ -155,14 +129,12 @@ export default function ItemInList() {
           {filterItem === '' && (
             <ButtonWrap>
               {index !== 0 && (
-                <MoveButtonSection onClick={() => handleUpSection(item, index)}>
+                <MoveButtonSection onClick={() => handleUpItem(item, index)}>
                   <MoveUpSection />
                 </MoveButtonSection>
               )}
               {index !== itemsCategory.length - 1 && (
-                <MoveButtonSection
-                  onClick={() => handleDownSection(item, index)}
-                >
+                <MoveButtonSection onClick={() => handleDownItem(item, index)}>
                   <MoveDownSection />
                 </MoveButtonSection>
               )}

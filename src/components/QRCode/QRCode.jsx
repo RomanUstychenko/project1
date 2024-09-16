@@ -11,40 +11,29 @@ import { Wrapper, Title, QrName, QrWrap, Button, Text } from './QRCode.styled';
 function QrResult() {
   const user = useSelector(getUser);
 
-  const protocol = window.location.protocol;
-  const hostname = window.location.hostname;
-  // Перевіряємо, чи встановлений порт
-  const port = window.location.port ? `:${window.location.port}` : '';
-  const pathAfterHostname = window.location.pathname;
-  // Розбиваємо шлях на частини
-  const pathParts = pathAfterHostname.split('/');
   // Перший підкаталог після доменного імені
-  const firstSubdirectory = pathParts[1];
-  // Складаємо початок адреси
-  const baseURL = `${protocol}//${hostname}${port}/${firstSubdirectory}`;
+  const firstSubdirectory = window.location.pathname.split('/')[1];
 
-  const wey = `${baseURL}/live/${user._id}`;
+  const wey = `${window.location.origin}/${firstSubdirectory}/live/${user._id}`;
 
   const ref = useRef(null);
 
-  const saveQRCode = async () => {
-    const svgElement = ref.current; // Отримання посилання на SVG-елемент за допомогою useRef
+  const saveQRCode = () => {
+    const svgElement = ref.current;
 
-    if (!svgElement) {
-      console.error('SVG елемент не знайдено');
-      return;
+    if (svgElement) {
+      htmlToImage
+        .toPng(svgElement)
+        .then(dataUrl => {
+          const link = document.createElement('a');
+          link.href = dataUrl;
+          link.download = `QRCode-${user.name}.png`;
+          link.click();
+        })
+        .catch(error => {
+          console.error('Помилка при конвертації SVG в PNG:', error);
+        });
     }
-    htmlToImage
-      .toPng(svgElement)
-      .then(function (dataUrl) {
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = `QRCode-${user.name}.png`;
-        link.click();
-      })
-      .catch(function (error) {
-        console.error('Помилка при конвертації SVG в PNG:', error);
-      });
   };
 
   return (

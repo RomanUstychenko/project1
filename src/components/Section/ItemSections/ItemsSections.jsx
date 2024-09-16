@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-
 import {
   fetchSections,
   updateSection,
@@ -53,13 +52,30 @@ function ItemsSections() {
     setModalChangeSectionActive(false);
     document.body.style.overflow = '';
   }
+  const { sections, menuActive } = useSelector(state => ({
+    sections: getSections(state),
+    menuActive: getMenuOptions(state),
+  }));
+  // const sections = useSelector(getSections);
+  // const menuActive = useSelector(getMenuOptions);
 
-  const sections = useSelector(getSections);
-  const menuActive = useSelector(getMenuOptions);
+  // const filteredSection = sections.filter(section => section.menuOptions);
+  const filteredSection = useMemo(
+    () => sections.filter(section => section.menuOptions),
+    [sections]
+  );
+  // const handleSectionChange = item => {
+  //   buttonClickedRef.current = true;
+  //   setState({
+  //     idTarget: item._id,
+  //     idSortTarget: item.idSort,
+  //     menuOptions: item.menuOptions,
+  //     valueTarget: item.category,
+  //   });
+  //   setModalChangeSectionActive(true);
+  // };
 
-  const filteredSection = sections.filter(section => section.menuOptions);
-
-  const handleSectionChange = item => {
+  const handleSectionChange = useCallback(item => {
     buttonClickedRef.current = true;
     setState({
       idTarget: item._id,
@@ -68,6 +84,17 @@ function ItemsSections() {
       valueTarget: item.category,
     });
     setModalChangeSectionActive(true);
+  }, []);
+
+  const updateSectionSort = (item, newIdSort) => {
+    dispatch(
+      updateSection({
+        _id: item._id,
+        idSort: newIdSort,
+        category: item.category,
+        menuOptions: item.menuOptions,
+      })
+    );
   };
 
   const handleDownSection = (item, index) => {
@@ -79,23 +106,9 @@ function ItemsSections() {
     );
 
     ///// оновлення idSort поточного елемента /////////
-    dispatch(
-      updateSection({
-        _id: item._id,
-        idSort: downIdSort,
-        category: item.category,
-        menuOptions: item.menuOptions,
-      })
-    );
+    updateSectionSort(item, downIdSort);
     ///// оновлення idSort верхнього елемента /////////
-    dispatch(
-      updateSection({
-        _id: downElement._id,
-        idSort: tempIdSort,
-        category: downElement.category,
-        menuOptions: item.menuOptions,
-      })
-    );
+    updateSectionSort(downElement, tempIdSort);
 
     setTimeout(() => {
       navigate(location.pathname);
@@ -111,23 +124,9 @@ function ItemsSections() {
     const upElement = filteredSection.find(item => item.idSort === upIdSort);
 
     ///// оновлення idSort поточного елемента /////////
-    dispatch(
-      updateSection({
-        _id: item._id,
-        idSort: upIdSort,
-        category: item.category,
-        menuOptions: item.menuOptions,
-      })
-    );
-    ///// оновлення idSort верхнього елемента /////////
-    dispatch(
-      updateSection({
-        _id: upElement._id,
-        idSort: tempIdSort,
-        category: upElement.category,
-        menuOptions: item.menuOptions,
-      })
-    );
+    updateSectionSort(item, upIdSort);
+    // ///// оновлення idSort верхнього елемента /////////
+    updateSectionSort(upElement, tempIdSort);
 
     setTimeout(() => {
       navigate(location.pathname);
@@ -151,19 +150,14 @@ function ItemsSections() {
   };
 
   useEffect(() => {
+    localStorage.setItem('activeIndex', JSON.stringify(activeIndex));
+
     if (scrollRef.current) {
       const activeItem = scrollRef.current.querySelector('.active');
       if (activeItem) {
-        // Прокрутка до вибраного елементу, якщо він існує
         activeItem.scrollIntoView({ behavior: 'auto', block: 'center' });
-      } else {
-        scrollRef.current.scrollTop = 0;
       }
     }
-  }, [scrollRef]);
-
-  useEffect(() => {
-    localStorage.setItem('activeIndex', JSON.stringify(activeIndex));
   }, [activeIndex]);
 
   return (

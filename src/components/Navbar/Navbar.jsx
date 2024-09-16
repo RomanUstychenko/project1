@@ -8,13 +8,10 @@ import LiveTitle from 'components/Live/LiveTitle/LiveTitle';
 export default function Navbar({ navbarHide }) {
   const isUserLogin = UseAuth();
   const isUseLive = UseLive();
-  console.log("navbarHide", navbarHide)
   return (
     <>
       {isUseLive ? (
-        <LiveTitle 
-        className={navbarHide === true ? 'hide-show' : ''} 
-        />
+        <LiveTitle className={navbarHide === true ? 'hide-show' : ''} />
       ) : (
         <NavbarTitles>
           <NavbarList>
