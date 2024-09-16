@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Btn, TextBtn } from 'components/Button/Button.styled';
+import { Btn, TextBtn } from 'components/common/GeneralStyle/Button.styled';
 
 export const AddButton = styled(Btn)`
   position: relative;

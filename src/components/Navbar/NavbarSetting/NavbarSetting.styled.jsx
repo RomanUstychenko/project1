@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { AiOutlineSetting } from 'react-icons/ai';
-import { Btn, TextBtn } from 'components/Button/Button.styled';
+import { Btn, TextBtn } from 'components/common/GeneralStyle/Button.styled';
 import { device } from 'Device';
 
 export const NavbarSettingName = styled.div`

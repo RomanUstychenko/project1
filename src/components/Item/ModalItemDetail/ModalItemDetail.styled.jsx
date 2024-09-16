@@ -4,7 +4,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { GrEdit } from 'react-icons/gr';
 import { MdOutlineAddAPhoto } from 'react-icons/md';
 import { MdDeleteForever } from 'react-icons/md';
-import { Btn, TextBtn } from 'components/Button/Button.styled';
+import { Btn, TextBtn } from 'components/common/GeneralStyle/Button.styled';
 
 export const ChangeImage = styled(GrEdit)``;
 export const AddImage = styled(MdOutlineAddAPhoto)``;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { device } from 'Device';
-import { Btn, TextBtn } from 'components/Button/Button.styled';
+import { Btn, TextBtn } from 'components/common/GeneralStyle/Button.styled';
 
 export const Buttons = styled(Btn)`
   margin-top: 30px;

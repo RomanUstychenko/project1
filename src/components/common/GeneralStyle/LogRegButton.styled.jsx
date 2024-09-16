@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device } from 'Device';
-import { Btn } from 'components/Button/Button.styled';
+import { Btn } from 'components/common/GeneralStyle/Button.styled';
 
 export const ButtonLogReg = styled(Btn)`
   @media ${device.mobile} {

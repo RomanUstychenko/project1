@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Btn, TextBtn } from 'components/Button/Button.styled';
+import { Btn, TextBtn } from 'components/common/GeneralStyle/Button.styled';
 import { device } from 'Device';
 
 export const ItemsList = styled.div`

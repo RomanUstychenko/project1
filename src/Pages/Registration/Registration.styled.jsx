@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { device } from 'Device';
-import { TextBtn } from 'components/Button/Button.styled';
+import { TextBtn } from 'components/common/GeneralStyle/Button.styled';
 
 export const RegForm = styled.form`
   width: 100%;
