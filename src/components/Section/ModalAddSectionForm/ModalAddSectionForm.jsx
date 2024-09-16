@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSections, getMenuOptions } from 'redux/sections/sections-selector';
 import { addSection } from 'redux/sections/sections-operation';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { Btn } from './ModalAddSectionForm.styled';
+import { AddButton, AddText } from './ModalAddSectionForm.styled';
 export default function ModalAddSectionForm({ setModalSectionActive }) {
   const sections = useSelector(getSections);
   const menuActive = useSelector(getMenuOptions);
@@ -65,7 +65,9 @@ export default function ModalAddSectionForm({ setModalSectionActive }) {
         />
       </FormInputList>
 
-      <Btn text="Add" type="submit" />
+      <AddButton type='submit'>
+        <AddText>Add</AddText>
+      </AddButton>
     </Form>
   );
 }

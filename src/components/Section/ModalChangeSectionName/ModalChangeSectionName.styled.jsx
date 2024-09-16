@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { Button } from 'components/Button/Button';
 
+import { Btn, TextBtn } from 'components/Button/Button.styled';
 export const BtnList = styled.div`
   margin-top: 10px;
 `;
 
-export const BtnRename = styled(Button)`
+export const RenameButton = styled(Btn)`
   position: relative;
   right: 0px;
   height: 25px;
@@ -16,7 +16,10 @@ export const BtnRename = styled(Button)`
   margin-right: auto;
   margin-left: auto;
 `;
-export const BtnDelete = styled(Button)`
+
+export const RenameText = styled(TextBtn)``
+
+export const DeleteButtom = styled(Btn)`
   position: relative;
   right: 0px;
   height: 25px;
@@ -26,3 +29,4 @@ export const BtnDelete = styled(Button)`
   margin-right: auto;
   margin-left: 25px;
 `;
+export const DeleteText = styled(TextBtn)``;

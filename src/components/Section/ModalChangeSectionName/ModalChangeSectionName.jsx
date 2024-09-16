@@ -11,10 +11,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSections } from 'redux/sections/sections-selector';
 import { updateSection } from 'redux/sections/sections-operation';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { BtnList, BtnRename, BtnDelete } from './ModalChangeSectionName.styled';
+import {
+  BtnList,
+  RenameButton,
+  RenameText,
+  DeleteButtom,
+  DeleteText,
+} from './ModalChangeSectionName.styled';
 import { Modal } from 'components/common/Modal/Modal';
 import ModalSectionDelete from '../ModalSectionDelete/ModalSectionDelete';
-// import { Button } from 'components/Button/Button';
 
 export default function ModalChangeSectionName({
   category,
@@ -71,6 +76,10 @@ export default function ModalChangeSectionName({
     setModalDeleteActive(false);
     document.body.style.overflow = '';
   }
+  function closeAllModal() {
+    setModalDeleteActive(false);
+    closeModal();
+  }
 
   return (
     <Form onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
@@ -92,12 +101,15 @@ export default function ModalChangeSectionName({
         </FormInputList>
 
         <BtnList>
-          <BtnRename text="Rename" type="submit" />
-          <BtnDelete
-            text="Delete Section"
+          <RenameButton>
+            <RenameText>Rename</RenameText>
+          </RenameButton>
+          <DeleteButtom
             type="button"
             onClick={() => setModalDeleteActive(true)}
-          />
+          >
+            <DeleteText>Delete Section</DeleteText>
+          </DeleteButtom>
         </BtnList>
         {modalDeleteActive && (
           <Modal
@@ -107,6 +119,7 @@ export default function ModalChangeSectionName({
           >
             <ModalSectionDelete
               closeModal={closeModalDelete}
+              closeAllModal={closeAllModal}
               _id={_id}
               category={category}
             />

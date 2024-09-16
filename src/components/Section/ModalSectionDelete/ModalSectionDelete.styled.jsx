@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Btn, TextBtn } from 'components/Button/Button.styled';
 
 export const TextWrapper = styled.div`
   font-size: 25px;
@@ -13,3 +14,15 @@ export const Text = styled.p`
   margin-bottom: 20px;
   font-size: 15px;
 `;
+export const ButtonWrap = styled.div``;
+export const Button = styled(Btn)`
+  &:first-child {
+    margin-right: 25px;
+  }
+  height: 25px;
+  padding: 0px;
+  min-width: 80px;
+  font-size: 15px;
+  color: #010101;
+`;
+export const ButtonText = styled(TextBtn)``;

@@ -1,14 +1,10 @@
 import styled from 'styled-components';
+
 import { Btn, TextBtn } from 'components/Button/Button.styled';
 
 export const AddButton = styled(Btn)`
+  position: relative;
   margin-top: 10px;
-  height: 25px;
-  padding: 0px 0px;
-  min-width: 80px;
-  font-size: 15px;
-  color: #010101;
+  right: 0px;
 `;
-export const AddText = styled(TextBtn)`
-  
-`
+export const AddText = styled(TextBtn)``;

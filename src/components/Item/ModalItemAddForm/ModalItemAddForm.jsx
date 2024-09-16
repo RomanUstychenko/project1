@@ -12,7 +12,7 @@ import { getItemWeightUnit } from 'redux/items/items-selector';
 import { setItemWeightUnit } from 'redux/items/items-slice';
 import { addItems } from 'redux/items/items-operation';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { Button } from 'components/Button/Button';
+import { AddButton, AddText } from './ModalItemAddForm.styled';
 import WeightSelect from 'components/common/WeightSelect/WeightSelect';
 
 export default function ModalItemAddForm({
@@ -97,72 +97,61 @@ export default function ModalItemAddForm({
 
   return (
     <Form onClick={e => e.stopPropagation()} onSubmit={handleSubmit}>
-      <>
-        <FormInputList>
-          <FormInputLabel htmlFor={ids.itemNameID}>Name</FormInputLabel>
-          <FormInput
-            id={ids.itemNameID}
-            type="text"
-            name="itemName"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            value={formData.itemName}
-            onChange={handleChange}
-          />
-        </FormInputList>
-        <FormInputList>
-          <FormInputLabel htmlFor={ids.descriptionID}>
-            Description
-          </FormInputLabel>
-          <FormInput
-            id={ids.descriptionID}
-            type="text"
-            name="description"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </FormInputList>
-        <FormInputList>
-          <FormInputLabel htmlFor={ids.priceID}>Price</FormInputLabel>
-          <FormInput
-            id={ids.priceID}
-            type="number"
-            name="price"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
-        </FormInputList>
-        <FormInputList>
-          <FormInputLabel htmlFor={ids.priceID}>Weight</FormInputLabel>
-          <FormInput
-            ref={inputRef}
-            id={ids.weightID}
-            type="number"
-            name="weight"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="weight must be digits and can contain spaces, dashes, parentheses and can start with +"
-            value={formData.weight}
-            onChange={handleChange}
-          />
-          <WeightSelect data={formData.weight} inputRef={inputRef} />
-        </FormInputList>
-
-        <Button
-          style={{
-            position: 'relative',
-            marginTop: '10px',
-            right: '0px',
-          }}
-          text="Add Item"
-          type="submit"
+      <FormInputList>
+        <FormInputLabel htmlFor={ids.itemNameID}>Name</FormInputLabel>
+        <FormInput
+          id={ids.itemNameID}
+          type="text"
+          name="itemName"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+          value={formData.itemName}
+          onChange={handleChange}
         />
-      </>
+      </FormInputList>
+      <FormInputList>
+        <FormInputLabel htmlFor={ids.descriptionID}>Description</FormInputLabel>
+        <FormInput
+          id={ids.descriptionID}
+          type="text"
+          name="description"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          value={formData.description}
+          onChange={handleChange}
+        />
+      </FormInputList>
+      <FormInputList>
+        <FormInputLabel htmlFor={ids.priceID}>Price</FormInputLabel>
+        <FormInput
+          id={ids.priceID}
+          type="number"
+          name="price"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          value={formData.price}
+          onChange={handleChange}
+          required
+        />
+      </FormInputList>
+      <FormInputList>
+        <FormInputLabel htmlFor={ids.priceID}>Weight</FormInputLabel>
+        <FormInput
+          ref={inputRef}
+          id={ids.weightID}
+          type="number"
+          name="weight"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="weight must be digits and can contain spaces, dashes, parentheses and can start with +"
+          value={formData.weight}
+          onChange={handleChange}
+        />
+        <WeightSelect data={formData.weight} inputRef={inputRef} />
+      </FormInputList>
+      <AddButton type="submit">
+        <AddText>Add Item</AddText>
+      </AddButton>
     </Form>
   );
 }
