@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { nanoid } from 'nanoid';
 import {
   FormWrapper,
@@ -152,13 +152,12 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
 
   const itemsNew = items.filter(data => data.section === formData.newSection);
 
-  // Функція для отримання максимального значення idSort в масиві
-  const getMaxIdSort = itemsNew => {
-    return itemsNew.reduce((max, itemNew) => {
-      return Math.max(max, parseInt(itemNew.idSort));
-    }, 0);
-  };
-
+  const maxIdSort = useMemo(() => {
+    return itemsNew.reduce(
+      (max, itemNew) => Math.max(max, parseInt(itemNew.idSort)),
+      0
+    );
+  }, [itemsNew]);
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -182,7 +181,6 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
       );
     }
     if (section !== formData.newSection) {
-      const maxIdSort = getMaxIdSort(itemsNew);
       dispatch(
         itemUpdate({
           _id: _id,
@@ -245,10 +243,10 @@ export default function ModalItemDetail({ _id, activeItem, closeModal }) {
     } else {
       document.removeEventListener('mousedown', handleClickOutside);
     }
-       return () => {
+    return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [newSectionName, handleClickOutside]); 
+  }, [newSectionName, handleClickOutside]);
 
   return (
     <FormWrapper onClick={e => e.stopPropagation()}>

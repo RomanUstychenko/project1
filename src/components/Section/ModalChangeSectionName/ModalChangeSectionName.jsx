@@ -11,10 +11,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getSections } from 'redux/sections/sections-selector';
 import { updateSection } from 'redux/sections/sections-operation';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { BtnList } from './ModalChangeSectionName.styled';
+import { BtnList, BtnRename, BtnDelete } from './ModalChangeSectionName.styled';
 import { Modal } from 'components/common/Modal/Modal';
 import ModalSectionDelete from '../ModalSectionDelete/ModalSectionDelete';
-import { Button } from 'components/Button/Button';
+// import { Button } from 'components/Button/Button';
 
 export default function ModalChangeSectionName({
   category,
@@ -92,32 +92,8 @@ export default function ModalChangeSectionName({
         </FormInputList>
 
         <BtnList>
-          <Button
-            style={{
-              position: 'relative',
-              right: '0px',
-              height: '25px',
-              padding: '0px 0px',
-              minWidth: '80px',
-              fontSize: 15,
-              color: '#010101',
-              marginRight: 'auto',
-              marginLeft: 'auto',
-            }}
-            text="Rename"
-            type="submit"
-          />
-          <Button
-            style={{
-              position: 'relative',
-              right: '0px',
-              height: '25px',
-              minWidth: '110px',
-              fontSize: 15,
-              color: '#632121',
-              marginRight: 'auto',
-              marginLeft: '25px',
-            }}
+          <BtnRename text="Rename" type="submit" />
+          <BtnDelete
             text="Delete Section"
             type="button"
             onClick={() => setModalDeleteActive(true)}

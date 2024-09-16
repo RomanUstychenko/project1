@@ -56,25 +56,11 @@ function ItemsSections() {
     sections: getSections(state),
     menuActive: getMenuOptions(state),
   }));
-  // const sections = useSelector(getSections);
-  // const menuActive = useSelector(getMenuOptions);
 
-  // const filteredSection = sections.filter(section => section.menuOptions);
   const filteredSection = useMemo(
     () => sections.filter(section => section.menuOptions),
     [sections]
   );
-  // const handleSectionChange = item => {
-  //   buttonClickedRef.current = true;
-  //   setState({
-  //     idTarget: item._id,
-  //     idSortTarget: item.idSort,
-  //     menuOptions: item.menuOptions,
-  //     valueTarget: item.category,
-  //   });
-  //   setModalChangeSectionActive(true);
-  // };
-
   const handleSectionChange = useCallback(item => {
     buttonClickedRef.current = true;
     setState({
@@ -117,7 +103,7 @@ function ItemsSections() {
   };
 
   const handleUpSection = (event, item, index) => {
-    buttonClickedRef.current = true; // Позначаємо, що була натиснута кнопка
+    buttonClickedRef.current = true;
 
     const upIdSort = filteredSection[index - 1].idSort; //// над поточним IdSort
     const tempIdSort = filteredSection[index].idSort; //// поточний IdSort
@@ -146,7 +132,7 @@ function ItemsSections() {
       }, 300);
     }
 
-    buttonClickedRef.current = false; // Скидаємо значення після кліку
+    buttonClickedRef.current = false;
   };
 
   useEffect(() => {
