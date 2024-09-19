@@ -4,7 +4,8 @@ const instance = axios.create({
   baseURL:
     // "http://192.168.0.108:3001/api"
     // "http://localhost:3001/api" ,
-    'https://rest-api-back.onrender.com/api',
+    // 'https://rest-api-back.onrender.com/api',
+    'https://project-rest-api.fly.dev/api'
 });
 
 const setToken = token => {
